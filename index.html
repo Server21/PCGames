@@ -46,6 +46,34 @@ body {
 <a href="https://www.w3docs.com/" class="button">Scarica</a>
 </button>
 <hr>
+	<form id="comment-form">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name"><br>
+  <label for="comment">Comment:</label><br>
+  <textarea id="comment" name="comment"></textarea><br>
+  <input type="submit" value="Submit">
+</form> 
+<script>
+	document.getElementById('comment-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // prevent the form from being submitted
+
+  // Get the user's name and comment
+  var name = document.getElementById('name').value;
+  var comment = document.getElementById('comment').value;
+
+  // Add the comment to the comments div
+  var commentsDiv = document.getElementById('comments');
+  commentsDiv.innerHTML += '<div class="comment"><h4>' + name + '</h4><p>' + comment + '</p></div>';
+
+  // Reset the form
+  event.target.reset();
+});
+
+	
+</script>	
+	
+<div id="comments"></div>
+
 </body>
 </html>
 </Center>
