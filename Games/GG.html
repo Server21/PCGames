@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <Center>
 <html>
-<link href="//www.findberry.com/search/css/framebox.css" rel="stylesheet" type="text/css" />
-<script src="//www.findberry.com/search/js/jquery.min.js" type="text/javascript"></script>
-<script src="//www.findberry.com/search/js/findberryfx.js" type="text/javascript"></script>
-<script src="//www.findberry.com/search/js/findberry.framebox.js" type="text/javascript"></script>
-<form action="//www.findberry.com/search/" method="get" id="sr_iframe">
-<input type="hidden" name="wid" value="15351" />
-<input id="sr_searchbox" type="text" name="query" size="35" />
-<input id="sr_searchbutton" type="submit" value="Cerca" /><br />
+<script>
+  const searchButton = document.getElementById("search-button");
+  const searchQuery = document.getElementById("search-query");
+
+  searchButton.addEventListener("click", () => {
+    const query = searchQuery.value;
+    const apiKey = "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";
+    const endpoint = `https://api.github.com/search/repositories?q=${query}`;
+
+    fetch(endpoint, {
+      headers: {
+        "Authorization": `Token ${apiKey}`
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Extract repository information from the response
+        const repositories = data.items;
+        console.log(repositories);
+      });
+  });
+</script>
 <style>
 .button {
         background-color: #1c87c9;
