@@ -2,32 +2,22 @@
 <Center>
 <html>
 <form>
-  <input type="text" id="search-query" />
-  <button type="submit" id="search-button">Cerca</button>
-</form>
+      <input type="text" id="search" placeholder="Search...">
+      <button type="submit" onclick="search()">Go</button>
+    </form>
 
-<script>
-  const searchButton = document.getElementById("search-button");
-  const searchQuery = document.getElementById("search-query");
-
-  searchButton.addEventListener("click", () => {
-    const query = searchQuery.value;
-    const apiKey = "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";
-    const endpoint = `https://api.github.com/search/repositories?q=${query}`;
-
-    fetch(endpoint, {
-      headers: {
-        "Authorization": `Token ${apiKey}`
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        // Extract repository information from the response
-        const repositories = data.items;
-        console.log(repositories);
-      });
-  });
-</script>
+ <script>
+    function search() {
+      // Get the search query from the input field
+      var query = document.getElementById("search").value;
+      
+      // Use the search query to construct the URL for the desired website
+      var url = "https://server21.github.io/PCGames/Games?q=" + query;
+      
+      // Redirect the browser to the constructed URL
+      window.location.href = url;
+    }
+  </script>
 <style>
 .button {
         background-color: #1c87c9;
