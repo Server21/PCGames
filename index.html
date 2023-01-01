@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <Center>
 <html>
-	<script src="https://cdn.jsdelivr.net/npm/docs-searchbar.js@{version}/dist/cdn/docs-searchbar.min.js"></script>
 <form>
-      <input type="text" id="search" placeholder="Search...">
-      <button type="submit" onclick="search()">Go</button>
-    </form>
-
+  <input type="text" id="search-input" placeholder="Enter search term">
+  <button type="submit" id="search-button">Search</button>
+</form>
  <script>
-    function search() {
-      // Get the search query from the input field
-      var query = document.getElementById("search").value;
-      
-      // Use the search query to construct the URL for the desired website
-      var url = "https://server21.github.io/PCGames/Games?q=" + query;
-      
-      // Redirect the browser to the constructed URL
-      window.location.href = url;
-    }
+    function handleSearch() {
+  // Get the search input field value
+  const searchTerm = document.getElementById("search-input").value;
+
+  // Navigate to the desired page
+  window.location = `https://server21.github.io/${searchTerm}.html`;
+}
+const searchButton = document.getElementById("search-button");
+searchButton.addEventListener("click", handleSearch);
   </script>
 <style>
 .button {
