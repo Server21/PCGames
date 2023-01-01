@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <Center>
 <html>
+	<button onclick="openRandomSite()"class="random">Random Tutorial</button>
+<style>
+.random {
+        background-color: #333300;
+        border: none;
+        color: red;
+        padding: 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        margin: 4px 8px;
+        cursor: pointer;
+        border-radius: 20px 20px 20px 20px; 
+      }
+
+</style>
+<script>
+  function openRandomSite() {
+    // Array of websites to choose from
+    var websites = [
+      "https://www.google.com/",
+      "https://www.youtube.com/channel/UCLXgMdFjMBgOWa_Wux58SBQ",
+      "https://www.skidrowreloaded.com/"
+    ];
+
+    // Choose a random website from the array
+    var website = websites[Math.floor(Math.random() * websites.length)];
+
+    // Open the website in a new window
+    window.open(website, "_blank");
+  }
+</script>
 <style>
 .button {
         background-color: #1c87c9;
