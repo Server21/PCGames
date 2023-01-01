@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <Center>
 <html>
-<link href="//www.findberry.com/search/css/framebox.css" rel="stylesheet" type="text/css" />
-<script src="//www.findberry.com/search/js/jquery.min.js" type="text/javascript"></script>
-<script src="//www.findberry.com/search/js/findberryfx.js" type="text/javascript"></script>
-<script src="//www.findberry.com/search/js/findberry.framebox.js" type="text/javascript"></script>
-<form action="//www.findberry.com/search/" method="get" id="sr_iframe">
-  <input type="hidden" name="wid" value="15351" />
-  <input id="sr_searchbox" type="text" name="query" size="35" />
-  <input id="sr_searchbutton" type="submit" value="Search" /><br />
-</form>
+<form>
+      <input type="text" id="search" placeholder="Search...">
+      <button type="submit" onclick="search()">Go</button>
+    </form>
+
+ <script>
+    function search() {
+      // Get the search query from the input field
+      var query = document.getElementById("search").value;
+      
+      // Use the search query to construct the URL for the desired website
+      var url = "https://server21.github.io/PCGames/Games?q=" + query;
+      
+      // Redirect the browser to the constructed URL
+      window.location.href = url;
+    }
+  </script>
 <style>
 .button {
         background-color: #1c87c9;
