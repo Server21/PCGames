@@ -1,24 +1,72 @@
 <!DOCTYPE html>
 <Center>
 <html>
-	<button onclick="openRandomSite()"class="random">Random Tutorial</button>
 <style>
-.random {
-        background-color: #333300;
+.button {
+        background-color: #1c87c9;
         border: none;
-        color: red;
-        padding: 10px 10px;
+        color: white;
+        padding: 20px 200px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 20px;
-        margin: 4px 8px;
+        margin: 4px 2px;
         cursor: pointer;
-        border-radius: 20px 20px 20px 20px; 
       }
+	
+	.btn-group button {
+ background-color: #4CAF50;
+ border: 1px solid green;
+ color: white;
+ font: 18px Arial, Helvetica, sans-serif;
+ padding: 10px 24px;
+ cursor: pointer;
+ float: left;
+}
 
+
+.btn-group button:not(:last-child) {
+ border-right: none; /* Prevent double borders */
+}
+
+
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+ content: "";
+ clear: both;
+ display: table;
+}
+
+
+
+/* Add a background color on hover */
+.btn-group button:hover {
+ background-color: #3e8e41;
+}
+	
+	
+body {
+  background-image: url('https://www.skidrowreloaded.com/wp-content/uploads/2018/06/backgroundpic.jpg');
+}
 </style>
-<script>
+<head>
+	<title>HTML Video Generator</title>
+<p style="font-size:50px;">Video Test</p>
+</head>
+<body>
+<hr>
+	<video preload="auto" width="1280" height="720" controls autoplay>
+		<source src="https://www10.zippyshare.com/d/iUhyVugg/28163/Comprare%20Gioco.mp4" type="video/mp4">
+	</video>
+<br>
+<div class="btn-group">
+ <form method="get"action="URL_PAGINA_WEB"><button style="width:250px">SCARICA</button></form>
+ <form method="get"onclick="openRandomSite()"action="URL_PAGINA_WEB"><button style="width:250px">Random Tutorial</button></form>
+ </div>
+ 
+ <script>
   function openRandomSite() {
     // Array of websites to choose from
     var websites = [
@@ -34,34 +82,6 @@
     window.open(website, "_blank");
   }
 </script>
-<style>
-.button {
-        background-color: #1c87c9;
-        border: none;
-        color: white;
-        padding: 20px 200px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 20px;
-        margin: 4px 2px;
-        cursor: pointer;
-      }
-body {
-  background-image: url('https://www.skidrowreloaded.com/wp-content/uploads/2018/06/backgroundpic.jpg');
-}
-</style>
-<head>
-	<title>HTML Video Generator</title>
-<p style="font-size:50px;">Video Test</p>
-</head>
-<body>
-<hr>
-	<video preload="auto" width="1280" height="720" controls autoplay>
-		<source src="https://www10.zippyshare.com/d/iUhyVugg/28163/Comprare%20Gioco.mp4" type="video/mp4">
-	</video>
-<br>
-<a href="https://www.w3docs.com/" class="button">Scarica</a>
 </button>
 <hr>
 </body>
