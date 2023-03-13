@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteRule ^something/?$ /something/else/
+This way each time someone accesses:
+https://server21.github.io/PCGames/
+the actual content that will be displayed will be for:
+https://PCGAMES.it
+while the URL will remain unchanged.
