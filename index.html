@@ -102,7 +102,22 @@ body {
  </div>
 	</header>
 	<script src="js/buscador.js"></script>
-	
+	<script>   <!-- blocco tasto destro del mouse -->
+  function blocco_mousedx()
+   { return(false); }
+  document.oncontextmenu = blocco_mousedx;
+</script>
+	<script> <!-- blocco scorciatoie da tastiera -->
+ document.onkeydown = function(blocco_tasti) {
+  if(event.keyCode == 123) 
+{ return false; }
+  if(blocco_tasti.ctrlKey && blocco_tasti.shiftKey && blocco_tasti.keyCode == 'I'.charCodeAt(0)) { return false; }
+  if(blocco_tasti.ctrlKey && blocco_tasti.shiftKey && blocco_tasti.keyCode == 'C'.charCodeAt(0)) { return false; }
+  if(blocco_tasti.ctrlKey && blocco_tasti.shiftKey && blocco_tasti.keyCode == 'J'.charCodeAt(0)) { return false; }
+  if(blocco_tasti.ctrlKey && blocco_tasti.keyCode == 'U'.charCodeAt(0)) 
+{ return false; } 
+}
+</script>
 <hr>
 	
 <br>
