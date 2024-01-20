@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Decoder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+
+        #result p {
+            margin: 0;
+        }
+
+        #result a {
+            color: #0066cc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Decodifica QR Code</h1>
+    <input type="file" id="qrCodeInput" accept="image/*">
+    <button onclick="decodeQRCode()">Decodifica</button>
+    <div id="result"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.0.0/dist/jsQR.js"></script>
+    <script>
+        function decodeQRCode() {
+            var input = document.getElementById('qrCodeInput');
+            var resultDiv = document.getElementById('result');
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    try {
+                        var img = new Image();
+                        img.src = e.target.result;
+
+                        img.onload = function () {
+                            var canvas = document.createElement('canvas');
+                            var ctx = canvas.getContext('2d');
+                            canvas.width = img.width;
+                            canvas.height = img.height;
+                            ctx.drawImage(img, 0, 0, img.width, img.height);
+
+                            var imageData = ctx.getImageData(0, 0, img.width, img.height);
+                            var code = jsQR(imageData.data, img.width, img.height);
+
+                            if (code) {
+                                resultDiv.innerHTML = "<p>Link: <a href='" + code.data + "' target='_blank'>" + code.data + "</a></p>";
+                            } else {
+                                resultDiv.innerHTML = "<p>QR Code non trovato.</p>";
+                            }
+                        };
+                    } catch (error) {
+                        resultDiv.innerHTML = "<p>Errore nella decodifica del QR Code.</p>";
+                    }
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                resultDiv.innerHTML = "<p>Carica un'immagine QR Code.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
