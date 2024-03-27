@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gioco dell'Ippicato</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 2%;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+    }
+    #game-container {
+      background-color: #fff;
+      padding: 2%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    #word-display {
+      font-size: 24px;
+      margin-bottom: 2%;
+      font-weight: bold;
+    }
+    #guess-input {
+      padding: 2%;
+      font-size: 16px;
+      margin-right: 2%;
+      width: 60%;
+    }
+    #submit-btn, #reset-btn {
+      padding: 2% 4%;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    #submit-btn:hover, #reset-btn:hover {
+      background-color: #45a049;
+    }
+    #result {
+      font-size: 20px;
+      margin-top: 2%;
+      color: #e74c3c;
+      font-weight: bold;
+    }
+    #word-entry {
+      margin-top: 2%;
+    }
+
+    /* Responsive Styles */
+    @media only screen and (max-width: 600px) {
+      #guess-input {
+        width: 100%;
+        margin-right: 0;
+      }
+      #submit-btn, #reset-btn {
+        width: 100%;
+      }
+    }
+  </style>
+
+
+<script>
+    // Funzione per cancellare tutti i cookie sulla pagina
+    function deleteAllCookies() {
+      var cookies = document.cookie.split(";");
+
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      }
+    }
+
+    // Chiamare la funzione per cancellare i cookie al caricamento della pagina
+    window.onload = function() {
+      deleteAllCookies();
+    };
+</script>
+
+
+
+
+</head>
+<body>
+  <h1>Benvenuto al Gioco dell'Ippicato!</h1>
+
+  <div id="game-container">
+    <div id="word-entry">
+      <label for="word-input">Inserisci una parola:</label>
+      <input type="password" id="word-input">
+      <button id="submit-word-btn" onclick="startGame()">Inizia il gioco</button>
+    </div>
+
+    <div id="word-display"></div>
+
+    <label for="guess-input">Inserisci una lettera o la risposta completa:</label>
+    <input type="text" id="guess-input">
+    <button id="submit-btn" onclick="checkGuess()">Indovina</button>
+
+    <div id="result"></div>
+
+    <button id="reset-btn" style="margin-top: 2%;" onclick="resetGame()">Ricomincia</button>
+  </div>
+
+  <script>
+    var parolaDaIndovinare = '';
+    var lettereIndovinate = [];
+    var tentativiRimasti = 6;
+
+    // Funzione per iniziare il gioco
+    function startGame() {
+      parolaDaIndovinare = document.getElementById('word-input').value.toUpperCase();
+
+      // Verifica se la parola inserita è valida (contiene almeno un carattere)
+      if (/^[a-zA-Z]+$/.test(parolaDaIndovinare) && parolaDaIndovinare.length > 0) {
+        lettereIndovinate = new Array(parolaDaIndovinare.length).fill('_');
+        displayWord();
+        document.getElementById('word-entry').style.display = 'none';
+      } else {
+        alert('Inserisci una parola valida (almeno un carattere).');
+      }
+    }
+
+    // Funzione per visualizzare la parola e le lettere indovinate
+    function displayWord() {
+      document.getElementById('word-display').innerHTML = lettereIndovinate.join(' ');
+    }
+
+    // Funzione per controllare la lettera o la risposta inserita
+    function checkGuess() {
+      var inputElement = document.getElementById('guess-input');
+      var guess = inputElement.value.toUpperCase();
+
+      // Resetta l'input
+      inputElement.value = '';
+
+      if (guess.length > 1) {
+        // L'utente ha inserito una risposta completa
+        if (guess === parolaDaIndovinare) {
+          lettereIndovinate = parolaDaIndovinare.split('');
+          displayWord();
+          document.getElementById('result').textContent = 'Complimenti! Hai indovinato la parola!';
+          disableGuessing();
+        } else {
+          // Risposta errata, toglie 2 tentativi
+          tentativiRimasti -= 2;
+          updateGameStatus();
+        }
+      } else {
+        // L'utente ha inserito una singola lettera
+        var letteraTrovata = false;
+
+        // Controlla se la lettera è nella parola
+        for (var i = 0; i < parolaDaIndovinare.length; i++) {
+          if (parolaDaIndovinare[i] === guess) {
+            lettereIndovinate[i] = guess;
+            letteraTrovata = true;
+          }
+        }
+
+        // Aggiorna la visualizzazione della parola
+        displayWord();
+
+        // Riduci i tentativi rimasti se la lettera non è presente
+        if (!letteraTrovata) {
+          tentativiRimasti--;
+        }
+
+        // Mostra il risultato e controlla la fine del gioco
+        updateGameStatus();
+      }
+    }
+
+    // Funzione per aggiornare lo stato del gioco e controllare la fine del gioco
+    function updateGameStatus() {
+      document.getElementById('result').textContent = tentativiRimasti > 0 ?
+        'Tentativi rimasti: ' + tentativiRimasti :
+        'Mi dispiace, hai esaurito i tentativi. La parola era: ' + parolaDaIndovinare;
+
+      // Controlla la fine del gioco
+      if (lettereIndovinate.join('') === parolaDaIndovinare || tentativiRimasti <= 0) {
+        disableGuessing();
+      }
+    }
+
+    // Funzione per disabilitare l'input e il pulsante di indovinare
+    function disableGuessing() {
+      document.getElementById('guess-input').disabled = true;
+      document.getElementById('submit-btn').disabled = true;
+    }
+
+    // Funzione per ricominciare il gioco
+    function resetGame() {
+      parolaDaIndovinare = '';
+      lettereIndovinate = [];
+      tentativiRimasti = 6;
+
+      document.getElementById('word-entry').style.display = 'block';
+      document.getElementById('word-input').value = '';
+      document.getElementById('guess-input').disabled = false;
+      document.getElementById('submit-btn').disabled = false;
+      document.getElementById('word-display').innerHTML = '';
+      document.getElementById('result').textContent = '';
+    }
+  </script>
+</body>
+</html>
