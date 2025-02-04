@@ -1,18 +1,34 @@
 [
-    {
-        "name": "Gioco Uno",
-        "image_url": "https://via.placeholder.com/150",
-        "download_link": "https://esempio.com/gioco_uno.zip",
-        "category": "Azione",
-        "description": "Un gioco d'azione frenetico con combattimenti intensi.",
-        "languages": ["Italiano", "Inglese"]
-    },
-    {
-        "name": "Gioco Due",
-        "image_url": "https://via.placeholder.com/150",
-        "download_link": "https://esempio.com/gioco_due.zip",
-        "category": "Avventura",
-        "description": "Esplora mondi fantastici e risolvi enigmi.",
-        "languages": ["Inglese", "Francese"]
-    }
+  {
+    "name": "Gioco Uno",
+    "image_url": "https://via.placeholder.com/150",
+    "download_link": "https://esempio.com/gioco_uno.zip",
+    "category": "Azione",
+    "description": "Un gioco d'azione frenetico con combattimenti intensi e una trama avvincente.",
+    "languages": ["Italiano", "Inglese", "Spagnolo"]
+  },
+  {
+    "name": "Gioco Due",
+    "image_url": "https://via.placeholder.com/150",
+    "download_link": "https://esempio.com/gioco_due.rar",
+    "category": "Avventura",
+    "description": "Esplora mondi fantastici e risolvi enigmi in questo avvincente gioco di avventura.",
+    "languages": ["Inglese", "Francese"]
+  },
+  {
+    "name": "Gioco Tre",
+    "image_url": "https://via.placeholder.com/150",
+    "download_link": "https://esempio.com/gioco_tre.7z",
+    "category": "Strategia",
+    "description": "Pianifica le tue mosse con attenzione e guida il tuo esercito alla vittoria.",
+    "languages": ["Italiano", "Tedesco", "Russo"]
+  },
+  {
+    "name": "Gioco Quattro",
+    "image_url": "https://via.placeholder.com/150",
+    "download_link": "https://esempio.com/gioco_quattro.zip",
+    "category": "Azione",
+    "description": "Un titolo d'azione con una grafica mozzafiato e gameplay innovativo.",
+    "languages": ["Inglese", "Italiano"]
+  }
 ]
