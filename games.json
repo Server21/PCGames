@@ -1,9 +1,9 @@
 [
   {
     "name": "Terraria",
-    "image_url": "https://pastebin.com/raw/Mh2tfGM8", 
-    "download_link": "https://pixeldrain.com/api/file/xqEmJe74/info/zip/Terraria.v9965506",
-    "category": "Avventura",
+    "image_url": "https://upload.wikimedia.org/wikipedia/it/9/90/Terraria_%28videogioco%29.jpg", 
+    "download_link": "https://pastebin.com/raw/Mh2tfGM8",
+    "category": "Sandbox",
     "description": "Scava, combatti, esplora, costruisci! Niente è impossibile in questo gioco d'avventura pieno di azione. Anche disponibile nel Pacchetto da Quattro!",
     "languages": ["Italiano", "Inglese", "Francese", "Tedesco", "Spagnolo"]
   },
