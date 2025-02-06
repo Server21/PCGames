@@ -3,7 +3,7 @@
     "name": "Deep Rock Galactic",
     "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/548430/header_alt_assets_20_italian.jpg",
     "download_link": "https://files.catbox.moe/ah5asp.bat",
-    "video_url": "https://example.com/deeprock_video.mp4",
+    "video_url": "https://video.fastly.steamstatic.com/store_trailers/257031000/movie480_vp9.webm",
     "category": ["Sparatutto in prima persona", "PvE"],
     "description": "Deep Rock Galactic è un FPS fantascientifico cooperativo con tostissimi nani spaziali, ambienti distruttibili al 100%, grotte generate proceduralmente e orde infinite di mostri alieni.",
     "languages": ["Inglese", "Francese", "Italiano"]
