@@ -1,11 +1,11 @@
 [
   {
     "name": "Deep Rock Galactic",
-    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/548430/header_alt_assets_20_italian.jpg",
-    "download_link": "https://files.catbox.moe/ah5asp.bat",
-    "video_url": "https://video.fastly.steamstatic.com/store_trailers/257031000/movie480_vp9.webm",
-    "category": ["Sparatutto in prima persona", "PvE"],
-    "description": "Deep Rock Galactic è un FPS fantascientifico cooperativo con tostissimi nani spaziali, ambienti distruttibili al 100%, grotte generate proceduralmente e orde infinite di mostri alieni.",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2321470/header_alt_assets_9_italian.jpg",
+    "download_link": "https://pixeldrain.com/api/file/vA9TUeYq/info/zip/Deep.Rock.Galactic.Survivor.v0.4.19d",
+    "video_url": "https://video.fastly.steamstatic.com/store_trailers/256997966/movie480_vp9.webm",
+    "category": ["PvE"],
+    "description": "DEEP ROCK GALACTIC: SURVIVOR è uno sparatutto automatico di sopravvivenza per giocatore singolo. Affronta orde di alieni letali, estrai ricchezze e sblocca potenti potenziamenti per sopravvivere, mentre brandisci l'intero arsenale di Deep Rock Galactic. Un nano contro tutto il pianeta Hoxxes!",
     "languages": ["Inglese", "Francese", "Italiano"]
   },
   {
