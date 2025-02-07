@@ -9,11 +9,11 @@
     "languages": ["Inglese", "Francese", "Italiano"]
   },
   {
-    "name": "Another Game",
-    "image_url": "https://example.com/game_image.jpg",
-    "download_link": "https://example.com/download.zip",
-    "description": "Descrizione del gioco.",
-    "category": "Azione",
-    "languages": ["Italiano", "Inglese"]
+    "name": "Terraria",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg",
+    "download_link": "https://pd.cybar.xyz/xqEmJe74",
+    "description": "Scava, combatti, esplora, costruisci! Niente è impossibile in questo gioco d'avventura pieno di azione. Anche disponibile nel Pacchetto da Quattro!",
+    "category": "Sandbox",
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
