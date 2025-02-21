@@ -1,144 +1,150 @@
 <!DOCTYPE html>
 <html lang="it">
-<Center>
-<style>
-	div {
-  width: 500px;  /* Set a fixed width for the div element */
-  margin: 0 auto;  /* Center the div element */
-		text-align: center;  /* Center the div element */
-}
-
-	.btn-group button {
- background-color: #4CAF50;
- border: 1px solid green;
- color: white;
- font: 18px Arial, Helvetica, sans-serif;
- padding: 10px 24px;
-		text-align: center;
- cursor: pointer;
- float: left;
-}
-
-
-.btn-group button:not(:last-child) {
- border-right: none; /* Prevent double borders */
-	text-align: center;
-}
-
-
-
-/* Clear floats (clearfix hack) */
-.btn-group:after {
- content: "";
-	text-align: center;
- clear: both;
- display: table;
-}
-
-
-
-/* Add a background color on hover */
-.btn-group button:hover {
-	text-align: center;
- background-color: #3e8e41;
-}
-	
-body {
-  background-image: url('https://www.skidrowreloaded.com/wp-content/uploads/2018/06/backgroundpic.jpg');
-}
-</style>
 <head>
-	<link rel="icon" type="image/png" href="https://server21.github.io/PCGames/icon.png">
-	<meta charset="UTF-8">
-	<title>HTML Video Generator</title>
-	<script src="js/jquery.js"></script>
-	<script src="js/jquery.dataTables.min.js"></script>
-	<link rel="stylesheet" href="css/estilos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTML Video Generator</title>
+  <link rel="icon" type="image/png" href="https://server21.github.io/PCGames/icon.png">
+  <link rel="stylesheet" href="css/estilos.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/jquery.dataTables.min.js"></script>
+  <style>
+    body {
+      background-image: url('https://www.skidrowreloaded.com/wp-content/uploads/2018/06/backgroundpic.jpg');
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 20px;
+    }
+    .header-top {
+      background-color: #f1f1f1;
+      padding: 10px;
+    }
+    .navegacion input[type="search"] {
+      padding: 8px;
+      width: 300px;
+      font-size: 16px;
+    }
+    .search {
+      margin-top: 20px;
+    }
+    .search-table {
+      width: 100%;
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    .search-table td {
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+    .btn-group {
+      margin: 20px 0;
+    }
+    .btn-group button {
+      background-color: #4CAF50;
+      border: 1px solid green;
+      color: white;
+      font: 18px Arial, Helvetica, sans-serif;
+      padding: 10px 24px;
+      cursor: pointer;
+      width: 250px;
+      margin: 5px;
+    }
+    .btn-group button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
 </head>
 <body>
-
-
-<header>
-		<div class="header-top">
-			<div class="navegacion">
-				<input type="search" placeholder="Cerca . . ." id="inputBusqueda">
-			</div>
-		</div>
-		<div class="search" id="search">
-			<table class="search-table" id="searchTable">
-				<thead>
-					<tr>
-						<td></td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td><a href="https://www.google.com/">Porco dio</a></td>
-					</tr>
-					<tr>
-						<td><a href="https://is.gd/alldlc">The Sims 4 Tutti i Dlc Gratis</a></td></a>
-					</tr>
-					<tr>
-						<td><a href="#">Servicios</a></td>
-					</tr>
-					<tr>
-						<td><a href="#">Contacto</a></td>
-					</tr>
-					<tr>
-						<td><a href="#">Curso Html</a></td>
-					</tr>
-					
-				</tbody>
-			</table>
-
-		</div>
-<p style="font-size:50px;">Video Test</p>
-<video preload="auto" width="1280" height="720" controls autoplay>
-		<source src="https://www10.zippyshare.com/d/iUhyVugg/28163/Comprare%20Gioco.mp4" type="video/mp4">
-	</video>
-<div class="btn-group">
- <form method="get"action="https://pcgamesita.online/"><button style="width:250px">SCARICA</button></form>
- <form method="get"onclick="openRandomSite()"action="URL_PAGINA_WEB"><button style="width:250px">Random Tutorial</button></form>
- </div>
-	</header>
-	<script src="js/buscador.js"></script>
-	<script>   <!-- blocco tasto destro del mouse -->
-  function blocco_mousedx()
-   { return(false); }
-  document.oncontextmenu = blocco_mousedx;
-</script>
-	<script> <!-- blocco scorciatoie da tastiera -->
- document.onkeydown = function(blocco_tasti) {
-  if(event.keyCode == 123) 
-{ return false; }
-  if(blocco_tasti.ctrlKey && blocco_tasti.shiftKey && blocco_tasti.keyCode == 'I'.charCodeAt(0)) { return false; }
-  if(blocco_tasti.ctrlKey && blocco_tasti.shiftKey && blocco_tasti.keyCode == 'C'.charCodeAt(0)) { return false; }
-  if(blocco_tasti.ctrlKey && blocco_tasti.shiftKey && blocco_tasti.keyCode == 'J'.charCodeAt(0)) { return false; }
-  if(blocco_tasti.ctrlKey && blocco_tasti.keyCode == 'U'.charCodeAt(0)) 
-{ return false; } 
-}
-</script>
-<hr>
-	
-<br>
- 
- <script>
-  function openRandomSite() {
-    // Array of websites to choose from
-    var websites = [
-      "https://www.google.com/",
-      "https://www.youtube.com/channel/UCLXgMdFjMBgOWa_Wux58SBQ",
-      "https://www.skidrowreloaded.com/"
-    ];
-
-    // Choose a random website from the array
-    var website = websites[Math.floor(Math.random() * websites.length)];
-
-    // Open the website in a new window
-    window.open(website, "_blank");
-  }
-</script>
-<hr>
+  <div class="container">
+    <header>
+      <div class="header-top">
+        <div class="navegacion">
+          <input type="search" placeholder="Cerca . . ." id="inputBusqueda">
+        </div>
+      </div>
+      <div class="search" id="search">
+        <table class="search-table" id="searchTable">
+          <thead>
+            <tr>
+              <td>Link Utili</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://www.google.com/">Porco dio</a></td>
+            </tr>
+            <tr>
+              <td><a href="https://is.gd/alldlc">The Sims 4 Tutti i Dlc Gratis</a></td>
+            </tr>
+            <tr>
+              <td><a href="#">Servicios</a></td>
+            </tr>
+            <tr>
+              <td><a href="#">Contacto</a></td>
+            </tr>
+            <tr>
+              <td><a href="#">Curso Html</a></td>
+            </tr>
+            <!-- Nuovo link aggiunto -->
+            <tr>
+              <td><a href="Nes/Super_Mario_Bros.html">Super Mario Bros</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h1 style="font-size:50px; margin-top:20px;">Video Test</h1>
+    </header>
+    
+    <video preload="auto" width="1280" height="720" controls autoplay>
+      <source src="https://www10.zippyshare.com/d/iUhyVugg/28163/Comprare%20Gioco.mp4" type="video/mp4">
+      Il tuo browser non supporta il tag video.
+    </video>
+    
+    <div class="btn-group">
+      <form method="get" action="https://pcgamesita.online/">
+        <button type="submit">SCARICA</button>
+      </form>
+      <form method="get" action="URL_PAGINA_WEB" onsubmit="openRandomSite(); return false;">
+        <button type="submit">Random Tutorial</button>
+      </form>
+    </div>
+    
+    <hr>
+    
+    <script src="js/buscador.js"></script>
+    <script>
+      // Disabilita il menu contestuale (tasto destro del mouse)
+      document.oncontextmenu = function() { return false; };
+      
+      // Blocca alcune scorciatoie da tastiera
+      document.onkeydown = function(e) {
+        if (e.keyCode === 123 ||
+           (e.ctrlKey && e.shiftKey && (e.keyCode === 'I'.charCodeAt(0) ||
+                                         e.keyCode === 'C'.charCodeAt(0) ||
+                                         e.keyCode === 'J'.charCodeAt(0))) ||
+           (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))) {
+          return false;
+        }
+      };
+      
+      // Funzione per aprire un sito casuale
+      function openRandomSite() {
+        var websites = [
+          "https://www.google.com/",
+          "https://www.youtube.com/channel/UCLXgMdFjMBgOWa_Wux58SBQ",
+          "https://www.skidrowreloaded.com/"
+        ];
+        var website = websites[Math.floor(Math.random() * websites.length)];
+        window.open(website, "_blank");
+      }
+    </script>
+    
+    <hr>
+  </div>
 </body>
 </html>
-</Center>
