@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Super Mario Bros",
+    "image_url": "https://example.com/images/super_mario_bros.jpg",
+    "description": "Gioco classico di piattaforma in cloud.",
+    "languages": ["Italiano", "Inglese"],
+    "category": ["Platform", "Classico"],
+    "play_link": "https://server21.github.io/PCGames/Nes/Super_Mario_Bros.html"
+  },
+  {
+    "name": "The Legend of Zelda",
+    "image_url": "https://example.com/images/zelda.jpg",
+    "description": "Un'avventura epica nel regno di Hyrule in cloud.",
+    "languages": ["Italiano", "Inglese", "Spagnolo"],
+    "category": ["Avventura", "RPG"],
+    "play_link": "https://server21.github.io/PCGames/Nes/Legend_of_Zelda.html"
+  }
+]
