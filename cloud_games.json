@@ -1,7 +1,7 @@
 [
     {
         "name": "Super Mario Bros",
-        "image_url": "https://example.com/super-mario.jpg",
+        "image_url": "https://www.macitynet.it/wp-content/uploads/2017/01/super-mario-bros-1-e1485112988650-800x600.jpg",
         "play_link": "https://server21.github.io/PCGames/Nes/Super_Mario_Bros.html",
         "description": "Gioco classico di Super Mario Bros per NES.",
         "languages": ["Italiano", "Inglese"],
