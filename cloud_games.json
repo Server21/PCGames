@@ -1,18 +1,18 @@
 [
-  {
-    "name": "Super Mario Bros",
-    "image_url": "https://example.com/images/super_mario_bros.jpg",
-    "description": "Gioco classico di piattaforma in cloud.",
-    "languages": ["Italiano", "Inglese"],
-    "category": ["Platform", "Classico"],
-    "play_link": "https://server21.github.io/PCGames/Nes/Super_Mario_Bros.html"
-  },
-  {
-    "name": "The Legend of Zelda",
-    "image_url": "https://example.com/images/zelda.jpg",
-    "description": "Un'avventura epica nel regno di Hyrule in cloud.",
-    "languages": ["Italiano", "Inglese", "Spagnolo"],
-    "category": ["Avventura", "RPG"],
-    "play_link": "https://server21.github.io/PCGames/Nes/Legend_of_Zelda.html"
-  }
+    {
+        "name": "Super Mario Bros",
+        "image_url": "https://example.com/super-mario.jpg",
+        "play_link": "https://server21.github.io/PCGames/Nes/Super_Mario_Bros.html",
+        "description": "Gioco classico di Super Mario Bros per NES.",
+        "languages": ["Italiano", "Inglese"],
+        "category": ["Nes", "Platformer"]
+    },
+    {
+        "name": "The Legend of Zelda",
+        "image_url": "https://example.com/zelda.jpg",
+        "play_link": "https://server21.github.io/PCGames/Nes/The_Legend_of_Zelda.html",
+        "description": "Esplora il magico mondo di Zelda e salva Hyrule.",
+        "languages": ["Italiano", "Inglese"],
+        "category": ["Nes", "Adventure"]
+    }
 ]
