@@ -5,7 +5,7 @@
         "play_link": "https://server21.github.io/PCGames/Nes/Super_Mario_Bros.html",
         "description": "Gioco classico di Super Mario Bros per NES.",
         "languages": ["Italiano", "Inglese"],
-        "category": ["Nes", "Platformer"]
+        "category": ["Nes"],
     },
     {
         "name": "The Legend of Zelda",
@@ -13,6 +13,6 @@
         "play_link": "https://server21.github.io/PCGames/Nes/The_Legend_of_Zelda.html",
         "description": "Esplora il magico mondo di Zelda e salva Hyrule.",
         "languages": ["Italiano", "Inglese"],
-        "category": ["Nes", "Adventure"]
+        "category": ["Nes"],
     }
 ]
