@@ -1,4 +1,7 @@
 {
-    "Admin": "Suka23",
-    "Helper": "Bella23"
+  "Admin": {
+    "password": "Suka23",
+    "expires": "2025-03-06"
+  },
+  "Helper": "Bella23"
 }
