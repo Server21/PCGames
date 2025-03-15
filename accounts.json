@@ -1,7 +1,12 @@
 {
-  "Admin": {
-    "password": "Suka23",
-    "expires": "2025-05-06"
-  },
-  "Helper": "Bella23"
+    "Admin": {
+        "password": "Suka23",
+        "expires": "2025-05-06"
+    },
+    "Helper": "Bella23",
+    "Cira": "Bella",
+    "Antonio": {
+        "password": "Messi",
+        "expires": "2026-04-01"
+    }
 }
