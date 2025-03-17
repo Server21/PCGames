@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Cloud Gamigh - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Reset e impostazioni di base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      /* Sfondo generale con GIF animata */
+      background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXBtbzMzaGFiMHczbHh2NnIzNTducjdqdXRjYWFqYW91M3QyN2d0NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/m5oQabBdoOye4/giphy.gif') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      /* Imposta l'immagine del cloud gaming come background che copre tutto l'header */
+      background: url('https://picsur.org/i/df81fdd9-c1ce-42cb-a73f-1671ff98b648.jpg') no-repeat center center;
+      background-size: cover;
+      height: 200px; /* Altezza fissa per l'header */
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px;
+      flex-wrap: wrap;
+    }
+    nav a {
+      margin: 10px;
+      background: #1f1f1f;
+      padding: 20px;
+      border-radius: 15px;
+      transition: transform 0.3s ease, background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    nav a:focus { outline: 3px solid #ff4081; }
+    nav a:hover {
+      background: #333;
+      transform: scale(1.1);
+    }
+    nav a img {
+      width: 120px;
+      height: auto;
+      display: block;
+    }
+    #content {
+      flex: 1;
+      padding: 20px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5); /* Sovrapposizione per migliorare la leggibilità */
+      border-radius: 10px;
+      margin: 20px;
+    }
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 15px 20px;
+      background: #1f1f1f;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      display: none;
+      font-size: 1em;
+    }
+    .back-button:focus { outline: 3px solid #ff4081; }
+    .back-button:hover {
+      background: #333;
+      transform: scale(1.05);
+    }
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      nav a img { width: 100px; }
+      header { height: 150px; }
+      .back-button { font-size: 0.9em; }
+    }
+  </style>
+</head>
+<body>
+  <button id="backBtn" class="back-button" tabindex="0" onclick="loadPage('cloud.html')">Torna alla Home</button>
+  <header></header>
+  <nav>
+    <!-- Pulsanti con immagini (senza testo) -->
+    <a href="#" tabindex="0" onclick="loadPage('psp.html')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/PSP_E1000_illustration.svg" alt="PSP">
+    </a>
+    <a href="#" tabindex="0" onclick="loadPage('nes.html')">
+      <img src="https://retrofixer.it/wp-content/uploads/2022/11/Nes_console.png" alt="NES">
+    </a>
+    <a href="#" tabindex="0" onclick="loadPage('gba.html')">
+      <img src="https://raw.githubusercontent.com/fabricecaruso/es-theme-carbon/master/art/consoles/gba.png" alt="GBA">
+    </a>
+  </nav>
+  <div id="content">
+    <p>Benvenuto. Seleziona un emulatore per iniziare.</p>
+  </div>
+  <script>
+    // Caricamento dinamico dei contenuti
+    function loadPage(page) {
+      fetch(page)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('content').innerHTML = data;
+        document.getElementById('backBtn').style.display = (page !== 'cloud.html') ? 'block' : 'none';
+      })
+      .catch(error => console.error('Errore nel caricamento della pagina:', error));
+    }
+    
+    // Gestione della navigazione tramite telecomando
+    document.addEventListener("keydown", function(e) {
+      if(document.activeElement.tagName === "INPUT") return;
+      let focusable = Array.from(document.querySelectorAll("a, button, [tabindex]"))
+                           .filter(el => !el.disabled && el.offsetParent !== null);
+      let currentIndex = focusable.indexOf(document.activeElement);
+      if(currentIndex === -1) {
+        if(focusable.length) { focusable[0].focus(); }
+        return;
+      }
+      if(e.keyCode === 37 || e.keyCode === 38) {
+        let prevIndex = (currentIndex - 1 + focusable.length) % focusable.length;
+        focusable[prevIndex].focus();
+        e.preventDefault();
+      } else if(e.keyCode === 39 || e.keyCode === 40) {
+        let nextIndex = (currentIndex + 1) % focusable.length;
+        focusable[nextIndex].focus();
+        e.preventDefault();
+      } else if(e.keyCode === 13) {
+        document.activeElement.click();
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
