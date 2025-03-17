@@ -5,69 +5,63 @@
   <title>NES Emulator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Reset e impostazioni di base */
+    /* Stili base e responsive per la pagina del emulatore */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXBtbzMzaGFiMHczbHh2NnIzNTducjdqdXRjYWFqYW91M3QyN2d0NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/m5oQabBdoOye4/giphy.gif') no-repeat center center fixed;
-      background-size: cover;
+      background: inherit; /* Usa lo stesso background della pagina principale */
       color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      padding: 20px;
     }
     h2 {
       text-align: center;
-      margin-top: 20px;
+      margin: 20px 0;
     }
     .search-bar {
       display: flex;
       justify-content: center;
-      margin: 20px;
+      margin-bottom: 20px;
     }
     .search-bar input {
       width: 80%;
-      padding: 15px;
+      padding: 10px;
       font-size: 1.2em;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
     }
     #gamesList {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 10px;
-      background: rgba(0,0,0,0.5);
+      gap: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 15px;
       border-radius: 10px;
-      margin: 20px;
     }
     .game-item {
       background: #1f1f1f;
-      margin: 15px;
-      padding: 20px;
-      border-radius: 15px;
-      width: 320px;
+      padding: 15px;
+      border-radius: 10px;
+      width: 300px;
       text-align: center;
       transition: transform 0.3s ease, background 0.3s ease;
     }
     .game-item:hover {
       background: #333;
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
     .game-item img {
       width: 100%;
-      max-height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
+      height: auto;
+      border-radius: 5px;
     }
     .play-button {
-      margin-top: 15px;
-      padding: 15px 20px;
+      margin-top: 10px;
+      padding: 10px;
       background: #ff4081;
       color: #fff;
       border: none;
-      border-radius: 10px;
-      font-size: 1em;
+      border-radius: 8px;
       cursor: pointer;
       transition: background 0.3s ease, transform 0.3s ease;
     }
@@ -75,54 +69,62 @@
       background: #e73370;
       transform: scale(1.05);
     }
-    .play-button:focus { outline: 3px solid #fff; }
-    #gameContainer { padding: 20px; }
-    @media screen and (max-width: 768px) {
-      .game-item { width: 90%; }
-      .search-bar input { width: 90%; }
+    #gameContainer {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
   <h2>NES Emulator</h2>
+  
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="Cerca il gioco..." tabindex="0" onkeyup="filterGames()">
   </div>
+  
   <div id="gamesList">
-    <!-- I giochi verranno caricati dinamicamente -->
+    <!-- I giochi verranno caricati dinamicamente dal JSON -->
   </div>
-  <div id="gameContainer"></div>
+  
+  <div id="gameContainer">
+    <!-- Qui verrà caricato il gioco tramite iframe quando l'utente clicca su "Play" -->
+  </div>
   
   <script>
-    // Imposta la categoria per questa pagina
+    // Categoria per questa pagina (case sensitive in base al JSON)
     const category = "Nes";
-
-    // Funzione per rimuovere le virgole finali da JSON string
+    
+    // Funzione per rimuovere trailing commas dal testo JSON (se presenti)
     function parseJSONWithTrailingCommas(text) {
-      // Rimuove le virgole finali prima di } o ]
       const cleanedText = text.replace(/,\s*([}\]])/g, '$1');
       return JSON.parse(cleanedText);
     }
-
-    // Carica il file JSON come testo, poi usa la funzione custom per fare il parse
-    fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/cloud_games.json")
+    
+    // Carica il file JSON dal repository e filtra per categoria
+    fetch("https://server21.github.io/PCGames/cloud_games.json")
       .then(response => response.text())
       .then(text => {
+        console.log("JSON raw text:", text);
         const games = parseJSONWithTrailingCommas(text);
-        const filtered = games.filter(game => game.category.includes(category));
+        const filtered = games.filter(game => Array.isArray(game.category) && game.category.includes(category));
+        console.log("Giochi filtrati:", filtered);
         const container = document.getElementById("gamesList");
-        filtered.forEach(game => {
-          container.innerHTML += `
-            <div class="game-item" data-title="${game.name}" tabindex="0">
-              <img src="${game.image_url}" alt="${game.name}">
-              <p>${game.description}</p>
-              <button class="play-button" tabindex="0" onclick="playGame('${game.play_link}')">Play</button>
-            </div>
-          `;
-        });
+        if(filtered.length === 0) {
+          container.innerHTML = `<p>Nessun gioco trovato per la categoria "${category}".</p>`;
+        } else {
+          filtered.forEach(game => {
+            container.innerHTML += `
+              <div class="game-item" data-title="${game.name}" tabindex="0">
+                <img src="${game.image_url}" alt="${game.name}">
+                <h3>${game.name}</h3>
+                <p>${game.description}</p>
+                <button class="play-button" tabindex="0" onclick="playGame('${game.play_link}')">Play</button>
+              </div>
+            `;
+          });
+        }
       })
-      .catch(error => console.error("Errore nel caricamento dei giochi:", error));
-
+      .catch(error => console.error("Errore nel caricamento del JSON:", error));
+    
     function filterGames() {
       const input = document.getElementById("searchInput");
       const filter = input.value.toUpperCase();
@@ -132,35 +134,33 @@
         games[i].style.display = title.toUpperCase().includes(filter) ? "block" : "none";
       }
     }
-
+    
+    // Quando viene cliccato "Play", carica la pagina del gioco in un iframe nel gameContainer
     function playGame(url) {
-      fetch(url)
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("gameContainer").innerHTML = data;
-        })
-        .catch(error => console.error("Errore nel caricamento del gioco:", error));
+      document.getElementById("gameContainer").innerHTML = `
+        <iframe src="${url}" width="100%" height="600" frameborder="0" allowfullscreen tabindex="0"></iframe>
+      `;
     }
-
-    // Gestione della navigazione tramite telecomando
+    
+    // Gestione della navigazione con telecomando (frecce e tasto Enter)
     document.addEventListener("keydown", function(e) {
-      if (document.activeElement.tagName === "INPUT") return;
+      if(document.activeElement.tagName === "INPUT") return;
       let focusable = Array.from(document.querySelectorAll("a, button, [tabindex]"))
                            .filter(el => !el.disabled && el.offsetParent !== null);
       let currentIndex = focusable.indexOf(document.activeElement);
-      if (currentIndex === -1) {
-        if (focusable.length) { focusable[0].focus(); }
+      if(currentIndex === -1) {
+        if(focusable.length){ focusable[0].focus(); }
         return;
       }
-      if (e.keyCode === 37 || e.keyCode === 38) {
+      if(e.keyCode === 37 || e.keyCode === 38){
         let prevIndex = (currentIndex - 1 + focusable.length) % focusable.length;
         focusable[prevIndex].focus();
         e.preventDefault();
-      } else if (e.keyCode === 39 || e.keyCode === 40) {
+      } else if(e.keyCode === 39 || e.keyCode === 40){
         let nextIndex = (currentIndex + 1) % focusable.length;
         focusable[nextIndex].focus();
         e.preventDefault();
-      } else if (e.keyCode === 13) {
+      } else if(e.keyCode === 13){
         document.activeElement.click();
         e.preventDefault();
       }
