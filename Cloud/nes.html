@@ -8,22 +8,91 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
-      /* Riutilizza sfondo parent */
-      background: inherit;
+      background: url('https://media3.giphy.com/media/m5oQabBdoOye4/giphy.gif') no-repeat center center fixed;
+      background-size: cover;
       color: #fff;
-      min-height: 100%;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
+    
+    header {
+      height: 150px;
+      background: url('https://picsur.org/i/df81fdd9-c1ce-42cb-a73f-1671ff98b648.jpg') no-repeat center center;
+      background-size: cover;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px;
+    }
+    
+    nav a {
+      background: rgba(31, 31, 31, 0.8);
+      padding: 15px;
+      border-radius: 10px;
+      transition: 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    nav a:hover {
+      background: rgba(51, 51, 51, 0.9);
+      transform: scale(1.1);
+    }
+    
+    nav a img {
+      width: 70px;
+      display: block;
+    }
+    
+    .current-emulator {
+      border: 3px solid #ff4081;
+      position: relative;
+    }
+    
+    .current-emulator::after {
+      content: "Attivo";
+      position: absolute;
+      bottom: -10px;
+      font-size: 12px;
+      background: #ff4081;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    
+    .home-button {
+      background: rgba(31, 31, 31, 0.8);
+      padding: 15px;
+      border-radius: 10px;
+      transition: 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 20px;
+    }
+    
+    .home-button:hover {
+      background: rgba(51, 51, 51, 0.9);
+      transform: scale(1.1);
+    }
+    
     h2 {
       text-align: center;
       margin-top: 20px;
     }
+    
     .search-bar {
       display: flex;
       justify-content: center;
       margin: 20px;
     }
+    
     .search-bar input {
       width: 80%;
       padding: 15px;
@@ -31,6 +100,7 @@
       border: none;
       border-radius: 10px;
     }
+    
     #gamesList {
       display: flex;
       flex-wrap: wrap;
@@ -41,6 +111,7 @@
       padding: 20px;
       margin: 0 20px;
     }
+    
     .game-item {
       background: #1f1f1f;
       padding: 20px;
@@ -49,15 +120,18 @@
       text-align: center;
       transition: transform 0.3s ease, background 0.3s ease;
     }
+    
     .game-item:hover {
       background: #333;
       transform: scale(1.05);
     }
+    
     .game-item img {
       width: 100%;
       height: auto;
       border-radius: 10px;
     }
+    
     .play-button {
       margin-top: 10px;
       padding: 15px;
@@ -69,15 +143,19 @@
       cursor: pointer;
       transition: background 0.3s ease, transform 0.3s ease;
     }
+    
     .play-button:hover {
       background: #e73370;
       transform: scale(1.05);
     }
+    
     .play-button:focus { outline: 3px solid #fff; }
+    
     #gameContainer {
       margin: 20px;
       text-align: center;
     }
+    
     iframe {
       width: 100%;
       max-width: 800px;
@@ -88,6 +166,20 @@
   </style>
 </head>
 <body>
+  <header></header>
+  
+  <nav>
+    <a href="nes.html" class="current-emulator">
+      <img src="https://retrofixer.it/wp-content/uploads/2022/11/Nes_console.png" alt="NES">
+    </a>
+    <a href="gba.html">
+      <img src="https://raw.githubusercontent.com/fabricecaruso/es-theme-carbon/master/art/consoles/gba.png" alt="GBA">
+    </a>
+    <a href="psp.html">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/PSP_E1000_illustration.svg" alt="PSP">
+    </a>
+  </nav>
+  
   <h2>NES Emulator</h2>
   
   <div class="search-bar">
@@ -151,6 +243,9 @@
       document.getElementById("gameContainer").innerHTML = `
         <iframe src="${url}" allowfullscreen tabindex="0"></iframe>
       `;
+      
+      // Scorri fino al contenitore del gioco
+      document.getElementById("gameContainer").scrollIntoView({behavior: "smooth"});
     }
 
     // Navigazione con telecomando
