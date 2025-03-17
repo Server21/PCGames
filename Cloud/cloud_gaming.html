@@ -18,10 +18,9 @@
       flex-direction: column;
     }
     header {
-      /* Immagine logo che copre tutto l'header */
+      height: 200px;
       background: url('https://picsur.org/i/df81fdd9-c1ce-42cb-a73f-1671ff98b648.jpg') no-repeat center center;
       background-size: cover;
-      height: 200px;
     }
     nav {
       display: flex;
@@ -64,7 +63,7 @@
       top: 20px;
       left: 20px;
       padding: 15px;
-      background: rgba(31,31,31,0.8);
+      background: rgba(31, 31, 31, 0.8);
       color: #fff;
       border: none;
       border-radius: 10px;
@@ -85,10 +84,13 @@
   </style>
 </head>
 <body>
+  <!-- Bottone "Torna alla Home": effettua un redirect completo alla home -->
   <button id="backBtn" class="back-button" tabindex="0" onclick="goHome()">Torna alla Home</button>
+  
   <header></header>
+  
   <nav>
-    <!-- Pulsanti con immagini (senza testo) -->
+    <!-- Icone degli emulatori: cliccando carichi la sottopagina e aggiorni l'URL -->
     <a href="#" tabindex="0" onclick="loadPage('nes.html')">
       <img src="https://retrofixer.it/wp-content/uploads/2022/11/Nes_console.png" alt="NES">
     </a>
@@ -98,20 +100,23 @@
     <a href="#" tabindex="0" onclick="loadPage('psp.html')">
       <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/PSP_E1000_illustration.svg" alt="PSP">
     </a>
-    <!-- Aggiungi altri emulatori se necessario -->
+    <!-- Puoi aggiungere altri emulatori se necessario -->
   </nav>
+  
   <div id="content">
     <p>Benvenuto. Seleziona un emulatore per iniziare.</p>
   </div>
+  
   <script>
+    // Funzione per ricaricare completamente la home
     function goHome() {
-      // Ricarica la pagina (redirect completo)
       window.location.href = 'cloud_gaming.html';
     }
     
-    function loadPage(page) {
-      // Se tenti di caricare la home, fai redirect
-      if (page === 'cloud_gaming.html') {
+    // Funzione per caricare dinamicamente una sottopagina e aggiornare l'URL
+    function loadPage(page, updateState = true) {
+      // Se viene richiesta la home, reindirizza
+      if(page === 'cloud_gaming.html'){
         window.location.href = 'cloud_gaming.html';
         return;
       }
@@ -119,31 +124,43 @@
         .then(response => response.text())
         .then(data => {
           document.getElementById('content').innerHTML = data;
-          // Mostra il bottone "Torna alla Home"
           document.getElementById('backBtn').style.display = 'block';
+          if(updateState){
+            window.history.pushState({page: page}, "", page);
+          }
         })
         .catch(error => console.error('Errore nel caricamento della pagina:', error));
     }
-
-    // Gestione navigazione con telecomando
+    
+    // Gestione dell'evento popstate per il tasto "back" del browser
+    window.onpopstate = function(event) {
+      if (event.state && event.state.page) {
+        loadPage(event.state.page, false);
+      } else {
+        // Se non c'è stato uno stato, torna alla home
+        window.location.href = 'cloud_gaming.html';
+      }
+    };
+    
+    // Gestione della navigazione con telecomando (frecce e tasto Enter)
     document.addEventListener("keydown", function(e) {
-      if (document.activeElement.tagName === "INPUT") return;
+      if(document.activeElement.tagName === "INPUT") return;
       let focusable = Array.from(document.querySelectorAll("a, button, [tabindex]"))
                            .filter(el => !el.disabled && el.offsetParent !== null);
       let currentIndex = focusable.indexOf(document.activeElement);
-      if (currentIndex === -1) {
-        if (focusable.length) { focusable[0].focus(); }
+      if(currentIndex === -1) {
+        if(focusable.length){ focusable[0].focus(); }
         return;
       }
-      if (e.keyCode === 37 || e.keyCode === 38) {
+      if(e.keyCode === 37 || e.keyCode === 38) {
         let prevIndex = (currentIndex - 1 + focusable.length) % focusable.length;
         focusable[prevIndex].focus();
         e.preventDefault();
-      } else if (e.keyCode === 39 || e.keyCode === 40) {
+      } else if(e.keyCode === 39 || e.keyCode === 40) {
         let nextIndex = (currentIndex + 1) % focusable.length;
         focusable[nextIndex].focus();
         e.preventDefault();
-      } else if (e.keyCode === 13) {
+      } else if(e.keyCode === 13) {
         document.activeElement.click();
         e.preventDefault();
       }
