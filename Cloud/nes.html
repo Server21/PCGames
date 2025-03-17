@@ -89,56 +89,78 @@
     <input type="text" id="searchInput" placeholder="Cerca il gioco..." tabindex="0" onkeyup="filterGames()">
   </div>
   <div id="gamesList">
-    <!-- Scheda di esempio per un gioco NES -->
-    <div class="game-item" data-title="Super Mario Bros" tabindex="0">
-      <img src="nes_game1.jpg" alt="Super Mario Bros">
-      <p>Super Mario Bros, un classico intramontabile.</p>
-      <button class="play-button" tabindex="0" onclick="playGame('nes_game1.html')">Play</button>
-    </div>
-    <div class="game-item" data-title="The Legend of Zelda" tabindex="0">
-      <img src="nes_game2.jpg" alt="The Legend of Zelda">
-      <p>The Legend of Zelda, un'avventura epica.</p>
-      <button class="play-button" tabindex="0" onclick="playGame('nes_game2.html')">Play</button>
-    </div>
-    <!-- Aggiungi ulteriori giochi NES secondo necessità -->
+    <!-- I giochi verranno caricati dinamicamente -->
   </div>
   <div id="gameContainer"></div>
+  
   <script>
+    // Imposta la categoria per questa pagina
+    const category = "Nes";
+
+    // Funzione per rimuovere le virgole finali da JSON string
+    function parseJSONWithTrailingCommas(text) {
+      // Rimuove le virgole finali prima di } o ]
+      const cleanedText = text.replace(/,\s*([}\]])/g, '$1');
+      return JSON.parse(cleanedText);
+    }
+
+    // Carica il file JSON come testo, poi usa la funzione custom per fare il parse
+    fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/cloud_games.json")
+      .then(response => response.text())
+      .then(text => {
+        const games = parseJSONWithTrailingCommas(text);
+        const filtered = games.filter(game => game.category.includes(category));
+        const container = document.getElementById("gamesList");
+        filtered.forEach(game => {
+          container.innerHTML += `
+            <div class="game-item" data-title="${game.name}" tabindex="0">
+              <img src="${game.image_url}" alt="${game.name}">
+              <p>${game.description}</p>
+              <button class="play-button" tabindex="0" onclick="playGame('${game.play_link}')">Play</button>
+            </div>
+          `;
+        });
+      })
+      .catch(error => console.error("Errore nel caricamento dei giochi:", error));
+
     function filterGames() {
-      const input = document.getElementById('searchInput');
+      const input = document.getElementById("searchInput");
       const filter = input.value.toUpperCase();
-      const games = document.getElementsByClassName('game-item');
-      for(let i = 0; i < games.length; i++){
-        const title = games[i].getAttribute('data-title');
+      const games = document.getElementsByClassName("game-item");
+      for (let i = 0; i < games.length; i++) {
+        const title = games[i].getAttribute("data-title");
         games[i].style.display = title.toUpperCase().includes(filter) ? "block" : "none";
       }
     }
-    function playGame(page) {
-      fetch(page)
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('gameContainer').innerHTML = data;
-      })
-      .catch(error => console.error('Errore nel caricamento del gioco:', error));
+
+    function playGame(url) {
+      fetch(url)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("gameContainer").innerHTML = data;
+        })
+        .catch(error => console.error("Errore nel caricamento del gioco:", error));
     }
+
+    // Gestione della navigazione tramite telecomando
     document.addEventListener("keydown", function(e) {
-      if(document.activeElement.tagName === "INPUT") return;
+      if (document.activeElement.tagName === "INPUT") return;
       let focusable = Array.from(document.querySelectorAll("a, button, [tabindex]"))
                            .filter(el => !el.disabled && el.offsetParent !== null);
       let currentIndex = focusable.indexOf(document.activeElement);
-      if(currentIndex === -1){
-        if(focusable.length){ focusable[0].focus(); }
+      if (currentIndex === -1) {
+        if (focusable.length) { focusable[0].focus(); }
         return;
       }
-      if(e.keyCode === 37 || e.keyCode === 38){
+      if (e.keyCode === 37 || e.keyCode === 38) {
         let prevIndex = (currentIndex - 1 + focusable.length) % focusable.length;
         focusable[prevIndex].focus();
         e.preventDefault();
-      } else if(e.keyCode === 39 || e.keyCode === 40){
+      } else if (e.keyCode === 39 || e.keyCode === 40) {
         let nextIndex = (currentIndex + 1) % focusable.length;
         focusable[nextIndex].focus();
         e.preventDefault();
-      } else if(e.keyCode === 13){
+      } else if (e.keyCode === 13) {
         document.activeElement.click();
         e.preventDefault();
       }
