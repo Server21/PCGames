@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Avvio Gioco</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    h1 {
+      margin-bottom: 10px;
+      font-size: 2em;
+      text-align: center;
+    }
+    p {
+      margin-bottom: 20px;
+      font-size: 1.2em;
+      text-align: center;
+    }
+    #gameFrame {
+      width: 100%;
+      max-width: 800px;
+      height: 500px;
+      border: none;
+      border-radius: 10px;
+    }
+    @media (min-width: 1200px) {
+      h1 { font-size: 2.5em; }
+      #gameFrame { height: 600px; }
+    }
+    /* Pulsante per tornare indietro */
+    #backBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff4081;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-size: 1.2em;
+    }
+    #backBtn:hover,
+    #backBtn:focus { background: #e73370; outline: 3px solid #fff; }
+  </style>
+</head>
+<body>
+  <!-- Titolo e descrizione del gioco -->
+  <h1 id="gameTitle">Gioco</h1>
+  <p id="gameDesc"></p>
+  
+  <!-- Iframe che carica il gioco -->
+  <iframe id="gameFrame" allowfullscreen tabindex="0"></iframe>
+  
+  <button id="backBtn" tabindex="0" onclick="window.history.back()">Torna Indietro</button>
+  
+  <script>
+    // Funzione per ottenere il parametro dalla query string
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    const gameUrl = getQueryParam('url');
+    const gameName = getQueryParam('name');
+    const gameDesc = getQueryParam('desc');
+
+    if (gameUrl) {
+      document.getElementById('gameFrame').src = gameUrl;
+      // Se nome e descrizione sono presenti, aggiorna il titolo e la descrizione
+      if (gameName) {
+        document.getElementById('gameTitle').innerText = gameName;
+      }
+      if (gameDesc) {
+        document.getElementById('gameDesc').innerText = gameDesc;
+      }
+    } else {
+      document.body.innerHTML = "<h1>URL del gioco non valido.</h1>";
+    }
+  </script>
+</body>
+</html>
