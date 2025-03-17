@@ -9,6 +9,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Roboto', sans-serif;
+      /* Sfondo con GIF animata */
       background: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXBtbzMzaGFiMHczbHh2NnIzNTducjdqdXRjYWFqYW91M3QyN2d0NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/m5oQabBdoOye4/giphy.gif') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
@@ -17,29 +18,31 @@
       flex-direction: column;
     }
     header {
-      height: 200px;
-      background: url('https://picsur.org/i/df81fdd9-c1ce-42cb-a73f-1671ff98b648.jpg') no-repeat center center;
+      /* Immagine logo che copre tutto l'header */
+      background: url('https://picsur.org/i/8b2f1219-6349-48e5-b049-30de36fa7ae8.jpg') no-repeat center center;
       background-size: cover;
+      height: 200px;
     }
     nav {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-wrap: wrap;
       margin: 20px;
+      flex-wrap: wrap;
     }
     nav a {
       margin: 10px;
       background: rgba(31, 31, 31, 0.8);
-      padding: 15px;
-      border-radius: 10px;
+      padding: 20px;
+      border-radius: 15px;
       transition: transform 0.3s ease, background 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-decoration: none;
     }
     nav a:focus { outline: 3px solid #ff4081; }
-    nav a:hover { 
+    nav a:hover {
       background: rgba(51, 51, 51, 0.9);
       transform: scale(1.1);
     }
@@ -51,40 +54,41 @@
     #content {
       flex: 1;
       padding: 20px;
-      margin: 20px;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
       text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      margin: 20px;
+      border-radius: 10px;
     }
     .back-button {
       position: fixed;
       top: 20px;
       left: 20px;
-      padding: 10px 15px;
-      background: rgba(31, 31, 31, 0.8);
+      padding: 15px;
+      background: rgba(31,31,31,0.8);
       color: #fff;
       border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      border-radius: 10px;
       display: none;
-      transition: transform 0.3s ease;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .back-button:hover {
+      background: #333;
+      transform: scale(1.05);
     }
     .back-button:focus { outline: 3px solid #ff4081; }
-    .back-button:hover { transform: scale(1.05); }
     @media screen and (max-width: 768px) {
       header { height: 150px; }
       nav a img { width: 100px; }
+      .back-button { font-size: 0.9em; }
     }
   </style>
 </head>
 <body>
-  <!-- Bottone per tornare alla Home: visibile quando si carica una sotto-pagina -->
-  <button id="backBtn" class="back-button" tabindex="0" onclick="loadPage('cloud_gaming.html')">Torna alla Home</button>
-  
+  <button id="backBtn" class="back-button" tabindex="0" onclick="goHome()">Torna alla Home</button>
   <header></header>
-  
   <nav>
-    <!-- Icone degli emulatori; cliccando viene caricato il contenuto della relativa pagina -->
+    <!-- Pulsanti con immagini (senza testo) -->
     <a href="#" tabindex="0" onclick="loadPage('nes.html')">
       <img src="https://retrofixer.it/wp-content/uploads/2022/11/Nes_console.png" alt="NES">
     </a>
@@ -96,25 +100,32 @@
     </a>
     <!-- Aggiungi altri emulatori se necessario -->
   </nav>
-  
   <div id="content">
     <p>Benvenuto. Seleziona un emulatore per iniziare.</p>
   </div>
-  
   <script>
-    // Funzione per caricare dinamicamente pagine interne
-    function loadPage(page) {
-      fetch(page)
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('content').innerHTML = data;
-        // Mostra il bottone "Torna alla Home" se non siamo nella home
-        document.getElementById('backBtn').style.display = (page === 'cloud_gaming.html') ? 'none' : 'block';
-      })
-      .catch(error => console.error('Errore nel caricamento della pagina:', error));
+    function goHome() {
+      // Ricarica la pagina (redirect completo)
+      window.location.href = 'cloud_gaming.html';
     }
     
-    // Gestione della navigazione con telecomando (frecce e tasto Enter)
+    function loadPage(page) {
+      // Se tenti di caricare la home, fai redirect
+      if (page === 'cloud_gaming.html') {
+        window.location.href = 'cloud_gaming.html';
+        return;
+      }
+      fetch(page)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('content').innerHTML = data;
+          // Mostra il bottone "Torna alla Home"
+          document.getElementById('backBtn').style.display = 'block';
+        })
+        .catch(error => console.error('Errore nel caricamento della pagina:', error));
+    }
+
+    // Gestione navigazione con telecomando
     document.addEventListener("keydown", function(e) {
       if (document.activeElement.tagName === "INPUT") return;
       let focusable = Array.from(document.querySelectorAll("a, button, [tabindex]"))
