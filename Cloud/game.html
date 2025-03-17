@@ -37,9 +37,13 @@
       h1 { font-size: 2.5em; }
       #gameFrame { height: 600px; }
     }
-    /* Pulsante per tornare indietro */
-    #backBtn {
+    /* Contenitore dei pulsanti di navigazione */
+    .nav-buttons {
       margin-top: 20px;
+      display: flex;
+      gap: 20px;
+    }
+    .nav-button {
       padding: 10px 20px;
       background: #ff4081;
       color: #fff;
@@ -48,9 +52,13 @@
       cursor: pointer;
       transition: 0.3s ease;
       font-size: 1.2em;
+      outline: none;
     }
-    #backBtn:hover,
-    #backBtn:focus { background: #e73370; outline: 3px solid #fff; }
+    .nav-button:hover,
+    .nav-button:focus {
+      background: #e73370;
+      outline: 3px solid #fff;
+    }
   </style>
 </head>
 <body>
@@ -61,7 +69,11 @@
   <!-- Iframe che carica il gioco -->
   <iframe id="gameFrame" allowfullscreen tabindex="0"></iframe>
   
-  <button id="backBtn" tabindex="0" onclick="window.history.back()">Torna Indietro</button>
+  <!-- Pulsanti di navigazione per Smart TV -->
+  <div class="nav-buttons">
+    <button class="nav-button" tabindex="0" onclick="window.history.back()">Torna Indietro</button>
+    <button class="nav-button" tabindex="0" onclick="window.location.href='nes.html'">Giochi NES</button>
+  </div>
   
   <script>
     // Funzione per ottenere il parametro dalla query string
@@ -76,7 +88,6 @@
 
     if (gameUrl) {
       document.getElementById('gameFrame').src = gameUrl;
-      // Se nome e descrizione sono presenti, aggiorna il titolo e la descrizione
       if (gameName) {
         document.getElementById('gameTitle').innerText = gameName;
       }
@@ -86,6 +97,19 @@
     } else {
       document.body.innerHTML = "<h1>URL del gioco non valido.</h1>";
     }
+
+    // Funzione per cliccare automaticamente il pulsante "Enter Fullscreen"
+    function autoClickFullscreen() {
+      const fsButton = document.querySelector('.ejs_menu_button');
+      if (fsButton) {
+        fsButton.click();
+        console.log('Pulsante fullscreen cliccato automaticamente.');
+        clearInterval(fsInterval); // Ferma il timer una volta trovato e cliccato
+      }
+    }
+
+    // Controlla ogni secondo se il pulsante appare nel DOM
+    const fsInterval = setInterval(autoClickFullscreen, 1000);
   </script>
 </body>
 </html>
