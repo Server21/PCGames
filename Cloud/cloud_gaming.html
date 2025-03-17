@@ -63,26 +63,22 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      display: none;
       transition: 0.3s ease;
     }
     #backBtn:hover { background: #333; transform: scale(1.05); }
   </style>
 </head>
 <body>
-  <!-- Bottone per tornare alla home -->
-  <button id="backBtn" onclick="goHome()">🏠 Torna alla Home</button>
-  
   <header></header>
 
   <nav>
-    <a href="#" onclick="loadPage('nes.html')">
+    <a href="nes.html">
       <img src="https://retrofixer.it/wp-content/uploads/2022/11/Nes_console.png" alt="NES">
     </a>
-    <a href="#" onclick="loadPage('gba.html')">
+    <a href="gba.html">
       <img src="https://raw.githubusercontent.com/fabricecaruso/es-theme-carbon/master/art/consoles/gba.png" alt="GBA">
     </a>
-    <a href="#" onclick="loadPage('psp.html')">
+    <a href="psp.html">
       <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/PSP_E1000_illustration.svg" alt="PSP">
     </a>
   </nav>
@@ -90,43 +86,5 @@
   <div id="content">
     <p>Benvenuto! Seleziona un emulatore per iniziare.</p>
   </div>
-
-  <script>
-    // Funzione per caricare dinamicamente una sottopagina nel div #content
-    function loadPage(page, updateState = true) {
-      fetch(page)
-        .then(response => response.text())
-        .then(data => {
-          // Estrarre solo il contenuto principale della pagina (evitando header e body)
-          let tempDiv = document.createElement("div");
-          tempDiv.innerHTML = data;
-          let newContent = tempDiv.querySelector("#content")?.innerHTML || "<p>Errore nel caricamento.</p>";
-          
-          document.getElementById("content").innerHTML = newContent;
-          document.getElementById("backBtn").style.display = "block"; // Mostra il pulsante "Torna alla Home"
-
-          if (updateState) {
-            window.history.pushState({ page: page }, "", page);
-          }
-        })
-        .catch(error => console.error("Errore nel caricamento:", error));
-    }
-
-    // Torna alla home ripristinando il contenuto iniziale
-    function goHome() {
-      document.getElementById("content").innerHTML = "<p>Benvenuto! Seleziona un emulatore per iniziare.</p>";
-      document.getElementById("backBtn").style.display = "none"; // Nasconde il pulsante "Torna alla Home"
-      window.history.pushState({ page: "cloud_gaming.html" }, "", "cloud_gaming.html");
-    }
-
-    // Gestione del tasto "Back" del browser
-    window.onpopstate = function(event) {
-      if (event.state && event.state.page && event.state.page !== "cloud_gaming.html") {
-        loadPage(event.state.page, false);
-      } else {
-        goHome();
-      }
-    };
-  </script>
 </body>
 </html>
