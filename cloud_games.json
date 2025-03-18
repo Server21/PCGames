@@ -14,5 +14,13 @@
         "description": "Esplora il magico mondo di Zelda e salva Hyrule.",
         "languages": ["Italiano", "Inglese"],
         "category": ["Nes"],
+    },
+    {
+        "name": "Duck Hunt",
+        "image_url": "https://upload.wikimedia.org/wikipedia/it/b/b0/Duck_hunt_screenshot.png",
+        "play_link": "https://server21.github.io/PCGames/Nes/Duck_Hunt.html",
+        "description": "Quando un'anatra viene colpita, viene raccolta dal cane.",
+        "languages": ["Inglese"],
+        "category": ["Nes"],
     }
 ]
