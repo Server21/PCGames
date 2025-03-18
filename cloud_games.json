@@ -38,5 +38,13 @@
         "description": "Nell'anno cosmico 2000 viene fondata la Federazione Galattica, un organo politico e militare che coinvolge numerose razze provenienti da diversi pianeti.[1] Tra i compiti della polizia federale vi è quello di fermare le azioni criminose dei Pirati Spaziali, grazie all'aiuto di numerosi cacciatori di taglie.",
         "languages": ["Inglese"],
         "category": ["Nes"],
+    },
+     {
+        "name": "Metroid",
+        "image_url": "https://assets-prd.ignimgs.com/2021/12/08/smb3-1638922753441.jpg",
+        "play_link": "https://server21.github.io/PCGames/Nes/Super_Mario_Bros_3.html",
+        "description": "In Super Mario Bros. 3 ambientato poco dopo Super Mario Bros.La storia, tuttavia, non termina qui. Infatti, una volta recuperato il settimo e ultimo scettro, Mario e Luigi vengono a sapere del rapimento della principessa Peach, a opera del malvagio Bowser I due fratelli sono quindi costretti a recarsi presso il maniero della gigantesca tartaruga, nella Terra Oscura, dove, una volta che Bowser è sconfitto, la principessa Peach viene salvata",
+        "languages": ["Inglese"],
+        "category": ["Nes"],
     }
 ]
