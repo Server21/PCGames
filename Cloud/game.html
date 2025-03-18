@@ -5,8 +5,15 @@
   <title>Avvio Gioco</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-size: 16px; }
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
     body {
       font-family: 'Roboto', sans-serif;
       background: #000;
@@ -14,37 +21,37 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 1rem;
-      min-height: 100vh;
+      justify-content: flex-start;
       transition: all 0.5s ease;
+      overflow: hidden; /* Evita scroll */
     }
     h1, p {
       text-align: center;
       transition: opacity 0.5s ease;
     }
-    h1 { margin-bottom: 0.5rem; font-size: 2em; }
-    p { margin-bottom: 1rem; font-size: 1.2em; }
+    h1 {
+      margin: 1rem 0 0.5rem;
+      font-size: 2em;
+    }
+    p {
+      margin-bottom: 1rem;
+      font-size: 1.2em;
+      max-width: 90%;
+      line-height: 1.4em;
+    }
     #gameFrame {
-      width: 100%;
-      max-width: 800px;
+      width: 800px;
       height: 500px;
       border: none;
       border-radius: 0.5rem;
+      background: #000; /* Per coprire eventuali “flash” */
       transition: all 0.5s ease;
     }
-    @media (max-width: 768px) {
-      h1 { font-size: 1.8em; }
-      p { font-size: 1em; }
-      #gameFrame { max-width: 100%; }
-    }
-    @media (min-width: 1200px) {
-      h1 { font-size: 2.5em; }
-      #gameFrame { height: 600px; }
-    }
+    /* Pulsanti di navigazione “classici” */
     .nav-buttons {
-      margin-top: 1rem;
       display: flex;
       gap: 1rem;
+      margin-bottom: 1rem;
       transition: opacity 0.5s ease;
     }
     .nav-button {
@@ -64,64 +71,111 @@
       transform: scale(1.05);
       outline: 2px solid #fff;
     }
+    /* Pulsante per uscire dal fullscreen */
+    #exitFullscreenBtn {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.8rem 1.2rem;
+      background: #ff4081;
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      outline: none;
+      z-index: 10001; /* Sopra l’iframe */
+      opacity: 0;
+      pointer-events: none; /* Disabilitato finché non è in fullscreen */
+    }
+    #exitFullscreenBtn:hover,
+    #exitFullscreenBtn:focus {
+      background: #e73370;
+      transform: scale(1.05);
+      outline: 2px solid #fff;
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 1.5em; margin-top: 0.5rem; }
+      p  { font-size: 1em; margin-bottom: 0.5rem; }
+      .nav-button { font-size: 1em; }
+      #exitFullscreenBtn { font-size: 1em; }
+      #gameFrame { max-width: 100%; }
+    }
   </style>
 </head>
 <body>
-  <!-- Titolo e descrizione del gioco -->
   <h1 id="gameTitle">Gioco</h1>
   <p id="gameDesc"></p>
-  
-  <!-- Iframe per caricare il gioco -->
+
+  <!-- Iframe per il gioco -->
   <iframe id="gameFrame" allowfullscreen tabindex="0"></iframe>
-  
-  <!-- Pulsanti di navigazione -->
+
+  <!-- Pulsanti di navigazione classici (prima del fullscreen) -->
   <div class="nav-buttons" id="navButtons">
     <button class="nav-button" tabindex="0" onclick="window.history.back()">Torna Indietro</button>
     <button class="nav-button" tabindex="0" onclick="window.location.href='nes.html'">Giochi NES</button>
   </div>
-  
+
+  <!-- Pulsante per uscire dal fullscreen simulato e tornare alla lista NES -->
+  <button id="exitFullscreenBtn" tabindex="0" onclick="exitFullscreen()">Esci Fullscreen</button>
+
   <script>
-    // Funzione per ottenere i parametri dalla query string
+    // Legge i parametri dalla query string
     function getQueryParam(param) {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get(param);
     }
-    
     const gameUrl = getQueryParam('url');
     const gameName = getQueryParam('name');
     const gameDesc = getQueryParam('desc');
 
     if (gameUrl) {
-      document.getElementById('gameFrame').src = gameUrl;
+      const iframe = document.getElementById('gameFrame');
+      iframe.src = gameUrl;
       if (gameName) document.getElementById('gameTitle').innerText = gameName;
       if (gameDesc) document.getElementById('gameDesc').innerText = gameDesc;
     } else {
       document.body.innerHTML = "<h1>URL del gioco non valido.</h1>";
     }
-    
-    // Funzione per simulare la modalità full screen
+
+    // "Simula" il fullscreen: l'iframe si espande e nasconde gli altri elementi
     function simulateFullscreen() {
-      // Nasconde titolo, descrizione e pulsanti
+      // Nasconde titolo, descrizione e pulsanti classici
       document.getElementById('gameTitle').style.opacity = '0';
       document.getElementById('gameDesc').style.opacity = '0';
       const navButtons = document.getElementById('navButtons');
-      if (navButtons) navButtons.style.opacity = '0';
-      // Espande l'iframe a occupare l'intera viewport
+      if (navButtons) {
+        navButtons.style.opacity = '0';
+      }
+      // Espande l'iframe a tutto schermo
       const iframe = document.getElementById('gameFrame');
       iframe.style.position = 'fixed';
-      iframe.style.top = '0';
-      iframe.style.left = '0';
+      iframe.style.top = '50%';
+      iframe.style.left = '50%';
+      iframe.style.transform = 'translate(-50%, -50%)';
       iframe.style.width = '100vw';
       iframe.style.height = '100vh';
       iframe.style.borderRadius = '0';
       iframe.style.zIndex = '9999';
-      // Rimuove padding e margini extra dal body
+      // Abilita il pulsante “Esci Fullscreen”
+      const exitBtn = document.getElementById('exitFullscreenBtn');
+      exitBtn.style.opacity = '1';
+      exitBtn.style.pointerEvents = 'auto';
+      // Rimuove scroll e padding dal body
+      document.body.style.overflow = 'hidden';
+      document.body.style.margin = '0';
       document.body.style.padding = '0';
     }
 
-    // Al termine del caricamento dell'iframe, attiva la modalità full screen simulata
+    // Ripristina lo stato “non fullscreen” reindirizzando alla lista NES
+    function exitFullscreen() {
+      window.location.href = 'nes.html';
+    }
+
+    // Quando l’iframe ha finito di caricarsi, avvia la simulazione del fullscreen
     document.getElementById('gameFrame').addEventListener('load', function() {
-      setTimeout(simulateFullscreen, 2000);
+      setTimeout(simulateFullscreen, 1500);
     });
   </script>
 </body>
