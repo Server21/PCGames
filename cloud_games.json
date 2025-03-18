@@ -30,7 +30,7 @@
         "description": "Mega Man, deve completare una serie di fasi in qualsiasi ordine. Sconfiggere il boss di un livello farà guadagnare al giocatore la sua arma speciale",
         "languages": ["Inglese"],
         "category": ["Nes"],
-    }
+    },
       {
         "name": "Metroid",
         "image_url": "https://upload.wikimedia.org/wikipedia/it/a/ae/Mettitle.png",
