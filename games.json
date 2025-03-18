@@ -32,7 +32,7 @@
     "download_link": "https://pd.cybar.xyz/kWmxR4gh",
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "The Walking Dead: The Telltale Definitive Series include le quattro stagioni, 400 Days e The Walking Dead: Michonne, per circa 50 ore di gioco totali fino a 23 episodi.",
-    "category": "Scelte e conseguenze", "Orrore",
+    "category": ["Scelte e conseguenze", "Orrore"],
     "languages": ["Italiano", "Inglese"]
   }
 ]
