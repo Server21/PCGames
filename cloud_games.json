@@ -31,4 +31,12 @@
         "languages": ["Inglese"],
         "category": ["Nes"],
     }
+      {
+        "name": "Metroid",
+        "image_url": "https://upload.wikimedia.org/wikipedia/it/a/ae/Mettitle.png",
+        "play_link": "https://server21.github.io/PCGames/Nes/Metroid.html",
+        "description": "Nell'anno cosmico 2000 viene fondata la Federazione Galattica, un organo politico e militare che coinvolge numerose razze provenienti da diversi pianeti.[1] Tra i compiti della polizia federale vi è quello di fermare le azioni criminose dei Pirati Spaziali, grazie all'aiuto di numerosi cacciatori di taglie.",
+        "languages": ["Inglese"],
+        "category": ["Nes"],
+    }
 ]
