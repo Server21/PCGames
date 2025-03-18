@@ -22,5 +22,13 @@
         "description": "Quando un'anatra viene colpita, viene raccolta dal cane.",
         "languages": ["Inglese"],
         "category": ["Nes"],
+    },
+    {
+        "name": "Mega Man 3",
+        "image_url": "https://satoshimatrix.wordpress.com/wp-content/uploads/2010/09/megaman3_1-300x225.jpg",
+        "play_link": "https://server21.github.io/PCGames/Nes/Mega_Man_3.html",
+        "description": "Mega Man, deve completare una serie di fasi in qualsiasi ordine. Sconfiggere il boss di un livello farà guadagnare al giocatore la sua arma speciale",
+        "languages": ["Inglese"],
+        "category": ["Nes"],
     }
 ]
