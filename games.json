@@ -23,7 +23,7 @@
     "download_link": "https://pd.cybar.xyz/xqEmJe74",
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256785003/movie480_vp9.webm",
     "description": "Scava, combatti, esplora, costruisci! Niente è impossibile in questo gioco d'avventura pieno di azione. Anche disponibile nel Pacchetto da Quattro!",
-    "category": "Sandbox",
+    "category": ["Sandbox", "2D"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
   {
@@ -34,5 +34,59 @@
     "description": "The Walking Dead: The Telltale Definitive Series include le quattro stagioni, 400 Days e The Walking Dead: Michonne, per circa 50 ore di gioco totali fino a 23 episodi.",
     "category": ["Scelte e conseguenze", "Orrore"],
     "languages": ["Italiano", "Inglese"]
+  },
+   {
+    "name": "Naruto.X.Boruto.Ultimate.Ninja.Storm.Connections",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1020790/header.jpg",
+    "download_link": "https://pd.cybar.xyz/zWxLp5Mm",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "I leggendari ninja si riuniscono per il nuovo emozionante capitolo della serie STORM! NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS è un gioco di azione e combattimenti con battaglie ninja adrenaliniche e due diverse modalità narrative.",
+    "category": ["Azione", "Anime", "Picchiaduro 3D"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Captain Tsubasa Rise of New Champions",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1163550/header.jpg",
+    "download_link": "https://pd.cybar.xyz/A93BxEHE",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Captain Tsubasa: Rise of New Champions è un gioco di calcio in stile arcade che porta una ventata d'aria fresca nel genere grazie all'azione mozzafiato e ai tiri incredibili tipici della serie. Sfida i limiti del calcio Diventa una leggenda",
+    "category": ["Calcio", "Anime"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "SIFU",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2138710/header.jpg",
+    "download_link": "https://pd.cybar.xyz/LrdEjVFo",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Sifu è un picchiaduro realistico in terza persona, con meccaniche di combattimento Kung Fu e arti marziali spettacolari che ti accompagneranno sulla strada della vendetta.",
+    "category": ["Azione", "Difficili", "Picchiaduro"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Sekiro",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/814380/header.jpg",
+    "download_link": "https://pd.cybar.xyz/VyzVLvNU",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "In Sekiro™: Shadows Die Twice vestirai i panni di un 'lupo senza un braccio', un guerriero sfregiato e caduto in disgrazia, salvato a un passo dalla morte. Il tuo destino è legato a un giovane di nobili origini, discendente di un'antica stirpe: per proteggerlo affronterai numerosi nemici, tra cui lo spietato clan Ashina. Niente ti fermerà nella pericolosa missione per riscattare il tuo onore e liberare il giovane signore, nemmeno la morte stessa.",
+    "category": ["Azione", "Difficili", "Stile Souls"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Nine Sols",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1809540/header.jpg",
+    "download_link": "https://pd.cybar.xyz/igkK1v2J",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Nine Sols è un platform d'azione 2D ricco di tradizioni e disegnato a mano con combattimenti mirati alla deflessione ispirati a Sekiro. Intraprendi un viaggio nella fantasia orientale, esplora la terra un tempo dimora di un'antica razza aliena e segui la ricerca di un eroe vendicativo di uccidere i 9 Sol, formidabili",
+    "category": ["Azione", "Difficili", "2D"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Ultra Street Fighter® IV",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/45760/header.jpg",
+    "download_link": "https://pd.cybar.xyz/rXe8XMqW",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Il più grande gioco di combattimento del mondo si è evoluto in un gioco di tutt'altro livello con Ultra Street Fighter IV.",
+    "category": ["Lotta", "Arcade", "Picchiaduro 2D"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
