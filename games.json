@@ -169,5 +169,14 @@
     "description": "Segui la storia dell'ex fuorilegge John Marston nel suo tentativo di ritrovare gli ultimi membri della famosa banda di Van der Linde e provare a salvare la sua famiglia, con il debutto su PC dell'acclamato predecessore di Red Dead Redemption 2.",
     "category": ["Azione", "Western", "Mondo aperto", "Storia ben curata"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Saint Seiya - Soldiers' Soul",
+    "image_url": "https://shared.steamstatic.com/store_item_assets/steam/apps/348710/header_italian.jpg",
+    "download_link": "https://pd.cybar.xyz/hMM8muAA",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "I 12 Cavalieri d'Oro bruciano di nuovo il loro cosmo con una grafica incredibile, giocabilità solida, personaggi provenienti da tutte le serie... e molto altro ancora!",
+    "category": ["Azione", "Anime", "Lotta"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
