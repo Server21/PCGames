@@ -88,5 +88,86 @@
     "description": "Il più grande gioco di combattimento del mondo si è evoluto in un gioco di tutt'altro livello con Ultra Street Fighter IV.",
     "category": ["Lotta", "Arcade", "Picchiaduro 2D"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Sword Art Online: Fatal Bullet",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/626690/header.jpg",
+    "download_link": "https://pd.cybar.xyz/mbYq9zfB",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Diventa protagonista di una storia originale nel mondo di Gun Gale Online. Crea il tuo avatar ed esplora terre devastate in un esaltante RPG d'azione e sparatorie in terza persona.",
+    "category": ["Anime", "GDR"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Twin Mirror",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1552810/header.jpg",
+    "download_link": "https://pd.cybar.xyz/VipcTF77",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "L'ex giornalista investigativo Sam Higgs cambierà per sempre la vita della cittadina di Basswood in questa emozionante esperienza narrativa dal pluripremiato studio DON'T NOD. Scoprirai la verità, costi quel che costi?",
+    "category": ["Scelte e conseguenze"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Planet Zoo",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/703080/header.jpg",
+    "download_link": "https://pd.cybar.xyz/co1EcL34",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Crea un mondo per gli animali selvatici in Planet Zoo. Dagli sviluppatori di Planet Coaster e Zoo Tycoon arriva la simulazione di zoo definitiva. Costruisci habitat dettagliati, gestisci il tuo zoo e incontra animali autentici che pensano, sentono ed esplorano il mondo che hai plasmato intorno a loro.",
+    "category": ["Gestionali", "Simulazione", "Costruzioni", "Sandbox"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "LEGO® Indiana Jones™",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/32330/header.jpg",
+    "download_link": "https://pd.cybar.xyz/yjCvi9ch",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Esplora e scopri: combatti i nemici, risolvi i puzzle e cerca i più grandi tesori del mondo.",
+    "category": ["LEGO", "Avventura", "Azione", "Co-op locale"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Mutant Year Zero",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/760060/header.jpg",
+    "download_link": "https://pd.cybar.xyz/beYu6Lba",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Un gioco d'avventura strategico che combina il combattimento a turni di XCOM con storia, esplorazione, stealth e strategia. Prendi il controllo di una squadra di Mutanti che governa una Terra post-umana. Creato da un team di cui fanno parte gli ex progettisti di HITMAN e il co-creatore di PAYDAY.",
+    "category": ["GDR", "Strategia", "Combattimento a turni", "Tattici"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Kena: Bridge of Spirits",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1954200/header.jpg",
+    "download_link": "https://pd.cybar.xyz/qsX7k38T",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Un'avventura d'azione basata su storia che combina esplorazione e combattimento frenetico. Districati nel passato nei panni di Kena, un giovane Spirito guida alla ricerca del sacro Santuario della Montagna.",
+    "category": ["Azione", "Avventura", "Stile Souls"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Windbound",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1162130/header.jpg",
+    "download_link": "https://pd.cybar.xyz/UVmjWejW",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Le Isole Proibite ti chiamano, svela i loro segreti. Naufragata su un’isola, esplorane le terre e naviga i suoi mari insidiosi per sopravvivere.",
+    "category": ["GDR", "Avventura", "Indie", "Sopravvivenza"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "MY HERO ONE'S JUSTICE 2",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1058450/header.jpg",
+    "download_link": "https://pd.cybar.xyz/FaGjcwsX",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "MY HERO ONE'S JUSTICE 2, l'entusiasmante seguito dell'amato gioco di combattimento 3D MY HERO ONE'S JUSTICE, è pronto al debutto! Sfrutta al meglio i Quirk dei personaggi nelle epiche battaglie all'interno di enormi arene!",
+    "category": ["Azione", "Anime", "Lotta"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Red Dead Redemption",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2668510/header_italian.jpg",
+    "download_link": "https://pd.cybar.xyz/EE7WAXaF",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Segui la storia dell'ex fuorilegge John Marston nel suo tentativo di ritrovare gli ultimi membri della famosa banda di Van der Linde e provare a salvare la sua famiglia, con il debutto su PC dell'acclamato predecessore di Red Dead Redemption 2.",
+    "category": ["Azione", "Western", "Mondo aperto", "Storia ben curata"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
