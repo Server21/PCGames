@@ -196,5 +196,59 @@
     "description": "Minecraft è un videogioco sandbox di avventura creato dallo svedese Markus Persson nel 2009 e sviluppato da Mojang Studios nel 2011. Il gioco presenta un mondo composto da cubi formati da voxel generati proceduralmente, dove i giocatori possono estrarre risorse, costruire ed esplorare.",
     "category": ["Sandbox", "Costruzioni", "Avventura"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Grand Theft Auto: San Andreas",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1547000/header.jpg",
+    "download_link": "https://pd.cybar.xyz/9vaE1d8G",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Grand Theft Auto: San Andreas: siamo nei primi anni '90. Dopo che alcuni poliziotti lo incastrano per omicidio, Carl "CJ" Johnson è costretto ad affrontare un viaggio attraverso tutto lo stato di San Andreas per salvare la sua famiglia e prendere il controllo della città.",
+    "category": ["Azione", "Mondo aperto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Grand Theft Auto: III",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1546970/header.jpg,
+    "download_link": "https://pd.cybar.xyz/cPvhXATs",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Tutto ha inizio a Liberty City. Con la rivoluzionaria libertà di andare ovunque e rapinare chiunque, Grand Theft Auto III ti mette al centro di un mondo criminale in cui farti strada... se ne avrai il coraggio.",
+    "category": ["Azione", "Mondo aperto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Grand Theft Auto: Vice City",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1546990/header.jpg,
+    "download_link": "https://pd.cybar.xyz/ztn3vGYN",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Grand Theft Auto: Vice City: benvenuti negli anni '80. Vivi la storia di tradimento e vendetta di Tommy Vercetti nello scenario tropicale e immerso nel neon di Vice City, una città ricca di eccessi in cui potrai imporre le tue regole.",
+    "category": ["Azione", "Mondo aperto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "Resident Evil Village",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1196590/header.jpg,
+    "download_link": "https://pd.cybar.xyz/DyLwAzy6",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Vivi un'esperienza survival horror senza precedenti nell'ottavo capitolo della saga di Resident Evil: Resident Evil Village. Grazie alla grafica dettagliata, l'azione in prima persona e la raffinata narrazione, il terrore non è mai stato così realistico.",
+    "category": ["Horror", "Prima persona"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Crysis",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1715130/header.jpg,
+    "download_link": "https://pd.cybar.xyz/mNhU1q7B",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "È tornato il classico sparatutto in prima persona di Crytek, con un'esperienza di gioco ricca di azione, un mondo sandbox ed entusiasmanti battaglie che hai già amato la prima volta, ma che ora possiedono una grafica rimasterizzata e ottimizzata per un hardware di nuova generazione.",
+    "category": ["Azione", "Sparatutto in prima persona", "Sparatutto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Crysis 2",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2096600/header.jpg,
+    "download_link": "https://pd.cybar.xyz/vRez8uPt",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Rivivi la leggendaria campagna per giocatore singolo di Crysis 2, il classico sparatutto in prima persona, ora ottimizzato per l'hardware più recente in Crysis 2 Remastered.",
+    "category": ["Azione", "Sparatutto in prima persona", "Sparatutto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
