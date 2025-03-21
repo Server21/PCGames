@@ -178,5 +178,23 @@
     "description": "I 12 Cavalieri d'Oro bruciano di nuovo il loro cosmo con una grafica incredibile, giocabilità solida, personaggi provenienti da tutte le serie... e molto altro ancora!",
     "category": ["Azione", "Anime", "Lotta"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Stardew Valley",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg",
+    "download_link": "https://pd.cybar.xyz/RgGBdaC3",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Hai ereditato il vecchio terreno agricolo di tuo nonno nella Stardew Valley. Armato di strumenti a mano e alcune monete, hai deciso di iniziare la tua nuova vita. Riesci a imparare a vivere al di fuori della terra e trasformare questi campi invasi in una casa fiorente?",
+    "category": ["Simulatori di fattoria", "Pixel art", "GDR"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Minecraft",
+    "image_url": "https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/key-art/PDP-Hero_OV-Standard_16x9.jpg",
+    "download_link": "https://files.catbox.moe/ane36d.zip",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Minecraft è un videogioco sandbox di avventura creato dallo svedese Markus Persson nel 2009 e sviluppato da Mojang Studios nel 2011. Il gioco presenta un mondo composto da cubi formati da voxel generati proceduralmente, dove i giocatori possono estrarre risorse, costruire ed esplorare.",
+    "category": ["Sandbox", "Costruzioni", "Avventura"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
