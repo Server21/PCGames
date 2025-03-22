@@ -250,5 +250,23 @@
     "description": "Rivivi la leggendaria campagna per giocatore singolo di Crysis 2, il classico sparatutto in prima persona, ora ottimizzato per l'hardware più recente in Crysis 2 Remastered.",
     "category": ["Azione", "Sparatutto in prima persona", "Sparatutto"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Dying Light",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/239140/header.jpg,
+    "download_link": "https://pd.cybar.xyz/G7XrmX71",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Gioco action/survival in prima persona ambientato in un mondo aperto post-apocalittico invaso da zombi affamati di carne umana. Esplora una città devastata da un misterioso virus. Vai in cerca di provviste, crea armi e affronta orde di infetti.",
+    "category": ["Horror", "Zombi", "Parkour"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Assassin's Creed: Brotherhood",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/48190/header.jpg,
+    "download_link": "https://pd.cybar.xyz/VrgsBcjW",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Vivi e respira come Ezio, un leggendario Maestro Assassino, nella sua duratura lotta contro il potente Ordine Templare. Deve recarsi nella più grande città italiana, Roma, centro del potere, avidità e corruzione per colpire il cuore del nemico.",
+    "category": ["Azione", "Mondo aperto", "Parkour","Avventura"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
