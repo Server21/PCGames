@@ -266,7 +266,43 @@
     "download_link": "https://pd.cybar.xyz/VrgsBcjW",
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "Vivi e respira come Ezio, un leggendario Maestro Assassino, nella sua duratura lotta contro il potente Ordine Templare. Deve recarsi nella più grande città italiana, Roma, centro del potere, avidità e corruzione per colpire il cuore del nemico.",
-    "category": ["Azione", "Mondo aperto", "Parkour","Avventura"],
+    "category": ["Azione", "Mondo aperto", "Parkour", "Avventura"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Splinter Cell Blacklist",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/235600/header.jpg,
+    "download_link": "https://pd.cybar.xyz/pU6GMRV2",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Gli Stati Uniti hanno una presenza militare in due terzi delle nazioni del mondo, ma alcuni di questi paesi non sono più disposti ad accettare questa condizione. Un gruppo terroristico, che si fa chiamare gli Ingegneri, decide di lanciare un ultimatum, la Blacklist - un letale conto alla rovescia di attacchi",
+    "category": ["Azione", "Stealth", "Co-op", "Terza persona"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Balatro",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2379780/header.jpg,
+    "download_link": "https://pd.cybar.xyz/777oMBsr",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Il roguelike a tema poker. Balatro è un gioco di costruzione di mazzi in cui formi mani di poker illegali, scopri jolly che stravolgono la partita e attivi combo adrenaliniche e stravaganti, provando una soddisfazione ipnotica.",
+    "category": ["Giochi di carte"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "DARK SOULS™",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/570940/header.jpg,
+    "download_link": "https://pd.cybar.xyz/RDWfw1xk",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "E poi venne il Fuoco. Rivivi l'esperienza che ha rivoluzionato il mondo dei videogiochi e dato vita a un nuovo genere. Esplora la terra di Lordran in una splendida versione rimasterizzata in altissima definizione a 60 fps.",
+    "category": ["Stile Souls", "Fantasy dark", "GDR", "Difficili"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "DARK SOULS™ II",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/335300/header.jpg,
+    "download_link": "https://pd.cybar.xyz/mkvV6Jrf",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "DARK SOULS™ II: Scholar of the First Sin porta la famigerata oscurità e l'avvincente giocabilità della serie a un nuovo livello. Incamminati nell'oscurità e scopri i nuovi ed emozionanti incontri con i nemici, gli ostacoli diabolici e la sfida implacabile.",
+    "category": ["Stile Souls", "Fantasy dark", "GDR", "Difficili"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
