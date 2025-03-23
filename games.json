@@ -385,5 +385,32 @@
     "description": "Festeggia 40 anni di Tetris® con 15+ giochi, un gioco nuovo e documentari",
     "category": ["Rompicapo", "Arcade", "2D"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Tony Hawk's™ Pro Skater™ 1 + 2",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2395210/header.jpg",
+    "download_link": "https://pd.cybar.xyz/jLgHqdFB",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Gioca le versioni rimasterizzate di Tony Hawk's™ Pro Skater™ e Tony Hawk's™ Pro Skater™ 2 in un'unica, epica collezione, ricreata da zero in tutta la gloria dell'alta definizione.",
+    "category": ["Sport", "Skateboard"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "The Secret of Monkey Island™",
+    "image_url": "https://img.youtube.com/vi/wHHP1EJ2WBA/hqdefault.jpg",
+    "download_link": "https://pd.cybar.xyz/TecvBmdM",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "La trama tortuosa del gioco conduce il nostro ingenuo eroe in una ricerca esilarante e strabiliante per il leggendario segreto di Monkey Island. Racconti di ricchezza pirata lo attirano nel porto di Mêlée con grandi speranze, niente soldi e insaziabile curiosità. Se abbastanza intelligente, conquisterà la fiducia dei pirati di Mêlée e si ritroverà colpito dai venti del destino verso la terrificante e leggendaria Monkey Island - un'avventura che raffredderebbe le ossa anche del bucaniere più assetato di sangue.",
+    "category": ["Fantasy", "Avventura", "Punta e clicca"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Left 4 Dead 2",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/550/header.jpg",
+    "download_link": "https://pd.cybar.xyz/ppiektAg",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Ambientato durante l'apocalisse dei morti viventi, Left 4 Dead 2 (L4D2) è l'attesissimo sequel di Left 4 Dead, il gioco co-op numero 1 del 2008.Questo sparatutto in prima persona d'azione horror è un gioco co-op che porterà te e i tuoi amici tra le città, paludi e cimiteri del profondo sud degli Stati Uniti, da Savannah a New Orleans,...",
+    "category": ["Zombi", "Co-op", "Sparatutto in prima persona"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
