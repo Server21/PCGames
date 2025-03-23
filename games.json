@@ -350,6 +350,15 @@
     "category": ["Lotta", "Anime", "Azione", "Picchiaduro 2D"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
+  {
+    "name": "SUPER DRAGON BALL HEROES",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/798510/header.jpg",
+    "download_link": "https://pd.cybar.xyz/Nkampwr9",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Super Dragon Ball Heroes World Mission è un gioco di carte tattico ricco di scontri emozionanti, strategie profonde e una trama appassionante ambientata nell'immenso universo di Dragon Ball Heroes!",
+    "category": ["Lotta", "Anime", "Strategia", "Giochi di carte"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
     {
     "name": "Sid Meier’s Civilization® VI",
     "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/289070/header.jpg",
@@ -510,6 +519,78 @@
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "What Remains of Edith Finch è una raccolta di racconti bizzarri di una famiglia dello stato di Washington. Nei panni di Edith, perlustrerai l’imponente casa dei Finch, in cerca di aneddoti mentre lei esplora la sua storia familiare e cerca di capire il motivo per cui è l'ultima superstite del suo albero genealogico.",
     "category": ["Mistero", "Esplorazione", "Avventura", "Indie"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Hades",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1145360/header.jpg",
+    "download_link": "https://pd.cybar.xyz/odRGiY77",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Sfida il dio dei morti e scappa dagli Inferi a suon di fendenti in un dungeon crawler rogue-like partorito dalla mente dei creatori di Transistor e Pyre.",
+    "category": ["Roguelite", "Indie", "Azione", "Hack & slash"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Silent Hill 4: The Room",
+    "image_url": "https://img.youtube.com/vi/X2uJfsfbc-k/hqdefault.jpg",
+    "download_link": "https://pd.cybar.xyz/hKfYwEMp",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Henry Townshend si ritrova intrappolato nel suo appartamento e l'unica via di fuga è attraverso un misterioso portale che porta a una terrificante realtà alternativa. Con panorami raccapriccianti dietro ogni angolo e la sua sanità mentale messa alla prova, deve trovare la via d'uscita da questo incubo. Enter The Room, una storia elettrizzante nella serie di giochi più terrificante di tutti i tempi.",
+    "category": ["Avventura", "Orrore", "Azione"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Deus Ex: Mankind Divided",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/337000/header.jpg",
+    "download_link": "https://pd.cybar.xyz/iyJZgYgz",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Siamo nel 2029 e l'età dell'oro dei potenziamenti è finita. Gli esseri umani potenziati sono stati dichiarati fuorilegge e vivono completamente segregati dal resto della società.",
+    "category": ["Cyberpunk", "Stealth", "GDR", "Fantascienza"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Deus Ex: Human Revolution",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/238010/header.jpg",
+    "download_link": "https://pd.cybar.xyz/kGEnrWu2",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Nel gioco vestirai i panni di Adam Jensen, un ex membro della SWAT, scelto per proteggere i segreti di una delle società biotecnologiche più sperimentali degli Stati Uniti. Quando una squadra dei servizi segreti fa irruzione nel complesso, uccidendo gli scienziati che avresti dovuto proteggere, tutto ciò che credevi di conoscere sul tuo...",
+    "category": ["Cyberpunk", "Stealth", "GDR", "Fantascienza"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Outer Wilds",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/753640/header.jpg",
+    "download_link": "https://pd.cybar.xyz/hPqRKKyS",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Titolo dell'anno 2019 per Giant Bomb, Polygon, Eurogamer e The Guardian, l'acclamato Outer Wilds è un gioco open world ambientato in un sistema solare intrappolato in un anello temporale senza fine.",
+    "category": ["Esplorazione", "Spazio", "Mistero"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "Outward",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/794260/header.jpg",
+    "download_link": "https://pd.cybar.xyz/41YtSF83",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "In Outward, il gelo della notte o una ferita infetta possono rivelarsi pericolosi tanto quanto un predatore in agguato nel buio. Esplorate il vasto mondo di Aurai in modalità giocatore singolo o in co-op. La Definitive Edition include entrambi i DLC e vari miglioramenti all'esperienza di gioco.",
+    "category": ["GDR", "Sopravvivenza", "Mondo aperto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Bugsnax",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/674140/header.jpg",
+    "download_link": "https://pd.cybar.xyz/iWG1MM5o",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Cattura i misteriosi snack viventi e dalli in pasto ai tuoi amici in quest'insolita avventura su un'isola misteriosa!",
+    "category": ["Avventura"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Doom 3",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/208200/header.jpg",
+    "download_link": "https://archive.org/download/doom-3-complete/Doom3.zip",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Un'invasione di demoni ha travolto il complesso di ricerca della UAC su Marte. Nei panni di uno dei pochi superstiti, dovrai aprirti la strada fino all'Inferno, combattendo un'orda di demoni in questo premiato sparatutto in soggettiva ispirato al DOOM originale.",
+    "category": ["Horror", "Azione", "Sparatutto in prima persona"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
