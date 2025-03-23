@@ -324,12 +324,66 @@
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
   {
+    "name": "Fable III",
+    "image_url": "https://gepig.com/game_cover_460w/1246.jpg",
+    "download_link": "https://pd.cybar.xyz/nAJXd5rA",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Il gioco è ambientato ancora una volta ad Albion e il protagonista sarà il figlio o la figlia del protagonista di Fable II. Il terzo episodio si svolge a cinquanta anni di distanza dai fatti narrati nel precedente capitolo, in un Albion messa in ginocchio dalla politica del nuovo re, Logan.",
+    "category": ["Strategia", "Avventura", "Azione", "Simulatori"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Hitman: Absolution™",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/203140/header.jpg",
+    "download_link": "https://pd.cybar.xyz/cehXdkny",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "HITMAN: ABSOLUTION segue l'assassino originale nella sua missione più personale. Tradito dall'Agenzia e ricercato dalla polizia, 47 cerca disperatamente la redenzione in un mondo malato e corrotto.",
+    "category": ["Stealth", "Terza persona", "Azione"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
     "name": "DRAGON BALL FighterZ",
     "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/678950/header.jpg",
     "download_link": "https://pd.cybar.xyz/rCABxM2j",
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "DRAGON BALL FighterZ contiene tutto ciò che ha reso famosa la serie DRAGON BALL: scontri spettacolari senza limiti, fra guerrieri potentissimi. In collaborazione con Arc System Works, il gioco offre grafica da Anime, con tecniche di combattimento facili da apprendere, ma difficili da padroneggiare.",
     "category": ["Lotta", "Anime", "Azione", "Picchiaduro 2D"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Sid Meier’s Civilization® VI",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/289070/header.jpg",
+    "download_link": "https://pd.cybar.xyz/4T6NYiL4",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Espandi il tuo impero, accresci la tua cultura e affronta i più grandi leader della storia. La tua civiltà supererà la prova del tempo?",
+    "category": ["Strategia", "Strategia a turni"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "HUMANKIND™",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1124300/header.jpg",
+    "download_link": "https://pd.cybar.xyz/f6tBCsuo",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Riscrivete la storia dando forma a una civiltà unica alla tua immagine. Combinate 60 culture dall'Era Antica all'Età Moderna per condurre il vostro impero alla vittoria. Costruite città fiorenti, superate i rivali in battaglie epiche, diffondete la vostra influenza e lasciate il segno sull'umanità.",
+    "category": ["Strategia", "Strategia a turni"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "State of Decay 2",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/495420/header.jpg",
+    "download_link": "https://pd.cybar.xyz/nxxudEQH",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "I morti risorgono e la civiltà muore. Ora il tuo gruppetto di superstiti deve perlustrare un mondo aperto pieno di risorse e costruire una base che possa resistere a ondate di zombie, in questo gioco ibrido d'azione, di strategia e di simulazione. Supporta fino a quattro giocatori collegati in rete.",
+    "category": ["Sopravvivenza", "Mondo aperto", "Zombi"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+      {
+    "name": "Tetris® Forever",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3180240/header.jpg",
+    "download_link": "https://pd.cybar.xyz/FxGkLid5",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Festeggia 40 anni di Tetris® con 15+ giochi, un gioco nuovo e documentari",
+    "category": ["Rompicapo", "Arcade", "2D"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
