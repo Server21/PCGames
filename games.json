@@ -412,5 +412,104 @@
     "description": "Ambientato durante l'apocalisse dei morti viventi, Left 4 Dead 2 (L4D2) è l'attesissimo sequel di Left 4 Dead, il gioco co-op numero 1 del 2008.Questo sparatutto in prima persona d'azione horror è un gioco co-op che porterà te e i tuoi amici tra le città, paludi e cimiteri del profondo sud degli Stati Uniti, da Savannah a New Orleans,...",
     "category": ["Zombi", "Co-op", "Sparatutto in prima persona"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Hollow Knight",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg",
+    "download_link": "https://pd.cybar.xyz/GvmN8cFX",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Forgia la tua strada in Hollow Knight! Un epico gioco d’azione e avventura sullo sfondo di un vasto regno in rovina popolato da insetti ed eroi. Esplora le caverne tortuose, combatti contro sudicie creature e fai amicizia con insetti bizzarri, il tutto disegnato a mano secondo il classico stile 2D.",
+    "category": ["Metroidvania", "Stile Souls", "Platform"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "INSIDE",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/304430/header.jpg",
+    "download_link": "https://pd.cybar.xyz/thJs3Tm2",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Solo e spaventato, un ragazzo si ritrova suo malgrado al centro di un progetto oscuro.",
+    "category": ["Horror", "Indie", "Platform", "2D"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Carmen Sandiego",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2475300/header.jpg",
+    "download_link": "https://pd.cybar.xyz/7oGScwSz",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Carmen Sandiego, la superladra scarlatta, è tornata! Indossa il cappello rosso di Carmen e gioca nei panni della famosa vigilante. Tuffati nel mondo dello spionaggio, usa gadget tecnologici e sventa i piani della VILE.",
+    "category": ["Investigativi", "Strategia", "Avventura", "3D"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Thief Simulator",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/704850/header.jpg",
+    "download_link": "https://pd.cybar.xyz/mpc5pxMi",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Diventa il migliore dei ladri. Raccogli informazioni, ruba oggetti e vendili per comprare attrezzature hi-tech. Fai tutto ciò che fa un vero ladro.",
+    "category": ["Simulazione", "Stealth", "Crimine", "Indie"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "Portal",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/400/header.jpg",
+    "download_link": "https://pd.cybar.xyz/FhYRCX4F",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Portal™ è un nuovo gioco per giocatore singolo di Valve. Ambientato nei misteriosi laboratori di Aperture Science, Portal è stato giudicato uno dei titoli più innovativi del momento e offre ore di giocabilità unica.",
+    "category": ["Rompicapo", "Azione", "Fantascienza"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Half-Life 2",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/220/header.jpg",
+    "download_link": "https://pd.cybar.xyz/K4jxqEwT",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Risvegliato dalla stasi nella metropoli occupata di City 17, Gordon Freeman è affiancato da Alyx Vance nel guidare una disperata resistenza umana. Prova il rivoluzionario sparatutto in prima persona ambientato in un mondo coinvolgente, dotato di una fisica strabiliante e pieno di combattimenti all'ultimo sangue.",
+    "category": ["Sparatutto in prima persona", "Azione", "Fantascienza"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "Spelunky 2",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/418530/header.jpg",
+    "download_link": "https://pd.cybar.xyz/iMbW3pHM",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Spelunky 2 si basa sulle sfide uniche casuali che hanno trasformato il gioco originale in un classico e offre un'avventura immensa in grado di soddisfare i giocatori vecchi e nuovi. La nuova generazione di esploratori si ritrova sulla luna, in cerca di tesori e della propria famiglia.",
+    "category": ["Platform", "2D", "Difficili"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Halo Wars: Definitive Edition",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/459220/header.jpg",
+    "download_link": "https://pd.cybar.xyz/igv1GKmC",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Halo Wars: Definitive Edition include migliorie grafiche, nuovi obiettivi e tutti i DLC del titolo originario. Rivivi l’epica Campagna o competi in battaglie multiplayer online comandando eserciti di potenti forze dell’universo di Halo.",
+    "category": ["Strategia", "Fantascienza", "Azione"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Halo Wars: Definitive Edition",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/459220/header.jpg",
+    "download_link": "https://pd.cybar.xyz/igv1GKmC",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Halo Wars: Definitive Edition include migliorie grafiche, nuovi obiettivi e tutti i DLC del titolo originario. Rivivi l’epica Campagna o competi in battaglie multiplayer online comandando eserciti di potenti forze dell’universo di Halo.",
+    "category": ["Strategia", "Fantascienza", "Azione"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "CHRONO TRIGGER®",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/613830/header.jpg",
+    "download_link": "https://pd.cybar.xyz/HrkDQqyG",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Questo gioco di ruolo classico torna con tantissime novità! Viaggia nel passato più remoto, nel futuro lontano, fino a raggiungere la fine dei tempi. Questa epica avventura in cui dovrai salvare un intero pianeta farà storia ancora una volta.",
+    "category": ["GDR", "Fantasy", "2D"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "What Remains of Edith Finch",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/501300/header.jpg",
+    "download_link": "https://pd.cybar.xyz/FhQ8BjLW",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "What Remains of Edith Finch è una raccolta di racconti bizzarri di una famiglia dello stato di Washington. Nei panni di Edith, perlustrerai l’imponente casa dei Finch, in cerca di aneddoti mentre lei esplora la sua storia familiare e cerca di capire il motivo per cui è l'ultima superstite del suo albero genealogico.",
+    "category": ["Mistero", "Esplorazione", "Avventura", "Indie"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
