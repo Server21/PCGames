@@ -683,6 +683,15 @@
     "category": ["Anime", "Picchiaduro", "Lotta"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
+    {
+    "name": "ONE PIECE ODYSSEY",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/814000/header.jpg",
+    "download_link": "https://pd.cybar.xyz/s3ttEShs",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Un nuovo RPG ambientato nell'universo del famoso anime di ONE PIECE! Accompagna la ciurma di Cappello di paglia in una fantastica avventura!",
+    "category": ["Anime", "Mondo aperto", "GDR"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
    {
     "name": "Subnautica",
     "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/264710/header.jpg",
@@ -726,6 +735,204 @@
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "Hello Neighbor: Hide and Seek segue la tragica storia della famiglia Neighbor in questo drammatico prequel di Hello Neighbor. Prova a giocare a nascondino con tuo fratello mentre affrontate insieme la perdita di un membro della famiglia.",
     "category": ["Horror", "Sandbox", "Stealth", "Prima persona"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+      {
+    "name": "Ori and the Will of the Wisps",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1057090/header.jpg",
+    "download_link": "https://pd.cybar.xyz/3TiJJk27",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Parti per un nuovo viaggio in un vasto mondo esotico, dove affronterai nemici furiosi e rompicapi avvincenti lungo il cammino che svelerà il destino di Ori.",
+    "category": ["Platform", "Avventura", "Azione", "2D", "Stile Souls"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "No Man's Sky",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/275850/header_alt_assets_13.jpg",
+    "download_link": "https://pd.cybar.xyz/xi2keccK",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "No Man's Sky è un gioco di fantascienza dedicato all'esplorazione e alla sopravvivenza in un universo generato in modo procedurale.",
+    "category": ["Spazio", "Esplorazione", "Fantascienza", "Sopravvivenza", "Mondo aperto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "SpongeBob: The Cosmic Shake",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1282150/header_italian.jpg",
+    "download_link": "https://pd.cybar.xyz/3ZejcBqr",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Lacrime di sirena che esaudiscono desideri nelle mani di SpongeBob e Patrick... Cosa potrebbe mai andare storto? OK, il tessuto che tiene unito l'universo potrebbe strapparsi e aprire portali verso mondi della fantasia. Ma la nostra spugna preferita può gestire tutto con il giusto costume cosmico!",
+    "category": ["Platform", "Azione", "Comici"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Goat Simulator",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/265930/header.jpg",
+    "download_link": "https://pd.cybar.xyz/qvRQApVt",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Goat Simulator é l'ultimo nella tecnologia di simulazione di una capra, portandoti la simulazione next-gen di una capra. Non devi più fantasticare di essere una capra,i tuoi sogni si sono avverati! WASD per scrivere la storia.",
+    "category": ["Simulazione", "Comici", "Sandbox"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "Goat Simulator 3",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/265930/header.jpg",
+    "download_link": "https://pd.cybar.xyz/A1jdUCEj",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "È tornata Pilgor! Beene! Raduna il gregge e tuffati in Goat Simulator 3, una nuova (... su Steam), super realistica esperienza sandbox in fattoria. Invita fino a tre amici in co-op locale o online, spaccate tutto in squadra o sfidatevi in minigiochi che distruggeranno per sempre la vostra amicizia.",
+    "category": ["Esplorazione", "Fisica", "Sandbox", "Mondo aperto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Unravel Two",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1225570/header.jpg",
+    "download_link": "https://pd.cybar.xyz/7WzZEdxo",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Quando tagli i ponti con il passato, si formano nuovi legami.",
+    "category": ["Co-op", "Rompicapo", "Avventura", "Azione"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Broken Pieces",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1293730/header.jpg",
+    "download_link": "https://pd.cybar.xyz/6v8aodT4",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Broken Pieces è un thriller psicologico ambientato in un villaggio sulla costa francese dove il tempo ha smesso di scorrere. Risolvi i misteri rimettendo assieme i pezzi della storia e scoprendo l’enigma che si cela dietro a questo luogo mistico.",
+    "category": ["Horror", "Terza persona", "Avventura", "Azione"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Medieval Dynasty",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1129580/header.jpg",
+    "download_link": "https://pd.cybar.xyz/UrP4bmn3",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Vai a caccia, sopravvivi, costruisci e governa nell'ostile Medioevo: crea una dinastia medievale e sacrificati per garantire la sua lunga prosperità! Gioca in solitaria o fai squadra con gli amici per vivere l'esperienza medievale definitiva.",
+    "category": ["Medievali", "Sopravvivenza", "GDR", "Co-op"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Raft",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/648800/header.jpg",
+    "download_link": "https://pd.cybar.xyz/uaynXDLY",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Raft ™ lancia te e i tuoi amici in un'epica avventura oceanica! Solo o insieme, i giocatori combattono per sopravvivere a un pericoloso viaggio attraverso un vasto mare! Raccogli detriti, scava le barriere coralline e costruisci la tua casa galleggiante, ma fai attenzione agli squali mangiatori di uomini!",
+    "category": ["Mondo aperto", "Sopravvivenza", "Avventura", "Co-op"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Settlement Survival",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1509510/header.jpg",
+    "download_link": "https://pd.cybar.xyz/BN1fKv4S",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "guida un gruppo di sopravvissuti in cerca di una nuova casa. Manipola il paesaggio, gestisci risorse limitate, coltiva, caccia, raccogli risorse, e sviluppa tratte commerciali per costruire un unica e vivace città.",
+    "category": ["Costruzioni", "Sopravvivenza", "Gestionali", "Simulazione"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Stray",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1332010/header.jpg",
+    "download_link": "https://pd.cybar.xyz/ToXW2QDb",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Solo, sperduto e lontano dalla sua famiglia, un gatto randagio deve venire a capo di un antico mistero per fuggire da una cybercittà e ritrovare la via di casa.",
+    "category": ["Cyberpunk", "Fantascienza", "Avventura", "Indie"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Battlefield™ 1",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1238840/header.jpg",
+    "download_link": "https://pd.cybar.xyz/vofoyM4i",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Unisciti alla straordinaria community di Battlefield e scopri le origini della guerra totale con frenetiche battaglie multigiocatore a squadre o attraverso le affascinanti Storie di guerra della campagna.",
+    "category": ["Sparatutto in prima persona", "Guerra"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "MX vs ATV Legends",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1205970/header.jpg",
+    "download_link": "https://pd.cybar.xyz/hPTSa2AZ",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Conquista la vittoria su due ruote, ATV e UTV in MX vs ATV Legends! Include nuovi ambienti open enormi e una modalità Carriera che riproduce i rischi e le ricompense di far parte dell'élite mondiale dei professionisti della corsa. Diventa una leggenda delle corse fuoristrada!",
+    "category": ["Corse", "Sport", "Arcade", "3D"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+      {
+    "name": "Train Valley World",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2244470/header.jpg",
+    "download_link": "https://pd.cybar.xyz/tGgZjHs4",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Train Valley World è un avvincente gioco ispirato ai classici simulatori di gestione dei trasporti. Costruisci e gestisci ferrovie efficienti in tutto il mondo, crea sofisticate catene logistiche, progetta i tuoi livelli e diventa un magnate, giocando in singolo o multigiocatore!",
+    "category": ["Treni", "Simulazione", "Strategia", "Sandbox"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "Amnesia: The Bunker",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1944430/header.jpg",
+    "download_link": "https://pd.cybar.xyz/KQG3K8WD",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Amnesia: The Bunker è un horror in prima persona ambientato in un desolato bunker della prima guerra mondiale. Affronta gli orrori che si aggirano nell'oscurità. Trova e usa gli strumenti e le armi a tua disposizione. Tieni le luci accese a tutti i costi e cerca di sopravvivere.",
+    "category": ["Horror", "Stealth", "Prima persona", "Sopravvivenza"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Football Manager 2023",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1904540/header.jpg",
+    "download_link": "https://pd.cybar.xyz/ZdmxDHaY",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Crea la squadra dei tuoi sogni, supera in astuzia i tuoi rivali e vivi il brivido delle notti europee con la UEFA Champions League. Parti per un viaggio verso la gloria calcistica.",
+    "category": ["Simulazione", "Sport", "Gestionali", "Calcio"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "Legacy of Kain™",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2521380/header.jpg",
+    "download_link": "https://pd.cybar.xyz/2qzMjFFu",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Esplora una Nosgoth ormai in rovina per saziare la tua sete di vendetta…",
+    "category": ["Azione", "Avventura", "Fantasy dark", "Terza persona"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "MotoGP™24",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2581700/header.jpg",
+    "download_link": "https://pd.cybar.xyz/8HrVCb3N",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "MotoGP™24 scende in pista più ricco e appassionante che mai: non perdere tutti i contenuti ufficiali della stagione 2024 e vivi scenari inaspettati grazie al Mercato Piloti!",
+    "category": ["Corse", "Sport", "Motociclette"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "Jurassic World Evolution",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/648350/header.jpg",
+    "download_link": "https://pd.cybar.xyz/evypNDZp",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Vivi la saga Jurassic da protagonista e costruisci il tuo mondo giurassico personale. Crea, grazie alla bioingegneria, dinosauri che pensano, sentono e reagiscono in modo intelligente all'ambiente che li circonda e affronta le minacce rappresentate da spie, fughe e devastanti tempeste tropicali in un mondo incerto dove la vita trova...",
+    "category": ["Costruzioni", "Dinosauri", "Simulazione"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+       {
+    "name": "Just Cause™ 3",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/225540/header.jpg",
+    "download_link": "https://pd.cybar.xyz/gxwCLbLD",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Con oltre 1000 km² da esplorare per terra, per mare e nei cieli, Rico ritorna per scatenare il caos nel modo più creativo ed esplosivo possibile.",
+    "category": ["Mondo aperto", "Azione", "Distruzione"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+       {
+    "name": "Just Cause™ 4",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/517630/header.jpg",
+    "download_link": "https://pd.cybar.xyz/a9k7DjJy",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "L'agente ribelle Rico Rodriguez parte per Solís, un enorme mondo sudamericano, teatro di conflitti, oppressione e condizioni climatiche estreme. Indossa la tuta alare, aggancia il rampino personalizzabile e preparati a scatenare il caos!",
+    "category": ["Mondo aperto", "Azione", "Distruzione"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+       {
+    "name": "Aliens: Fireteam Elite",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1549970/header.jpg",
+    "download_link": "https://pd.cybar.xyz/21Kp3nWs",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Aliens: Fireteam è un gioco di sopravvivenza cooperativo in terza persona ambientato nell'universo di Alien. Combatti orde di Xenomorfi, personalizza il tuo personaggio e l'equipaggiamento e sali di livello cercando di arginare questa minaccia.",
+    "category": ["Co-op", "Azione", "Sparatutto", "Horror"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
