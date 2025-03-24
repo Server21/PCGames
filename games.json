@@ -351,6 +351,15 @@
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
   {
+    "name": "DRAGON BALL XENOVERSE 2",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/454650/header.jpg",
+    "download_link": "https://pd.cybar.xyz/uQtqcmjL",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Dragon Ball Xenoverse 2 è l'esperienza di gioco di Dragon Ball definitiva, piena d'azione, battaglie epiche e infinite opzioni di personalizzazione. Crea il tuo personaggio, esplora Conton City e unisciti agli iconici personaggi della serie, che ti faranno da maestro e ti prepareranno ad affrontare temibili nemici per salvare il corso della storia!",
+    "category": ["Lotta", "Anime"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
     "name": "SUPER DRAGON BALL HEROES",
     "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/798510/header.jpg",
     "download_link": "https://pd.cybar.xyz/Nkampwr9",
@@ -591,6 +600,69 @@
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "Un'invasione di demoni ha travolto il complesso di ricerca della UAC su Marte. Nei panni di uno dei pochi superstiti, dovrai aprirti la strada fino all'Inferno, combattendo un'orda di demoni in questo premiato sparatutto in soggettiva ispirato al DOOM originale.",
     "category": ["Horror", "Azione", "Sparatutto in prima persona"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+      {
+    "name": "Grounded",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/962130/header.jpg",
+    "download_link": "https://pd.cybar.xyz/Vub3S7rs",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Il mondo è un posto vasto, bello e pericoloso – soprattutto quando sei stato ridotto alle dimensioni di una formica. Riesci a prosperare accanto alle orde di insetti giganti, combattendo per sopravvivere ai pericoli del cortile?",
+    "category": ["Sopravvivenza", "Avventura", "Mondo aperto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "This War of Mine",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/282070/header.jpg",
+    "download_link": "https://pd.cybar.xyz/JAKmUMP3",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "In This War Of Mine non giochi nel ruolo di un soldato d'élite, ma piuttosto in quello di un gruppo di civili che cerca di sopravvivere in una città sotto assedio, lottando con la carenza di cibo e medicine e costantemente in pericolo a causa di cecchini e rovistatori ostili.",
+    "category": ["Sopravvivenza", "Guerra"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Winkeltje: The Little Shop",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/949290/header.jpg",
+    "download_link": "https://pd.cybar.xyz/kqS7q3G4",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Winkeltje: The Little Shop consiste nel costruire, decorare e gestire il proprio negozio fantasy all'antica. Compra a poco, vendi a tanto: da chiodi e mele a spade e pozioni d'amore alchemiche. Stupisci i tuoi clienti, crea oggetti e diventa il padrone del tuo negozio personale.",
+    "category": ["Negoziante", "Confortanti", "Gestionali"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Far Cry® 3",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/220240/header.jpg",
+    "download_link": "https://pd.cybar.xyz/kqS7q3G4",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Scopri gli oscuri segreti di un'isola senza legge in cui la violenza è padrona, combattendo nemici mentre cerchi di fuggire. Avrai bisogno di ben altro che la fortuna per riuscire nel tuo intento!",
+    "category": ["Mondo aperto", "Azione", "Sparatutto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Drug Dealer Simulator",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/682990/header.jpg",
+    "download_link": "https://pd.cybar.xyz/8bDTXF93",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Avete mai pensato di espandere il vostro impero del crimine, senza le conseguenze legali e morali? SIMULATELO! Infilatevi nei vicoli oscuri dello spaccio di droga. Il sequel co-op - DDS2 - è in uscita ORA!",
+    "category": ["Simulazione", "Azione", "Crimine", "Indie"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "DAVE THE DIVER",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1868140/header.jpg",
+    "download_link": "https://pd.cybar.xyz/nJ1GL4ce",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "DAVE THE DIVER è un gioco di ruolo e avventura casual per giocatore singolo che permette di esplorare gli abissi marini di giorno e gestire un sushi bar di notte. Unisciti a Dave e ai suoi stravaganti amici nel tentativo di svelare i segreti del misterioso Profondo blu.",
+    "category": ["Avventura", "Pixel art", "Gestionali", "Pesca"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  }
+  {
+    "name": "DREDGE",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1562430/header.jpg",
+    "download_link": "https://pd.cybar.xyz/q74zGv5L",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "DREDGE è un'avventura di pesca per giocatore singolo con una corrente sinistra. Vendi i pesci, migliora la tua barca e draga le profondità alla ricerca di segreti sepolti da tempo. Esplora un arcipelago misterioso e scopri perché è meglio che certe cose restino dimenticate per sempre.",
+    "category": ["Avventura", "Esplorazione", "Pesca"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
