@@ -655,7 +655,7 @@
     "description": "DAVE THE DIVER è un gioco di ruolo e avventura casual per giocatore singolo che permette di esplorare gli abissi marini di giorno e gestire un sushi bar di notte. Unisciti a Dave e ai suoi stravaganti amici nel tentativo di svelare i segreti del misterioso Profondo blu.",
     "category": ["Avventura", "Pixel art", "Gestionali", "Pesca"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
-  }
+  },
   {
     "name": "DREDGE",
     "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1562430/header.jpg",
@@ -663,6 +663,69 @@
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "DREDGE è un'avventura di pesca per giocatore singolo con una corrente sinistra. Vendi i pesci, migliora la tua barca e draga le profondità alla ricerca di segreti sepolti da tempo. Esplora un arcipelago misterioso e scopri perché è meglio che certe cose restino dimenticate per sempre.",
     "category": ["Avventura", "Esplorazione", "Pesca"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+  {
+    "name": "Little Nightmares",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/424840/header.jpg",
+    "download_link": "https://pd.cybar.xyz/NWpX4TKx",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Immergiti nell'atmosfera tenebrosa di Little Nightmares, un'avventura singolare che farà venir fuori le tue paure dell'infanzia! Aiuta Six a fuggire da Le Fauci, una grande e misteriosa imbarcazione abitata da anime corrotte che bramano il loro prossimo pasto...",
+    "category": ["Horror", "Indie", "Avventura"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "ONE PIECE: PIRATE WARRIORS 4",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1089090/header.jpg",
+    "download_link": "https://pd.cybar.xyz/B7ttYdPo",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "ONE PIECE: PIRATE WARRIORS 4 è il nuovo stadio evolutivo dell'azione PIRATE WARRIORS! Basato sul concetto di "sperimentare un campo di battaglia di ONE PIECE realistico", gli edifici crolleranno e gli attacchi alzeranno fumo e polvere, ponendoti nel vivo dell'azione del mondo di ONE PIECE!",
+    "category": ["Anime", "Picchiaduro", "Lotta"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+   {
+    "name": "Subnautica",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/264710/header.jpg",
+    "download_link": "https://pd.cybar.xyz/nWJmiZ7g",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Scendi nelle profondità di un mondo alieno sommerso pieno di meraviglie e pericoli. Costruisci attrezzature, pilota sottomarini e supera in astuzia la fauna selvatica per esplorare lussureggianti barriere coralline, vulcani, sistemi di grotte e molto altro - tutto questo mentre cerchi di sopravvivere.",
+    "category": ["Sopravvivenza", "Horror", "Mondo aperto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Subnautica: Below Zero",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/848450/header.jpg",
+    "download_link": "https://pd.cybar.xyz/DgWrGYej",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Tuffati in una ghiacciata avventura sottomarina su un pianeta alieno. Below Zero ha luogo due anni dopo il gioco originale Subnautica. Sopravvivi alle condizioni estreme costruendo habitat, costruendo strumenti e scavando a fondo nel mondo di Subnautica.",
+    "category": ["Sopravvivenza", "Horror", "Mondo aperto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Assetto Corsa Competizione",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/805550/header.jpg",
+    "download_link": "https://pd.cybar.xyz/ueVpjEN4",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Assetto Corsa Competizione è il videogioco ufficiale di GT World Challenge. Grazie allo straordinario livello simulativo, Assetto Corsa Competizione offre la possibilità di vivere in prima persona l'atmosfera del Campionato omologato FIA GT3, gareggiando con piloti, team, auto e circuiti ufficiali.",
+    "category": ["Corse", "Simulazione", "Sport"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
+    "name": "Hello Neighbor",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/521890/header.jpg",
+    "download_link": "https://pd.cybar.xyz/dAuSwUsf",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Hello Neighbor è un gioco horror stealth che che ti farà intrufolare nella casa del tuo vicino per capire quali segreti nasconde nel seminterrato. Gioca contro un'IA avanzata che impara da ogni tua mossa. Vuoi provare a entrare dalla finestra? Aspettati una trappola dentata. Stai cercando di fuggire? Lui troverà una scorciatoia.",
+    "category": ["Horror", "Sandbox", "Stealth", "Prima persona"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "Hello Neighbor: Hide and Seek",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/960420/header.jpg",
+    "download_link": "https://pd.cybar.xyz/YXRWjFkM",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Hello Neighbor: Hide and Seek segue la tragica storia della famiglia Neighbor in questo drammatico prequel di Hello Neighbor. Prova a giocare a nascondino con tuo fratello mentre affrontate insieme la perdita di un membro della famiglia.",
+    "category": ["Horror", "Sandbox", "Stealth", "Prima persona"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
