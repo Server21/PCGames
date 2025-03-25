@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bonazza - Catalogo Giochi</title>
+    <title>PTLANCHER</title>
     <!-- Favicon dinamico -->
     <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png" />
     <style>
@@ -15,11 +15,15 @@
         padding: 0;
         color: #333;
       }
-      header {
-        background-color: #4caf50;
-        color: white;
-        padding: 1rem;
+      /* Rimuoviamo l’header classico e usiamo una sezione ASCII art */
+      .ascii-header {
         text-align: center;
+        margin: 1rem 0;
+        /* Personalizza dimensione e stile se necessario */
+        font-family: "Courier New", Courier, monospace;
+        font-size: 1.2em;
+        line-height: 1.2;
+        white-space: pre;
       }
       .container {
         max-width: 1200px;
@@ -127,18 +131,28 @@
     </style>
   </head>
   <body>
-    <header>
-      <h1>Catalogo Giochi</h1>
-    </header>
     <div class="container">
+      <!-- ASCII art header in sostituzione del precedente header -->
+      <div class="ascii-header">
+███████████████████████████████████████
+█  P T L A N C H E R   █
+███████████████████████████████████████
+      </div>
+
       <div class="account-info" id="account-info">
         <!-- Le informazioni dell'account verranno visualizzate qui -->
       </div>
+
       <!-- Box per la ricerca testuale -->
       <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Cerca giochi per nome, descrizione o lingua..." />
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Cerca giochi per nome, descrizione o lingua..."
+        />
       </div>
-      <!-- Filtro per tag: seleziona da una lista -->
+
+      <!-- Filtro per tag: selezione tramite dropdown -->
       <div class="tag-filter">
         <label for="tag-filter-select">Filtra per tag:</label>
         <select id="tag-filter-select">
@@ -146,6 +160,7 @@
           <!-- Le opzioni verranno aggiunte dinamicamente -->
         </select>
       </div>
+
       <div class="games-grid" id="games-grid">
         <!-- I giochi verranno caricati dinamicamente -->
       </div>
@@ -163,7 +178,7 @@
           console.error(error);
         }
       }
-      
+
       function updateFavicon(versionData) {
         if (versionData && versionData.icon_link) {
           let favicon = document.getElementById("dynamic-favicon");
@@ -304,7 +319,7 @@
           displayGames(allGames);
           populateTagFilter(allGames);
 
-          // Applica il filtraggio sia per ricerca che per tag
+          // Applica il filtraggio combinato: ricerca e tag
           const runFilters = debounce(() => {
             const filtered = applyFilters(allGames);
             displayGames(filtered);
