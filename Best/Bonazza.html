@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PTLANCHER</title>
+    <title>Bonazza - PTLANCHER</title>
     <!-- Favicon dinamico -->
     <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png" />
     <style>
@@ -15,13 +15,14 @@
         padding: 0;
         color: #333;
       }
-      /* Rimuoviamo l’header classico e usiamo una sezione ASCII art */
+      /* ASCII art header che occupa tutta la larghezza */
       .ascii-header {
+        width: 100%;
         text-align: center;
         margin: 1rem 0;
-        /* Personalizza dimensione e stile se necessario */
+        /* Font monospace e dimensione scalabile in base alla viewport */
         font-family: "Courier New", Courier, monospace;
-        font-size: 1.2em;
+        font-size: 3vw;  /* La dimensione si adatta orizzontalmente */
         line-height: 1.2;
         white-space: pre;
       }
@@ -132,11 +133,13 @@
   </head>
   <body>
     <div class="container">
-      <!-- ASCII art header in sostituzione del precedente header -->
+      <!-- ASCII art header che si estende orizzontalmente -->
       <div class="ascii-header">
+        <pre>
 ███████████████████████████████████████
 █  P T L A N C H E R   █
 ███████████████████████████████████████
+        </pre>
       </div>
 
       <div class="account-info" id="account-info">
@@ -145,11 +148,7 @@
 
       <!-- Box per la ricerca testuale -->
       <div class="search-bar">
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Cerca giochi per nome, descrizione o lingua..."
-        />
+        <input type="text" id="search-input" placeholder="Cerca giochi per nome, descrizione o lingua..." />
       </div>
 
       <!-- Filtro per tag: selezione tramite dropdown -->
@@ -178,7 +177,7 @@
           console.error(error);
         }
       }
-
+      
       function updateFavicon(versionData) {
         if (versionData && versionData.icon_link) {
           let favicon = document.getElementById("dynamic-favicon");
