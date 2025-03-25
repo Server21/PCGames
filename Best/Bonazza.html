@@ -31,6 +31,17 @@
         text-align: right;
         font-weight: 600;
       }
+      /* Sezione per la ricerca testuale */
+      .search-bar {
+        margin-bottom: 1rem;
+      }
+      .search-bar input {
+        width: 100%;
+        padding: 0.7rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
       /* Sezione filtro per i tag */
       .tag-filter {
         margin-bottom: 1rem;
@@ -123,7 +134,11 @@
       <div class="account-info" id="account-info">
         <!-- Le informazioni dell'account verranno visualizzate qui -->
       </div>
-      <!-- Filtro per tag: seleziona da una lista di tag -->
+      <!-- Box per la ricerca testuale -->
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Cerca giochi per nome, descrizione o lingua..." />
+      </div>
+      <!-- Filtro per tag: seleziona da una lista -->
       <div class="tag-filter">
         <label for="tag-filter-select">Filtra per tag:</label>
         <select id="tag-filter-select">
@@ -220,6 +235,28 @@
         };
       }
 
+      // Funzione che applica i filtri (ricerca + tag) sui giochi
+      function applyFilters(games) {
+        const query = document.getElementById("search-input").value.trim().toLowerCase();
+        const selectedTag = document.getElementById("tag-filter-select").value;
+        return games.filter(game => {
+          let matchesSearch = true;
+          if (query) {
+            matchesSearch =
+              (game.name && game.name.toLowerCase().includes(query)) ||
+              (game.description && game.description.toLowerCase().includes(query)) ||
+              (game.languages && game.languages.some(lang => lang.toLowerCase().includes(query)));
+          }
+          let matchesTag = true;
+          if (selectedTag) {
+            matchesTag = game.category && game.category.includes(selectedTag);
+          }
+          return matchesSearch && matchesTag;
+        });
+      }
+
+      let allGames = [];
+
       // Popola il dropdown con i tag unici provenienti dai giochi
       function populateTagFilter(games) {
         const tagSelect = document.getElementById("tag-filter-select");
@@ -238,14 +275,6 @@
           option.value = tag;
           option.textContent = tag;
           tagSelect.appendChild(option);
-        });
-      }
-
-      // Filtra i giochi in base al tag selezionato
-      function filterGamesByTag(games, selectedTag) {
-        if (!selectedTag) return games;
-        return games.filter(game => {
-          return game.category && game.category.includes(selectedTag);
         });
       }
 
@@ -271,15 +300,18 @@
           const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json");
           if (!response.ok) throw new Error("Errore nel caricamento dei giochi");
           const games = await response.json();
-          displayGames(games);
-          populateTagFilter(games);
+          allGames = games;
+          displayGames(allGames);
+          populateTagFilter(allGames);
 
-          // Gestisci il cambio di selezione nel filtro per tag
-          document.getElementById("tag-filter-select").addEventListener("change", debounce(function () {
-            const selectedTag = this.value;
-            const filteredGames = filterGamesByTag(games, selectedTag);
-            displayGames(filteredGames);
-          }, 300));
+          // Applica il filtraggio sia per ricerca che per tag
+          const runFilters = debounce(() => {
+            const filtered = applyFilters(allGames);
+            displayGames(filtered);
+          }, 300);
+
+          document.getElementById("search-input").addEventListener("input", runFilters);
+          document.getElementById("tag-filter-select").addEventListener("change", runFilters);
         } catch (error) {
           console.error(error);
           document.getElementById("games-grid").innerText = "Errore nel caricamento dei giochi.";
