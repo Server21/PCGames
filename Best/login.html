@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login e Donazione</title>
     <style>
-      /* Stili moderni e minimal per una grafica pulita */
+      /* Stili moderni e minimal, per un design pulito */
       body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         background: #f2f2f2;
@@ -35,9 +35,9 @@
         margin-bottom: 0.3rem;
         font-weight: 600;
       }
-      input[type='text'],
-      input[type='password'],
-      input[type='number'] {
+      input[type="text"],
+      input[type="password"],
+      input[type="number"] {
         width: 100%;
         padding: 0.5rem;
         font-size: 1rem;
@@ -81,7 +81,7 @@
           <input type="password" id="password" name="password" required />
         </div>
         <div id="donation-section">
-          <!-- Il campo donazione verrà nascosto se l'account ha già attivato l'abbonamento -->
+          <!-- Il campo donazione viene visualizzato solo per account che non hanno già attivato l'abbonamento -->
           <p class="info">Per attivare l'abbonamento è richiesta una donazione.</p>
           <label for="donation">Importo donazione (minimo 5€):</label>
           <input type="number" id="donation" name="donation" min="5" step="any" />
@@ -94,7 +94,7 @@
     <script>
       let accountsData = null;
 
-      // Funzione per caricare i dati degli account
+      // Funzione per caricare i dati degli account da remoto
       async function fetchAccounts() {
         try {
           const response = await fetch(
@@ -110,13 +110,13 @@
       }
       fetchAccounts();
 
-      // In base all'username inserito, mostra o nasconde la sezione donazione.
+      // In base all'username inserito, mostra o nasconde la sezione donazione
       document.getElementById("username").addEventListener("blur", function () {
         if (!accountsData) return;
         const username = this.value.trim();
         const donationSection = document.getElementById("donation-section");
+        // Se l'account esiste e ha proprietà "expires", non è richiesta la donazione
         if (username in accountsData && typeof accountsData[username] === "object") {
-          // Account già attivo (ha proprietà "expires") → non richiede donazione
           donationSection.style.display = "none";
         } else {
           donationSection.style.display = "block";
@@ -145,20 +145,20 @@
         const account = accountsData[username];
 
         if (typeof account === "string") {
-          // L'account è definito solo da una password → richiede donazione
+          // L'account è definito solo dalla password: richiede donazione
           if (account === passwordInput) {
             if (parseFloat(donationValue) < 5) {
               errorDiv.innerText = "Importo donazione insufficiente (minimo 5€).";
               return;
             }
             valid = true;
-            // Abbonamento attivato per 1 mese dalla data corrente
+            // Attiva l’abbonamento per 1 mese dalla data corrente
             const date = new Date();
             date.setMonth(date.getMonth() + 1);
             expires = date.toISOString().split("T")[0];
           }
         } else if (typeof account === "object") {
-          // L'account già possiede una data di scadenza
+          // L'account possiede già una data di scadenza
           if (account.password === passwordInput) {
             valid = true;
             expires = account.expires;
@@ -168,7 +168,8 @@
         if (valid) {
           const loggedInUser = { username, expires };
           localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-          window.location.href = "index.html";
+          // Reindirizza l'utente alla pagina Bonazza.html
+          window.location.href = "Bonazza.html";
         } else {
           errorDiv.innerText = "Password errata o donazione non valida.";
         }
