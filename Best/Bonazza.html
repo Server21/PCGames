@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bonazza - Catalogo Giochi</title>
+    <!-- Favicon dinamico -->
+    <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png" />
     <style>
       /* Stili moderni, responsive e minimal */
       body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background-color: #f2f2f2;
         margin: 0;
         padding: 0;
@@ -114,18 +116,43 @@
     </header>
     <div class="container">
       <div class="account-info" id="account-info">
-        <!-- Qui verranno visualizzate le informazioni dell'account -->
+        <!-- Le informazioni dell'account verranno visualizzate qui -->
       </div>
       <div class="search-bar">
         <input type="text" id="search-input" placeholder="Cerca un gioco per nome o tag..." />
       </div>
       <div class="games-grid" id="games-grid">
-        <!-- I giochi vengono caricati dinamicamente -->
+        <!-- I giochi verranno caricati dinamicamente -->
       </div>
     </div>
 
     <script>
-      // Calcola i mesi mancanti dalla data di scadenza
+      // Aggiorna il favicon dinamicamente utilizzando version.json
+      async function fetchVersionInfo() {
+        try {
+          const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/version.json");
+          if (!response.ok) throw new Error("Errore nel caricamento delle info di versione");
+          const versionData = await response.json();
+          updateFavicon(versionData);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      
+      function updateFavicon(versionData) {
+        if (versionData && versionData.icon_link) {
+          let favicon = document.getElementById("dynamic-favicon");
+          if (!favicon) {
+            favicon = document.createElement("link");
+            favicon.id = "dynamic-favicon";
+            favicon.rel = "icon";
+            document.head.appendChild(favicon);
+          }
+          favicon.href = versionData.icon_link;
+        }
+      }
+
+      // Funzione per calcolare i mesi mancanti dalla scadenza
       function calcolaMesiMancanti(expiryDate) {
         const now = new Date();
         const expire = new Date(expiryDate);
@@ -134,18 +161,7 @@
         return months < 0 ? 0 : months;
       }
 
-      // Funzione debounce per ottimizzare la ricerca
-      function debounce(func, delay) {
-        let timer;
-        return function (...args) {
-          clearTimeout(timer);
-          timer = setTimeout(() => {
-            func.apply(this, args);
-          }, delay);
-        };
-      }
-
-      // Mostra informazioni account nell'header
+      // Mostra informazioni dell'account nell'header
       function mostraAccountInfo(loggedInUser) {
         const accountInfoDiv = document.getElementById("account-info");
         let infoHtml = `<span>Benvenuto, <strong>${loggedInUser.username}</strong></span>`;
@@ -174,7 +190,7 @@
               <h3>${game.name}</h3>
               <p>${game.description}</p>
               <div class="tags">
-                ${game.category.map((cat) => `<span class="tag">${cat}</span>`).join(" ")}
+                ${game.category.map(cat => `<span class="tag">${cat}</span>`).join(" ")}
               </div>
               <a href="${game.download_link}" class="download-btn" target="_blank">Download</a>
             </div>
@@ -183,7 +199,18 @@
         });
       }
 
-      // Funzione di inizializzazione: controlla sessione, carica giochi e attiva la ricerca
+      // Funzione debounce per ottimizzare la ricerca
+      function debounce(func, delay) {
+        let timer;
+        return function (...args) {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            func.apply(this, args);
+          }, delay);
+        };
+      }
+
+      // Funzione di inizializzazione della pagina
       async function init() {
         // Controlla se esiste una sessione attiva
         const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
@@ -191,8 +218,6 @@
           window.location.href = "login.html";
           return;
         }
-
-        // Visualizza info account
         mostraAccountInfo(loggedInUser);
 
         // Gestore logout
@@ -204,38 +229,33 @@
 
         // Carica i giochi dal repository remoto
         try {
-          const response = await fetch(
-            "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json"
-          );
+          const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json");
           if (!response.ok) throw new Error("Errore nel caricamento dei giochi");
           const games = await response.json();
           displayGames(games);
 
-          // Aggiungi il debounce per la ricerca
-          document.getElementById("search-input").addEventListener(
-            "input",
-            debounce(function () {
-              const query = this.value.toLowerCase();
-              const filtered = games.filter((game) => {
-                return (
-                  game.name.toLowerCase().includes(query) ||
-                  (game.description && game.description.toLowerCase().includes(query)) ||
-                  (game.category &&
-                    game.category.some((cat) => cat.toLowerCase().includes(query))) ||
-                  (game.languages &&
-                    game.languages.some((lang) => lang.toLowerCase().includes(query)))
-                );
-              });
-              displayGames(filtered);
-            }, 300)
-          );
+          // Aggiungi il debounce alla barra di ricerca
+          document.getElementById("search-input").addEventListener("input", debounce(function () {
+            const query = this.value.toLowerCase();
+            const filtered = games.filter(game => {
+              return (
+                game.name.toLowerCase().includes(query) ||
+                (game.description && game.description.toLowerCase().includes(query)) ||
+                (game.category && game.category.some(cat => cat.toLowerCase().includes(query))) ||
+                (game.languages && game.languages.some(lang => lang.toLowerCase().includes(query)))
+              );
+            });
+            displayGames(filtered);
+          }, 300));
         } catch (error) {
           console.error(error);
           document.getElementById("games-grid").innerText = "Errore nel caricamento dei giochi.";
         }
+
+        // Aggiorna il favicon con i dati di version.json
+        fetchVersionInfo();
       }
 
-      // Inizializza l'app non appena il DOM è pronto
       document.addEventListener("DOMContentLoaded", init);
     </script>
   </body>
