@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login e Donazione - PTLANCHER</title>
-  <!-- Favicon dinamico (verrà aggiornato da version.json) -->
+  <!-- Favicon dinamico (verrà aggiornato con version.json) -->
   <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
-  <!-- Google Fonts: Roboto -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -18,9 +18,7 @@
       --font-family: 'Roboto', sans-serif;
       --input-border: #ccc;
     }
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 0;
@@ -115,10 +113,46 @@
       font-weight: 500;
       margin-top: 1rem;
     }
+    /* Modal Styles */
+    .modal {
+      display: none; 
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+    .modal-content {
+      background: #fff;
+      margin: 5% auto;
+      padding: 1rem;
+      border-radius: 4px;
+      width: 90%;
+      max-width: 800px;
+      position: relative;
+    }
+    .close-button {
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      cursor: pointer;
+    }
+    .close-button:hover {
+      color: var(--error-color);
+    }
+    #donation-iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+    }
     @media (max-width: 480px) {
-      .container {
-        padding: 1.5rem;
-      }
+      .container { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -143,12 +177,21 @@
       </div>
       <div class="button-group">
         <button type="submit">Accedi</button>
-        <!-- Il link "Dona" ora si apre nella stessa finestra -->
+        <!-- Il pulsante Dona aprirà il modal -->
         <a href="#" id="donate-btn" class="donate-btn">Dona</a>
       </div>
     </form>
     <div id="error-message" class="error"></div>
   </div>
+
+  <!-- Modal per la pagina di donazione -->
+  <div id="donation-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" id="close-modal">&times;</span>
+      <iframe id="donation-iframe" src=""></iframe>
+    </div>
+  </div>
+
   <script>
     let accountsData = null;
     let versionData = null;
@@ -185,7 +228,8 @@
             ${versionData.donation_message}
           </p>
         `;
-        document.getElementById("donate-btn").href = versionData.donation_link;
+        // Salva il link nel dataset del pulsante Dona
+        document.getElementById("donate-btn").dataset.url = versionData.donation_link;
       }
     }
     
@@ -202,10 +246,16 @@
       }
     }
     
-    fetchAccounts();
-    fetchVersionInfo();
+    function getLoggedInUser() {
+      const data = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
+      return data ? JSON.parse(data) : null;
+    }
     
-    // Gestione del submit per il login
+    function removeLoggedInUser() {
+      localStorage.removeItem("loggedInUser");
+      sessionStorage.removeItem("loggedInUser");
+    }
+    
     document.getElementById("login-form").addEventListener("submit", async (e) => {
       e.preventDefault();
       const username = document.getElementById("username").value.trim();
@@ -213,7 +263,6 @@
       const keepConnected = document.getElementById("keep-connected").checked;
       const errorDiv = document.getElementById("error-message");
       
-      // Controlla se già esiste una sessione attiva per lo stesso account
       const existingSession = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
       if (existingSession) {
         const session = JSON.parse(existingSession);
@@ -262,6 +311,53 @@
         errorDiv.innerText = "Password errata o account non valido.";
       }
     });
+    
+    // Apertura del modal per la pagina di donazione
+    document.getElementById("donate-btn").addEventListener("click", function(e) {
+      e.preventDefault();
+      const donationUrl = this.dataset.url;
+      if (donationUrl) {
+        document.getElementById("donation-iframe").src = donationUrl;
+        document.getElementById("donation-modal").style.display = "block";
+      }
+    });
+    
+    // Chiusura del modal tramite il pulsante di chiusura
+    document.getElementById("close-modal").addEventListener("click", function() {
+      document.getElementById("donation-modal").style.display = "none";
+      document.getElementById("donation-iframe").src = "";
+    });
+    
+    // Chiusura del modal cliccando fuori dal contenuto
+    window.addEventListener("click", function(e) {
+      const modal = document.getElementById("donation-modal");
+      if (e.target === modal) {
+        modal.style.display = "none";
+        document.getElementById("donation-iframe").src = "";
+      }
+    });
+    
+    async function init() {
+      let user = getLoggedInUser();
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+      // Mostra le informazioni dell'utente (qui si mostra solo un messaggio iniziale)
+      const accountInfoDiv = document.getElementById("account-info");
+      accountInfoDiv.innerHTML = `<span>Benvenuto, <strong>${user.username}</strong></span>`;
+      
+      document.getElementById("logout").addEventListener("click", (e) => {
+        e.preventDefault();
+        removeLoggedInUser();
+        window.location.href = "login.html";
+      });
+      
+      await fetchAccounts();
+      await fetchVersionInfo();
+    }
+    
+    document.addEventListener("DOMContentLoaded", init);
   </script>
 </body>
 </html>
