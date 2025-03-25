@@ -3,9 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>PTLANCHER</title>
+    <title>Bonazza - PTLANCHER</title>
     <!-- Favicon dinamico -->
-    <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png" />
+    <link
+      id="dynamic-favicon"
+      rel="icon"
+      href="https://i.postimg.cc/XYfBdscq/icon.png"
+      type="image/png"
+    />
     <style>
       /* Stili moderni, responsive e minimal */
       body {
@@ -15,16 +20,14 @@
         padding: 0;
         color: #333;
       }
-      /* ASCII art header che occupa tutta la larghezza */
-      .ascii-header {
+      /* Banner che occupa tutta la larghezza */
+      .banner {
         width: 100%;
-        text-align: center;
-        margin: 1rem 0;
-        /* Font monospace e dimensione scalabile in base alla viewport */
-        font-family: "Courier New", Courier, monospace;
-        font-size: 3vw;  /* La dimensione si adatta orizzontalmente */
-        line-height: 1.2;
-        white-space: pre;
+      }
+      .banner img {
+        width: 100%;
+        height: auto;
+        display: block;
       }
       .container {
         max-width: 1200px;
@@ -133,13 +136,12 @@
   </head>
   <body>
     <div class="container">
-      <!-- ASCII art header che si estende orizzontalmente -->
-      <div class="ascii-header">
-        <pre>
-███████████████████████████████████████
-█  P T L A N C H E R   █
-███████████████████████████████████████
-        </pre>
+      <!-- Banner Sostitutivo dell'ASCII art -->
+      <div class="banner">
+        <img
+          src="https://picsur.org/i/9f98bc1b-6549-4c42-b56d-dafed77d751e.jpg"
+          alt="Banner PTLANCHER"
+        />
       </div>
 
       <div class="account-info" id="account-info">
@@ -148,7 +150,11 @@
 
       <!-- Box per la ricerca testuale -->
       <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Cerca giochi per nome, descrizione o lingua..." />
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Cerca giochi per nome, descrizione o lingua..."
+        />
       </div>
 
       <!-- Filtro per tag: selezione tramite dropdown -->
@@ -253,7 +259,7 @@
       function applyFilters(games) {
         const query = document.getElementById("search-input").value.trim().toLowerCase();
         const selectedTag = document.getElementById("tag-filter-select").value;
-        return games.filter(game => {
+        return games.filter((game) => {
           let matchesSearch = true;
           if (query) {
             matchesSearch =
@@ -276,15 +282,15 @@
         const tagSelect = document.getElementById("tag-filter-select");
         // Crea un insieme per raccogliere tag unici
         const tagsSet = new Set();
-        games.forEach(game => {
+        games.forEach((game) => {
           if (Array.isArray(game.category)) {
-            game.category.forEach(tag => tagsSet.add(tag));
+            game.category.forEach((tag) => tagsSet.add(tag));
           }
         });
         // Ordina i tag (opzionale)
         const tags = Array.from(tagsSet).sort();
         // Aggiungi le opzioni al dropdown
-        tags.forEach(tag => {
+        tags.forEach((tag) => {
           const option = document.createElement("option");
           option.value = tag;
           option.textContent = tag;
