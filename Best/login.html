@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login e Donazione</title>
-    <!-- Favicon di default (verrà aggiornato dinamicamente da version.json) -->
+    <!-- Favicon dinamico (verrà aggiornato dinamicamente da version.json) -->
     <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png" />
     <style>
       /* Stili moderni e minimal per un design pulito */
@@ -111,7 +111,8 @@
         <!-- Gruppo pulsanti: Accedi e Dona -->
         <div class="button-group">
           <button type="submit">Accedi</button>
-          <a href="#" id="donate-btn" class="donate-btn" target="_blank">Dona</a>
+          <!-- Rimosso il target="_blank" in modo che il link si apra nella stessa pagina -->
+          <a href="#" id="donate-btn" class="donate-btn">Dona</a>
         </div>
       </form>
       <div id="error-message" class="error"></div>
@@ -121,7 +122,7 @@
       let accountsData = null;
       let versionData = null;
 
-      // Carica i dati degli account da remoto
+      // Funzione per caricare i dati degli account da remoto
       async function fetchAccounts() {
         try {
           const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/accounts.json");
@@ -133,7 +134,7 @@
         }
       }
 
-      // Carica i dati di versione/donazione da version.json
+      // Funzione per caricare i dati di versione/donazione da version.json
       async function fetchVersionInfo() {
         try {
           const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/version.json");
@@ -152,10 +153,12 @@
         if (versionData) {
           donationInfo.innerHTML = `
             <p class="info">
+              <img src="${versionData.icon_link}" alt="Icona donazione" class="donation-icon">
               ${versionData.donation_message}
             </p>
           `;
-          // Imposta il link del pulsante Dona
+          // Imposta il link del pulsante Dona.
+          // Senza target="_blank", il link aprirà la pagina nello stesso window.
           document.getElementById("donate-btn").href = versionData.donation_link;
         }
       }
@@ -174,7 +177,7 @@
         }
       }
 
-      // Inizializza i fetch
+      // Inizializzazione: carica i dati degli account e quelli di versione/donazione
       fetchAccounts();
       fetchVersionInfo();
 
