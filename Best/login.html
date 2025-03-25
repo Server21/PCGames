@@ -152,6 +152,7 @@
         if (versionData) {
           donationInfo.innerHTML = `
             <p class="info">
+              <img src="${versionData.icon_link}" alt="Icona donazione" class="donation-icon">
               ${versionData.donation_message}
             </p>
           `;
@@ -185,7 +186,7 @@
         const passwordInput = document.getElementById("password").value;
         const errorDiv = document.getElementById("error-message");
 
-        // Controllo per evitare login simultanei con lo stesso account.
+        // Controllo per impedire login simultanei con lo stesso account
         const existingSession = localStorage.getItem("loggedInUser");
         if (existingSession) {
           const session = JSON.parse(existingSession);
