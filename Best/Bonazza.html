@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PTLANCHER</title>
+  <title>Bonazza - PTLANCHER</title>
   <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -12,14 +12,12 @@
       --secondary-color: #2196f3;
       --error-color: #f44336;
       --text-color: #fff;
-      --bg-color: #2c3e50; /* Lo stesso colore dello sfondo se desiderato */
+      --bg-color: #2c3e50;
       --container-bg: #ffffff;
       --font-family: 'Roboto', sans-serif;
       --input-border: #ccc;
     }
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 0;
@@ -85,9 +83,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
-    .game-card:hover {
-      transform: scale(1.02);
-    }
+    .game-card:hover { transform: scale(1.02); }
     .game-card img {
       width: 100%;
       height: 150px;
@@ -129,9 +125,7 @@
       border-radius: 4px;
       transition: background-color 0.3s;
     }
-    .download-btn:hover {
-      background-color: #45a049;
-    }
+    .download-btn:hover { background-color: #45a049; }
     .logout-btn {
       background-color: var(--error-color);
       color: #fff;
@@ -141,20 +135,23 @@
       transition: background-color 0.3s;
       font-weight: 500;
     }
-    .logout-btn:hover {
-      background-color: #d32f2f;
-    }
+    .logout-btn:hover { background-color: #d32f2f; }
     @media (max-width: 600px) {
-      .account-info, .tag-filter label {
-        font-size: 0.9rem;
-      }
-      .game-card h3 {
-        font-size: 1.1rem;
-      }
-      .game-card p {
-        font-size: 0.8rem;
-      }
+      .account-info, .tag-filter label { font-size: 0.9rem; }
+      .game-card h3 { font-size: 1.1rem; }
+      .game-card p { font-size: 0.8rem; }
     }
+    /* Intercetta i clic sugli anchor per gestire la navigazione interna */
+    document.addEventListener('click', function(event) {
+      const anchor = event.target.closest('a');
+      if (anchor) {
+        // Se l'ancora non è per download e non fa parte di una funzionalità speciale, carica internamente
+        if (!anchor.hasAttribute('download') && !anchor.classList.contains('donate-btn')) {
+          event.preventDefault();
+          window.location.href = anchor.href;
+        }
+      }
+    });
   </style>
 </head>
 <body>
@@ -164,13 +161,11 @@
       <img src="https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/Best/banner.png" alt="Banner PTLANCHER">
     </div>
     <div class="account-info" id="account-info">
-      <!-- Le informazioni dell'account verranno visualizzate qui -->
+      <!-- Le informazioni dell'account verranno caricate qui -->
     </div>
-    <!-- Box per la ricerca testuale -->
     <div class="search-bar">
       <input type="text" id="search-input" placeholder="Cerca giochi per nome, descrizione o lingua...">
     </div>
-    <!-- Filtro per tag -->
     <div class="tag-filter">
       <label for="tag-filter-select">Filtra per tag:</label>
       <select id="tag-filter-select">
@@ -179,45 +174,10 @@
       </select>
     </div>
     <div class="games-grid" id="games-grid">
-      <!-- I giochi vengono caricati dinamicamente -->
+      <!-- I giochi verranno caricati dinamicamente -->
     </div>
   </div>
   <script>
-    // Funzione per cercare l'utente nelle due memorie di persistenza
-    function getLoggedInUser() {
-      const data = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
-      return data ? JSON.parse(data) : null;
-    }
-    // Rimuove le info di login
-    function removeLoggedInUser() {
-      localStorage.removeItem("loggedInUser");
-      sessionStorage.removeItem("loggedInUser");
-    }
-    
-    async function fetchVersionInfo() {
-      try {
-        const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/version.json");
-        if (!response.ok) throw new Error("Errore nel caricamento delle info di versione");
-        const versionData = await response.json();
-        updateFavicon(versionData);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    
-    function updateFavicon(versionData) {
-      if (versionData && versionData.icon_link) {
-        let favicon = document.getElementById("dynamic-favicon");
-        if (!favicon) {
-          favicon = document.createElement("link");
-          favicon.id = "dynamic-favicon";
-          favicon.rel = "icon";
-          document.head.appendChild(favicon);
-        }
-        favicon.href = versionData.icon_link;
-      }
-    }
-    
     function calcolaMesiMancanti(expiryDate) {
       const now = new Date();
       const expire = new Date(expiryDate);
@@ -255,14 +215,13 @@
             <div class="tags">
               ${game.category.map(cat => `<span class="tag">${cat}</span>`).join(" ")}
             </div>
-            <a href="${game.download_link}" class="download-btn" target="_blank">Download</a>
+            <a href="${game.download_link}" class="download-btn" download>Download</a>
           </div>
         `;
         grid.appendChild(card);
       });
     }
     
-    // Funzione per il debounce (per non chiamare troppi eventi in successione)
     function debounce(func, delay) {
       let timer;
       return function(...args) {
@@ -296,7 +255,6 @@
     
     function populateTagFilter(games) {
       const tagSelect = document.getElementById("tag-filter-select");
-      // Raccoglie i tag unici
       const tagsSet = new Set();
       games.forEach(game => {
         if (Array.isArray(game.category)) {
@@ -312,12 +270,47 @@
       });
     }
     
+    async function fetchVersionInfo() {
+      try {
+        const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/version.json");
+        if (!response.ok) throw new Error("Errore nel caricamento delle info di versione");
+        const versionData = await response.json();
+        updateFavicon(versionData);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    
+    function updateFavicon(versionData) {
+      if (versionData && versionData.icon_link) {
+        let favicon = document.getElementById("dynamic-favicon");
+        if (!favicon) {
+          favicon = document.createElement("link");
+          favicon.id = "dynamic-favicon";
+          favicon.rel = "icon";
+          document.head.appendChild(favicon);
+        }
+        favicon.href = versionData.icon_link;
+      }
+    }
+    
+    function getLoggedInUser() {
+      const data = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
+      return data ? JSON.parse(data) : null;
+    }
+    
+    function removeLoggedInUser() {
+      localStorage.removeItem("loggedInUser");
+      sessionStorage.removeItem("loggedInUser");
+    }
+    
     async function init() {
-      let user = getLoggedInUser();
+      let user = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
       if (!user) {
         window.location.href = "login.html";
         return;
       }
+      user = JSON.parse(user);
       mostraAccountInfo(user);
       
       document.getElementById("logout").addEventListener("click", (e) => {
