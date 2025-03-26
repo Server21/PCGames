@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login e Donazione - PTLANCHER</title>
-  <!-- Favicon dinamico (verrà aggiornato con version.json) -->
+  <!-- Favicon dinamico (aggiornato da version.json) -->
   <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -35,7 +35,7 @@
       border-radius: 8px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       width: 90%;
-      max-width: 400px;
+      max-width: 500px;
     }
     h2 {
       text-align: center;
@@ -113,9 +113,9 @@
       font-weight: 500;
       margin-top: 1rem;
     }
-    /* Modal Styles */
+    /* Modal Styles per visualizzare la pagina di donazione all'interno dell'app */
     .modal {
-      display: none; 
+      display: none;
       position: fixed;
       z-index: 1000;
       left: 0;
@@ -150,9 +150,6 @@
       width: 100%;
       height: 80vh;
       border: none;
-    }
-    @media (max-width: 480px) {
-      .container { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -222,13 +219,8 @@
     function updateDonationSection() {
       const donationInfo = document.getElementById("donation-info");
       if (versionData) {
-        donationInfo.innerHTML = `
-          <p class="info">
-            <img src="${versionData.icon_link}" alt="Icona donazione" style="max-width:40px; vertical-align: middle; margin-right:8px;">
-            ${versionData.donation_message}
-          </p>
-        `;
-        // Salva il link nel dataset del pulsante Dona
+        // Rimuoviamo l'immagine – lasciamo solo il messaggio.
+        donationInfo.innerHTML = `<p class="info">${versionData.donation_message}</p>`;
         document.getElementById("donate-btn").dataset.url = versionData.donation_link;
       }
     }
@@ -312,7 +304,7 @@
       }
     });
     
-    // Apertura del modal per la pagina di donazione
+    // Apertura del modal per la donazione
     document.getElementById("donate-btn").addEventListener("click", function(e) {
       e.preventDefault();
       const donationUrl = this.dataset.url;
@@ -322,13 +314,11 @@
       }
     });
     
-    // Chiusura del modal tramite il pulsante di chiusura
     document.getElementById("close-modal").addEventListener("click", function() {
       document.getElementById("donation-modal").style.display = "none";
       document.getElementById("donation-iframe").src = "";
     });
     
-    // Chiusura del modal cliccando fuori dal contenuto
     window.addEventListener("click", function(e) {
       const modal = document.getElementById("donation-modal");
       if (e.target === modal) {
@@ -343,7 +333,6 @@
         window.location.href = "login.html";
         return;
       }
-      // Mostra le informazioni dell'utente (qui si mostra solo un messaggio iniziale)
       const accountInfoDiv = document.getElementById("account-info");
       accountInfoDiv.innerHTML = `<span>Benvenuto, <strong>${user.username}</strong></span>`;
       
