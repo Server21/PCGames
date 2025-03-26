@@ -145,7 +145,7 @@
       <img src="https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/Best/banner.png" alt="Banner PTLANCHER">
     </div>
     <div class="account-info" id="account-info">
-      <!-- Le informazioni dell'account verranno caricate qui -->
+      <!-- Informazioni account verranno aggiornate qui -->
     </div>
     <div class="search-bar">
       <input type="text" id="search-input" placeholder="Cerca giochi per nome, descrizione o lingua...">
@@ -158,7 +158,7 @@
       </select>
     </div>
     <div class="games-grid" id="games-grid">
-      <!-- I giochi verranno caricati dinamicamente -->
+      <!-- Giochi caricati dinamicamente -->
     </div>
   </div>
   <script>
@@ -326,13 +326,12 @@
     }
     
     document.addEventListener("DOMContentLoaded", init);
-  </script>
-  <!-- Intercettazione dei clic per evitare che vengano aperti link esterni nella modalità EXE (se non di download) -->
-  <script>
+  
+    // Intercetta i click sugli anchor per gestire la navigazione interna
     document.addEventListener('click', function(event) {
       const anchor = event.target.closest('a');
       if (anchor && anchor.href) {
-        // Se l'ancora non è per download e non fa parte della funzionalità "donate"
+        // Se l'anchor non è destinato al download o non è parte di funzionalità speciali
         if (!anchor.hasAttribute('download') && !anchor.classList.contains('donate-btn')) {
           event.preventDefault();
           window.location.href = anchor.href;
