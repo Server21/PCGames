@@ -2,9 +2,9 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <!-- Per una grafica desktop, rimuoviamo il meta viewport o lo impostiamo per larghezze fisse -->
+  <!-- Layout fisso per desktop -->
   <meta name="viewport" content="width=1200">
-  <title>PTLANCHER</title>
+  <title>Bonazza - PTLANCHER</title>
   <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -32,10 +32,17 @@
       color: #fff;
       padding: 10px 20px;
     }
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
+    /* Blocco account-info presente nell'header */
+    .account-info {
+      font-size: 1rem;
     }
+    .account-info a {
+      text-decoration: none;
+      font-weight: 500;
+      /* Colore link per evidenziare il rinnovo e il logout */
+      color: #e74c3c;
+    }
+    /* Blocco online-status nell'header */
     #online-status {
       display: flex;
       align-items: center;
@@ -49,6 +56,9 @@
       background: #00e676;
       margin-right: 8px;
     }
+    #online-count {
+      margin: 0 5px;
+    }
     .container {
       padding: 20px;
     }
@@ -57,16 +67,6 @@
       height: auto;
       display: block;
       border-bottom: 1px solid #ddd;
-    }
-    .account-info {
-      margin: 10px 0;
-      text-align: right;
-      font-weight: 500;
-    }
-    .account-info a {
-      text-decoration: none;
-      font-weight: 500;
-      color: #e74c3c;
     }
     .search-bar {
       margin: 20px 0;
@@ -104,9 +104,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
-    .game-card:hover {
-      transform: scale(1.02);
-    }
+    .game-card:hover { transform: scale(1.02); }
     .game-card img {
       width: 100%;
       height: 150px;
@@ -146,41 +144,51 @@
       text-decoration: none;
       border-radius: 4px;
       transition: background-color 0.3s;
+      cursor: pointer;
+      /* Impedisci il trascinamento del link */
+      -webkit-user-drag: none;
+      user-select: none;
     }
     .download-btn:hover {
       background-color: #45a049;
     }
+    /* Logout button con sfondo bianco e testo in rosso */
     .logout-btn {
-      background-color: #e74c3c;
-      color: #fff;
+      background-color: #fff;
+      color: #e74c3c;
       padding: 8px 16px;
       text-decoration: none;
       border-radius: 4px;
-      transition: background-color 0.3s;
+      border: 2px solid #e74c3c;
+      transition: background-color 0.3s, color 0.3s;
       font-weight: 500;
+      cursor: pointer;
+      -webkit-user-drag: none;
+      user-select: none;
     }
     .logout-btn:hover {
-      background-color: #c0392b;
+      background-color: #e74c3c;
+      color: #fff;
     }
   </style>
 </head>
 <body>
   <div class="wrapper">
     <header>
-      <h1>Bonazza - PTLANCHER</h1>
-      <!-- Bollino online -->
+      <!-- Rimosso il titolo, ora solo il blocco account-info e online-status -->
+      <div class="account-info" id="account-info">
+        <span>Benvenuto, <strong>Admin</strong></span> | Abbonamento scade tra 1 mese 
+        <a href="login.html" style="color:#e74c3c;">Rinnova abbonamento</a> | 
+        <a href="#" id="logout" class="logout-btn">Logout</a>
+      </div>
       <div id="online-status">
         <span class="online-dot"></span>
         <span id="online-count">0</span> utenti online
       </div>
     </header>
     <div class="container">
-      <!-- Banner -->
       <div class="banner">
         <img src="https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/Best/banner.png" alt="Banner PTLANCHER">
-      </div>
-      <div class="account-info" id="account-info">
-        <!-- Le informazioni dell'account verranno visualizzate qui -->
       </div>
       <div class="search-bar">
         <input type="text" id="search-input" placeholder="Cerca giochi per nome, descrizione o lingua...">
@@ -211,16 +219,9 @@
     // Mostra le informazioni dell'account
     function mostraAccountInfo(user) {
       const accountInfoDiv = document.getElementById("account-info");
-      let infoHtml = `<span>Benvenuto, <strong>${user.username}</strong></span>`;
-      if (user.expires) {
-        const mesiMancanti = calcolaMesiMancanti(user.expires);
-        infoHtml += ` | Abbonamento scade tra ${mesiMancanti} mese${mesiMancanti !== 1 ? "i" : ""}`;
-        if (mesiMancanti <= 1)
-          infoHtml += ` <a href="login.html" style="color:#e74c3c;">Rinnova abbonamento</a>`;
-      } else {
-        infoHtml += ` | <a href="login.html" style="color:#e74c3c;">Attiva abbonamento</a>`;
-      }
-      infoHtml += ` | <a href="#" id="logout" class="logout-btn">Logout</a>`;
+      // In questo esempio, il contenuto è statico ("Admin", "1 mese")
+      let infoHtml = `<span>Benvenuto, <strong>${user.username || "Admin"}</strong></span> | Abbonamento scade tra 1 mese `;
+      infoHtml += `| <a href="#" id="logout" class="logout-btn">Logout</a>`;
       accountInfoDiv.innerHTML = infoHtml;
       
       document.getElementById("logout").addEventListener("click", function(e) {
@@ -231,7 +232,7 @@
       });
     }
     
-    // Funzioni per visualizzare e filtrare i giochi
+    // Funzione per visualizzare i giochi e impostare il comportamento dei pulsanti download
     function displayGames(games) {
       const grid = document.getElementById("games-grid");
       grid.innerHTML = "";
@@ -250,6 +251,26 @@
           </div>
         `;
         grid.appendChild(card);
+        
+        // Aggiungi i listener per nascondere il link durante l'hover e disabilitare il contextmenu
+        const downloadBtn = card.querySelector('.download-btn');
+        if (downloadBtn) {
+          // Conserva il link originale in un data attribute
+          downloadBtn.dataset.download = downloadBtn.getAttribute('href');
+          downloadBtn.addEventListener('mouseenter', function(e) {
+            this.removeAttribute('href');
+          });
+          downloadBtn.addEventListener('mouseleave', function(e) {
+            this.setAttribute('href', this.dataset.download);
+          });
+          downloadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = this.dataset.download;
+          });
+          downloadBtn.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+          });
+        }
       });
     }
     
@@ -340,23 +361,22 @@
       }
     }
     
-    // Funzione per aggiornare il numero di utenti online
+    // Funzione per aggiornare il numero di utenti online (con fallback a un valore fisso)
     async function updateOnlineCount() {
       try {
-        // Sostituisci l'URL qui con l'endpoint reale che restituisce un JSON del tipo: { "online": 123 }
         const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/online_count.json");
         if (response.ok) {
           const data = await response.json();
           document.getElementById("online-count").innerText = data.online;
         } else {
-          console.error("Errore nel recupero del conteggio online");
+          document.getElementById("online-count").innerText = 123;
         }
       } catch (error) {
         console.error("Errore nella fetch del conteggio online:", error);
+        document.getElementById("online-count").innerText = 123;
       }
     }
     
-    // Inizializza la pagina
     async function init() {
       let user = getLoggedInUser();
       if (!user) {
@@ -388,14 +408,14 @@
       await fetchAccounts();
       await fetchVersionInfo();
       
-      // Avvia il polling per aggiornare il conteggio degli utenti online ogni 10 secondi
+      // Aggiorna il conteggio degli utenti online ogni 10 secondi
       updateOnlineCount();
       setInterval(updateOnlineCount, 10000);
     }
     
     document.addEventListener("DOMContentLoaded", init);
     
-    // Gestione degli anchor per evitare redirect in loop
+    // Gestione degli anchor per evitare loop di redirect
     document.addEventListener('click', function(event) {
       const anchor = event.target.closest('a');
       if (anchor && anchor.href) {
