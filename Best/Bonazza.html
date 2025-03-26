@@ -145,7 +145,7 @@
       <img src="https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/Best/banner.png" alt="Banner PTLANCHER">
     </div>
     <div class="account-info" id="account-info">
-      <!-- Informazioni account verranno aggiornate qui -->
+      <!-- Le informazioni dell'account verranno visualizzate qui -->
     </div>
     <div class="search-bar">
       <input type="text" id="search-input" placeholder="Cerca giochi per nome, descrizione o lingua...">
@@ -158,7 +158,7 @@
       </select>
     </div>
     <div class="games-grid" id="games-grid">
-      <!-- Giochi caricati dinamicamente -->
+      <!-- I giochi verranno caricati dinamicamente -->
     </div>
   </div>
   <script>
@@ -289,19 +289,14 @@
     }
     
     async function init() {
-      let user = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
+      let user = getLoggedInUser();
       if (!user) {
-        window.location.href = "login.html";
+        // Se non esistono dati di login, rimani qui (login.html)
+      } else {
+        // Se già loggato, reindirizza a Bonazza.html
+        window.location.href = "Bonazza.html";
         return;
       }
-      user = JSON.parse(user);
-      mostraAccountInfo(user);
-      
-      document.getElementById("logout").addEventListener("click", (e) => {
-        e.preventDefault();
-        removeLoggedInUser();
-        window.location.href = "login.html";
-      });
       
       try {
         const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json");
@@ -322,16 +317,19 @@
         console.error(error);
         document.getElementById("games-grid").innerText = "Errore nel caricamento dei giochi.";
       }
-      fetchVersionInfo();
+      
+      await fetchAccounts();
+      await fetchVersionInfo();
     }
     
     document.addEventListener("DOMContentLoaded", init);
-  
-    // Intercetta i click sugli anchor per gestire la navigazione interna
+  </script>
+  <!-- Intercettazione dei click sugli anchor per gestire la navigazione interna -->
+  <script>
     document.addEventListener('click', function(event) {
       const anchor = event.target.closest('a');
       if (anchor && anchor.href) {
-        // Se l'anchor non è destinato al download o non è parte di funzionalità speciali
+        // Escludiamo i link destinati a download e la funzionalità "Dona"
         if (!anchor.hasAttribute('download') && !anchor.classList.contains('donate-btn')) {
           event.preventDefault();
           window.location.href = anchor.href;
