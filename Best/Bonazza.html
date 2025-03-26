@@ -162,6 +162,7 @@
     </div>
   </div>
   <script>
+    // Funzione per calcolare i mesi mancanti dall'abbonamento
     function calcolaMesiMancanti(expiryDate) {
       const now = new Date();
       const expire = new Date(expiryDate);
@@ -170,6 +171,7 @@
       return months < 0 ? 0 : months;
     }
     
+    // Visualizza le informazioni dell'account
     function mostraAccountInfo(user) {
       const accountInfoDiv = document.getElementById("account-info");
       let infoHtml = `<span>Benvenuto, <strong>${user.username}</strong></span>`;
@@ -183,8 +185,17 @@
       }
       infoHtml += ` | <a href="#" id="logout" class="logout-btn">Logout</a>`;
       accountInfoDiv.innerHTML = infoHtml;
+      
+      // Gestione del logout
+      document.getElementById("logout").addEventListener("click", function(e) {
+        e.preventDefault();
+        localStorage.removeItem("loggedInUser");
+        sessionStorage.removeItem("loggedInUser");
+        window.location.href = "login.html";
+      });
     }
     
+    // Funzioni per visualizzare e filtrare i giochi
     function displayGames(games) {
       const grid = document.getElementById("games-grid");
       grid.innerHTML = "";
@@ -278,14 +289,10 @@
       }
     }
     
+    // Funzione per ottenere l'utente loggato
     function getLoggedInUser() {
       const data = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
       return data ? JSON.parse(data) : null;
-    }
-    
-    function removeLoggedInUser() {
-      localStorage.removeItem("loggedInUser");
-      sessionStorage.removeItem("loggedInUser");
     }
     
     // Funzione per caricare gli account (se necessaria)
@@ -301,13 +308,13 @@
     }
     
     async function init() {
-      // Se non esiste un utente loggato, reindirizza alla pagina di login
+      // Controlla se esiste un utente loggato; se non c'è, reindirizza a login.html
       let user = getLoggedInUser();
       if (!user) {
         window.location.href = "login.html";
         return;
       }
-      // Se loggato, mostra le info dell'account
+      // Se l'utente è loggato, mostra le sue informazioni
       mostraAccountInfo(user);
       
       try {
@@ -335,17 +342,16 @@
     }
     
     document.addEventListener("DOMContentLoaded", init);
-  </script>
-  <!-- Intercettazione dei click sugli anchor per gestire la navigazione interna -->
-  <script>
+    
+    // Eventuale gestione dei click sugli anchor per navigazione interna (assicurati che non reindirizzi in loop)
     document.addEventListener('click', function(event) {
       const anchor = event.target.closest('a');
       if (anchor && anchor.href) {
-        // Escludiamo i link destinati a download e la funzionalità "Dona"
-        if (!anchor.hasAttribute('download') && !anchor.classList.contains('donate-btn')) {
-          event.preventDefault();
-          window.location.href = anchor.href;
-        }
+        // Se l'anchor punta alla pagina corrente, non fare nulla
+        if (anchor.href === window.location.href) return;
+        // Altrimenti reindirizza normalmente
+        event.preventDefault();
+        window.location.href = anchor.href;
       }
     });
   </script>
