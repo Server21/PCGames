@@ -2,11 +2,9 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=1200">
   <title>Login e Donazione - PTLANCHER</title>
-  <!-- Favicon dinamico (aggiornato da version.json) -->
   <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
-  <!-- Google Fonts: Roboto -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -115,43 +113,6 @@
       font-weight: 500;
       margin-top: 1rem;
     }
-    /* Modal Styles per la pagina di donazione (non più utilizzati) */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-    .modal-content {
-      background: #fff;
-      margin: 5% auto;
-      padding: 1rem;
-      border-radius: 4px;
-      width: 90%;
-      max-width: 800px;
-      position: relative;
-    }
-    .close-button {
-      position: absolute;
-      right: 10px;
-      top: 5px;
-      font-size: 28px;
-      font-weight: bold;
-      color: #333;
-      cursor: pointer;
-    }
-    .close-button:hover {
-      color: var(--error-color);
-    }
-    #donation-iframe {
-      width: 100%;
-      height: 80vh;
-      border: none;
-    }
   </style>
 </head>
 <body>
@@ -176,26 +137,17 @@
       </div>
       <div class="button-group">
         <button type="submit">Accedi</button>
-        <!-- Il pulsante "Dona" aprirà la donazione in una nuova scheda -->
+        <!-- Il pulsante "Dona" aprirà la pagina di donazione nella stessa finestra -->
         <a href="#" id="donate-btn" class="donate-btn">Dona</a>
       </div>
     </form>
     <div id="error-message" class="error"></div>
   </div>
 
-  <!-- Modal per la donazione (non più utilizzato) -->
-  <div id="donation-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-button" id="close-modal">&times;</span>
-      <iframe id="donation-iframe" src=""></iframe>
-    </div>
-  </div>
-
   <script>
     let accountsData = null;
     let versionData = null;
     
-    // Carica i dati degli account da remoto
     async function fetchAccounts() {
       try {
         const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/accounts.json");
@@ -207,7 +159,6 @@
       }
     }
     
-    // Carica i dati di versione/donazione
     async function fetchVersionInfo() {
       try {
         const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/version.json");
@@ -251,15 +202,13 @@
       sessionStorage.removeItem("loggedInUser");
     }
     
-    // Gestione del submit del form di login
     document.getElementById("login-form").addEventListener("submit", async (e) => {
-      e.preventDefault(); // Previene il refresh della pagina
+      e.preventDefault();
       const username = document.getElementById("username").value.trim();
       const passwordInput = document.getElementById("password").value;
       const keepConnected = document.getElementById("keep-connected").checked;
       const errorDiv = document.getElementById("error-message");
   
-      // Se l'utente è già loggato, reindirizza a Bonazza.html
       let existingUser = getLoggedInUser();
       if(existingUser && existingUser.username === username) {
         errorDiv.innerText = "L'account è già connesso in un'altra finestra.";
@@ -306,32 +255,16 @@
       }
     });
     
-    // Apertura del link di donazione al clic sul pulsante "Dona"
+    // Quando viene cliccato il pulsante "Dona", apri la pagina di donazione nella stessa finestra
     document.getElementById("donate-btn").addEventListener("click", function(e) {
       e.preventDefault();
       const donationUrl = this.dataset.url;
       if (donationUrl) {
-        // Invece di usare l'iframe, apri il link in una nuova scheda
-        window.open(donationUrl, '_blank');
-      }
-    });
-    
-    // (I gestori per il modal sono mantenuti, ma non verranno attivati se non modifichi anche l'HTML)
-    document.getElementById("close-modal").addEventListener("click", function() {
-      document.getElementById("donation-modal").style.display = "none";
-      document.getElementById("donation-iframe").src = "";
-    });
-    
-    window.addEventListener("click", function(e) {
-      const modal = document.getElementById("donation-modal");
-      if (e.target === modal) {
-        modal.style.display = "none";
-        document.getElementById("donation-iframe").src = "";
+        window.location.href = donationUrl;
       }
     });
     
     async function init() {
-      // Se l'utente è già loggato, reindirizza a Bonazza.html
       let user = getLoggedInUser();
       if(user) {
         window.location.href = "Bonazza.html";
