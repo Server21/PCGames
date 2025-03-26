@@ -115,7 +115,7 @@
       font-weight: 500;
       margin-top: 1rem;
     }
-    /* Modal Styles per la pagina di donazione */
+    /* Modal Styles per la pagina di donazione (non più utilizzati) */
     .modal {
       display: none;
       position: fixed;
@@ -170,20 +170,20 @@
         <input type="checkbox" id="keep-connected">
         <label for="keep-connected">Resta connesso</label>
       </div>
-      <!-- Sezione informativa per la donazione (solo testo: senza l'immagine) -->
+      <!-- Sezione informativa per la donazione -->
       <div id="donation-info">
         <p class="info">Caricamento informazioni donazione...</p>
       </div>
       <div class="button-group">
         <button type="submit">Accedi</button>
-        <!-- Il pulsante "Dona" aprirà il modal -->
+        <!-- Il pulsante "Dona" aprirà la donazione in una nuova scheda -->
         <a href="#" id="donate-btn" class="donate-btn">Dona</a>
       </div>
     </form>
     <div id="error-message" class="error"></div>
   </div>
 
-  <!-- Modal per la pagina di donazione -->
+  <!-- Modal per la donazione (non più utilizzato) -->
   <div id="donation-modal" class="modal">
     <div class="modal-content">
       <span class="close-button" id="close-modal">&times;</span>
@@ -306,23 +306,22 @@
       }
     });
     
-    // Apertura del modal per la donazione al clic sul pulsante "Dona"
+    // Apertura del link di donazione al clic sul pulsante "Dona"
     document.getElementById("donate-btn").addEventListener("click", function(e) {
       e.preventDefault();
       const donationUrl = this.dataset.url;
       if (donationUrl) {
-        document.getElementById("donation-iframe").src = donationUrl;
-        document.getElementById("donation-modal").style.display = "block";
+        // Invece di usare l'iframe, apri il link in una nuova scheda
+        window.open(donationUrl, '_blank');
       }
     });
     
-    // Chiusura del modal al clic sulla "X"
+    // (I gestori per il modal sono mantenuti, ma non verranno attivati se non modifichi anche l'HTML)
     document.getElementById("close-modal").addEventListener("click", function() {
       document.getElementById("donation-modal").style.display = "none";
       document.getElementById("donation-iframe").src = "";
     });
     
-    // Chiusura del modal se l'utente clicca fuori dal contenuto
     window.addEventListener("click", function(e) {
       const modal = document.getElementById("donation-modal");
       if (e.target === modal) {
