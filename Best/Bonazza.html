@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PTLANCHER</title>
+  <title>Bonazza - PTLANCHER</title>
   <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -136,22 +136,6 @@
       font-weight: 500;
     }
     .logout-btn:hover { background-color: #d32f2f; }
-    @media (max-width: 600px) {
-      .account-info, .tag-filter label { font-size: 0.9rem; }
-      .game-card h3 { font-size: 1.1rem; }
-      .game-card p { font-size: 0.8rem; }
-    }
-    /* Intercetta i clic sugli anchor per gestire la navigazione interna */
-    document.addEventListener('click', function(event) {
-      const anchor = event.target.closest('a');
-      if (anchor) {
-        // Se l'ancora non è per download e non fa parte di una funzionalità speciale, carica internamente
-        if (!anchor.hasAttribute('download') && !anchor.classList.contains('donate-btn')) {
-          event.preventDefault();
-          window.location.href = anchor.href;
-        }
-      }
-    });
   </style>
 </head>
 <body>
@@ -342,6 +326,19 @@
     }
     
     document.addEventListener("DOMContentLoaded", init);
+  </script>
+  <!-- Intercettazione dei clic per evitare che vengano aperti link esterni nella modalità EXE (se non di download) -->
+  <script>
+    document.addEventListener('click', function(event) {
+      const anchor = event.target.closest('a');
+      if (anchor && anchor.href) {
+        // Se l'ancora non è per download e non fa parte della funzionalità "donate"
+        if (!anchor.hasAttribute('download') && !anchor.classList.contains('donate-btn')) {
+          event.preventDefault();
+          window.location.href = anchor.href;
+        }
+      }
+    });
   </script>
 </body>
 </html>
