@@ -288,15 +288,27 @@
       sessionStorage.removeItem("loggedInUser");
     }
     
+    // Funzione per caricare gli account (se necessaria)
+    async function fetchAccounts() {
+      try {
+        const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/accounts.json");
+        if (!response.ok) throw new Error("Errore nel caricamento degli account");
+        const accountsData = await response.json();
+        return accountsData;
+      } catch (error) {
+        console.error("Errore nel caricamento degli account:", error);
+      }
+    }
+    
     async function init() {
+      // Se non esiste un utente loggato, reindirizza alla pagina di login
       let user = getLoggedInUser();
       if (!user) {
-        // Se non esistono dati di login, rimani qui (login.html)
-      } else {
-        // Se già loggato, reindirizza a Bonazza.html
-        window.location.href = "Bonazza.html";
+        window.location.href = "login.html";
         return;
       }
+      // Se loggato, mostra le info dell'account
+      mostraAccountInfo(user);
       
       try {
         const response = await fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json");
