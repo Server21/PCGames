@@ -216,6 +216,15 @@
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
     {
+    "name": "Grand Theft Auto: IV",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/12210/header.jpg",
+    "download_link": "https://pd.cybar.xyz/x828tBhH",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Niko Bellic, Johnny Klebitz e Luis Lopez hanno tutti una cosa in comune: vivono nella peggior città di tutta l'America. Liberty City è una città che venera denaro e status, un paradiso per chi li possiede entrambi, ma un incubo per chi non ha né l'uno né l'altro.",
+    "category": ["Azione", "Mondo aperto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+    {
     "name": "Grand Theft Auto: Vice City",
     "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1546990/header.jpg",
     "download_link": "https://pd.cybar.xyz/ztn3vGYN",
@@ -933,6 +942,24 @@
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "Aliens: Fireteam è un gioco di sopravvivenza cooperativo in terza persona ambientato nell'universo di Alien. Combatti orde di Xenomorfi, personalizza il tuo personaggio e l'equipaggiamento e sali di livello cercando di arginare questa minaccia.",
     "category": ["Co-op", "Azione", "Sparatutto", "Horror"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+         {
+    "name": "Persona® 5 Strikers",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1382330/header.jpg",
+    "download_link": "https://pd.cybar.xyz/ELLQP9U3",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Unisciti ai Ladri Fantasma e lotta contro la corruzione che sta invadendo le città del Giappone. Quando si sviluppa una realtà distorta, una vacanza estiva con gli amici più cari prende una svolta imprevista. Svela la verità e riscatta i cuori delle persone imprigionate nel cuore della crisi!",
+    "category": ["Anime", "Hack & slash", "Avventura", "GDR"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+          {
+    "name": "The Elder Scrolls V",
+    "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg",
+    "download_link": "https://pd.cybar.xyz/VL59eLso",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Vincitore di oltre 200 premi Gioco dell’Anno, The Elder Scrolls V: Skyrim Special Edition porta sui vostri schermi il fantasy epico con dettagli mozzafiato. La Special Edition include l’acclamato gioco e gli add-on con nuove funzioni.",
+    "category": ["Mondo aperto", "Giocatore singolo", "Avventura", "GDR"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
