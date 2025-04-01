@@ -1,236 +1,132 @@
-/* === Stili generali === */
-* {
-  box-sizing: border-box;
-}
-
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background: #ecf0f1;
-  color: #333;
+  background: #f4f4f4;
 }
 
 header {
-  background: linear-gradient(90deg, #4caf50, #2196f3);
+  background: #333;
   color: #fff;
-  padding: 15px 20px;
+  padding: 10px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 }
 
 header h1 {
   margin: 0;
-  font-size: 1.8rem;
 }
 
-#online-status {
-  font-size: 0.9rem;
+#onlineUsers {
+  margin-right: 20px;
 }
 
-.online-dot {
+button {
+  padding: 8px 16px;
+  border: none;
+  background: #555;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #777;
+}
+
+.login-container {
+  width: 300px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.donation-info {
+  margin-top: 20px;
+  background: #e7f3fe;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.donation-button {
   display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #00e676;
-  margin-right: 5px;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #28a745;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
 }
 
-/* === Container principale === */
-.container {
+main {
   padding: 20px;
 }
 
-/* === Barra di ricerca e filtro === */
-.search-bar {
-  margin-bottom: 20px;
-}
-
-.search-bar input {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.tag-filter {
-  margin-bottom: 20px;
-}
-
-.tag-filter label {
-  margin-right: 10px;
-  font-weight: 500;
-}
-
-.tag-filter select {
-  padding: 8px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-/* === Griglia dei giochi === */
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+#gamesContainer {
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
-/* === Scheda gioco === */
-.game-card {
+.game {
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  overflow: hidden;
-  transition: transform 0.3s;
+  border-radius: 4px;
+  padding: 10px;
+  width: calc(33% - 20px);
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
-.game-card:hover {
-  transform: scale(1.02);
+.game img {
+  max-width: 100%;
+  border-radius: 4px;
 }
 
-.game-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.game-card .content {
-  padding: 15px;
-}
-
-.game-card h3 {
-  margin: 0 0 10px;
-  font-size: 1.2rem;
-  color: #333;
-}
-
-.game-card p {
-  font-size: 0.9rem;
-  line-height: 1.4;
-  color: #666;
+.tags, .languages {
   margin: 5px 0;
 }
 
-.download-btn {
+.tag, .language {
   display: inline-block;
-  margin-top: 10px;
-  padding: 10px 15px;
-  background: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.3s;
+  background: #ddd;
+  color: #333;
+  padding: 2px 8px;
+  margin-right: 5px;
+  border-radius: 3px;
+  font-size: 0.8em;
 }
 
-.download-btn:hover {
-  background: #45a049;
+.search-filter {
+  margin-bottom: 20px;
 }
 
-/* === Logout === */
-.logout-btn {
-  background: #fff;
-  color: #e74c3c;
-  padding: 8px 16px;
-  text-decoration: none;
-  border: 2px solid #e74c3c;
-  border-radius: 4px;
-  font-weight: 500;
-  transition: background 0.3s, color 0.3s;
-}
-
-.logout-btn:hover {
-  background: #e74c3c;
-  color: #fff;
-}
-
-/* === Widget di supporto (chat) === */
-#support-chat-toggle {
+#chatSidebar {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  background: rgba(76, 175, 80, 0.8);
-  border-radius: 50%;
-  color: #fff;
-  text-align: center;
-  line-height: 60px;
-  font-size: 14px;
-  cursor: pointer;
-  z-index: 1000;
-  transition: background 0.3s;
-}
-
-#support-chat-toggle:hover {
-  background: rgba(76, 175, 80, 1);
-}
-
-#support-chat-widget {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  width: 300px;
-  max-height: 400px;
+  right: 0;
+  top: 60px;
+  width: 250px;
   background: #fff;
+  border-left: 1px solid #ccc;
+  padding: 10px;
+  height: calc(100% - 60px);
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+}
+
+#chatMessages {
+  height: 200px;
+  overflow-y: auto;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-  display: none;
-  flex-direction: column;
-  z-index: 1000;
-}
-
-#support-chat-widget header {
-  background: #4caf50;
-  color: #fff;
-  padding: 10px;
-  border-radius: 8px 8px 0 0;
-  font-size: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#support-chat-widget header .close-btn {
-  cursor: pointer;
-  font-weight: bold;
-}
-
-#support-chat-widget .chat-body {
-  padding: 10px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-#support-chat-widget textarea {
-  width: 100%;
-  height: 100px;
-  resize: none;
   padding: 5px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-#support-chat-widget button {
-  margin-top: 10px;
-  padding: 8px;
-  background: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-#support-chat-widget button:hover {
-  background: #45a049;
+  margin-bottom: 10px;
 }
