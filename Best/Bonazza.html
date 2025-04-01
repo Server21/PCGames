@@ -90,7 +90,101 @@
       document.getElementById("online-count").innerText = count;
     }
     
-    /* --- Funzioni per il supporto (chat) --- */
+    /* --- Caricamento dei giochi tramite AllOrigins (proxy CORS) --- */
+    let allGames = [];
+    async function loadGames() {
+      try {
+        const proxyUrl = "https://api.allorigins.hexocode.repl.co/get?disableCache=true&url=";
+        const targetUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
+        const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+        if (!response.ok) throw new Error("Errore nel caricamento dei giochi");
+        const data = await response.json();
+        const games = JSON.parse(data.contents);
+        allGames = games;
+        displayGames(allGames);
+        populateTagFilter(allGames);
+        
+        const runFilters = debounce(() => {
+          const filtered = applyFilters(allGames);
+          displayGames(filtered);
+        }, 300);
+        
+        document.getElementById("search-input").addEventListener("input", runFilters);
+        document.getElementById("tag-filter-select").addEventListener("change", runFilters);
+      } catch(error) {
+        console.error(error);
+        document.getElementById("games-grid").innerText = "Errore nel caricamento dei giochi.";
+      }
+    }
+    
+    /* --- Funzioni per visualizzare e filtrare i giochi --- */
+    function displayGames(games) {
+      const grid = document.getElementById("games-grid");
+      grid.innerHTML = "";
+      games.forEach(game => {
+        const card = document.createElement("div");
+        card.className = "game-card";
+        card.innerHTML = `
+          <img src="${game.image_url}" alt="${game.name}">
+          <div class="content">
+            <h3>${game.name}</h3>
+            <p>${game.description}</p>
+            <div class="tags">
+              ${game.category.map(cat => `<span class="tag">${cat}</span>`).join(" ")}
+            </div>
+            <a href="${game.download_link}" class="download-btn" download>Download</a>
+          </div>
+        `;
+        grid.appendChild(card);
+        
+        const downloadBtn = card.querySelector('.download-btn');
+        if (downloadBtn) {
+          downloadBtn.dataset.download = downloadBtn.getAttribute('href');
+          downloadBtn.addEventListener('mouseenter', function() {
+            this.removeAttribute('href');
+          });
+          downloadBtn.addEventListener('mouseleave', function() {
+            this.setAttribute('href', this.dataset.download);
+          });
+          downloadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = this.dataset.download;
+          });
+          downloadBtn.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+          });
+        }
+      });
+    }
+    
+    function debounce(func, delay) {
+      let timer;
+      return function(...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, args), delay);
+      };
+    }
+    
+    function applyFilters(games) {
+      const query = document.getElementById("search-input").value.trim().toLowerCase();
+      const selectedTag = document.getElementById("tag-filter-select").value;
+      return games.filter(game => {
+        let matchesSearch = true;
+        if (query) {
+          matchesSearch =
+            (game.name && game.name.toLowerCase().includes(query)) ||
+            (game.description && game.description.toLowerCase().includes(query)) ||
+            (game.languages && game.languages.some(lang => lang.toLowerCase().includes(query)));
+        }
+        let matchesTag = true;
+        if (selectedTag) {
+          matchesTag = game.category && game.category.includes(selectedTag);
+        }
+        return matchesSearch && matchesTag;
+      });
+    }
+    
+    /* --- Funzioni per il supporto (chat per messaggi all'admin) --- */
     // Contatore dei messaggi inviati (max 2 al giorno)
     function getMessageCount(username) {
       const key = "contactCount_" + username;
@@ -165,7 +259,7 @@
     });
     
     /* --- Inizializzazione della pagina --- */
-    function init() {
+    async function init() {
       const user = getLoggedInUser();
       if(!user) {
         window.location.href = "login.html";
@@ -174,6 +268,7 @@
       mostraAccountInfo(user);
       updateOnlineCount();
       setInterval(updateOnlineCount, 10000);
+      await loadGames();
     }
     document.addEventListener("DOMContentLoaded", init);
   </script>
