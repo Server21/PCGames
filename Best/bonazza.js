@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   const user = localStorage.getItem("loggedInUser");
   if (!user) {
-    window.location.href = "index.html";
+    window.location.href = "login.html";
     return;
   }
 
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("logoutBtn").addEventListener("click", function() {
     localStorage.removeItem("loggedInUser");
     localStorage.removeItem("activeUser");
-    window.location.href = "index.html";
+    window.location.href = "login.html";
   });
 
   // Carica i giochi da games.json
