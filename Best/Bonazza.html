@@ -2,161 +2,46 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=1200">
-  <title>PTLANCHER</title>
-  <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
-  <!-- Collega il file CSS unico (Bra.css) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bonazza Games</title>
+  <!-- Collega il file CSS unificato -->
   <link rel="stylesheet" href="Bra.css">
+  <style>
+    /* Se vuoi aggiungere stili specifici per questa pagina, inseriscili qui */
+  </style>
 </head>
 <body>
-  <div class="wrapper">
-    <header>
-      <div class="account-info" id="account-info">
-        <!-- Informazioni utente inserite dinamicamente -->
-      </div>
-      <div id="online-status">
-        <span class="online-dot"></span>
-        <span id="online-count">0</span> persone connesse
-      </div>
-    </header>
-    <div class="container">
-      <div class="banner">
-        <img src="https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/Best/banner.png" alt="Banner PTLANCHER">
-      </div>
-      <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Cerca giochi per nome, descrizione o lingua...">
-      </div>
-      <div class="tag-filter">
-        <label for="tag-filter-select">Filtra per tag:</label>
-        <select id="tag-filter-select">
-          <option value=\"\">Tutti</option>
-          <!-- Opzioni aggiunte dinamicamente -->
-        </select>
-      </div>
-      <div class="games-grid" id="games-grid">
-        <!-- Giochi caricati dinamicamente -->
-      </div>
+  <header>
+    <div class="account-info" id="account-info">
+      <!-- Qui puoi inserire informazioni utente se necessario -->
+      <h1>Benvenuto su Bonazza Games</h1>
     </div>
-  </div>
-
-  <!-- Pulsante per aprire il widget di supporto -->
-  <div id="support-chat-toggle">Supporto</div>
+    <div id="online-status">
+      <span class="online-dot"></span>
+      <span id="online-count">0</span> utenti online
+      <!-- Pulsante di logout, se necessario -->
+      <a href="login.html" class="logout-btn">Logout</a>
+    </div>
+  </header>
   
-  <!-- Widget di supporto -->
-  <div id="support-chat-widget">
-    <header>
-      Supporto
-      <span class="close-btn" id="chat-close">&times;</span>
-    </header>
-    <div class="chat-body">
-      <textarea id="chat-message" placeholder="Scrivi qui il tuo messaggio..." required></textarea>
-      <button id="chat-send">Invia</button>
+  <main class="container">
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Cerca giochi per nome, descrizione, lingua...">
     </div>
-  </div>
+    <div class="tag-filter">
+      <label for="tag-filter-select">Filtra per tag:</label>
+      <select id="tag-filter-select">
+        <option value="">Tutti</option>
+        <!-- Opzioni per i tag saranno aggiunte dinamicamente -->
+      </select>
+    </div>
+    <div class="games-grid" id="games-grid">
+      <!-- Qui verranno visualizzati i giochi -->
+    </div>
+  </main>
 
   <script>
-    /* --- Dati per Telegram --- */
-    const TELEGRAM_BOT_TOKEN = "7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM";
-    const TELEGRAM_CHAT_ID = "1832064994";
-    
-    /* --- Funzioni per il login e gestione account --- */
-    function getLoggedInUser() {
-      const data = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
-      return data ? JSON.parse(data) : null;
-    }
-    function logout() {
-      const user = getLoggedInUser();
-      if(user && user.username) {
-        localStorage.removeItem("activeUser_" + user.username);
-      }
-      localStorage.removeItem("loggedInUser");
-      sessionStorage.removeItem("loggedInUser");
-      window.location.href = "login.html";
-    }
-    function mostraAccountInfo(user) {
-      const accountInfoDiv = document.getElementById("account-info");
-      accountInfoDiv.innerHTML = `<span>Benvenuto, <strong>${user.username}</strong></span> | <a href="#" id="logout" class="logout-btn">Logout</a>`;
-      document.getElementById("logout").addEventListener("click", function(e) {
-        e.preventDefault();
-        logout();
-      });
-    }
-    function updateOnlineCount() {
-      let count = 0;
-      for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key.startsWith("activeUser_")) count++;
-      }
-      document.getElementById("online-count").innerText = count;
-    }
-    
-    /* --- Caricamento dei giochi tramite AllOrigins (proxy CORS) --- */
-    let allGames = [];
-    async function loadGames() {
-      try {
-        const proxyUrl = "https://api.allorigins.hexocode.repl.co/get?disableCache=true&url=";
-        const targetUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
-        const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
-        if (!response.ok) throw new Error("Errore nel caricamento dei giochi");
-        const data = await response.json();
-        const games = JSON.parse(data.contents);
-        allGames = games;
-        displayGames(allGames);
-        populateTagFilter(allGames);
-        
-        const runFilters = debounce(() => {
-          const filtered = applyFilters(allGames);
-          displayGames(filtered);
-        }, 300);
-        
-        document.getElementById("search-input").addEventListener("input", runFilters);
-        document.getElementById("tag-filter-select").addEventListener("change", runFilters);
-      } catch(error) {
-        console.error(error);
-        document.getElementById("games-grid").innerText = "Errore nel caricamento dei giochi.";
-      }
-    }
-    
-    /* --- Funzioni per visualizzare e filtrare i giochi --- */
-    function displayGames(games) {
-      const grid = document.getElementById("games-grid");
-      grid.innerHTML = "";
-      games.forEach(game => {
-        const card = document.createElement("div");
-        card.className = "game-card";
-        card.innerHTML = `
-          <img src="${game.image_url}" alt="${game.name}">
-          <div class="content">
-            <h3>${game.name}</h3>
-            <p>${game.description}</p>
-            <div class="tags">
-              ${game.category.map(cat => `<span class="tag">${cat}</span>`).join(" ")}
-            </div>
-            <a href="${game.download_link}" class="download-btn" download>Download</a>
-          </div>
-        `;
-        grid.appendChild(card);
-        
-        const downloadBtn = card.querySelector('.download-btn');
-        if (downloadBtn) {
-          downloadBtn.dataset.download = downloadBtn.getAttribute('href');
-          downloadBtn.addEventListener('mouseenter', function() {
-            this.removeAttribute('href');
-          });
-          downloadBtn.addEventListener('mouseleave', function() {
-            this.setAttribute('href', this.dataset.download);
-          });
-          downloadBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.href = this.dataset.download;
-          });
-          downloadBtn.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-          });
-        }
-      });
-    }
-    
+    // Funzione debounce per ottimizzare la ricerca
     function debounce(func, delay) {
       let timer;
       return function(...args) {
@@ -164,17 +49,57 @@
         timer = setTimeout(() => func.apply(this, args), delay);
       };
     }
-    
+
+    // Funzione per visualizzare i giochi
+    function displayGames(games) {
+      const grid = document.getElementById("games-grid");
+      grid.innerHTML = "";
+      games.forEach(game => {
+        // Creazione della scheda gioco
+        const card = document.createElement("div");
+        card.className = "game-card";
+        card.innerHTML = `
+          <img src="${game.image_url}" alt="${game.name}">
+          <div class="content">
+            <h3>${game.name}</h3>
+            <p>${game.description}</p>
+            <p><strong>Categorie:</strong> ${game.category.join(", ")}</p>
+            <p><strong>Lingue supportate:</strong> ${game.languages.join(", ")}</p>
+            <button class="download-btn" onclick="window.location.href='${game.download_link}'">Scarica</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Funzione per popolare il filtro dei tag
+    function populateTagFilter(games) {
+      const tagSelect = document.getElementById("tag-filter-select");
+      const tagsSet = new Set();
+      games.forEach(game => {
+        if (Array.isArray(game.category)) {
+          game.category.forEach(tag => tagsSet.add(tag));
+        }
+      });
+      const tags = Array.from(tagsSet).sort();
+      tags.forEach(tag => {
+        const option = document.createElement("option");
+        option.value = tag;
+        option.textContent = tag;
+        tagSelect.appendChild(option);
+      });
+    }
+
+    // Funzione per applicare filtri (ricerca e tag)
     function applyFilters(games) {
       const query = document.getElementById("search-input").value.trim().toLowerCase();
       const selectedTag = document.getElementById("tag-filter-select").value;
       return games.filter(game => {
         let matchesSearch = true;
         if (query) {
-          matchesSearch =
-            (game.name && game.name.toLowerCase().includes(query)) ||
-            (game.description && game.description.toLowerCase().includes(query)) ||
-            (game.languages && game.languages.some(lang => lang.toLowerCase().includes(query)));
+          matchesSearch = (game.name && game.name.toLowerCase().includes(query)) ||
+                          (game.description && game.description.toLowerCase().includes(query)) ||
+                          (game.languages && game.languages.some(lang => lang.toLowerCase().includes(query)));
         }
         let matchesTag = true;
         if (selectedTag) {
@@ -183,94 +108,35 @@
         return matchesSearch && matchesTag;
       });
     }
-    
-    /* --- Funzioni per il supporto (chat per messaggi all'admin) --- */
-    // Contatore dei messaggi inviati (max 2 al giorno)
-    function getMessageCount(username) {
-      const key = "contactCount_" + username;
-      const data = localStorage.getItem(key);
-      if(data) {
-        const obj = JSON.parse(data);
-        const today = new Date().toISOString().split("T")[0];
-        return obj.date === today ? obj.count : 0;
-      }
-      return 0;
-    }
-    function setMessageCount(username, count) {
-      const key = "contactCount_" + username;
-      const today = new Date().toISOString().split("T")[0];
-      localStorage.setItem(key, JSON.stringify({ date: today, count: count }));
-    }
-    async function sendMessageToTelegram(messageText, username) {
-      const text = `Messaggio da ${username}:\n\n${messageText}`;
-      const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodeURIComponent(text)}`;
+
+    // Funzione per caricare i giochi usando un proxy CORS (AllOrigins)
+    async function loadGames() {
       try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Errore nell'invio del messaggio a Telegram");
-        return true;
+        const proxyUrl = "https://api.allorigins.hexocode.repl.co/get?disableCache=true&url=";
+        const targetUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
+        const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
+        if (!response.ok) throw new Error("Errore nel caricamento dei giochi");
+        const data = await response.json();
+        const games = JSON.parse(data.contents);
+        // Mostra i giochi e popola il filtro dei tag
+        displayGames(games);
+        populateTagFilter(games);
+        
+        // Aggiunge gli event listener per la ricerca e il filtro
+        const runFilters = debounce(() => {
+          const filtered = applyFilters(games);
+          displayGames(filtered);
+        }, 300);
+        document.getElementById("search-input").addEventListener("input", runFilters);
+        document.getElementById("tag-filter-select").addEventListener("change", runFilters);
       } catch (error) {
-        console.error(error);
-        return false;
+        console.error("Errore nel caricamento dei giochi:", error);
+        document.getElementById("games-grid").innerText = "Errore nel caricamento dei giochi.";
       }
     }
-    
-    /* --- Gestione del widget di supporto --- */
-    const supportToggle = document.getElementById("support-chat-toggle");
-    const supportWidget = document.getElementById("support-chat-widget");
-    const chatClose = document.getElementById("chat-close");
-    const chatSend = document.getElementById("chat-send");
-    
-    supportToggle.addEventListener("click", function() {
-      supportWidget.style.display = "flex";
-      supportToggle.style.display = "none";
-    });
-    chatClose.addEventListener("click", function() {
-      supportWidget.style.display = "none";
-      supportToggle.style.display = "block";
-    });
-    
-    chatSend.addEventListener("click", async function() {
-      const user = getLoggedInUser();
-      if (!user) {
-        alert("Devi essere loggato per inviare un messaggio.");
-        window.location.href = "login.html";
-        return;
-      }
-      const username = user.username;
-      let count = getMessageCount(username);
-      if(count >= 2) {
-        alert("Hai già inviato 2 messaggi oggi. Riprova domani.");
-        return;
-      }
-      const messageElem = document.getElementById("chat-message");
-      const messageText = messageElem.value.trim();
-      if(messageText === "") {
-        alert("Il messaggio non può essere vuoto.");
-        return;
-      }
-      const sent = await sendMessageToTelegram(messageText, username);
-      if(sent) {
-        alert("Messaggio inviato all'admin con successo!");
-        messageElem.value = "";
-        setMessageCount(username, count + 1);
-      } else {
-        alert("Si è verificato un errore nell'invio del messaggio. Riprova più tardi.");
-      }
-    });
-    
-    /* --- Inizializzazione della pagina --- */
-    async function init() {
-      const user = getLoggedInUser();
-      if(!user) {
-        window.location.href = "login.html";
-        return;
-      }
-      mostraAccountInfo(user);
-      updateOnlineCount();
-      setInterval(updateOnlineCount, 10000);
-      await loadGames();
-    }
-    document.addEventListener("DOMContentLoaded", init);
+
+    // Inizializza il caricamento dei giochi quando il DOM è pronto
+    document.addEventListener("DOMContentLoaded", loadGames);
   </script>
 </body>
 </html>
