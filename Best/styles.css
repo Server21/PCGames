@@ -7,7 +7,7 @@ body {
   color: #333;
 }
 
-/* Contenitore principale (usato in Bonazza.html) */
+/* Contenitore principale per Bonazza.html */
 .wrapper {
   width: 1200px;
   background: #fff;
@@ -138,7 +138,6 @@ header {
   border-radius: 4px;
   transition: background-color 0.3s;
   cursor: pointer;
-  -webkit-user-drag: none;
   user-select: none;
 }
 .download-btn:hover {
@@ -154,7 +153,6 @@ header {
   transition: background-color 0.3s, color 0.3s;
   font-weight: 500;
   cursor: pointer;
-  -webkit-user-drag: none;
   user-select: none;
 }
 .logout-btn:hover {
