@@ -2,18 +2,22 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Bonazza</title>
-  <link rel="stylesheet" href="Bra.css">
+  <title>Bonazza Launcher</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Bra.css">
 </head>
 <body>
   <header>
-    <h1>Benvenuto, <span id="userDisplay"></span></h1>
-    <div id="onlineUsers">Utenti online: 1</div>
-    <button id="logoutBtn">Logout</button>
-    <div id="subscriptionInfo"></div>
+    <div class="header-left">
+      <h1>Bonazza Launcher</h1>
+    </div>
+    <div class="header-right">
+      <span id="userDisplay"></span>
+      <span id="onlineUsers"></span>
+      <button id="logoutBtn">Logout</button>
+    </div>
   </header>
-  
+
   <main>
     <section id="gamesSection">
       <h2>Giochi Disponibili</h2>
@@ -21,22 +25,29 @@
         <input type="text" id="searchInput" placeholder="Cerca giochi...">
         <select id="tagFilter">
           <option value="">Filtra per tag</option>
-          <!-- Le opzioni verranno popolate dinamicamente -->
         </select>
       </div>
       <div id="gamesContainer">
         <!-- I giochi verranno caricati qui -->
       </div>
+      <div id="downloadArea"></div>
     </section>
   </main>
-  
-  <aside id="chatSidebar">
-    <h3>Chat con Admin</h3>
+
+  <!-- Container Chat (nascosto di default) -->
+  <div id="chatContainer">
+    <div id="chatHeader">
+      <h3>Feedback al Admin</h3>
+      <button id="closeChat">&times;</button>
+    </div>
     <div id="chatMessages"></div>
     <textarea id="chatInput" placeholder="Scrivi il tuo messaggio..."></textarea>
     <button id="sendChatBtn">Invia</button>
-  </aside>
+  </div>
   
+  <!-- Pulsante fisso per aprire la chat -->
+  <button id="openChatBtn">Invia un feedback al admin</button>
+
   <script src="bonazza.js"></script>
 </body>
 </html>
