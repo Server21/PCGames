@@ -5,118 +5,11 @@
   <meta name="viewport" content="width=1200">
   <title>Login e Donazione - PTLANCHER</title>
   <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary-color: #4caf50;
-      --secondary-color: #2196f3;
-      --error-color: #f44336;
-      --bg-color: #f2f2f2;
-      --container-bg: #ffffff;
-      --font-family: 'Roboto', sans-serif;
-      --input-border: #ccc;
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: var(--font-family);
-      background: var(--bg-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    .container {
-      background: var(--container-bg);
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      width: 90%;
-      max-width: 500px;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-      color: #333;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    form div {
-      margin-bottom: 1rem;
-    }
-    label {
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: #555;
-    }
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid var(--input-border);
-      border-radius: 4px;
-      font-size: 1rem;
-    }
-    .checkbox-group {
-      display: flex;
-      align-items: center;
-    }
-    .checkbox-group input[type="checkbox"] {
-      margin-right: 0.5rem;
-      transform: scale(1.1);
-    }
-    .button-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 1rem;
-    }
-    .button-group button,
-    .button-group a {
-      flex: 1;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      text-decoration: none;
-      text-align: center;
-      color: #fff;
-    }
-    .button-group button {
-      background-color: var(--primary-color);
-    }
-    .button-group button:hover {
-      background-color: #45a049;
-    }
-    .donate-btn {
-      background-color: var(--secondary-color);
-    }
-    .donate-btn:hover {
-      background-color: #1976d2;
-    }
-    .info {
-      font-size: 0.9rem;
-      color: #777;
-      text-align: center;
-    }
-    .error {
-      color: var(--error-color);
-      text-align: center;
-      font-weight: 500;
-      margin-top: 1rem;
-    }
-  </style>
+  <!-- Collega il file CSS unico -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
+  <div class="login-container">
     <h2>Accedi a PTLANCHER</h2>
     <form id="login-form">
       <div>
@@ -131,13 +24,11 @@
         <input type="checkbox" id="keep-connected">
         <label for="keep-connected">Resta connesso</label>
       </div>
-      <!-- Sezione informativa per la donazione -->
       <div id="donation-info">
         <p class="info">Caricamento informazioni donazione...</p>
       </div>
       <div class="button-group">
         <button type="submit">Accedi</button>
-        <!-- Il pulsante "Dona" aprirà la pagina di donazione nella stessa finestra -->
         <a href="#" id="donate-btn" class="donate-btn">Dona</a>
       </div>
     </form>
@@ -192,12 +83,17 @@
       }
     }
     
+    // Funzione per ottenere l'utente loggato
     function getLoggedInUser() {
       const data = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
       return data ? JSON.parse(data) : null;
     }
     
     function removeLoggedInUser() {
+      const user = getLoggedInUser();
+      if(user && user.username) {
+        localStorage.removeItem("activeUser_" + user.username);
+      }
       localStorage.removeItem("loggedInUser");
       sessionStorage.removeItem("loggedInUser");
     }
@@ -211,7 +107,7 @@
   
       let existingUser = getLoggedInUser();
       if(existingUser && existingUser.username === username) {
-        errorDiv.innerText = "L'account è già connesso in un'altra finestra.";
+        errorDiv.innerText = "L'account è già connesso in questa finestra.";
         return;
       }
       
@@ -243,19 +139,21 @@
       }
   
       if (valid) {
-        const loggedInUser = { username, expires };
+        // Genera un sessionId univoco
+        const sessionId = Date.now() + '_' + Math.random().toString(36).substring(2);
+        const loggedInUser = { username, expires, sessionId };
         if (keepConnected) {
           localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
         } else {
           sessionStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
         }
+        localStorage.setItem("activeUser_" + username, sessionId);
         window.location.href = "Bonazza.html";
       } else {
         errorDiv.innerText = "Password errata o account non valido.";
       }
     });
     
-    // Quando viene cliccato il pulsante "Dona", apri la pagina di donazione nella stessa finestra
     document.getElementById("donate-btn").addEventListener("click", function(e) {
       e.preventDefault();
       const donationUrl = this.dataset.url;
