@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Bonazza</title>
+  <link rel="stylesheet" href="Bra.css">
+</head>
+<body>
+  <header>
+    <h1>Benvenuto, <span id="userDisplay"></span></h1>
+    <div id="onlineUsers">Utenti online: 1</div>
+    <button id="logoutBtn">Logout</button>
+    <div id="subscriptionInfo"></div>
+  </header>
+  
+  <main>
+    <section id="gamesSection">
+      <h2>Giochi Disponibili</h2>
+      <div class="search-filter">
+        <input type="text" id="searchInput" placeholder="Cerca giochi...">
+        <select id="tagFilter">
+          <option value="">Filtra per tag</option>
+          <!-- Le opzioni verranno popolate dinamicamente -->
+        </select>
+      </div>
+      <div id="gamesContainer">
+        <!-- I giochi verranno caricati qui -->
+      </div>
+    </section>
+  </main>
+  
+  <aside id="chatSidebar">
+    <h3>Chat con Admin</h3>
+    <div id="chatMessages"></div>
+    <textarea id="chatInput" placeholder="Scrivi il tuo messaggio..."></textarea>
+    <button id="sendChatBtn">Invia</button>
+  </aside>
+  
+  <script src="bonazza.js"></script>
+</body>
+</html>
