@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=1200">
   <title>PTLANCHER</title>
   <link id="dynamic-favicon" rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
-  <!-- Collega il file CSS unico -->
-  <link rel="stylesheet" href="styles.css">
+  <!-- Collega il file CSS esterno -->
+  <link rel="stylesheet" href="Bra.css">
 </head>
 <body>
   <div class="wrapper">
@@ -59,6 +59,73 @@
     const TELEGRAM_BOT_TOKEN = "7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM";
     const TELEGRAM_CHAT_ID = "1832064994";
     
+    /* --- Dati dei giochi locali (per test) --- */
+    const localGames = [
+      {
+        "name": "Deep Rock Galactic: Survivor",
+        "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2321470/header_alt_assets_9_italian.jpg",
+        "download_link": "https://pd.cybar.xyz/vA9TUeYq",
+        "video_url": "https://video.fastly.steamstatic.com/store_trailers/256997966/movie480_vp9.webm",
+        "category": ["PvE"],
+        "description": "DEEP ROCK GALACTIC: SURVIVOR è uno sparatutto automatico di sopravvivenza per giocatore singolo. Affronta orde di alieni letali, estrai ricchezze e sblocca potenti potenziamenti per sopravvivere, mentre brandisci l'intero arsenale di Deep Rock Galactic. Un nano contro tutto il pianeta Hoxxes!",
+        "languages": ["Inglese", "Francese", "Italiano"]
+      },
+      {
+        "name": "Undertale",
+        "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/391540/header.jpg",
+        "download_link": "https://files.catbox.moe/uls6oj.zip",
+        "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256655616/movie480.webm",
+        "category": ["GDR"],
+        "description": "Il gioco di ruolo in cui non devi distruggere nessuno F4 Schermo intero .",
+        "languages": ["Italiano"]
+      },
+      {
+        "name": "Terraria",
+        "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg",
+        "download_link": "https://pd.cybar.xyz/xqEmJe74",
+        "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256785003/movie480_vp9.webm",
+        "description": "Scava, combatti, esplora, costruisci! Niente è impossibile in questo gioco d'avventura pieno di azione. Anche disponibile nel Pacchetto da Quattro!",
+        "category": ["Sandbox", "2D"],
+        "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+      },
+      {
+        "name": "The Telltale Definitive Series",
+        "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1449690/header.jpg",
+        "download_link": "https://pd.cybar.xyz/kWmxR4gh",
+        "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+        "description": "The Walking Dead: The Telltale Definitive Series include le quattro stagioni, 400 Days e The Walking Dead: Michonne, per circa 50 ore di gioco totali fino a 23 episodi.",
+        "category": ["Scelte e conseguenze", "Orrore"],
+        "languages": ["Italiano", "Inglese"]
+      },
+      {
+        "name": "Naruto.X.Boruto.Ultimate.Ninja.Storm.Connections",
+        "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1020790/header.jpg",
+        "download_link": "https://pd.cybar.xyz/zWxLp5Mm",
+        "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+        "description": "I leggendari ninja si riuniscono per il nuovo emozionante capitolo della serie STORM! NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS è un gioco di azione e combattimenti con battaglie ninja adrenaliniche e due diverse modalità narrative.",
+        "category": ["Azione", "Anime", "Picchiaduro 3D"],
+        "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+      },
+      {
+        "name": "Captain Tsubasa Rise of New Champions",
+        "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1163550/header.jpg",
+        "download_link": "https://pd.cybar.xyz/A93BxEHE",
+        "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+        "description": "Captain Tsubasa: Rise of New Champions è un gioco di calcio in stile arcade che porta una ventata d'aria fresca nel genere grazie all'azione mozzafiato e ai tiri incredibili tipici della serie. Sfida i limiti del calcio Diventa una leggenda",
+        "category": ["Calcio", "Anime"],
+        "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+      },
+      {
+        "name": "The Elder Scrolls V",
+        "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/489830/header.jpg",
+        "download_link": "https://pd.cybar.xyz/VL59eLso",
+        "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+        "description": "Vincitore di oltre 200 premi Gioco dell'Anno, The Elder Scrolls V: Skyrim Special Edition porta sui vostri schermi il fantasy epico con dettagli mozzafiato. La Special Edition include l'acclamato gioco e gli add-on con nuove funzioni.",
+        "category": ["Mondo aperto", "Giocatore singolo", "Avventura", "GDR"],
+        "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+      }
+    ];
+    
     /* --- Funzioni per il login e gestione account --- */
     function getLoggedInUser() {
       const data = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
@@ -75,11 +142,13 @@
     }
     function mostraAccountInfo(user) {
       const accountInfoDiv = document.getElementById("account-info");
-      accountInfoDiv.innerHTML = `<span>Benvenuto, <strong>${user.username}</strong></span> | <a href="#" id="logout" class="logout-btn">Logout</a>`;
-      document.getElementById("logout").addEventListener("click", function(e) {
-        e.preventDefault();
-        logout();
-      });
+      accountInfoDiv.innerHTML = `<span>Benvenuto, <strong>${user ? user.username : 'Ospite'}</strong></span> ${user ? '| <a href="#" id="logout" class="logout-btn">Logout</a>' : ''}`;
+      if (user) {
+        document.getElementById("logout").addEventListener("click", function(e) {
+          e.preventDefault();
+          logout();
+        });
+      }
     }
     function updateOnlineCount() {
       let count = 0;
@@ -90,10 +159,17 @@
       document.getElementById("online-count").innerText = count;
     }
     
-    /* --- Caricamento dei giochi tramite AllOrigins (proxy CORS) --- */
+    /* --- Caricamento dei giochi (locale o remoto) --- */
     let allGames = [];
     async function loadGames() {
       try {
+        // Utilizzo dei dati locali per il test
+        allGames = localGames;
+        displayGames(allGames);
+        populateTagFilter(allGames);
+        
+        // In alternativa, utilizzare il caricamento remoto
+        /*
         const proxyUrl = "https://api.allorigins.hexocode.repl.co/get?disableCache=true&url=";
         const targetUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
         const response = await fetch(proxyUrl + encodeURIComponent(targetUrl));
@@ -103,6 +179,7 @@
         allGames = games;
         displayGames(allGames);
         populateTagFilter(allGames);
+        */
         
         const runFilters = debounce(() => {
           const filtered = applyFilters(allGames);
@@ -115,6 +192,27 @@
         console.error(error);
         document.getElementById("games-grid").innerText = "Errore nel caricamento dei giochi.";
       }
+    }
+    
+    /* --- Popolamento del selettore di tag --- */
+    function populateTagFilter(games) {
+      const tagSelect = document.getElementById("tag-filter-select");
+      const allTags = new Set();
+      
+      games.forEach(game => {
+        if (game.category && Array.isArray(game.category)) {
+          game.category.forEach(tag => allTags.add(tag));
+        }
+      });
+      
+      const sortedTags = Array.from(allTags).sort();
+      
+      sortedTags.forEach(tag => {
+        const option = document.createElement("option");
+        option.value = tag;
+        option.textContent = tag;
+        tagSelect.appendChild(option);
+      });
     }
     
     /* --- Funzioni per visualizzare e filtrare i giochi --- */
@@ -261,10 +359,11 @@
     /* --- Inizializzazione della pagina --- */
     async function init() {
       const user = getLoggedInUser();
-      if(!user) {
-        window.location.href = "login.html";
-        return;
-      }
+      // Commenta o rimuovi il reindirizzamento per test
+      //if(!user) {
+      //  window.location.href = "login.html";
+      //  return;
+      //}
       mostraAccountInfo(user);
       updateOnlineCount();
       setInterval(updateOnlineCount, 10000);
