@@ -1,120 +1,299 @@
-/* Reset di base */
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-/* Font e sfondo */
-body {
   font-family: 'Roboto', sans-serif;
-  background: #1b1f23;
-  color: #e1e4e8;
-  line-height: 1.6;
 }
 
-/* Container Login */
-.login-container {
-  width: 90%;              /* Usa il 90% dello spazio disponibile */
-  max-width: 600px;        /* Larghezza massima per un aspetto più ampio */
-  margin: 80px auto;       /* Centra il contenitore */
-  background: #2d333b;
-  padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
-.login-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 32px;         /* Testo più grande per il titolo */
+/* 🌑 Background generale */
+body {
+  background-color: #181a1b;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-.login-container input[type="text"],
-.login-container input[type="password"] {
+/* ================== */
+/* HEADER & BANNER */
+/* ================== */
+
+header {
+  background: #24292e;
   width: 100%;
-  padding: 14px;           /* Maggiore padding per una migliore visibilità */
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #444;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.banner {
+  max-height: 60px;
+  margin-right: 20px;
+}
+
+.header-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+#onlineUsers, #userDisplay, #expiresInfo {
+  font-size: 14px;
+  color: #ddd;
+}
+
+#logoutBtn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+#logoutBtn:hover {
+  background: #cc0000;
+}
+
+/* ================== */
+/* LOGIN PAGE */
+/* ================== */
+
+.login-container {
+  background: #22272e;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 400px;
+  text-align: center;
+}
+
+.login-container h1 {
   margin-bottom: 20px;
-  border: 1px solid #444;
-  border-radius: 4px;
-  background: #1b1f23;
-  color: #fff;
-  font-size: 18px;         /* Font più grande per una migliore leggibilità */
+  font-size: 22px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background: #2d333b;
+  color: white;
+  font-size: 16px;
 }
 
 .login-container button {
   width: 100%;
-  padding: 14px;
-  font-size: 20px;
+  padding: 12px;
+  background: #28a745;
+  color: white;
+  font-size: 16px;
   border: none;
-  border-radius: 4px;
-  background: #2ea043;
-  color: #fff;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: 0.3s;
 }
 
 .login-container button:hover {
-  background: #249e38;
+  background: #218838;
 }
 
-.login-container .remember {
+/* ================== */
+/* GIOCHI DISPONIBILI */
+/* ================== */
+
+#gamesSection {
+  text-align: center;
+  width: 80%;
+  margin-top: 30px;
+}
+
+.search-filter {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
-.login-container .remember input[type="checkbox"] {
-  margin-right: 10px;
+.search-filter input,
+.search-filter select {
+  padding: 10px;
+  background: #2d333b;
+  border: 1px solid #444;
+  color: white;
+  border-radius: 5px;
 }
 
-/* Informazioni sulla donazione */
-.donation-info {
-  background: #343a40;
+#gamesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
   padding: 20px;
-  border-radius: 4px;
-  margin-top: 20px;
-  font-size: 16px;         /* Testo leggermente più grande per miglior visibilità */
-  color: #c1c7cd;
 }
 
-.donation-info ul {
+.game {
+  background: #2d333b;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.game:hover {
+  transform: scale(1.05);
+}
+
+.game img {
+  width: 100%;
+  height: 120px;
+  border-radius: 5px;
+}
+
+.game h3 {
+  font-size: 18px;
   margin: 10px 0;
-  list-style-type: disc;
-  padding-left: 20px;
 }
 
-.donation-button {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 12px 20px;
-  background: #2ea043;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background 0.3s ease;
+.game p {
+  font-size: 14px;
+  color: #aaa;
 }
 
-.donation-button:hover {
-  background: #249e38;
+.game button {
+  background: #1f77d0;
+  padding: 10px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-/* Responsive per dispositivi più piccoli */
-@media (max-width: 480px) {
+.game button:hover {
+  background: #155a99;
+}
+
+/* ================== */
+/* CHAT FEEDBACK */
+/* ================== */
+
+#openChatBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1f77d0;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#openChatBtn:hover {
+  background: #155a99;
+}
+
+#chatContainer {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: rgba(36, 41, 46, 0.95);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: none;
+  flex-direction: column;
+}
+
+#chatHeader {
+  padding: 10px;
+  background: #24292e;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#chatMessages {
+  padding: 10px;
+  height: 200px;
+  overflow-y: auto;
+  background: #2d333b;
+}
+
+.chat-message {
+  background: #444;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+#chatInput {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #2d333b;
+  color: white;
+}
+
+#sendChatBtn {
+  background: #28a745;
+  padding: 10px;
+  border: none;
+  color: white;
+  border-radius: 0 0 10px 10px;
+  cursor: pointer;
+}
+
+#sendChatBtn:hover {
+  background: #218838;
+}
+
+/* ================== */
+/* DOWNLOAD AREA */
+/* ================== */
+
+#downloadArea {
+  margin-top: 20px;
+}
+
+#downloadArea iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+}
+
+/* ================== */
+/* RESPONSIVE DESIGN */
+/* ================== */
+
+@media (max-width: 768px) {
+  #gamesContainer {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
   .login-container {
-    padding: 20px;
+    width: 90%;
   }
-  .login-container h2 {
-    font-size: 28px;
-  }
-  .login-container input[type="text"],
-  .login-container input[type="password"],
-  .login-container button {
-    font-size: 18px;
-    padding: 12px;
-  }
-  .donation-info {
-    font-size: 14px;
+
+  #chatContainer {
+    width: 260px;
   }
 }
