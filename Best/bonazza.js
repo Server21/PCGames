@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("userDisplay").innerText = user;
   document.getElementById("onlineUsers").innerText = "Utenti online: " + (parseInt(localStorage.getItem("onlineCount")) || 1);
 
-  // Carica informazioni sull'abbonamento da accounts.json
+  // Carica le informazioni sull'abbonamento da accounts.json e mostra la data di scadenza
   fetch("https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/accounts.json")
     .then(response => response.json())
     .then(accounts => {
@@ -21,9 +21,11 @@ document.addEventListener("DOMContentLoaded", function() {
           const today = new Date();
           const diffTime = expireDate - today;
           const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-          // Mostra l'informazione dell'abbonamento in un elemento se necessario
-          // Ad esempio: document.getElementById("subscriptionInfo").innerText = "Abbonamento scade tra " + diffDays + " giorni.";
-        } 
+          document.getElementById("expiresInfo").innerText = 
+            "Scadenza: " + expireDate.toLocaleDateString() + " (" + diffDays + " giorni rimanenti)";
+        } else {
+          document.getElementById("expiresInfo").innerText = "Abbonamento a vita";
+        }
       }
     })
     .catch(error => console.error("Errore nel caricamento degli account: ", error));
