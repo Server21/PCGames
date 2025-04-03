@@ -2,42 +2,35 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Login - Bonazza Launcher</title>
+  <title>Login con Personaggio</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Bra.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="login-container">
-    <h1>Accedi a Bonazza Launcher</h1>
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <div class="remember">
-        <input type="checkbox" id="rememberMe">
-        <label for="rememberMe">Ricordami</label>
-      </div>
-      <button type="submit">Accedi</button>
-    </form>
-    <div class="donation-info">
-      <p><strong>Attiva il tuo account con un piccolo contributo!</strong></p>
-      <p>Il tuo supporto ci permette di offrirti un’esperienza esclusiva e sempre migliore. Segui questi semplici passaggi:</p>
-      <ol>
-        <li><strong>Clicca su "Effettua Donazione":</strong> sarai reindirizzato al sito per completare l’operazione.</li>
-        <li><strong>Inserisci le tue credenziali:</strong> una volta sul sito, inserisci il tuo username e password nel messaggio.</li>
-        <li><strong>Scegli il piano che preferisci:</strong>
-          <ul>
-            <li><strong>1 mese:</strong> €3,50</li>
-            <li><strong>3 mesi:</strong> €8,60</li>
-            <li><strong>1 anno:</strong> €32,00</li>
-            <li><strong>Per sempre:</strong> €52,50 (pagamento una tantum)</li>
-          </ul>
-        </li>
-        <li><strong>Rinnovo Abbonamento:</strong> Se il tuo abbonamento sta per scadere, effettua una nuova donazione dello stesso importo inserendo "Rinnovo" insieme alle tue credenziali. <em>Nota:</em> donazioni multiple sullo stesso account non aumentano la durata dell’abbonamento.</li>
-      </ol>
-      <p>Il tuo account verrà attivato entro 2 giorni lavorativi. Ricorda di conservare al sicuro il tuo Username e Password.</p>
-      <a href="https://streamelements.com/parlauncher/tip" target="_self" class="donation-button">Effettua una Donazione</a>
+    <!-- Sezione di sinistra: form di login -->
+    <div class="login-left">
+      <h1>Accedi al tuo account!</h1>
+      <p>Completa i dati qui sotto per accedere al tuo account.</p>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Nome utente o e-mail" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Accedi</button>
+      </form>
+    </div>
+    <!-- Sezione di destra: GIF animata del personaggio -->
+    <div class="login-right">
+      <img src="https://c.tenor.com/RDEHjB7H1HQAAAAC/tenor.gif" alt="Personaggio che saluta" class="character-image">
     </div>
   </div>
-  <script src="login.js"></script>
+  
+  <script>
+    // Esempio di gestione login
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      // Qui puoi aggiungere la logica di autenticazione
+      alert("Esempio di login. Aggiungi qui la tua logica!");
+    });
+  </script>
 </body>
 </html>
