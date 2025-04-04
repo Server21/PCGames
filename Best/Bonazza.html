@@ -2,35 +2,31 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>PTLANCHER</title>
+  <title>PTLANCHER - Bonazza</title>
   <link rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-    
-    * {
-      box-sizing: border-box;
-    }
-    
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
       background: #1e3a5f;
       color: #fff;
     }
-    
+
     header {
       position: relative;
       width: 100%;
       overflow: hidden;
     }
-    
     header img {
       width: 100%;
       height: auto;
       display: block;
       border-bottom: 2px solid #16324f;
     }
-    
     .status-bar {
       position: absolute;
       top: 20px;
@@ -40,7 +36,6 @@
       border-radius: 8px;
       font-weight: 500;
     }
-    
     .online-bar {
       position: absolute;
       top: 20px;
@@ -50,68 +45,108 @@
       border-radius: 8px;
       font-weight: 500;
     }
-    
+
+    /* Bottone Logout */
+    .logout-container {
+      text-align: right;
+      margin: 10px 20px;
+    }
+    .logout-container button {
+      padding: 8px 14px;
+      background: #ff6666;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .logout-container button:hover {
+      background: #ff3333;
+    }
+
+    /* Container principale */
     .container {
       padding: 20px;
       max-width: 1200px;
       margin: 0 auto;
     }
-    
-    #searchBar {
-      width: calc(100% - 20px);
-      padding: 12px;
+
+    /* Search e toggle per i filtri, posizionati in un'unica riga */
+    .search-container {
+      display: flex;
+      align-items: center;
       margin: 20px 10px;
+    }
+    #filterToggle {
+      margin-right: 10px;
+      padding: 8px 12px;
+      background: #16324f;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #filterToggle:hover {
+      background: #12263d;
+    }
+    #searchBar {
+      flex: 1;
+      padding: 12px;
       border: none;
       border-radius: 4px;
       font-size: 16px;
     }
-    
+
+    /* Il pannello dei filtri, inizialmente nascosto */
     #filters {
-      margin: 20px 10px;
-      text-align: center;
+      display: none;
+      margin: 0 10px 20px 10px;
+      padding: 10px;
+      background: #16324f;
+      border-radius: 4px;
     }
-    
     #filters button {
       margin: 5px;
       padding: 8px 12px;
-      background: #16324f;
+      background: #1e3a5f;
       color: #fff;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    
     #filters button:hover {
-      background: #12263d;
+      background: #16324f;
     }
-    
+    #filters button.reset {
+      background: #ff6666;
+    }
+    #filters button.reset:hover {
+      background: #ff3333;
+    }
+
     .game-card {
       background: #fff;
       color: #333;
       border-radius: 8px;
       overflow: hidden;
       margin: 20px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       display: flex;
       flex-wrap: wrap;
     }
-    
     .game-card img {
       width: 100%;
       max-width: 300px;
       object-fit: cover;
     }
-    
     .game-info {
       flex: 1;
       padding: 15px;
     }
-    
-    .game-info h3 {
-      margin-top: 0;
-    }
-    
+    .game-info h3 { margin-top: 0; }
     .download-btn {
       margin-top: 10px;
       padding: 10px 15px;
@@ -122,15 +157,31 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    
-    .download-btn:hover {
-      background: #16324f;
-    }
-    
-    /* Mini chat per feedback */
-    .mini-chat {
+    .download-btn:hover { background: #16324f; }
+
+    /* Mini chat nascosta, con un toggle */
+    #chatToggle {
       position: fixed;
       bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: #1e3a5f;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 1000;
+      transition: background 0.3s ease;
+    }
+    #chatToggle:hover { background: #16324f; }
+
+    .mini-chat {
+      position: fixed;
+      bottom: 70px;
       right: 20px;
       width: 280px;
       background: #fff;
@@ -138,13 +189,11 @@
       border: 1px solid #ccc;
       padding: 15px;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 999;
     }
-    
-    .mini-chat h4 {
-      margin-top: 0;
-    }
-    
+    .mini-chat h4 { margin-top: 0; }
     .mini-chat textarea {
       width: 100%;
       height: 80px;
@@ -153,7 +202,6 @@
       border-radius: 4px;
       border: 1px solid #ccc;
     }
-    
     .mini-chat button {
       margin-top: 10px;
       width: 100%;
@@ -165,10 +213,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    
-    .mini-chat button:hover {
-      background: #16324f;
-    }
+    .mini-chat button:hover { background: #16324f; }
   </style>
 </head>
 <body>
@@ -178,35 +223,46 @@
       Ciao, <span id="usernameDisplay"></span> – Scadenza account: <span id="accountExpiry"></span>
     </div>
     <div class="online-bar" id="onlineStatus">
-      Utenti Online: <span id="onlineCount">3</span>
+      Utenti Online: <span id="onlineCount">1</span>
     </div>
   </header>
-  
+
+  <!-- Pulsante Logout -->
+  <div class="logout-container">
+    <button id="logoutBtn">Logout</button>
+  </div>
+
   <div class="container">
-    <input type="text" id="searchBar" placeholder="Cerca giochi...">
+    <!-- RIGA CON il toggle per il pannello dei filtri e la barra di ricerca -->
+    <div class="search-container">
+      <button id="filterToggle">Filtri</button>
+      <input type="text" id="searchBar" placeholder="Cerca giochi...">
+    </div>
+    <!-- Pannello filtri nascosto -->
     <div id="filters"></div>
+
     <div id="gamesContainer"></div>
   </div>
-  
-  <div class="mini-chat">
+
+  <!-- Toggle per mini chat e mini chat stessa -->
+  <div id="chatToggle">&#8592;</div>
+  <div class="mini-chat" id="miniChat">
     <h4>Feedback Admin</h4>
     <textarea id="feedbackMessage" placeholder="Scrivi il tuo messaggio..."></textarea>
     <button id="sendFeedback">Invia</button>
     <p style="font-size:12px; margin-top: 5px;">Max 2 messaggi al giorno</p>
   </div>
-  
+
   <script>
-    // Controllo accesso
-    const loggedUser = localStorage.getItem("loggedInUser");
-    if (!loggedUser) {
-      window.location.href = "login.html";
-    }
+    // Verifica se l'utente è loggato (localStorage o sessionStorage)
+    const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
+    if (!loggedUser) { window.location.href = "login.html"; }
     document.getElementById("usernameDisplay").textContent = loggedUser;
-    
+
     // Calcolo della scadenza
-    const expires = localStorage.getItem("expires");
-    if (expires) {
-      const expiryDate = new Date(expires);
+    const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
+    if (storageExpires) {
+      const expiryDate = new Date(storageExpires);
       const today = new Date();
       const diffTime = expiryDate - today;
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -214,11 +270,21 @@
     } else {
       document.getElementById("accountExpiry").textContent = "N/A";
     }
-    
-    // Caricamento dei giochi da games.json
+
+    // Logout: rimuove i dati e reindirizza al login
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser");
+      localStorage.removeItem("expires");
+      localStorage.removeItem("feedbackCount");
+      localStorage.removeItem("feedbackDate");
+      sessionStorage.removeItem("loggedInUser");
+      sessionStorage.removeItem("expires");
+      window.location.href = "login.html";
+    });
+
+    // Caricamento giochi da JSON remoto
     const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
     let gamesData = [];
-    
     fetch(gamesUrl)
       .then(response => response.json())
       .then(data => {
@@ -227,63 +293,60 @@
         renderFilters(gamesData);
       })
       .catch(err => console.error("Errore nel caricamento dei giochi:", err));
-    
+
     function renderGames(games) {
       const container = document.getElementById("gamesContainer");
       container.innerHTML = "";
       games.forEach(game => {
         const card = document.createElement("div");
         card.className = "game-card";
-        
+
         const img = document.createElement("img");
         img.src = game.image_url;
         img.alt = game.name;
-        
+
         const infoDiv = document.createElement("div");
         infoDiv.className = "game-info";
-        
+
         const title = document.createElement("h3");
         title.textContent = game.name;
-        
+
         const desc = document.createElement("p");
         desc.textContent = game.description;
-        
+
         const tags = document.createElement("p");
         tags.textContent = "Tag: " + (game.category ? game.category.join(", ") : "");
-        
+
         const langs = document.createElement("p");
         langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "");
-        
+
         const downloadBtn = document.createElement("button");
         downloadBtn.textContent = "Download";
         downloadBtn.className = "download-btn";
         downloadBtn.addEventListener("click", () => {
           window.open(game.download_link, "_blank");
         });
-        
+
         infoDiv.appendChild(title);
         infoDiv.appendChild(desc);
         infoDiv.appendChild(tags);
         infoDiv.appendChild(langs);
         infoDiv.appendChild(downloadBtn);
-        
+
         card.appendChild(img);
         card.appendChild(infoDiv);
-        
+
         container.appendChild(card);
       });
     }
-    
+
     function renderFilters(games) {
       const filtersDiv = document.getElementById("filters");
+      filtersDiv.innerHTML = "Filtra per Tag: ";
       let tagsSet = new Set();
       games.forEach(game => {
-        if (game.category) {
-          game.category.forEach(tag => tagsSet.add(tag));
-        }
+        if (game.category) { game.category.forEach(tag => tagsSet.add(tag)); }
       });
-      
-      filtersDiv.innerHTML = "Filtra per Tag: ";
       tagsSet.forEach(tag => {
         const btn = document.createElement("button");
         btn.textContent = tag;
@@ -293,13 +356,14 @@
         });
         filtersDiv.appendChild(btn);
       });
-      
+      // Bottone di reset per i filtri
       const resetBtn = document.createElement("button");
       resetBtn.textContent = "Reset";
+      resetBtn.className = "reset";
       resetBtn.addEventListener("click", () => renderGames(gamesData));
       filtersDiv.appendChild(resetBtn);
     }
-    
+
     document.getElementById("searchBar").addEventListener("input", function() {
       const query = this.value.toLowerCase();
       const filtered = gamesData.filter(game => 
@@ -308,9 +372,31 @@
       );
       renderGames(filtered);
     });
-    
+
+    // Toggle per il pannello dei filtri
+    document.getElementById("filterToggle").addEventListener("click", () => {
+      const filtersDiv = document.getElementById("filters");
+      if (filtersDiv.style.display === "none" || filtersDiv.style.display === "") {
+        filtersDiv.style.display = "block";
+      } else {
+        filtersDiv.style.display = "none";
+      }
+    });
+
+    // Toggle per la mini chat nascosta
+    const chatToggle = document.getElementById("chatToggle");
+    const miniChat = document.getElementById("miniChat");
+    chatToggle.addEventListener("click", () => {
+      if (miniChat.style.display === "none" || miniChat.style.display === "") {
+        miniChat.style.display = "block";
+        chatToggle.innerHTML = "→";  // cambia freccia per indicare "chiudi"
+      } else {
+        miniChat.style.display = "none";
+        chatToggle.innerHTML = "←";  // freccia per indicare "apri"
+      }
+    });
+
     // Invio feedback tramite Telegram Bot
-    // Token e Chat ID da usare: 
     // TELEGRAM_BOT_TOKEN: 7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM
     // TELEGRAM_CHAT_ID: 1832064994
     document.getElementById("sendFeedback").addEventListener("click", () => {
@@ -323,9 +409,7 @@
       let feedbackCount = parseInt(localStorage.getItem("feedbackCount") || "0");
       const lastFeedbackDate = localStorage.getItem("feedbackDate");
       const todayStr = new Date().toISOString().slice(0, 10);
-      if (lastFeedbackDate !== todayStr) {
-        feedbackCount = 0;
-      }
+      if (lastFeedbackDate !== todayStr) { feedbackCount = 0; }
       if (feedbackCount >= 2) {
         alert("Hai già inviato il massimo di messaggi per oggi.");
         return;
@@ -333,13 +417,8 @@
       
       fetch("https://api.telegram.org/bot7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM/sendMessage", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          chat_id: "1832064994",
-          text: message
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: "1832064994", text: message })
       })
       .then(response => response.json())
       .then(data => {
@@ -358,12 +437,9 @@
         alert("Errore nell'invio del feedback.");
       });
     });
-    
-    // Simulazione degli utenti online (placeholder)
-    setInterval(() => {
-      document.getElementById("onlineCount").textContent = Math.floor(Math.random() * 10) + 1;
-    }, 5000);
-    
+
+    // In ambiente di test, essendo l'unico connesso, impostiamo il conteggio utenti online a 1.
+    document.getElementById("onlineCount").textContent = "1";
   </script>
 </body>
 </html>
