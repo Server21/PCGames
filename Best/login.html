@@ -1,253 +1,173 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <title>Login - Bonazza Launcher</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <style>
-    /* Reset e font base */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
     * {
+      box-sizing: border-box;
+    }
+
+    body { 
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-    }
-    
-    body {
-      background: linear-gradient(135deg, #1b1f23, #2c2c2c);
+      background: #1e3a5f; /* Azzurro scuro */
       color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow-y: auto;
-      padding: 20px;
     }
-    
-    /* Contenitore principale del login */
+
+    /* Contenitore del form di login ingrandito e moderno */
     .login-container {
-      background: #2d333b;
-      width: 900px;
+      width: 600px;         /* Larghezza maggiore per ospitare bene il contenuto */
       max-width: 95%;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    
-    /* Sezione superiore: form di login */
-    .login-header {
-      padding: 40px 30px;
-      background: #2d333b;
-    }
-    
-    .login-header h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
-    
-    .login-header p {
-      font-size: 20px;
-      margin-bottom: 20px;
-      color: #ccc;
-    }
-    
-    .login-header form {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .login-header form input {
-      background: #24292e;
-      border: 1px solid #444;
-      border-radius: 4px;
-      padding: 16px;
-      margin-bottom: 20px;
-      font-size: 18px;
-      color: #fff;
-    }
-    
-    .login-header form input::placeholder {
-      color: #aaa;
-    }
-    
-    .login-header .remember {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      font-size: 18px;
-    }
-    
-    .login-header .remember input[type="checkbox"] {
-      margin-right: 10px;
-      width: 20px;
-      height: 20px;
-    }
-    
-    .login-header form button {
-      background: #1f77d0;
-      border: none;
-      border-radius: 4px;
-      padding: 16px;
-      font-size: 18px;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    
-    .login-header form button:hover {
-      background: #125a92;
-    }
-    
-    /* Pulsante donazione (rimane un link) */
-    .donation-button {
-      display: inline-block;
-      margin: 20px 0;
-      padding: 16px 24px;
-      background: #28a745;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 4px;
-      font-size: 18px;
-      text-align: center;
-      transition: background 0.3s, transform 0.3s;
-      cursor: pointer;
-    }
-    
-    .donation-button:hover {
-      background: #218838;
-      transform: scale(1.05);
-    }
-    
-    /* Pulsante per visualizzare le istruzioni */
-    .instruction-button {
-      display: inline-block;
-      margin-bottom: 20px;
-      padding: 16px 24px;
-      background: #ffc107;
-      color: #000;
-      border: none;
-      border-radius: 4px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-    }
-    
-    .instruction-button:hover {
-      background: #e0a800;
-      transform: scale(1.05);
-    }
-    
-    /* Sezione inferiore: area con testo scorrevole per le istruzioni */
-    .instructions-container {
-      background: rgba(30, 30, 30, 0.95);
-      padding: 20px;
-      border-top: 2px solid #444;
-      display: none;
-    }
-    
-    .scroll-container {
-      overflow: hidden;
-      position: relative;
-      height: 300px;
-      border: 2px solid #444;
+      margin: 80px auto;
+      padding: 30px;
+      background: #fff;
+      color: #333;
       border-radius: 10px;
-      padding: 10px;
-      margin-top: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      background-color: #1e3a5f;
+      color: #fff;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #16324f;
     }
     
-    .scroll-text {
-      /* Rimuoviamo position absolute per evitare sovrapposizioni */
+    /* Contenitore del messaggio scorrevole - con colori più coinvolgenti */
+    .scrolling-message {
+      margin-top: 20px;
+      background: linear-gradient(135deg, #89cff0, #b0e0e6);
+      padding: 15px;
+      border-radius: 4px;
+      height: 150px;              /* Altezza fissa per mostrare il contenuto */
+      line-height: 1.5;
+      color: #1e3a5f;
+      font-size: 18px;            /* Testo più grande per una migliore leggibilità */
+      font-weight: 500;
       position: relative;
-      font-size: 22px;
-      line-height: 1.8;
-      white-space: pre-line;
-      animation: scroll-up 20s linear infinite;
+      overflow: hidden;           /* Inizialmente nasconde il contenuto extra */
     }
     
-    @keyframes scroll-up {
-      0% { transform: translateY(100%); }
-      100% { transform: translateY(-100%); }
+    .scrolling-message span {
+      display: block;
+      position: absolute;
+      width: 100%;
+      /* L'animazione scorre una sola volta dal basso verso l'alto */
+      animation: verticalScroll 20s linear forwards;
     }
     
-    .highlight {
-      color: #ffd700;
-      font-weight: bold;
-    }
-    
-    /* Sezione inferiore (eventuale area destra non usata in questo layout) */
-    .login-right {
-      display: none;
-    }
-    
-    /* Responsività */
-    @media (max-width: 768px) {
-      .login-container {
-        width: 90%;
-        max-width: 600px;
+    @keyframes verticalScroll {
+      0% {
+        top: 100%;
+      }
+      100% {
+        top: 0;
       }
     }
   </style>
 </head>
 <body>
   <div class="login-container">
-    <!-- Sezione header: form di login -->
-    <div class="login-header">
-      <h1>Accedi al tuo account!</h1>
-      <p>Completa i dati qui sotto per accedere al tuo account.</p>
-      <form id="loginForm">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <div class="remember">
-          <input type="checkbox" id="rememberMe">
-          <label for="rememberMe">Ricordami</label>
-        </div>
-        <button type="submit">Accedi</button>
-      </form>
-      <!-- Link per la donazione -->
-      <a href="https://streamelements.com/parlauncher/tip" target="_self" class="donation-button">Effettua una Donazione</a>
-      <!-- Pulsante per mostrare le istruzioni -->
-      <button id="showInstructions" class="instruction-button">Come fare per avere un account</button>
-    </div>
-    <!-- Sezione istruzioni -->
-    <div id="instructionContainer" class="instructions-container">
-      <div class="scroll-container">
-        <div class="scroll-text">
-Per ottenere un account devi effettuare una piccola donazione.
-Questi sono i passaggi da eseguire:
-1. Clicca su "Effettua una Donazione": verrai reindirizzato al sito per completare l’operazione.
-2. Una volta sul sito, inserisci il tuo <span class="highlight">username</span> e <span class="highlight">password</span> nel messaggio e seleziona l'importo del abbonamento che vuoi scegliere.
-3. Scegli il piano che preferisci:
-   • <span class="highlight">1 mese:</span> €3,50
-   • <span class="highlight">3 mesi:</span> €8,60
-   • <span class="highlight">1 anno:</span> €32,00
-   • <span class="highlight">Per sempre:</span> €52,50 (pagamento una tantum)
-4. 🔒 <span class="highlight">Rinnovo abbonamento:</span> Se il tuo abbonamento sta per scadere, effettua una nuova donazione dello stesso importo inserendo "Rinnovo" con username e password.
-   ⚠️ Attenzione: Donazioni multiple sullo stesso account non aumentano la durata dell’abbonamento, quindi rinnova solo con l’importo del piano scelto.
-Il tuo account verrà attivato entro 2 giorni lavorativi.
-<strong>IMPORTANTE:</strong> Conserva al sicuro il tuo Username e Password.
-        </div>
-      </div>
+    <h2>Login PTLANCHER</h2>
+    <input type="text" id="username" placeholder="Nome utente">
+    <input type="password" id="password" placeholder="Password">
+    <button id="loginBtn">Accedi</button>
+    <!-- Il pulsante Donazione effettua il redirect sostituendo la pagina corrente -->
+    <button id="donateBtn">Donazione</button>
+    
+    <div class="scrolling-message">
+      <span>
+        Per ottenere un account devi effettuare una piccola donazione. Questi sono i passaggi da eseguire: la prima cosa da fare è cliccare il pulsante "effettua donazione". Ti porterà al sito per effettuare la donazione; una volta che sei sul sito, inserisci il tuo username e password nel messaggio e seleziona l'importo del abbonamento che vuoi scegliere. Scegli il piano che preferisci: 1 mese: €3,50 | 3 mesi: €8,60 | 1 anno: €32,00 | Per sempre: €52,50 (pagamento una tantum). 🔒 Rinnovo abbonamento: Se il tuo abbonamento sta per scadere, basta fare una nuova donazione dello stesso importo per rinnovarlo inserendo nel messaggio "Rinnovo" con username e password. Attenzione: fare più donazioni sullo stesso account non farà aumentare i mesi, quindi rinnova solo con l’importo del piano scelto. L'account verrà attivato entro 2 giorni lavorativi. Nota importante: conserva al sicuro il tuo Username e Password.
+      </span>
     </div>
   </div>
-  
+
   <script>
-    // Gestione del form di login (da sostituire con la logica reale)
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      alert("Login eseguito! Aggiungi qui la tua logica di autenticazione.");
+    const accountsUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/accounts.json";
+
+    // Al clic del pulsante "Donazione", effettua il redirect sostituendo l'attuale pagina
+    document.getElementById('donateBtn').addEventListener('click', () => {
+      window.location.href = "https://streamelements.com/parlauncher/tip";
     });
-    
-    // Gestione del pulsante per mostrare/nascondere le istruzioni
-    document.getElementById("showInstructions").addEventListener("click", function() {
-      var container = document.getElementById("instructionContainer");
-      if (container.style.display === "none" || container.style.display === "") {
-        container.style.display = "block";
-      } else {
-        container.style.display = "none";
+
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (username === "" || password === "") {
+        alert("Compila tutti i campi.");
+        return;
       }
+
+      fetch(accountsUrl)
+        .then(response => response.json())
+        .then(accounts => {
+          if (accounts[username]) {
+            let accountData = accounts[username];
+            let accountPassword = (typeof accountData === "object") ? accountData.password : accountData;
+            if (password === accountPassword) {
+              if (localStorage.getItem("loggedInUser") === username) {
+                alert("Utente già connesso");
+                return;
+              }
+              localStorage.setItem("loggedInUser", username);
+              if (typeof accountData === "object" && accountData.expires) {
+                localStorage.setItem("expires", accountData.expires);
+              } else {
+                localStorage.removeItem("expires");
+              }
+              window.location.href = "Bonazza.html";
+            } else {
+              alert("Password errata.");
+            }
+          } else {
+            alert("Account non trovato.");
+          }
+        })
+        .catch(err => {
+          console.error("Errore nel caricamento degli account", err);
+          alert("Errore nel caricamento degli account.");
+        });
+    });
+
+    // Alla fine dell'animazione, ferma il movimento e abilita lo scroll manuale
+    const scrollingSpan = document.querySelector('.scrolling-message span');
+    scrollingSpan.addEventListener('animationend', function () {
+      // Rimuove il comportamento assoluto e l'animazione per rendere il contenuto statico
+      this.style.position = 'static';
+      this.style.top = 'auto';
+      this.style.animation = 'none';
+      // Abilita l'overflow verticale per consentire lo scroll manuale interno
+      document.querySelector('.scrolling-message').style.overflowY = 'auto';
     });
   </script>
 </body>
