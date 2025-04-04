@@ -2,33 +2,31 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
+  <title>Login - PTLANCHER</title>
   <link rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body { 
       font-family: 'Roboto', sans-serif;
-      margin: 0;
-      padding: 0;
+      margin: 0; 
+      padding: 0; 
       background: #1e3a5f; /* Azzurro scuro */
       color: #fff;
     }
 
     /* Contenitore del form di login ingrandito e moderno */
     .login-container {
-      width: 600px;         /* Larghezza maggiore per ospitare bene il contenuto */
+      width: 600px;
       max-width: 95%;
       margin: 80px auto;
       padding: 30px;
       background: #fff;
       color: #333;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .login-container h2 {
@@ -45,6 +43,16 @@
       border-radius: 4px;
     }
 
+    /* Checkbox "Memorizza i miei dati" */
+    .remember-container {
+      display: flex;
+      align-items: center;
+      margin: 12px 0;
+    }
+    .remember-container input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
     button {
       width: 100%;
       padding: 12px;
@@ -57,41 +65,31 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-
-    button:hover {
-      background-color: #16324f;
-    }
+    button:hover { background-color: #16324f; }
     
-    /* Contenitore del messaggio scorrevole - con colori più coinvolgenti */
+    /* Messaggio scorrevole coinvolgente */
     .scrolling-message {
       margin-top: 20px;
       background: linear-gradient(135deg, #89cff0, #b0e0e6);
       padding: 15px;
       border-radius: 4px;
-      height: 150px;              /* Altezza fissa per mostrare il contenuto */
+      height: 150px;
       line-height: 1.5;
       color: #1e3a5f;
-      font-size: 18px;            /* Testo più grande per una migliore leggibilità */
+      font-size: 18px;
       font-weight: 500;
       position: relative;
-      overflow: hidden;           /* Inizialmente nasconde il contenuto extra */
+      overflow: hidden;
     }
-    
     .scrolling-message span {
       display: block;
       position: absolute;
       width: 100%;
-      /* L'animazione scorre una sola volta dal basso verso l'alto */
       animation: verticalScroll 20s linear forwards;
     }
-    
     @keyframes verticalScroll {
-      0% {
-        top: 100%;
-      }
-      100% {
-        top: 0;
-      }
+      0% { top: 100%; }
+      100% { top: 0; }
     }
   </style>
 </head>
@@ -100,21 +98,27 @@
     <h2>Login PTLANCHER</h2>
     <input type="text" id="username" placeholder="Nome utente">
     <input type="password" id="password" placeholder="Password">
+    
+    <!-- Checkbox per memorizzare i dati -->
+    <div class="remember-container">
+      <input type="checkbox" id="rememberMe">
+      <label for="rememberMe">Memorizza i miei dati</label>
+    </div>
+    
     <button id="loginBtn">Accedi</button>
     <!-- Il pulsante Donazione effettua il redirect sostituendo la pagina corrente -->
     <button id="donateBtn">Donazione</button>
-    
+
     <div class="scrolling-message">
       <span>
-        Per ottenere un account devi effettuare una piccola donazione. Questi sono i passaggi da eseguire: la prima cosa da fare è cliccare il pulsante "effettua donazione". Ti porterà al sito per effettuare la donazione; una volta che sei sul sito, inserisci il tuo username e password nel messaggio e seleziona l'importo del abbonamento che vuoi scegliere. Scegli il piano che preferisci: 1 mese: €3,50 | 3 mesi: €8,60 | 1 anno: €32,00 | Per sempre: €52,50 (pagamento una tantum). 🔒 Rinnovo abbonamento: Se il tuo abbonamento sta per scadere, basta fare una nuova donazione dello stesso importo per rinnovarlo inserendo nel messaggio "Rinnovo" con username e password. Attenzione: fare più donazioni sullo stesso account non farà aumentare i mesi, quindi rinnova solo con l’importo del piano scelto. L'account verrà attivato entro 2 giorni lavorativi. Nota importante: conserva al sicuro il tuo Username e Password.
+        Per ottenere un account devi effettuare una piccola donazione. Questi sono i passaggi da seguire: clicca il pulsante "effettua donazione", che ti porterà al sito di donazione; una volta lì, inserisci il tuo username e password nel messaggio e seleziona l'importo dell'abbonamento che desideri. Scegli il piano: 1 mese: €3,50 | 3 mesi: €8,60 | 1 anno: €32,00 | Per sempre: €52,50 (pagamento una tantum). 🔒 Per il rinnovo, effettua una nuova donazione con l'importo scelto, inserendo "Rinnovo" insieme alle tue credenziali. Attenzione: donazioni multiple sullo stesso account non aumenteranno i mesi. L'account verrà attivato entro 2 giorni lavorativi. Nota: conserva in sicurezza il tuo Username e Password.
       </span>
     </div>
   </div>
 
   <script>
     const accountsUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/accounts.json";
-
-    // Al clic del pulsante "Donazione", effettua il redirect sostituendo l'attuale pagina
+    
     document.getElementById('donateBtn').addEventListener('click', () => {
       window.location.href = "https://streamelements.com/parlauncher/tip";
     });
@@ -122,6 +126,7 @@
     document.getElementById('loginBtn').addEventListener('click', () => {
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
+      const rememberMe = document.getElementById('rememberMe').checked;
 
       if (username === "" || password === "") {
         alert("Compila tutti i campi.");
@@ -135,15 +140,19 @@
             let accountData = accounts[username];
             let accountPassword = (typeof accountData === "object") ? accountData.password : accountData;
             if (password === accountPassword) {
-              if (localStorage.getItem("loggedInUser") === username) {
-                alert("Utente già connesso");
-                return;
-              }
-              localStorage.setItem("loggedInUser", username);
-              if (typeof accountData === "object" && accountData.expires) {
-                localStorage.setItem("expires", accountData.expires);
+              // Salva i dati in base alla scelta (localStorage se selezionato, altrimenti sessionStorage)
+              if (rememberMe) {
+                localStorage.setItem("loggedInUser", username);
+                if (typeof accountData === "object" && accountData.expires)
+                  localStorage.setItem("expires", accountData.expires);
+                else
+                  localStorage.removeItem("expires");
               } else {
-                localStorage.removeItem("expires");
+                sessionStorage.setItem("loggedInUser", username);
+                if (typeof accountData === "object" && accountData.expires)
+                  sessionStorage.setItem("expires", accountData.expires);
+                else
+                  sessionStorage.removeItem("expires");
               }
               window.location.href = "Bonazza.html";
             } else {
@@ -157,17 +166,6 @@
           console.error("Errore nel caricamento degli account", err);
           alert("Errore nel caricamento degli account.");
         });
-    });
-
-    // Alla fine dell'animazione, ferma il movimento e abilita lo scroll manuale
-    const scrollingSpan = document.querySelector('.scrolling-message span');
-    scrollingSpan.addEventListener('animationend', function () {
-      // Rimuove il comportamento assoluto e l'animazione per rendere il contenuto statico
-      this.style.position = 'static';
-      this.style.top = 'auto';
-      this.style.animation = 'none';
-      // Abilita l'overflow verticale per consentire lo scroll manuale interno
-      document.querySelector('.scrolling-message').style.overflowY = 'auto';
     });
   </script>
 </body>
