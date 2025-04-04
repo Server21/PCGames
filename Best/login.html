@@ -1,52 +1,254 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Login con Personaggio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Bra.css">
+  <meta charset="UTF-8" />
+  <title>Login - Bonazza Launcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset e font base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #1b1f23, #2c2c2c);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    
+    /* Contenitore principale del login */
+    .login-container {
+      background: #2d333b;
+      width: 900px;
+      max-width: 95%;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    /* Sezione superiore: form di login */
+    .login-header {
+      padding: 40px 30px;
+      background: #2d333b;
+    }
+    
+    .login-header h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .login-header p {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+    
+    .login-header form {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .login-header form input {
+      background: #24292e;
+      border: 1px solid #444;
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: #fff;
+    }
+    
+    .login-header form input::placeholder {
+      color: #aaa;
+    }
+    
+    .login-header .remember {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    
+    .login-header .remember input[type="checkbox"] {
+      margin-right: 10px;
+      width: 20px;
+      height: 20px;
+    }
+    
+    .login-header form button {
+      background: #1f77d0;
+      border: none;
+      border-radius: 4px;
+      padding: 16px;
+      font-size: 18px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .login-header form button:hover {
+      background: #125a92;
+    }
+    
+    /* Pulsante donazione (rimane un link) */
+    .donation-button {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 16px 24px;
+      background: #28a745;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 18px;
+      text-align: center;
+      transition: background 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+    
+    .donation-button:hover {
+      background: #218838;
+      transform: scale(1.05);
+    }
+    
+    /* Pulsante per visualizzare le istruzioni */
+    .instruction-button {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 16px 24px;
+      background: #ffc107;
+      color: #000;
+      border: none;
+      border-radius: 4px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    
+    .instruction-button:hover {
+      background: #e0a800;
+      transform: scale(1.05);
+    }
+    
+    /* Sezione inferiore: area con testo scorrevole per le istruzioni */
+    .instructions-container {
+      background: rgba(30, 30, 30, 0.95);
+      padding: 20px;
+      border-top: 2px solid #444;
+      display: none;
+    }
+    
+    .scroll-container {
+      overflow: hidden;
+      position: relative;
+      height: 300px;
+      border: 2px solid #444;
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    
+    .scroll-text {
+      /* Rimuoviamo position absolute per evitare sovrapposizioni */
+      position: relative;
+      font-size: 22px;
+      line-height: 1.8;
+      white-space: pre-line;
+      animation: scroll-up 20s linear infinite;
+    }
+    
+    @keyframes scroll-up {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
+    }
+    
+    .highlight {
+      color: #ffd700;
+      font-weight: bold;
+    }
+    
+    /* Sezione inferiore (eventuale area destra non usata in questo layout) */
+    .login-right {
+      display: none;
+    }
+    
+    /* Responsività */
+    @media (max-width: 768px) {
+      .login-container {
+        width: 90%;
+        max-width: 600px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="login-container">
-    <!-- Sezione di sinistra: form di login -->
-    <div class="login-left">
+    <!-- Sezione header: form di login -->
+    <div class="login-header">
       <h1>Accedi al tuo account!</h1>
       <p>Completa i dati qui sotto per accedere al tuo account.</p>
       <form id="loginForm">
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <div class="remember">
-        <input type="checkbox" id="rememberMe">
-        <label for="rememberMe">Ricordami</label>
-      </div>
-      <button type="submit">Accedi</button>
-    </form>
-    <div class="donation-info">
-      <p><strong>Attiva il tuo account con un piccolo contributo!</strong></p>
-      <p>Il tuo supporto ci permette di offrirti un’esperienza esclusiva e sempre migliore. Segui questi semplici passaggi:</p>
-      <ol>
-        <li><strong>Clicca su "Effettua Donazione":</strong> sarai reindirizzato al sito per completare l’operazione.</li>
-        <li><strong>Inserisci le tue credenziali:</strong> una volta sul sito, inserisci il tuo username e password nel messaggio.</li>
-        <li><strong>Scegli il piano che preferisci:</strong>
-          <ul>
-            <li><strong>1 mese:</strong> €3,50</li>
-            <li><strong>3 mesi:</strong> €8,60</li>
-            <li><strong>1 anno:</strong> €32,00</li>
-            <li><strong>Per sempre:</strong> €52,50 (pagamento una tantum)</li>
-          </ul>
-        </li>
-        <li><strong>Rinnovo Abbonamento:</strong> Se il tuo abbonamento sta per scadere, effettua una nuova donazione dello stesso importo inserendo "Rinnovo" insieme alle tue credenziali. <em>Nota:</em> donazioni multiple sullo stesso account non aumentano la durata dell’abbonamento.</li>
-      </ol>
-      <p>Il tuo account verrà attivato entro 2 giorni lavorativi. Ricorda di conservare al sicuro il tuo Username e Password.</p>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <div class="remember">
+          <input type="checkbox" id="rememberMe">
+          <label for="rememberMe">Ricordami</label>
+        </div>
+        <button type="submit">Accedi</button>
+      </form>
+      <!-- Link per la donazione -->
       <a href="https://streamelements.com/parlauncher/tip" target="_self" class="donation-button">Effettua una Donazione</a>
+      <!-- Pulsante per mostrare le istruzioni -->
+      <button id="showInstructions" class="instruction-button">Come fare per avere un account</button>
+    </div>
+    <!-- Sezione istruzioni -->
+    <div id="instructionContainer" class="instructions-container">
+      <div class="scroll-container">
+        <div class="scroll-text">
+Per ottenere un account devi effettuare una piccola donazione.
+Questi sono i passaggi da eseguire:
+1. Clicca su "Effettua una Donazione": verrai reindirizzato al sito per completare l’operazione.
+2. Una volta sul sito, inserisci il tuo <span class="highlight">username</span> e <span class="highlight">password</span> nel messaggio e seleziona l'importo del abbonamento che vuoi scegliere.
+3. Scegli il piano che preferisci:
+   • <span class="highlight">1 mese:</span> €3,50
+   • <span class="highlight">3 mesi:</span> €8,60
+   • <span class="highlight">1 anno:</span> €32,00
+   • <span class="highlight">Per sempre:</span> €52,50 (pagamento una tantum)
+4. 🔒 <span class="highlight">Rinnovo abbonamento:</span> Se il tuo abbonamento sta per scadere, effettua una nuova donazione dello stesso importo inserendo "Rinnovo" con username e password.
+   ⚠️ Attenzione: Donazioni multiple sullo stesso account non aumentano la durata dell’abbonamento, quindi rinnova solo con l’importo del piano scelto.
+Il tuo account verrà attivato entro 2 giorni lavorativi.
+<strong>IMPORTANTE:</strong> Conserva al sicuro il tuo Username e Password.
+        </div>
+      </div>
     </div>
   </div>
-  <script src="login.js"></script>
-    </div>
-    <!-- Sezione di destra: GIF animata del personaggio -->
-    <div class="login-right">
-      <img src="https://c.tenor.com/RDEHjB7H1HQAAAAC/tenor.gif" alt="Personaggio che saluta" class="character-image">
-    </div>
-  </div>
+  
+  <script>
+    // Gestione del form di login (da sostituire con la logica reale)
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Login eseguito! Aggiungi qui la tua logica di autenticazione.");
+    });
+    
+    // Gestione del pulsante per mostrare/nascondere le istruzioni
+    document.getElementById("showInstructions").addEventListener("click", function() {
+      var container = document.getElementById("instructionContainer");
+      if (container.style.display === "none" || container.style.display === "") {
+        container.style.display = "block";
+      } else {
+        container.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>
