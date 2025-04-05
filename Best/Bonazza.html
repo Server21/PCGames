@@ -9,7 +9,9 @@
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
-    * { box-sizing: border-box; }
+    * { 
+      box-sizing: border-box; 
+    }
 
     body {
       margin: 0;
@@ -36,12 +38,12 @@
       padding: 10px 15px;
       border-radius: 8px;
       font-weight: 500;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
     }
     .status-bar { left: 20px; }
     .online-bar { right: 20px; }
-    
-    /* Logout container posizionato in basso a sinistra */
+
+    /* Logout container posizionato in basso a sinistra nell'header */
     .logout-container {
       position: absolute;
       left: 20px;
@@ -60,9 +62,11 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    .logout-container button:hover { background: #ff3333; }
-    
-    /* Player container posizionato a destra, in basso nell'header */
+    .logout-container button:hover { 
+      background: #ff3333; 
+    }
+
+    /* Player container posizionato in basso a destra nell'header */
     .player-container {
       position: absolute;
       bottom: 20px;
@@ -71,11 +75,11 @@
       align-items: center;
       gap: 5px;
     }
-    /* L'elemento audio parte in autoplay, loop, playsinline ed è inizialmente muted (per rispettare l'autoplay) */
+    /* L'elemento audio parte in autoplay, loop, playsinline ed è inizialmente muted (per rispettare le policy) */
     #audioPlayer {
       display: none;
     }
-    /* Checkbox per il controllo del suono */
+    /* Checkbox per controllare il mute */
     #muteCheckbox {
       cursor: pointer;
       width: 16px;
@@ -85,7 +89,7 @@
       font-size: 14px;
       cursor: pointer;
     }
-    
+
     /* Barra di ricerca sticky */
     .search-container {
       position: sticky;
@@ -137,18 +141,19 @@
       background: #ff6666;
     }
     #filters button.reset:hover { background: #ff3333; }
-    
+
     /* Container che occupa tutta la larghezza della pagina */
     .container {
       width: 100%;
       padding: 20px;
       margin: 0 auto;
     }
-    
-    /* Layout grid per i giochi */
+
+    /* Layout per i giochi:
+       Se ci sono 1 o 2 giochi, il container usa flex per centrare le schede con una max-width maggiore;
+       altrimenti, utilizza il grid.
+    */
     #gamesContainer {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 20px;
     }
     .game-card {
@@ -156,7 +161,7 @@
       color: #333;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       display: flex;
       flex-direction: column;
     }
@@ -168,7 +173,8 @@
       padding: 15px;
       display: flex;
       flex-direction: column;
-      flex: 1;
+      align-items: flex-start;
+      width: 100%;
     }
     .game-info h3 {
       margin: 0 0 10px;
@@ -176,7 +182,6 @@
     }
     .game-info p {
       margin: 5px 0;
-      flex-grow: 1;
     }
     .download-btn {
       margin-top: 10px;
@@ -188,8 +193,10 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    .download-btn:hover { background: #2c2c6c; }
-    
+    .download-btn:hover { 
+      background: #2c2c6c; 
+    }
+
     /* Toggle per la mini chat */
     #chatToggle {
       position: fixed;
@@ -214,12 +221,12 @@
       bottom: 70px;
       right: 20px;
       width: 280px;
-      background: rgba(255,255,255,0.95);
+      background: rgba(255, 255, 255, 0.95);
       color: #333;
       border: 1px solid #ccc;
       padding: 15px;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       display: none;
       z-index: 999;
     }
@@ -247,7 +254,7 @@
       transition: background 0.3s ease;
     }
     .mini-chat button:hover { background: #2c2c6c; }
-    
+
     /* Bottone Back To Top in basso a sinistra */
     #backToTop {
       position: fixed;
@@ -282,7 +289,7 @@
     <div class="logout-container">
       <button id="logoutBtn">Logout</button>
     </div>
-    <!-- Player container spostato a destra, nell'header in basso -->
+    <!-- Player container posizionato in basso a destra -->
     <div class="player-container">
       <audio id="audioPlayer" src="https://files.catbox.moe/vmwngs.mp3" autoplay loop muted playsinline></audio>
       <input type="checkbox" id="muteCheckbox">
@@ -301,7 +308,7 @@
     <div id="gamesContainer"></div>
   </div>
   
-  <!-- Toggle e contenitore della mini chat -->
+  <!-- Toggle per la mini chat -->
   <div id="chatToggle">&#8592;</div>
   <div class="mini-chat" id="miniChat">
     <h4>Feedback Admin</h4>
@@ -314,12 +321,11 @@
   <div id="backToTop">&#8679;</div>
   
   <script>
-    // A causa delle policy dei browser, l'audio parte inizialmente muted.
-    // Al primo click, se la checkbox non è spuntata, rimuoviamo il muted per far partire il suono.
+    // Al primo clic, se la checkbox non è spuntata, rimuoviamo il muted per far partire l'audio
     document.addEventListener('click', function removeMute() {
       const audioPlayer = document.getElementById("audioPlayer");
       const muteCheckbox = document.getElementById("muteCheckbox");
-      if(audioPlayer && audioPlayer.muted && !muteCheckbox.checked) {
+      if (audioPlayer && audioPlayer.muted && !muteCheckbox.checked) {
         audioPlayer.muted = false;
         audioPlayer.play().catch(error => console.error("Errore nella riproduzione:", error));
       }
@@ -335,17 +341,19 @@
     
     // Verifica se l'utente è loggato
     const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
-    if (!loggedUser) { window.location.href = "login.html"; }
+    if (!loggedUser) {
+      window.location.href = "login.html";
+    }
     document.getElementById("usernameDisplay").textContent = loggedUser;
     
     // Gestione della scadenza account
     const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
-    if(storageExpires) {
+    if (storageExpires) {
       const expiryDate = new Date(storageExpires);
       const today = new Date();
       const diffTime = expiryDate - today;
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      if(diffDays > 0) {
+      if (diffDays > 0) {
         document.getElementById("accountExpiry").textContent = diffDays + " giorni";
       } else {
         document.getElementById("accountExpiry").textContent = "Scaduto";
@@ -354,7 +362,7 @@
       document.getElementById("accountExpiry").textContent = "Non scade mai";
     }
     
-    // Logout: rimuove dati dallo storage e reindirizza a login.html
+    // Logout: rimuove i dati e reindirizza a login.html
     document.getElementById("logoutBtn").addEventListener("click", () => {
       localStorage.removeItem("loggedInUser");
       localStorage.removeItem("expires");
@@ -365,7 +373,7 @@
       window.location.href = "login.html";
     });
     
-    // Caricamento giochi dal file JSON remoto
+    // Caricamento dei giochi dal JSON remoto
     const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
     let gamesData = [];
     fetch(gamesUrl)
@@ -379,10 +387,26 @@
     
     function renderGames(games) {
       const container = document.getElementById("gamesContainer");
+      // Se ci sono 1 o 2 giochi, usiamo un flex container centrato; altrimenti usiamo il grid
+      if (games.length <= 2) {
+        container.style.display = "flex";
+        container.style.justifyContent = "center";
+        container.style.flexWrap = "wrap";
+        container.style.gap = "20px";
+      } else {
+        container.style.display = "grid";
+        container.style.gridTemplateColumns = "repeat(auto-fit, minmax(320px, 1fr))";
+        container.style.gap = "20px";
+      }
       container.innerHTML = "";
       games.forEach(game => {
         const card = document.createElement("div");
         card.className = "game-card";
+        if (games.length === 1) { 
+          card.style.maxWidth = "600px"; 
+        } else if (games.length === 2) {
+          card.style.maxWidth = "500px";
+        }
         
         const img = document.createElement("img");
         img.src = game.image_url;
@@ -407,7 +431,8 @@
         downloadBtn.textContent = "Download";
         downloadBtn.className = "download-btn";
         downloadBtn.addEventListener("click", () => {
-          window.open(game.download_link, "_blank");
+          // Effettua il redirect nella stessa pagina
+          window.location.href = game.download_link;
         });
         
         infoDiv.appendChild(title);
@@ -437,13 +462,18 @@
         btn.addEventListener("click", () => {
           const filtered = gamesData.filter(game => game.category && game.category.includes(tag));
           renderGames(filtered);
+          // Chiude il pannello dei filtri al click
+          filtersDiv.style.display = "none";
         });
         filtersDiv.appendChild(btn);
       });
       const resetBtn = document.createElement("button");
       resetBtn.textContent = "Reset";
       resetBtn.className = "reset";
-      resetBtn.addEventListener("click", () => renderGames(gamesData));
+      resetBtn.addEventListener("click", () => {
+        renderGames(gamesData);
+        filtersDiv.style.display = "none";
+      });
       filtersDiv.appendChild(resetBtn);
     }
     
@@ -456,10 +486,10 @@
       renderGames(filtered);
     });
     
-    // Toggle pannello filtri
+    // Toggle per il pannello dei filtri
     document.getElementById("filterToggle").addEventListener("click", () => {
       const filtersDiv = document.getElementById("filters");
-      if(filtersDiv.style.display === "none" || filtersDiv.style.display === "") {
+      if (filtersDiv.style.display === "none" || filtersDiv.style.display === "") {
         filtersDiv.style.display = "block";
       } else {
         filtersDiv.style.display = "none";
@@ -470,7 +500,7 @@
     const chatToggle = document.getElementById("chatToggle");
     const miniChat = document.getElementById("miniChat");
     chatToggle.addEventListener("click", () => {
-      if(miniChat.style.display === "none" || miniChat.style.display === "") {
+      if (miniChat.style.display === "none" || miniChat.style.display === "") {
         miniChat.style.display = "block";
         chatToggle.innerHTML = "→";
       } else {
@@ -482,15 +512,15 @@
     // Invio feedback tramite Telegram Bot
     document.getElementById("sendFeedback").addEventListener("click", () => {
       const message = document.getElementById("feedbackMessage").value.trim();
-      if(message === "") {
+      if (message === "") {
         alert("Inserisci un messaggio.");
         return;
       }
       let feedbackCount = parseInt(localStorage.getItem("feedbackCount") || "0");
       const lastFeedbackDate = localStorage.getItem("feedbackDate");
       const todayStr = new Date().toISOString().slice(0, 10);
-      if(lastFeedbackDate !== todayStr) { feedbackCount = 0; }
-      if(feedbackCount >= 2) {
+      if (lastFeedbackDate !== todayStr) { feedbackCount = 0; }
+      if (feedbackCount >= 2) {
         alert("Hai già inviato il massimo di messaggi per oggi.");
         return;
       }
@@ -501,7 +531,7 @@
       })
       .then(response => response.json())
       .then(data => {
-        if(data.ok) {
+        if (data.ok) {
           alert("Feedback inviato!");
           feedbackCount++;
           localStorage.setItem("feedbackCount", feedbackCount);
@@ -517,13 +547,13 @@
       });
     });
     
-    // Imposta utenti online a 1 (a scopo di test)
+    // Imposta utenti online a 1 (per scopi di test)
     document.getElementById("onlineCount").textContent = "1";
     
-    // Bottone Back To Top: compare dopo 300px di scroll e permette di tornare in cima
+    // Bottone Back To Top: compare dopo 300px di scroll e ritorna in cima alla pagina
     const backToTopBtn = document.getElementById("backToTop");
     window.addEventListener("scroll", function() {
-      if(window.pageYOffset > 300) {
+      if (window.pageYOffset > 300) {
         backToTopBtn.style.display = "flex";
       } else {
         backToTopBtn.style.display = "none";
@@ -537,6 +567,7 @@
     document.addEventListener('contextmenu', function(e) {
       e.preventDefault();
     });
+    
   </script>
 </body>
 </html>
