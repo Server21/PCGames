@@ -5,16 +5,19 @@
   <title>PTLANCHER - Bonazza</title>
   <link rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <style>
+    /* Import dei font moderni */
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
       background: linear-gradient(135deg, #232526, #414345);
       color: #eaeaea;
     }
+
     header {
       position: relative;
       width: 100%;
@@ -22,7 +25,8 @@
     }
     header img {
       width: 100%;
-      height: auto;
+      height: 200px;       /* Altezza più contenuta */
+      object-fit: cover;
       display: block;
       border-bottom: 2px solid #555;
     }
@@ -36,9 +40,15 @@
     }
     .status-bar { left: 20px; }
     .online-bar { right: 20px; }
+    
+    /* Logout container posizionato in basso a sinistra */
     .logout-container {
-      text-align: right;
-      margin: 10px 20px;
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
     }
     .logout-container button {
       padding: 8px 14px;
@@ -51,15 +61,41 @@
       transition: background 0.3s ease;
     }
     .logout-container button:hover { background: #ff3333; }
-    .container {
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .search-container {
+    
+    /* Player container posizionato a destra, in basso nell'header */
+    .player-container {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
       display: flex;
       align-items: center;
-      margin: 20px 10px;
+      gap: 5px;
+    }
+    /* L'elemento audio parte in autoplay, loop, playsinline ed è inizialmente muted (per rispettare l'autoplay) */
+    #audioPlayer {
+      display: none;
+    }
+    /* Checkbox per il controllo del suono */
+    #muteCheckbox {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+    }
+    .player-container label {
+      font-size: 14px;
+      cursor: pointer;
+    }
+    
+    /* Barra di ricerca sticky */
+    .search-container {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: linear-gradient(135deg, #232526, #414345);
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      margin: 0;
     }
     #filterToggle {
       margin-right: 10px;
@@ -101,28 +137,46 @@
       background: #ff6666;
     }
     #filters button.reset:hover { background: #ff3333; }
+    
+    /* Container che occupa tutta la larghezza della pagina */
+    .container {
+      width: 100%;
+      padding: 20px;
+      margin: 0 auto;
+    }
+    
+    /* Layout grid per i giochi */
+    #gamesContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
     .game-card {
       background: #fff;
       color: #333;
       border-radius: 8px;
       overflow: hidden;
-      margin: 20px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
     }
     .game-card img {
       width: 100%;
-      max-width: 300px;
       object-fit: cover;
     }
     .game-info {
-      flex: 1;
       padding: 15px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
     .game-info h3 {
-      margin-top: 0;
+      margin: 0 0 10px;
       font-family: 'Montserrat', sans-serif;
+    }
+    .game-info p {
+      margin: 5px 0;
+      flex-grow: 1;
     }
     .download-btn {
       margin-top: 10px;
@@ -135,8 +189,8 @@
       transition: background 0.3s ease;
     }
     .download-btn:hover { background: #2c2c6c; }
-
-    /* Toggle mini chat */
+    
+    /* Toggle per la mini chat */
     #chatToggle {
       position: fixed;
       bottom: 20px;
@@ -193,6 +247,26 @@
       transition: background 0.3s ease;
     }
     .mini-chat button:hover { background: #2c2c6c; }
+    
+    /* Bottone Back To Top in basso a sinistra */
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      background: #3b3b98;
+      color: #fff;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 24px;
+      z-index: 1000;
+      transition: background 0.3s ease;
+    }
+    #backToTop:hover { background: #2c2c6c; }
   </style>
 </head>
 <body>
@@ -204,23 +278,30 @@
     <div class="online-bar" id="onlineStatus">
       Utenti Online: <span id="onlineCount">1</span>
     </div>
-  </header>
-
-  <!-- Pulsante Logout -->
-  <div class="logout-container">
-    <button id="logoutBtn">Logout</button>
-  </div>
-
-  <div class="container">
-    <div class="search-container">
-      <button id="filterToggle">Filtri</button>
-      <input type="text" id="searchBar" placeholder="Cerca giochi...">
+    <!-- Logout posizionato in basso a sinistra -->
+    <div class="logout-container">
+      <button id="logoutBtn">Logout</button>
     </div>
+    <!-- Player container spostato a destra, nell'header in basso -->
+    <div class="player-container">
+      <audio id="audioPlayer" src="https://files.catbox.moe/vmwngs.mp3" autoplay loop muted playsinline></audio>
+      <input type="checkbox" id="muteCheckbox">
+      <label for="muteCheckbox">Mute Audio</label>
+    </div>
+  </header>
+  
+  <!-- Barra di ricerca sticky -->
+  <div class="search-container">
+    <button id="filterToggle">Filtri</button>
+    <input type="text" id="searchBar" placeholder="Cerca giochi...">
+  </div>
+  
+  <div class="container">
     <div id="filters"></div>
     <div id="gamesContainer"></div>
   </div>
-
-  <!-- Toggle per la mini chat e mini chat -->
+  
+  <!-- Toggle e contenitore della mini chat -->
   <div id="chatToggle">&#8592;</div>
   <div class="mini-chat" id="miniChat">
     <h4>Feedback Admin</h4>
@@ -228,21 +309,42 @@
     <button id="sendFeedback">Invia</button>
     <p style="font-size:12px; margin-top: 5px;">Max 2 messaggi al giorno</p>
   </div>
-
+  
+  <!-- Bottone Back To Top -->
+  <div id="backToTop">&#8679;</div>
+  
   <script>
-    // Ricava l'utente loggato (da localStorage o sessionStorage)
+    // A causa delle policy dei browser, l'audio parte inizialmente muted.
+    // Al primo click, se la checkbox non è spuntata, rimuoviamo il muted per far partire il suono.
+    document.addEventListener('click', function removeMute() {
+      const audioPlayer = document.getElementById("audioPlayer");
+      const muteCheckbox = document.getElementById("muteCheckbox");
+      if(audioPlayer && audioPlayer.muted && !muteCheckbox.checked) {
+        audioPlayer.muted = false;
+        audioPlayer.play().catch(error => console.error("Errore nella riproduzione:", error));
+      }
+      document.removeEventListener('click', removeMute);
+    }, { once: true });
+    
+    // Gestione della checkbox per mutare/dismutare l'audio
+    const muteCheckbox = document.getElementById("muteCheckbox");
+    muteCheckbox.addEventListener("change", function() {
+      const audioPlayer = document.getElementById("audioPlayer");
+      audioPlayer.muted = this.checked;
+    });
+    
+    // Verifica se l'utente è loggato
     const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
     if (!loggedUser) { window.location.href = "login.html"; }
     document.getElementById("usernameDisplay").textContent = loggedUser;
-
-    // Gestione della scadenza: se l'account ha il campo "expires", calcola i giorni residui;
-    // altrimenti mostra "Non scade mai"
+    
+    // Gestione della scadenza account
     const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
     if(storageExpires) {
       const expiryDate = new Date(storageExpires);
       const today = new Date();
       const diffTime = expiryDate - today;
-      const diffDays = Math.ceil(diffTime / (1000*60*60*24));
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       if(diffDays > 0) {
         document.getElementById("accountExpiry").textContent = diffDays + " giorni";
       } else {
@@ -251,8 +353,8 @@
     } else {
       document.getElementById("accountExpiry").textContent = "Non scade mai";
     }
-
-    // Logout: elimina i dati da entrambi gli storage e reindirizza a login.html
+    
+    // Logout: rimuove dati dallo storage e reindirizza a login.html
     document.getElementById("logoutBtn").addEventListener("click", () => {
       localStorage.removeItem("loggedInUser");
       localStorage.removeItem("expires");
@@ -262,8 +364,8 @@
       sessionStorage.removeItem("expires");
       window.location.href = "login.html";
     });
-
-    // Caricamento giochi dal JSON remoto
+    
+    // Caricamento giochi dal file JSON remoto
     const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
     let gamesData = [];
     fetch(gamesUrl)
@@ -274,7 +376,7 @@
         renderFilters(gamesData);
       })
       .catch(err => console.error("Errore nel caricamento dei giochi:", err));
-
+    
     function renderGames(games) {
       const container = document.getElementById("gamesContainer");
       container.innerHTML = "";
@@ -304,7 +406,9 @@
         const downloadBtn = document.createElement("button");
         downloadBtn.textContent = "Download";
         downloadBtn.className = "download-btn";
-        downloadBtn.addEventListener("click", () => { window.open(game.download_link, "_blank"); });
+        downloadBtn.addEventListener("click", () => {
+          window.open(game.download_link, "_blank");
+        });
         
         infoDiv.appendChild(title);
         infoDiv.appendChild(desc);
@@ -314,17 +418,18 @@
         
         card.appendChild(img);
         card.appendChild(infoDiv);
-        
         container.appendChild(card);
       });
     }
-
+    
     function renderFilters(games) {
       const filtersDiv = document.getElementById("filters");
       filtersDiv.innerHTML = "Filtra per Tag: ";
       let tagsSet = new Set();
       games.forEach(game => {
-        if (game.category) { game.category.forEach(tag => tagsSet.add(tag)); }
+        if (game.category) { 
+          game.category.forEach(tag => tagsSet.add(tag)); 
+        }
       });
       tagsSet.forEach(tag => {
         const btn = document.createElement("button");
@@ -335,14 +440,13 @@
         });
         filtersDiv.appendChild(btn);
       });
-      // Bottone Reset per i filtri
       const resetBtn = document.createElement("button");
       resetBtn.textContent = "Reset";
       resetBtn.className = "reset";
       resetBtn.addEventListener("click", () => renderGames(gamesData));
       filtersDiv.appendChild(resetBtn);
     }
-
+    
     document.getElementById("searchBar").addEventListener("input", function() {
       const query = this.value.toLowerCase();
       const filtered = gamesData.filter(game => 
@@ -351,8 +455,8 @@
       );
       renderGames(filtered);
     });
-
-    // Toggle per il pannello dei filtri
+    
+    // Toggle pannello filtri
     document.getElementById("filterToggle").addEventListener("click", () => {
       const filtersDiv = document.getElementById("filters");
       if(filtersDiv.style.display === "none" || filtersDiv.style.display === "") {
@@ -361,23 +465,21 @@
         filtersDiv.style.display = "none";
       }
     });
-
+    
     // Toggle per la mini chat
     const chatToggle = document.getElementById("chatToggle");
     const miniChat = document.getElementById("miniChat");
     chatToggle.addEventListener("click", () => {
       if(miniChat.style.display === "none" || miniChat.style.display === "") {
         miniChat.style.display = "block";
-        chatToggle.innerHTML = "→";  // indica che cliccando si può chiudere
+        chatToggle.innerHTML = "→";
       } else {
         miniChat.style.display = "none";
-        chatToggle.innerHTML = "←";  // indica che cliccando si può aprire
+        chatToggle.innerHTML = "←";
       }
     });
-
+    
     // Invio feedback tramite Telegram Bot
-    // TELEGRAM_BOT_TOKEN: 7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM
-    // TELEGRAM_CHAT_ID: 1832064994
     document.getElementById("sendFeedback").addEventListener("click", () => {
       const message = document.getElementById("feedbackMessage").value.trim();
       if(message === "") {
@@ -414,9 +516,27 @@
         alert("Errore nell'invio del feedback.");
       });
     });
-
-    // In ambiente di test (essendo l'unico connesso) imposta il conteggio utenti online a 1.
+    
+    // Imposta utenti online a 1 (a scopo di test)
     document.getElementById("onlineCount").textContent = "1";
+    
+    // Bottone Back To Top: compare dopo 300px di scroll e permette di tornare in cima
+    const backToTopBtn = document.getElementById("backToTop");
+    window.addEventListener("scroll", function() {
+      if(window.pageYOffset > 300) {
+        backToTopBtn.style.display = "flex";
+      } else {
+        backToTopBtn.style.display = "none";
+      }
+    });
+    backToTopBtn.addEventListener("click", function() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    
+    // Blocca il menu contestuale (tasto destro del mouse)
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
   </script>
 </body>
 </html>
