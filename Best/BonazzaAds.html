@@ -6,10 +6,8 @@
   <title>PTLANCHER - Bonazza</title>
   <link rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <style>
-    /* Import font moderni */
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
-
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -40,7 +38,7 @@
     }
     .status-bar { left: 20px; }
     .online-bar { right: 20px; }
-    /* Pulsante Logout eliminato */
+    /* Pulsante Logout rimosso */
     .player-container {
       position: absolute;
       bottom: 20px;
@@ -131,7 +129,7 @@
       font-family: 'Montserrat', sans-serif;
     }
     .game-info p { margin: 5px 0; }
-    /* Il link download viene creato come <a> per essere intercettato dalla conversione di za.gl */
+    /* Link download convertito da za.gl */
     .download-btn {
       margin-top: 10px;
       padding: 10px 15px;
@@ -219,7 +217,7 @@
 
     /* Modal Popup per l'iframe */
     .modal {
-      display: none; /* Nascosto di default */
+      display: none;
       position: fixed;
       z-index: 1100;
       left: 0;
@@ -261,12 +259,12 @@
     }
   </style>
   
-  <!-- Blocco standard per za.gl -->
+  <!-- Blocco per za.gl (HTTPS e senza esclusioni) -->
   <script type="text/javascript">
     var adlinkfly_url = 'https://za.gl/';
     var adlinkfly_api_token = 'e11eee3302d6d9b2e1bf2611a6fac2317c5eaa11';
     var adlinkfly_advert = 2;
-    var adlinkfly_exclude_domains = ['example.com', 'yoursite.com'];
+    // Commenta o rimuovi eventuali esclusioni per forzare la conversione su ogni link
   </script>
   <script src="https://za.gl/js/full-page-script.js"></script>
   
@@ -280,7 +278,7 @@
     <div class="online-bar" id="onlineStatus">
       Utenti Online: <span id="onlineCount">1</span>
     </div>
-    <!-- Pulsante Logout eliminato -->
+    <!-- Il pulsante Logout è stato rimosso -->
     <div class="player-container">
       <audio id="audioPlayer" src="https://files.catbox.moe/vmwngs.mp3" autoplay loop muted playsinline></audio>
       <input type="checkbox" id="muteCheckbox">
@@ -308,7 +306,7 @@
   
   <div id="backToTop">&#8679;</div>
   
-  <!-- Modal Popup per l'iframe -->
+  <!-- Modal Popup per visualizzare il download in un iframe -->
   <div id="downloadModal" class="modal">
     <div class="modal-content">
       <span class="modal-close" id="modalClose">&times;</span>
@@ -318,7 +316,7 @@
   
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Abilita l'audio al primo click, se non disattivato
+      // Abilita l'audio al primo clic se non disattivato
       document.addEventListener('click', function removeMute() {
         const audioPlayer = document.getElementById("audioPlayer");
         const muteCheckbox = document.getElementById("muteCheckbox");
@@ -329,7 +327,7 @@
         document.removeEventListener('click', removeMute);
       }, { once: true });
       
-      // Gestione mute tramite checkbox
+      // Gestione checkbox per mute/dismute
       document.getElementById("muteCheckbox").addEventListener("change", function() {
         document.getElementById("audioPlayer").muted = this.checked;
       });
@@ -338,7 +336,7 @@
       const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser") || "Guest";
       document.getElementById("usernameDisplay").textContent = loggedUser;
       
-      // Visualizza la scadenza account
+      // Visualizza la scadenza dell'account
       const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
       if (storageExpires) {
         const expiryDate = new Date(storageExpires);
@@ -348,7 +346,7 @@
         document.getElementById("accountExpiry").textContent = "Non scade mai";
       }
       
-      // Funzione per il Base64 encoding
+      // Funzione per il Base64 encoding per za.gl
       function adlinkfly_base64_encode(e) {
         return btoa(
           encodeURIComponent(e).replace(/%([0-9A-F]{2})/g, function(match, p1) {
@@ -357,7 +355,7 @@
         );
       }
       
-      // Applica la conversione dei link download (se non già convertiti)
+      // Applica la conversione ai link download (se non già convertiti)
       function applyAdlinkflyConversion() {
         const anchors = document.querySelectorAll("#gamesContainer a.download-btn");
         anchors.forEach(a => {
@@ -370,14 +368,14 @@
         });
       }
       
-      // Handler per aprire il download in un modal popup con un iframe
+      // Handler per aprire il download in un modal popup (iframe) con parametro random
       function attachDownloadPopupHandler() {
         const downloadAnchors = document.querySelectorAll("#gamesContainer a.download-btn");
         downloadAnchors.forEach(anchor => {
           anchor.addEventListener("click", function(e) {
             e.preventDefault();
-            // Costruisce un URL aggiornato con parametro random per evitare cache
             let url = this.href;
+            // Aggiungi un parametro casuale per evitare cache
             url += (url.indexOf('?') === -1 ? '?' : '&') + 'rand=' + new Date().getTime();
             downloadIframe.src = url;
             downloadModal.style.display = "block";
@@ -385,7 +383,7 @@
         });
       }
       
-      // Gestione Modal: chiusura al click sulla "X" o all'esterno
+      // Modal Popup: chiusura tramite "X" o clic all'esterno
       const downloadModal = document.getElementById("downloadModal");
       const downloadIframe = document.getElementById("downloadIframe");
       const modalClose = document.getElementById("modalClose");
@@ -400,7 +398,7 @@
         }
       });
       
-      // Carica i giochi dal file JSON e li visualizza
+      // Carica i giochi da games.json e li visualizza
       const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
       let gamesData = [];
       fetch(gamesUrl)
