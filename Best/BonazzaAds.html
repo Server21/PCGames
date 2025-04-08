@@ -6,8 +6,10 @@
   <title>PTLANCHER - Bonazza</title>
   <link rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <style>
+    /* Import font moderni */
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+    
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -38,7 +40,7 @@
     }
     .status-bar { left: 20px; }
     .online-bar { right: 20px; }
-    /* Pulsante Logout rimosso */
+    /* Il pulsante Logout è stato rimosso */
     .player-container {
       position: absolute;
       bottom: 20px;
@@ -129,7 +131,7 @@
       font-family: 'Montserrat', sans-serif;
     }
     .game-info p { margin: 5px 0; }
-    /* Link download convertito da za.gl */
+    /* Link Download */
     .download-btn {
       margin-top: 10px;
       padding: 10px 15px;
@@ -214,49 +216,6 @@
       transition: background 0.3s ease;
     }
     #backToTop:hover { background: #2c2c6c; }
-
-    /* Modal Popup per l'iframe */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1100;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.7);
-    }
-    .modal-content {
-      position: relative;
-      background-color: #fefefe;
-      margin: 5% auto;
-      padding: 0;
-      width: 90%;
-      max-width: 800px;
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
-    }
-    .modal-content iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-      border-radius: 0 0 8px 8px;
-    }
-    .modal-close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      margin: 10px;
-      cursor: pointer;
-    }
-    .modal-close:hover,
-    .modal-close:focus {
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-    }
   </style>
   
   <!-- Blocco per za.gl (HTTPS e senza esclusioni) -->
@@ -264,7 +223,7 @@
     var adlinkfly_url = 'https://za.gl/';
     var adlinkfly_api_token = 'e11eee3302d6d9b2e1bf2611a6fac2317c5eaa11';
     var adlinkfly_advert = 2;
-    // Commenta o rimuovi eventuali esclusioni per forzare la conversione su ogni link
+    // Se necessario, rimuovi esclusioni per forzare la conversione
   </script>
   <script src="https://za.gl/js/full-page-script.js"></script>
   
@@ -278,7 +237,7 @@
     <div class="online-bar" id="onlineStatus">
       Utenti Online: <span id="onlineCount">1</span>
     </div>
-    <!-- Il pulsante Logout è stato rimosso -->
+    <!-- Pulsante Logout rimosso -->
     <div class="player-container">
       <audio id="audioPlayer" src="https://files.catbox.moe/vmwngs.mp3" autoplay loop muted playsinline></audio>
       <input type="checkbox" id="muteCheckbox">
@@ -305,14 +264,6 @@
   </div>
   
   <div id="backToTop">&#8679;</div>
-  
-  <!-- Modal Popup per visualizzare il download in un iframe -->
-  <div id="downloadModal" class="modal">
-    <div class="modal-content">
-      <span class="modal-close" id="modalClose">&times;</span>
-      <iframe id="downloadIframe" src=""></iframe>
-    </div>
-  </div>
   
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -346,7 +297,7 @@
         document.getElementById("accountExpiry").textContent = "Non scade mai";
       }
       
-      // Funzione per il Base64 encoding per za.gl
+      // Funzione per il Base64 encoding
       function adlinkfly_base64_encode(e) {
         return btoa(
           encodeURIComponent(e).replace(/%([0-9A-F]{2})/g, function(match, p1) {
@@ -368,37 +319,22 @@
         });
       }
       
-      // Handler per aprire il download in un modal popup (iframe) con parametro random
-      function attachDownloadPopupHandler() {
+      // Handler per avviare il download in modo diretto
+      function attachDirectDownloadHandler() {
         const downloadAnchors = document.querySelectorAll("#gamesContainer a.download-btn");
         downloadAnchors.forEach(anchor => {
           anchor.addEventListener("click", function(e) {
             e.preventDefault();
             let url = this.href;
-            // Aggiungi un parametro casuale per evitare cache
+            // Aggiunge un parametro casuale per evitare cache
             url += (url.indexOf('?') === -1 ? '?' : '&') + 'rand=' + new Date().getTime();
-            downloadIframe.src = url;
-            downloadModal.style.display = "block";
+            // Redirigi direttamente (in questo caso sostituisce la pagina corrente)
+            window.location.href = url;
           });
         });
       }
       
-      // Modal Popup: chiusura tramite "X" o clic all'esterno
-      const downloadModal = document.getElementById("downloadModal");
-      const downloadIframe = document.getElementById("downloadIframe");
-      const modalClose = document.getElementById("modalClose");
-      modalClose.addEventListener("click", () => {
-        downloadModal.style.display = "none";
-        downloadIframe.src = "";
-      });
-      window.addEventListener("click", (event) => {
-        if (event.target === downloadModal) {
-          downloadModal.style.display = "none";
-          downloadIframe.src = "";
-        }
-      });
-      
-      // Carica i giochi da games.json e li visualizza
+      // Carica i giochi dal file JSON e li visualizza
       const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
       let gamesData = [];
       fetch(gamesUrl)
@@ -408,7 +344,7 @@
           renderGames(gamesData);
           renderFilters(gamesData);
           applyAdlinkflyConversion();
-          attachDownloadPopupHandler();
+          attachDirectDownloadHandler();
         })
         .catch(err => console.error("Errore nel caricamento dei giochi:", err));
       
@@ -425,7 +361,6 @@
           container.style.gap = "20px";
         }
         container.innerHTML = "";
-        
         games.forEach(game => {
           const card = document.createElement("div");
           card.className = "game-card";
@@ -479,7 +414,7 @@
             renderGames(gamesData.filter(game => game.category && game.category.includes(tag)));
             filtersDiv.style.display = "none";
             applyAdlinkflyConversion();
-            attachDownloadPopupHandler();
+            attachDirectDownloadHandler();
           });
           filtersDiv.appendChild(btn);
         });
@@ -490,7 +425,7 @@
           renderGames(gamesData);
           filtersDiv.style.display = "none";
           applyAdlinkflyConversion();
-          attachDownloadPopupHandler();
+          attachDirectDownloadHandler();
         });
         filtersDiv.appendChild(resetBtn);
       }
@@ -502,7 +437,7 @@
           game.description.toLowerCase().includes(query)
         ));
         applyAdlinkflyConversion();
-        attachDownloadPopupHandler();
+        attachDirectDownloadHandler();
       });
       
       document.getElementById("filterToggle").addEventListener("click", () => {
