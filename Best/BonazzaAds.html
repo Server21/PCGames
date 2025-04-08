@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PTLANCHER - Bonazza</title>
+  <title>PTLANCHER ADS</title>
   <link rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <style>
     /* Import font moderni */
@@ -36,29 +36,12 @@
       padding: 10px 15px;
       border-radius: 8px;
       font-weight: 500;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0,0,0,0.6);
     }
     .status-bar { left: 20px; }
     .online-bar { right: 20px; }
-    .logout-container {
-      position: absolute;
-      left: 20px;
-      bottom: 20px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-    .logout-container button {
-      padding: 8px 14px;
-      background: #ff6666;
-      border: none;
-      border-radius: 4px;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .logout-container button:hover { background: #ff3333; }
+    /* Container Logout rimosso */
+
     .player-container {
       position: absolute;
       bottom: 20px;
@@ -129,7 +112,7 @@
       color: #333;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       display: flex;
       flex-direction: column;
     }
@@ -186,12 +169,12 @@
       bottom: 70px;
       right: 20px;
       width: 280px;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255,255,255,0.95);
       color: #333;
       border: 1px solid #ccc;
       padding: 15px;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       display: none;
       z-index: 999;
     }
@@ -236,7 +219,7 @@
     #backToTop:hover { background: #2c2c6c; }
   </style>
   
-  <!-- Script di integrazione ADS -->
+  <!-- Blocco standard per la conversione dei link fornito da za.gl -->
   <script type="text/javascript">
     var adlinkfly_url = 'http://za.gl/';
     var adlinkfly_api_token = 'e11eee3302d6d9b2e1bf2611a6fac2317c5eaa11';
@@ -255,9 +238,7 @@
     <div class="online-bar" id="onlineStatus">
       Utenti Online: <span id="onlineCount">1</span>
     </div>
-    <div class="logout-container">
-      <button id="logoutBtn">Logout</button>
-    </div>
+    <!-- Container Logout eliminato -->
     <div class="player-container">
       <audio id="audioPlayer" src="https://files.catbox.moe/vmwngs.mp3" autoplay loop muted playsinline></audio>
       <input type="checkbox" id="muteCheckbox">
@@ -298,16 +279,16 @@
         document.removeEventListener('click', removeMute);
       }, { once: true });
       
-      // Gestione checkbox per mute/dismute
+      // Gestione del mute tramite checkbox
       document.getElementById("muteCheckbox").addEventListener("change", function() {
         document.getElementById("audioPlayer").muted = this.checked;
       });
       
-      // Imposta il nome utente o "Guest" se non loggato
+      // Imposta il nome utente (o "Guest" se non loggato)
       const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser") || "Guest";
       document.getElementById("usernameDisplay").textContent = loggedUser;
       
-      // Visualizza la scadenza dell'account
+      // Visualizza la scadenza account
       const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
       if (storageExpires) {
         const expiryDate = new Date(storageExpires);
@@ -317,27 +298,18 @@
         document.getElementById("accountExpiry").textContent = "Non scade mai";
       }
       
-      // Logout: rimuove dati e ricarica la pagina
-      document.getElementById("logoutBtn").addEventListener("click", () => {
-        localStorage.removeItem("loggedInUser");
-        localStorage.removeItem("expires");
-        localStorage.removeItem("feedbackCount");
-        localStorage.removeItem("feedbackDate");
-        sessionStorage.removeItem("loggedInUser");
-        sessionStorage.removeItem("expires");
-        window.location.reload();
-      });
-      
-      // Funzioni per la conversione dei link download
+      // Funzione per eseguire l'encoding Base64, come richiesto da za.gl
       function adlinkfly_base64_encode(e) {
-        return btoa(encodeURIComponent(e).replace(/%([0-9A-F]{2})/g, function(match, p1) {
-          return String.fromCharCode("0x" + p1);
-        }));
+        return btoa(
+          encodeURIComponent(e).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+            return String.fromCharCode(parseInt(p1, 16));
+          })
+        );
       }
+      // Applica la conversione ai link di download
       function applyAdlinkflyConversion() {
         const anchors = document.querySelectorAll("#gamesContainer a.download-btn");
         anchors.forEach(a => {
-          // Se il link non è già convertito, applica la conversione
           if (!a.href.startsWith(adlinkfly_url + "full/")) {
             const originalHref = a.href;
             a.href = adlinkfly_url + "full/?api=" + encodeURIComponent(adlinkfly_api_token) +
@@ -347,7 +319,7 @@
         });
       }
       
-      // Carica i giochi dal file JSON e li visualizza
+      // Carica i giochi da games.json e li visualizza
       const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
       let gamesData = [];
       fetch(gamesUrl)
@@ -356,7 +328,6 @@
           gamesData = data;
           renderGames(gamesData);
           renderFilters(gamesData);
-          // Dopo aver renderizzato, applica la conversione sui link
           applyAdlinkflyConversion();
         })
         .catch(err => console.error("Errore nel caricamento dei giochi:", err));
@@ -400,7 +371,6 @@
           const langs = document.createElement("p");
           langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "");
           
-          // Crea l'elemento <a> per il download
           const downloadLink = document.createElement("a");
           downloadLink.textContent = "Download";
           downloadLink.className = "download-btn";
