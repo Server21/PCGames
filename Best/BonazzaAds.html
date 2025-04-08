@@ -349,14 +349,11 @@
       audioPlayer.muted = this.checked;
     });
     
-    // Verifica se l'utente è loggato
-    const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
-    if (!loggedUser) {
-      window.location.href = "login.html";
-    }
+    // Impostazione del nome utente: se non loggato, mostra "Guest" invece di reindirizzare alla login
+    const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser") || "Guest";
     document.getElementById("usernameDisplay").textContent = loggedUser;
     
-    // Gestione della scadenza account
+    // Gestione della scadenza account: se non è presente, mostra "Non scade mai"
     const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
     if (storageExpires) {
       const expiryDate = new Date(storageExpires);
@@ -372,7 +369,7 @@
       document.getElementById("accountExpiry").textContent = "Non scade mai";
     }
     
-    // Logout: rimuove i dati e reindirizza a login.html
+    // Logout: rimuove i dati utente e ricarica la pagina
     document.getElementById("logoutBtn").addEventListener("click", () => {
       localStorage.removeItem("loggedInUser");
       localStorage.removeItem("expires");
@@ -380,7 +377,8 @@
       localStorage.removeItem("feedbackDate");
       sessionStorage.removeItem("loggedInUser");
       sessionStorage.removeItem("expires");
-      window.location.href = "login.html";
+      // Ricarica la pagina dopo il logout
+      window.location.reload();
     });
     
     // Caricamento dei giochi dal JSON remoto
