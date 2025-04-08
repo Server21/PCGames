@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>PTLANCHER - Bonazza - Ads</title>
+  <title>PTLANCHER - Bonazza</title>
   <link rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <style>
     /* Import dei font moderni */
@@ -27,7 +27,7 @@
     }
     header img {
       width: 100%;
-      height: 200px;       /* Altezza più contenuta */
+      height: 200px; /* Altezza più contenuta */
       object-fit: cover;
       display: block;
       border-bottom: 2px solid #555;
@@ -75,7 +75,7 @@
       align-items: center;
       gap: 5px;
     }
-    /* L'elemento audio parte in autoplay, loop, playsinline ed è inizialmente muted (per rispettare le policy) */
+    /* L'elemento audio parte in autoplay, loop, playsinline ed è inizialmente muted */
     #audioPlayer {
       display: none;
     }
@@ -150,7 +150,7 @@
     }
 
     /* Layout per i giochi:
-       Se ci sono 1 o 2 giochi, il container usa flex per centrare le schede con una max-width maggiore;
+       Se ci sono 1 o 2 giochi, usa flex per centrare le schede;
        altrimenti, utilizza il grid.
     */
     #gamesContainer {
@@ -183,15 +183,18 @@
     .game-info p {
       margin: 5px 0;
     }
+    /* Lo stile per il link download è uguale a quello del bottone */
     .download-btn {
       margin-top: 10px;
       padding: 10px 15px;
       background: #3b3b98;
       color: #fff;
+      text-decoration: none;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       transition: background 0.3s ease;
+      display: inline-block;
     }
     .download-btn:hover { 
       background: #2c2c6c; 
@@ -331,7 +334,7 @@
   <div id="backToTop">&#8679;</div>
   
   <script>
-    // Al primo clic, se la checkbox non è spuntata, rimuoviamo il muted per far partire l'audio
+    // Abilita l'audio al primo click (se non è già disattivato)
     document.addEventListener('click', function removeMute() {
       const audioPlayer = document.getElementById("audioPlayer");
       const muteCheckbox = document.getElementById("muteCheckbox");
@@ -342,29 +345,25 @@
       document.removeEventListener('click', removeMute);
     }, { once: true });
     
-    // Gestione della checkbox per mutare/dismutare l'audio
+    // Gestione checkbox per mutare/dismutare l'audio
     const muteCheckbox = document.getElementById("muteCheckbox");
     muteCheckbox.addEventListener("change", function() {
       const audioPlayer = document.getElementById("audioPlayer");
       audioPlayer.muted = this.checked;
     });
     
-    // Impostazione del nome utente: se non loggato, mostra "Guest" invece di reindirizzare alla login
+    // Imposta "Guest" se l'utente non è loggato
     const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser") || "Guest";
     document.getElementById("usernameDisplay").textContent = loggedUser;
     
-    // Gestione della scadenza account: se non è presente, mostra "Non scade mai"
+    // Gestione della scadenza account
     const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
     if (storageExpires) {
       const expiryDate = new Date(storageExpires);
       const today = new Date();
       const diffTime = expiryDate - today;
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays > 0) {
-        document.getElementById("accountExpiry").textContent = diffDays + " giorni";
-      } else {
-        document.getElementById("accountExpiry").textContent = "Scaduto";
-      }
+      document.getElementById("accountExpiry").textContent = diffDays > 0 ? diffDays + " giorni" : "Scaduto";
     } else {
       document.getElementById("accountExpiry").textContent = "Non scade mai";
     }
@@ -377,11 +376,10 @@
       localStorage.removeItem("feedbackDate");
       sessionStorage.removeItem("loggedInUser");
       sessionStorage.removeItem("expires");
-      // Ricarica la pagina dopo il logout
       window.location.reload();
     });
     
-    // Caricamento dei giochi dal JSON remoto
+    // Carica i giochi dal JSON remoto e li visualizza
     const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
     let gamesData = [];
     fetch(gamesUrl)
@@ -395,7 +393,7 @@
     
     function renderGames(games) {
       const container = document.getElementById("gamesContainer");
-      // Se ci sono 1 o 2 giochi, usiamo un flex container centrato; altrimenti usiamo il grid
+      // Se ci sono 1 o 2 giochi, usa flex per centrare le schede; altrimenti usa grid
       if (games.length <= 2) {
         container.style.display = "flex";
         container.style.justifyContent = "center";
@@ -435,13 +433,13 @@
         const langs = document.createElement("p");
         langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "");
         
-        const downloadBtn = document.createElement("button");
+        // Crea il link download; lo script di adlinkfly intercetterà questo <a>
+        const downloadBtn = document.createElement("a");
         downloadBtn.textContent = "Download";
         downloadBtn.className = "download-btn";
-        downloadBtn.addEventListener("click", () => {
-          // Effettua il redirect nella stessa pagina
-          window.location.href = game.download_link;
-        });
+        downloadBtn.href = game.download_link;
+        // Assicurati che il link si apra nella stessa pagina
+        downloadBtn.target = "_self";
         
         infoDiv.appendChild(title);
         infoDiv.appendChild(desc);
@@ -470,7 +468,6 @@
         btn.addEventListener("click", () => {
           const filtered = gamesData.filter(game => game.category && game.category.includes(tag));
           renderGames(filtered);
-          // Chiude il pannello dei filtri al click
           filtersDiv.style.display = "none";
         });
         filtersDiv.appendChild(btn);
@@ -497,11 +494,7 @@
     // Toggle per il pannello dei filtri
     document.getElementById("filterToggle").addEventListener("click", () => {
       const filtersDiv = document.getElementById("filters");
-      if (filtersDiv.style.display === "none" || filtersDiv.style.display === "") {
-        filtersDiv.style.display = "block";
-      } else {
-        filtersDiv.style.display = "none";
-      }
+      filtersDiv.style.display = (filtersDiv.style.display === "none" || filtersDiv.style.display === "") ? "block" : "none";
     });
     
     // Toggle per la mini chat
@@ -517,7 +510,7 @@
       }
     });
     
-    // Invio feedback tramite Telegram Bot
+    // Invio del feedback tramite Telegram Bot
     document.getElementById("sendFeedback").addEventListener("click", () => {
       const message = document.getElementById("feedbackMessage").value.trim();
       if (message === "") {
@@ -561,11 +554,7 @@
     // Bottone Back To Top: compare dopo 300px di scroll e ritorna in cima alla pagina
     const backToTopBtn = document.getElementById("backToTop");
     window.addEventListener("scroll", function() {
-      if (window.pageYOffset > 300) {
-        backToTopBtn.style.display = "flex";
-      } else {
-        backToTopBtn.style.display = "none";
-      }
+      backToTopBtn.style.display = window.pageYOffset > 300 ? "flex" : "none";
     });
     backToTopBtn.addEventListener("click", function() {
       window.scrollTo({ top: 0, behavior: "smooth" });
