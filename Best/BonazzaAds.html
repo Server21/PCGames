@@ -2,24 +2,21 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>PTLANCHER ADS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PTLANCHER - Bonazza</title>
   <link rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <style>
-    /* Import dei font moderni */
+    /* Import font moderni */
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
-    * { 
-      box-sizing: border-box; 
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
       background: linear-gradient(135deg, #232526, #414345);
       color: #eaeaea;
     }
-
     header {
       position: relative;
       width: 100%;
@@ -27,12 +24,13 @@
     }
     header img {
       width: 100%;
-      height: 200px; /* Altezza più contenuta */
+      height: 200px;
       object-fit: cover;
       display: block;
       border-bottom: 2px solid #555;
     }
-    .status-bar, .online-bar {
+    .status-bar,
+    .online-bar {
       position: absolute;
       top: 20px;
       padding: 10px 15px;
@@ -42,8 +40,6 @@
     }
     .status-bar { left: 20px; }
     .online-bar { right: 20px; }
-
-    /* Logout container posizionato in basso a sinistra nell'header */
     .logout-container {
       position: absolute;
       left: 20px;
@@ -62,11 +58,7 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    .logout-container button:hover { 
-      background: #ff3333; 
-    }
-
-    /* Player container posizionato in basso a destra nell'header */
+    .logout-container button:hover { background: #ff3333; }
     .player-container {
       position: absolute;
       bottom: 20px;
@@ -75,22 +67,9 @@
       align-items: center;
       gap: 5px;
     }
-    /* L'elemento audio parte in autoplay, loop, playsinline ed è inizialmente muted */
-    #audioPlayer {
-      display: none;
-    }
-    /* Checkbox per controllare il mute */
-    #muteCheckbox {
-      cursor: pointer;
-      width: 16px;
-      height: 16px;
-    }
-    .player-container label {
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    /* Barra di ricerca sticky */
+    #audioPlayer { display: none; }
+    #muteCheckbox { cursor: pointer; width: 16px; height: 16px; }
+    .player-container label { font-size: 14px; cursor: pointer; }
     .search-container {
       position: sticky;
       top: 0;
@@ -137,25 +116,14 @@
       transition: background 0.3s ease;
     }
     #filters button:hover { background: #414345; }
-    #filters button.reset {
-      background: #ff6666;
-    }
+    #filters button.reset { background: #ff6666; }
     #filters button.reset:hover { background: #ff3333; }
-
-    /* Container che occupa tutta la larghezza della pagina */
     .container {
       width: 100%;
       padding: 20px;
       margin: 0 auto;
     }
-
-    /* Layout per i giochi:
-       Se ci sono 1 o 2 giochi, usa flex per centrare le schede;
-       altrimenti, utilizza il grid.
-    */
-    #gamesContainer {
-      gap: 20px;
-    }
+    #gamesContainer { gap: 20px; }
     .game-card {
       background: #fff;
       color: #333;
@@ -180,10 +148,8 @@
       margin: 0 0 10px;
       font-family: 'Montserrat', sans-serif;
     }
-    .game-info p {
-      margin: 5px 0;
-    }
-    /* Lo stile per il link download è uguale a quello del bottone */
+    .game-info p { margin: 5px 0; }
+    /* Il link download viene creato come <a> per essere intercettato dallo script ADS */
     .download-btn {
       margin-top: 10px;
       padding: 10px 15px;
@@ -196,11 +162,7 @@
       transition: background 0.3s ease;
       display: inline-block;
     }
-    .download-btn:hover { 
-      background: #2c2c6c; 
-    }
-
-    /* Toggle per la mini chat */
+    .download-btn:hover { background: #2c2c6c; }
     #chatToggle {
       position: fixed;
       bottom: 20px;
@@ -233,10 +195,7 @@
       display: none;
       z-index: 999;
     }
-    .mini-chat h4 {
-      margin-top: 0;
-      font-family: 'Montserrat', sans-serif;
-    }
+    .mini-chat h4 { margin-top: 0; font-family: 'Montserrat', sans-serif; }
     .mini-chat textarea {
       width: 100%;
       height: 80px;
@@ -257,8 +216,6 @@
       transition: background 0.3s ease;
     }
     .mini-chat button:hover { background: #2c2c6c; }
-
-    /* Bottone Back To Top in basso a sinistra */
     #backToTop {
       position: fixed;
       bottom: 20px;
@@ -279,7 +236,7 @@
     #backToTop:hover { background: #2c2c6c; }
   </style>
   
-  <!-- Codice per la pubblicità -->
+  <!-- Script di integrazione ADS -->
   <script type="text/javascript">
     var adlinkfly_url = 'http://za.gl/';
     var adlinkfly_api_token = 'e11eee3302d6d9b2e1bf2611a6fac2317c5eaa11';
@@ -298,11 +255,9 @@
     <div class="online-bar" id="onlineStatus">
       Utenti Online: <span id="onlineCount">1</span>
     </div>
-    <!-- Logout posizionato in basso a sinistra -->
     <div class="logout-container">
       <button id="logoutBtn">Logout</button>
     </div>
-    <!-- Player container posizionato in basso a destra -->
     <div class="player-container">
       <audio id="audioPlayer" src="https://files.catbox.moe/vmwngs.mp3" autoplay loop muted playsinline></audio>
       <input type="checkbox" id="muteCheckbox">
@@ -310,7 +265,6 @@
     </div>
   </header>
   
-  <!-- Barra di ricerca sticky -->
   <div class="search-container">
     <button id="filterToggle">Filtri</button>
     <input type="text" id="searchBar" placeholder="Cerca giochi...">
@@ -321,7 +275,6 @@
     <div id="gamesContainer"></div>
   </div>
   
-  <!-- Toggle per la mini chat -->
   <div id="chatToggle">&#8592;</div>
   <div class="mini-chat" id="miniChat">
     <h4>Feedback Admin</h4>
@@ -330,241 +283,237 @@
     <p style="font-size:12px; margin-top: 5px;">Max 2 messaggi al giorno</p>
   </div>
   
-  <!-- Bottone Back To Top -->
   <div id="backToTop">&#8679;</div>
   
   <script>
-    // Abilita l'audio al primo click (se non è già disattivato)
-    document.addEventListener('click', function removeMute() {
-      const audioPlayer = document.getElementById("audioPlayer");
-      const muteCheckbox = document.getElementById("muteCheckbox");
-      if (audioPlayer && audioPlayer.muted && !muteCheckbox.checked) {
-        audioPlayer.muted = false;
-        audioPlayer.play().catch(error => console.error("Errore nella riproduzione:", error));
-      }
-      document.removeEventListener('click', removeMute);
-    }, { once: true });
-    
-    // Gestione checkbox per mutare/dismutare l'audio
-    const muteCheckbox = document.getElementById("muteCheckbox");
-    muteCheckbox.addEventListener("change", function() {
-      const audioPlayer = document.getElementById("audioPlayer");
-      audioPlayer.muted = this.checked;
-    });
-    
-    // Imposta "Guest" se l'utente non è loggato
-    const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser") || "Guest";
-    document.getElementById("usernameDisplay").textContent = loggedUser;
-    
-    // Gestione della scadenza account
-    const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
-    if (storageExpires) {
-      const expiryDate = new Date(storageExpires);
-      const today = new Date();
-      const diffTime = expiryDate - today;
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      document.getElementById("accountExpiry").textContent = diffDays > 0 ? diffDays + " giorni" : "Scaduto";
-    } else {
-      document.getElementById("accountExpiry").textContent = "Non scade mai";
-    }
-    
-    // Logout: rimuove i dati utente e ricarica la pagina
-    document.getElementById("logoutBtn").addEventListener("click", () => {
-      localStorage.removeItem("loggedInUser");
-      localStorage.removeItem("expires");
-      localStorage.removeItem("feedbackCount");
-      localStorage.removeItem("feedbackDate");
-      sessionStorage.removeItem("loggedInUser");
-      sessionStorage.removeItem("expires");
-      window.location.reload();
-    });
-    
-    // Carica i giochi dal JSON remoto e li visualizza
-    const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
-    let gamesData = [];
-    fetch(gamesUrl)
-      .then(response => response.json())
-      .then(data => {
-        gamesData = data;
-        renderGames(gamesData);
-        renderFilters(gamesData);
-      })
-      .catch(err => console.error("Errore nel caricamento dei giochi:", err));
-    
-    function renderGames(games) {
-      const container = document.getElementById("gamesContainer");
-      // Se ci sono 1 o 2 giochi, usa flex per centrare le schede; altrimenti usa grid
-      if (games.length <= 2) {
-        container.style.display = "flex";
-        container.style.justifyContent = "center";
-        container.style.flexWrap = "wrap";
-        container.style.gap = "20px";
+    document.addEventListener('DOMContentLoaded', () => {
+      // Abilita l'audio al primo click se non disattivato
+      document.addEventListener('click', function removeMute() {
+        const audioPlayer = document.getElementById("audioPlayer");
+        const muteCheckbox = document.getElementById("muteCheckbox");
+        if (audioPlayer && audioPlayer.muted && !muteCheckbox.checked) {
+          audioPlayer.muted = false;
+          audioPlayer.play().catch(err => console.error("Errore nella riproduzione:", err));
+        }
+        document.removeEventListener('click', removeMute);
+      }, { once: true });
+      
+      // Gestione checkbox per mute/dismute
+      document.getElementById("muteCheckbox").addEventListener("change", function() {
+        document.getElementById("audioPlayer").muted = this.checked;
+      });
+      
+      // Imposta il nome utente o "Guest" se non loggato
+      const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser") || "Guest";
+      document.getElementById("usernameDisplay").textContent = loggedUser;
+      
+      // Visualizza la scadenza dell'account
+      const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
+      if (storageExpires) {
+        const expiryDate = new Date(storageExpires);
+        const diffDays = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
+        document.getElementById("accountExpiry").textContent = diffDays > 0 ? diffDays + " giorni" : "Scaduto";
       } else {
-        container.style.display = "grid";
-        container.style.gridTemplateColumns = "repeat(auto-fit, minmax(320px, 1fr))";
-        container.style.gap = "20px";
+        document.getElementById("accountExpiry").textContent = "Non scade mai";
       }
-      container.innerHTML = "";
-      games.forEach(game => {
-        const card = document.createElement("div");
-        card.className = "game-card";
-        if (games.length === 1) { 
-          card.style.maxWidth = "600px"; 
-        } else if (games.length === 2) {
-          card.style.maxWidth = "500px";
-        }
-        
-        const img = document.createElement("img");
-        img.src = game.image_url;
-        img.alt = game.name;
-        
-        const infoDiv = document.createElement("div");
-        infoDiv.className = "game-info";
-        
-        const title = document.createElement("h3");
-        title.textContent = game.name;
-        
-        const desc = document.createElement("p");
-        desc.textContent = game.description;
-        
-        const tags = document.createElement("p");
-        tags.textContent = "Tag: " + (game.category ? game.category.join(", ") : "");
-        
-        const langs = document.createElement("p");
-        langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "");
-        
-        // Crea il link download; lo script di adlinkfly intercetterà questo <a>
-        const downloadBtn = document.createElement("a");
-        downloadBtn.textContent = "Download";
-        downloadBtn.className = "download-btn";
-        downloadBtn.href = game.download_link;
-        // Assicurati che il link si apra nella stessa pagina
-        downloadBtn.target = "_self";
-        
-        infoDiv.appendChild(title);
-        infoDiv.appendChild(desc);
-        infoDiv.appendChild(tags);
-        infoDiv.appendChild(langs);
-        infoDiv.appendChild(downloadBtn);
-        
-        card.appendChild(img);
-        card.appendChild(infoDiv);
-        container.appendChild(card);
+      
+      // Logout: rimuove dati e ricarica la pagina
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("loggedInUser");
+        localStorage.removeItem("expires");
+        localStorage.removeItem("feedbackCount");
+        localStorage.removeItem("feedbackDate");
+        sessionStorage.removeItem("loggedInUser");
+        sessionStorage.removeItem("expires");
+        window.location.reload();
       });
-    }
-    
-    function renderFilters(games) {
-      const filtersDiv = document.getElementById("filters");
-      filtersDiv.innerHTML = "Filtra per Tag: ";
-      let tagsSet = new Set();
-      games.forEach(game => {
-        if (game.category) { 
-          game.category.forEach(tag => tagsSet.add(tag)); 
-        }
-      });
-      tagsSet.forEach(tag => {
-        const btn = document.createElement("button");
-        btn.textContent = tag;
-        btn.addEventListener("click", () => {
-          const filtered = gamesData.filter(game => game.category && game.category.includes(tag));
-          renderGames(filtered);
-          filtersDiv.style.display = "none";
+      
+      // Funzioni per la conversione dei link download
+      function adlinkfly_base64_encode(e) {
+        return btoa(encodeURIComponent(e).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+          return String.fromCharCode("0x" + p1);
+        }));
+      }
+      function applyAdlinkflyConversion() {
+        const anchors = document.querySelectorAll("#gamesContainer a.download-btn");
+        anchors.forEach(a => {
+          // Se il link non è già convertito, applica la conversione
+          if (!a.href.startsWith(adlinkfly_url + "full/")) {
+            const originalHref = a.href;
+            a.href = adlinkfly_url + "full/?api=" + encodeURIComponent(adlinkfly_api_token) +
+              "&url=" + adlinkfly_base64_encode(originalHref) +
+              "&type=" + encodeURIComponent(adlinkfly_advert);
+          }
         });
-        filtersDiv.appendChild(btn);
-      });
-      const resetBtn = document.createElement("button");
-      resetBtn.textContent = "Reset";
-      resetBtn.className = "reset";
-      resetBtn.addEventListener("click", () => {
-        renderGames(gamesData);
-        filtersDiv.style.display = "none";
-      });
-      filtersDiv.appendChild(resetBtn);
-    }
-    
-    document.getElementById("searchBar").addEventListener("input", function() {
-      const query = this.value.toLowerCase();
-      const filtered = gamesData.filter(game => 
-        game.name.toLowerCase().includes(query) ||
-        game.description.toLowerCase().includes(query)
-      );
-      renderGames(filtered);
-    });
-    
-    // Toggle per il pannello dei filtri
-    document.getElementById("filterToggle").addEventListener("click", () => {
-      const filtersDiv = document.getElementById("filters");
-      filtersDiv.style.display = (filtersDiv.style.display === "none" || filtersDiv.style.display === "") ? "block" : "none";
-    });
-    
-    // Toggle per la mini chat
-    const chatToggle = document.getElementById("chatToggle");
-    const miniChat = document.getElementById("miniChat");
-    chatToggle.addEventListener("click", () => {
-      if (miniChat.style.display === "none" || miniChat.style.display === "") {
-        miniChat.style.display = "block";
-        chatToggle.innerHTML = "→";
-      } else {
-        miniChat.style.display = "none";
-        chatToggle.innerHTML = "←";
       }
-    });
-    
-    // Invio del feedback tramite Telegram Bot
-    document.getElementById("sendFeedback").addEventListener("click", () => {
-      const message = document.getElementById("feedbackMessage").value.trim();
-      if (message === "") {
-        alert("Inserisci un messaggio.");
-        return;
-      }
-      let feedbackCount = parseInt(localStorage.getItem("feedbackCount") || "0");
-      const lastFeedbackDate = localStorage.getItem("feedbackDate");
-      const todayStr = new Date().toISOString().slice(0, 10);
-      if (lastFeedbackDate !== todayStr) { feedbackCount = 0; }
-      if (feedbackCount >= 2) {
-        alert("Hai già inviato il massimo di messaggi per oggi.");
-        return;
-      }
-      fetch("https://api.telegram.org/bot7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM/sendMessage", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: "1832064994", text: message })
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.ok) {
-          alert("Feedback inviato!");
-          feedbackCount++;
-          localStorage.setItem("feedbackCount", feedbackCount);
-          localStorage.setItem("feedbackDate", todayStr);
-          document.getElementById("feedbackMessage").value = "";
+      
+      // Carica i giochi dal file JSON e li visualizza
+      const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
+      let gamesData = [];
+      fetch(gamesUrl)
+        .then(response => response.json())
+        .then(data => {
+          gamesData = data;
+          renderGames(gamesData);
+          renderFilters(gamesData);
+          // Dopo aver renderizzato, applica la conversione sui link
+          applyAdlinkflyConversion();
+        })
+        .catch(err => console.error("Errore nel caricamento dei giochi:", err));
+      
+      function renderGames(games) {
+        const container = document.getElementById("gamesContainer");
+        if (games.length <= 2) {
+          container.style.display = "flex";
+          container.style.justifyContent = "center";
+          container.style.flexWrap = "wrap";
+          container.style.gap = "20px";
         } else {
-          alert("Errore nell'invio del feedback!");
+          container.style.display = "grid";
+          container.style.gridTemplateColumns = "repeat(auto-fit, minmax(320px, 1fr))";
+          container.style.gap = "20px";
         }
-      })
-      .catch(err => {
-        console.error("Errore nell'invio del feedback:", err);
-        alert("Errore nell'invio del feedback.");
+        container.innerHTML = "";
+        
+        games.forEach(game => {
+          const card = document.createElement("div");
+          card.className = "game-card";
+          if (games.length === 1) card.style.maxWidth = "600px";
+          else if (games.length === 2) card.style.maxWidth = "500px";
+          
+          const img = document.createElement("img");
+          img.src = game.image_url;
+          img.alt = game.name;
+          
+          const infoDiv = document.createElement("div");
+          infoDiv.className = "game-info";
+          
+          const title = document.createElement("h3");
+          title.textContent = game.name;
+          
+          const desc = document.createElement("p");
+          desc.textContent = game.description;
+          
+          const tags = document.createElement("p");
+          tags.textContent = "Tag: " + (game.category ? game.category.join(", ") : "");
+          
+          const langs = document.createElement("p");
+          langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "");
+          
+          // Crea l'elemento <a> per il download
+          const downloadLink = document.createElement("a");
+          downloadLink.textContent = "Download";
+          downloadLink.className = "download-btn";
+          downloadLink.href = game.download_link;
+          downloadLink.target = "_self";
+          
+          infoDiv.append(title, desc, tags, langs, downloadLink);
+          card.append(img, infoDiv);
+          container.appendChild(card);
+        });
+      }
+      
+      function renderFilters(games) {
+        const filtersDiv = document.getElementById("filters");
+        filtersDiv.innerHTML = "Filtra per Tag: ";
+        const tagsSet = new Set();
+        games.forEach(game => {
+          if (game.category) {
+            game.category.forEach(tag => tagsSet.add(tag));
+          }
+        });
+        tagsSet.forEach(tag => {
+          const btn = document.createElement("button");
+          btn.textContent = tag;
+          btn.addEventListener("click", () => {
+            renderGames(gamesData.filter(game => game.category && game.category.includes(tag)));
+            filtersDiv.style.display = "none";
+            applyAdlinkflyConversion();
+          });
+          filtersDiv.appendChild(btn);
+        });
+        const resetBtn = document.createElement("button");
+        resetBtn.textContent = "Reset";
+        resetBtn.className = "reset";
+        resetBtn.addEventListener("click", () => {
+          renderGames(gamesData);
+          filtersDiv.style.display = "none";
+          applyAdlinkflyConversion();
+        });
+        filtersDiv.appendChild(resetBtn);
+      }
+      
+      document.getElementById("searchBar").addEventListener("input", function() {
+        const query = this.value.toLowerCase();
+        renderGames(gamesData.filter(game => 
+          game.name.toLowerCase().includes(query) ||
+          game.description.toLowerCase().includes(query)
+        ));
+        applyAdlinkflyConversion();
       });
+      
+      document.getElementById("filterToggle").addEventListener("click", () => {
+        const filtersDiv = document.getElementById("filters");
+        filtersDiv.style.display = (!filtersDiv.style.display || filtersDiv.style.display === "none")
+          ? "block" : "none";
+      });
+      
+      const chatToggle = document.getElementById("chatToggle");
+      const miniChat = document.getElementById("miniChat");
+      chatToggle.addEventListener("click", () => {
+        miniChat.style.display = (!miniChat.style.display || miniChat.style.display === "none")
+          ? "block" : "none";
+        chatToggle.innerHTML = (miniChat.style.display === "block") ? "→" : "←";
+      });
+      
+      document.getElementById("sendFeedback").addEventListener("click", () => {
+        const message = document.getElementById("feedbackMessage").value.trim();
+        if (!message) {
+          alert("Inserisci un messaggio.");
+          return;
+        }
+        let feedbackCount = parseInt(localStorage.getItem("feedbackCount") || "0");
+        const lastFeedbackDate = localStorage.getItem("feedbackDate");
+        const todayStr = new Date().toISOString().slice(0, 10);
+        if (lastFeedbackDate !== todayStr) feedbackCount = 0;
+        if (feedbackCount >= 2) {
+          alert("Hai già inviato il massimo di messaggi per oggi.");
+          return;
+        }
+        fetch("https://api.telegram.org/bot7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM/sendMessage", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: "1832064994", text: message })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.ok) {
+            alert("Feedback inviato!");
+            feedbackCount++;
+            localStorage.setItem("feedbackCount", feedbackCount);
+            localStorage.setItem("feedbackDate", todayStr);
+            document.getElementById("feedbackMessage").value = "";
+          } else {
+            alert("Errore nell'invio del feedback!");
+          }
+        })
+        .catch(err => {
+          console.error("Errore nell'invio del feedback:", err);
+          alert("Errore nell'invio del feedback.");
+        });
+      });
+      
+      const backToTopBtn = document.getElementById("backToTop");
+      window.addEventListener("scroll", () => {
+        backToTopBtn.style.display = window.pageYOffset > 300 ? "flex" : "none";
+      });
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      
+      document.addEventListener('contextmenu', e => e.preventDefault());
+      document.getElementById("onlineCount").textContent = "1";
     });
-    
-    // Imposta utenti online a 1 (per scopi di test)
-    document.getElementById("onlineCount").textContent = "1";
-    
-    // Bottone Back To Top: compare dopo 300px di scroll e ritorna in cima alla pagina
-    const backToTopBtn = document.getElementById("backToTop");
-    window.addEventListener("scroll", function() {
-      backToTopBtn.style.display = window.pageYOffset > 300 ? "flex" : "none";
-    });
-    backToTopBtn.addEventListener("click", function() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-    
-    // Blocca il menu contestuale (tasto destro del mouse)
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
-    
   </script>
 </body>
 </html>
