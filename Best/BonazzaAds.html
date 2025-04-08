@@ -40,7 +40,7 @@
     }
     .status-bar { left: 20px; }
     .online-bar { right: 20px; }
-    /* Il container Logout è stato rimosso */
+    /* Pulsante Logout eliminato */
     .player-container {
       position: absolute;
       bottom: 20px;
@@ -131,7 +131,7 @@
       font-family: 'Montserrat', sans-serif;
     }
     .game-info p { margin: 5px 0; }
-    /* Il link download viene creato come <a> per essere intercettato dallo script ADS */
+    /* Il link download viene creato come <a> per essere intercettato dalla conversione di za.gl */
     .download-btn {
       margin-top: 10px;
       padding: 10px 15px;
@@ -217,9 +217,9 @@
     }
     #backToTop:hover { background: #2c2c6c; }
 
-    /* Modal Popup per visualizzare l'iframe */
+    /* Modal Popup per l'iframe */
     .modal {
-      display: none; /* nascosto di default */
+      display: none; /* Nascosto di default */
       position: fixed;
       z-index: 1100;
       left: 0;
@@ -261,14 +261,14 @@
     }
   </style>
   
-  <!-- Blocco standard per la conversione dei link fornito da za.gl -->
+  <!-- Blocco standard per za.gl -->
   <script type="text/javascript">
-    var adlinkfly_url = 'http://za.gl/';
+    var adlinkfly_url = 'https://za.gl/';
     var adlinkfly_api_token = 'e11eee3302d6d9b2e1bf2611a6fac2317c5eaa11';
     var adlinkfly_advert = 2;
     var adlinkfly_exclude_domains = ['example.com', 'yoursite.com'];
   </script>
-  <script src="//za.gl/js/full-page-script.js"></script>
+  <script src="https://za.gl/js/full-page-script.js"></script>
   
 </head>
 <body>
@@ -280,7 +280,7 @@
     <div class="online-bar" id="onlineStatus">
       Utenti Online: <span id="onlineCount">1</span>
     </div>
-    <!-- Container Logout eliminato -->
+    <!-- Pulsante Logout eliminato -->
     <div class="player-container">
       <audio id="audioPlayer" src="https://files.catbox.moe/vmwngs.mp3" autoplay loop muted playsinline></audio>
       <input type="checkbox" id="muteCheckbox">
@@ -318,7 +318,7 @@
   
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Abilita l'audio al primo click se non disattivato
+      // Abilita l'audio al primo click, se non disattivato
       document.addEventListener('click', function removeMute() {
         const audioPlayer = document.getElementById("audioPlayer");
         const muteCheckbox = document.getElementById("muteCheckbox");
@@ -329,12 +329,12 @@
         document.removeEventListener('click', removeMute);
       }, { once: true });
       
-      // Gestione del mute tramite checkbox
+      // Gestione mute tramite checkbox
       document.getElementById("muteCheckbox").addEventListener("change", function() {
         document.getElementById("audioPlayer").muted = this.checked;
       });
       
-      // Imposta il nome utente o "Guest" se non loggato
+      // Imposta il nome utente (o "Guest" se non loggato)
       const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser") || "Guest";
       document.getElementById("usernameDisplay").textContent = loggedUser;
       
@@ -348,7 +348,7 @@
         document.getElementById("accountExpiry").textContent = "Non scade mai";
       }
       
-      // Funzione per l'encoding Base64 per za.gl
+      // Funzione per il Base64 encoding
       function adlinkfly_base64_encode(e) {
         return btoa(
           encodeURIComponent(e).replace(/%([0-9A-F]{2})/g, function(match, p1) {
@@ -356,7 +356,8 @@
           })
         );
       }
-      // Applica la conversione ai link download
+      
+      // Applica la conversione dei link download (se non già convertiti)
       function applyAdlinkflyConversion() {
         const anchors = document.querySelectorAll("#gamesContainer a.download-btn");
         anchors.forEach(a => {
@@ -369,17 +370,29 @@
         });
       }
       
-      // Gestione Modal Popup per i download
+      // Handler per aprire il download in un modal popup con un iframe
+      function attachDownloadPopupHandler() {
+        const downloadAnchors = document.querySelectorAll("#gamesContainer a.download-btn");
+        downloadAnchors.forEach(anchor => {
+          anchor.addEventListener("click", function(e) {
+            e.preventDefault();
+            // Costruisce un URL aggiornato con parametro random per evitare cache
+            let url = this.href;
+            url += (url.indexOf('?') === -1 ? '?' : '&') + 'rand=' + new Date().getTime();
+            downloadIframe.src = url;
+            downloadModal.style.display = "block";
+          });
+        });
+      }
+      
+      // Gestione Modal: chiusura al click sulla "X" o all'esterno
       const downloadModal = document.getElementById("downloadModal");
       const downloadIframe = document.getElementById("downloadIframe");
       const modalClose = document.getElementById("modalClose");
-      
-      // Chiusura Modal
       modalClose.addEventListener("click", () => {
         downloadModal.style.display = "none";
         downloadIframe.src = "";
       });
-      // Chiude il modal anche cliccando fuori dal contenuto
       window.addEventListener("click", (event) => {
         if (event.target === downloadModal) {
           downloadModal.style.display = "none";
@@ -387,7 +400,7 @@
         }
       });
       
-      // Carica i giochi e li visualizza
+      // Carica i giochi dal file JSON e li visualizza
       const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
       let gamesData = [];
       fetch(gamesUrl)
@@ -397,7 +410,6 @@
           renderGames(gamesData);
           renderFilters(gamesData);
           applyAdlinkflyConversion();
-          // Aggiungi il listener per aprire i download nel modal
           attachDownloadPopupHandler();
         })
         .catch(err => console.error("Errore nel caricamento dei giochi:", err));
@@ -441,7 +453,6 @@
           const langs = document.createElement("p");
           langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "");
           
-          // Crea il link download come <a>
           const downloadLink = document.createElement("a");
           downloadLink.textContent = "Download";
           downloadLink.className = "download-btn";
@@ -557,20 +568,6 @@
       
       document.addEventListener('contextmenu', e => e.preventDefault());
       document.getElementById("onlineCount").textContent = "1";
-      
-      // Funzione per aggiungere l'handler al click sui link download
-      function attachDownloadPopupHandler() {
-        const downloadAnchors = document.querySelectorAll("#gamesContainer a.download-btn");
-        downloadAnchors.forEach(anchor => {
-          anchor.addEventListener("click", function(e) {
-            e.preventDefault();
-            // Imposta il src dell'iframe con il link convertito
-            downloadIframe.src = this.href;
-            // Visualizza il modal popup
-            downloadModal.style.display = "block";
-          });
-        });
-      }
     });
   </script>
 </body>
