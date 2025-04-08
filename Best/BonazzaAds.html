@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PTLANCHER ADS</title>
+  <title>PTLANCHER - Bonazza</title>
   <link rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <style>
     /* Import font moderni */
@@ -40,8 +40,7 @@
     }
     .status-bar { left: 20px; }
     .online-bar { right: 20px; }
-    /* Container Logout rimosso */
-
+    /* Il container Logout è stato rimosso */
     .player-container {
       position: absolute;
       bottom: 20px;
@@ -217,6 +216,49 @@
       transition: background 0.3s ease;
     }
     #backToTop:hover { background: #2c2c6c; }
+
+    /* Modal Popup per visualizzare l'iframe */
+    .modal {
+      display: none; /* nascosto di default */
+      position: fixed;
+      z-index: 1100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
+    .modal-content {
+      position: relative;
+      background-color: #fefefe;
+      margin: 5% auto;
+      padding: 0;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+    .modal-content iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 0 0 8px 8px;
+    }
+    .modal-close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .modal-close:hover,
+    .modal-close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
   </style>
   
   <!-- Blocco standard per la conversione dei link fornito da za.gl -->
@@ -266,6 +308,14 @@
   
   <div id="backToTop">&#8679;</div>
   
+  <!-- Modal Popup per l'iframe -->
+  <div id="downloadModal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" id="modalClose">&times;</span>
+      <iframe id="downloadIframe" src=""></iframe>
+    </div>
+  </div>
+  
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Abilita l'audio al primo click se non disattivato
@@ -284,7 +334,7 @@
         document.getElementById("audioPlayer").muted = this.checked;
       });
       
-      // Imposta il nome utente (o "Guest" se non loggato)
+      // Imposta il nome utente o "Guest" se non loggato
       const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser") || "Guest";
       document.getElementById("usernameDisplay").textContent = loggedUser;
       
@@ -298,7 +348,7 @@
         document.getElementById("accountExpiry").textContent = "Non scade mai";
       }
       
-      // Funzione per eseguire l'encoding Base64, come richiesto da za.gl
+      // Funzione per l'encoding Base64 per za.gl
       function adlinkfly_base64_encode(e) {
         return btoa(
           encodeURIComponent(e).replace(/%([0-9A-F]{2})/g, function(match, p1) {
@@ -306,7 +356,7 @@
           })
         );
       }
-      // Applica la conversione ai link di download
+      // Applica la conversione ai link download
       function applyAdlinkflyConversion() {
         const anchors = document.querySelectorAll("#gamesContainer a.download-btn");
         anchors.forEach(a => {
@@ -319,7 +369,25 @@
         });
       }
       
-      // Carica i giochi da games.json e li visualizza
+      // Gestione Modal Popup per i download
+      const downloadModal = document.getElementById("downloadModal");
+      const downloadIframe = document.getElementById("downloadIframe");
+      const modalClose = document.getElementById("modalClose");
+      
+      // Chiusura Modal
+      modalClose.addEventListener("click", () => {
+        downloadModal.style.display = "none";
+        downloadIframe.src = "";
+      });
+      // Chiude il modal anche cliccando fuori dal contenuto
+      window.addEventListener("click", (event) => {
+        if (event.target === downloadModal) {
+          downloadModal.style.display = "none";
+          downloadIframe.src = "";
+        }
+      });
+      
+      // Carica i giochi e li visualizza
       const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
       let gamesData = [];
       fetch(gamesUrl)
@@ -329,6 +397,8 @@
           renderGames(gamesData);
           renderFilters(gamesData);
           applyAdlinkflyConversion();
+          // Aggiungi il listener per aprire i download nel modal
+          attachDownloadPopupHandler();
         })
         .catch(err => console.error("Errore nel caricamento dei giochi:", err));
       
@@ -371,6 +441,7 @@
           const langs = document.createElement("p");
           langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "");
           
+          // Crea il link download come <a>
           const downloadLink = document.createElement("a");
           downloadLink.textContent = "Download";
           downloadLink.className = "download-btn";
@@ -399,6 +470,7 @@
             renderGames(gamesData.filter(game => game.category && game.category.includes(tag)));
             filtersDiv.style.display = "none";
             applyAdlinkflyConversion();
+            attachDownloadPopupHandler();
           });
           filtersDiv.appendChild(btn);
         });
@@ -409,6 +481,7 @@
           renderGames(gamesData);
           filtersDiv.style.display = "none";
           applyAdlinkflyConversion();
+          attachDownloadPopupHandler();
         });
         filtersDiv.appendChild(resetBtn);
       }
@@ -420,6 +493,7 @@
           game.description.toLowerCase().includes(query)
         ));
         applyAdlinkflyConversion();
+        attachDownloadPopupHandler();
       });
       
       document.getElementById("filterToggle").addEventListener("click", () => {
@@ -483,6 +557,20 @@
       
       document.addEventListener('contextmenu', e => e.preventDefault());
       document.getElementById("onlineCount").textContent = "1";
+      
+      // Funzione per aggiungere l'handler al click sui link download
+      function attachDownloadPopupHandler() {
+        const downloadAnchors = document.querySelectorAll("#gamesContainer a.download-btn");
+        downloadAnchors.forEach(anchor => {
+          anchor.addEventListener("click", function(e) {
+            e.preventDefault();
+            // Imposta il src dell'iframe con il link convertito
+            downloadIframe.src = this.href;
+            // Visualizza il modal popup
+            downloadModal.style.display = "block";
+          });
+        });
+      }
     });
   </script>
 </body>
