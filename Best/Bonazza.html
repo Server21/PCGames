@@ -2,15 +2,16 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>PTLANCHER</title>
+  <!-- Titolo aggiornato come da secondo file -->
+  <title>Bonazza - PTLANCHER</title>
   <link rel="icon" href="https://i.postimg.cc/XYfBdscq/icon.png" type="image/png">
   <style>
     /* Import dei font moderni */
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 
-    * { 
-      box-sizing: border-box; 
+    * {
+      box-sizing: border-box;
     }
 
     body {
@@ -62,8 +63,8 @@
       cursor: pointer;
       transition: background 0.3s ease;
     }
-    .logout-container button:hover { 
-      background: #ff3333; 
+    .logout-container button:hover {
+      background: #ff3333;
     }
 
     /* Player container posizionato in basso a destra nell'header */
@@ -100,6 +101,7 @@
       align-items: center;
       padding: 10px;
       margin: 0;
+      border-bottom: 1px solid #555; /* Aggiunto bordo per separazione visiva */
     }
     #filterToggle {
       margin-right: 10px;
@@ -120,11 +122,12 @@
       font-size: 16px;
     }
     #filters {
-      display: none;
-      margin: 0 10px 20px 10px;
-      padding: 10px;
-      background: #3b3b98;
+      display: none; /* Parte nascosto di default */
+      margin: 10px 0 20px 0; /* Modificato margine per allineamento */
+      padding: 15px;
+      background: rgba(59, 59, 152, 0.8); /* Sfondo leggermente trasparente */
       border-radius: 4px;
+      border: 1px solid #2c2c6c; /* Bordo per definizione */
     }
     #filters button {
       margin: 5px;
@@ -149,12 +152,31 @@
       margin: 0 auto;
     }
 
+    /* Messaggio di benvenuto (aggiunto) */
+    .welcome-message {
+        text-align: center;
+        margin-bottom: 25px;
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+    }
+    .welcome-message h1 {
+        margin-top: 0;
+        font-family: 'Montserrat', sans-serif;
+        color: #eee;
+    }
+     .welcome-message p {
+        color: #ccc;
+     }
+
+
     /* Layout per i giochi:
        Se ci sono 1 o 2 giochi, il container usa flex per centrare le schede con una max-width maggiore;
        altrimenti, utilizza il grid.
     */
     #gamesContainer {
       gap: 20px;
+      /* Il display (flex/grid) viene impostato dinamicamente via JS */
     }
     .game-card {
       background: #fff;
@@ -164,10 +186,16 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       display: flex;
       flex-direction: column;
+      transition: transform 0.2s ease-in-out; /* Effetto hover */
+    }
+    .game-card:hover {
+        transform: translateY(-5px); /* Leggero sollevamento su hover */
     }
     .game-card img {
       width: 100%;
+      height: 180px; /* Altezza fissa per le immagini per uniformità */
       object-fit: cover;
+      display: block; /* Rimuove spazio sotto l'immagine */
     }
     .game-info {
       padding: 15px;
@@ -175,16 +203,19 @@
       flex-direction: column;
       align-items: flex-start;
       width: 100%;
+      flex-grow: 1; /* Fa sì che questa sezione occupi lo spazio rimanente */
     }
     .game-info h3 {
       margin: 0 0 10px;
       font-family: 'Montserrat', sans-serif;
     }
     .game-info p {
-      margin: 5px 0;
+      margin: 4px 0; /* Spaziatura ridotta per compattezza */
+      font-size: 0.9em; /* Testo leggermente più piccolo */
+      line-height: 1.4;
     }
     .download-btn {
-      margin-top: 10px;
+      margin-top: auto; /* Spinge il bottone in basso */
       padding: 10px 15px;
       background: #3b3b98;
       color: #fff;
@@ -192,9 +223,10 @@
       border-radius: 4px;
       cursor: pointer;
       transition: background 0.3s ease;
+      align-self: flex-start; /* Allinea a sinistra */
     }
-    .download-btn:hover { 
-      background: #2c2c6c; 
+    .download-btn:hover {
+      background: #2c2c6c;
     }
 
     /* Toggle per la mini chat */
@@ -202,8 +234,8 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 40px;
-      height: 40px;
+      width: 50px; /* Leggermente più grande */
+      height: 50px;
       background: #3b3b98;
       color: #fff;
       border-radius: 50%;
@@ -211,39 +243,49 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      font-size: 24px; /* Icona più grande */
       font-weight: bold;
-      z-index: 1000;
-      transition: background 0.3s ease;
+      z-index: 1001; /* Sopra la chat */
+      transition: background 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
-    #chatToggle:hover { background: #2c2c6c; }
+    #chatToggle:hover {
+        background: #2c2c6c;
+        transform: scale(1.1);
+    }
     .mini-chat {
       position: fixed;
-      bottom: 70px;
+      bottom: 80px; /* Spostato più in alto */
       right: 20px;
-      width: 280px;
-      background: rgba(255, 255, 255, 0.95);
+      width: 300px; /* Leggermente più largo */
+      background: rgba(255, 255, 255, 0.98); /* Sfondo quasi opaco */
       color: #333;
       border: 1px solid #ccc;
       padding: 15px;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      display: none;
-      z-index: 999;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      display: none; /* Parte nascosto */
+      z-index: 1000;
+      flex-direction: column; /* Aggiunto per struttura interna */
     }
     .mini-chat h4 {
       margin-top: 0;
+      margin-bottom: 10px;
       font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      color: #3b3b98;
     }
     .mini-chat textarea {
       width: 100%;
-      height: 80px;
+      height: 100px; /* Più spazio per scrivere */
       resize: none;
-      padding: 8px;
+      padding: 10px;
       border-radius: 4px;
       border: 1px solid #ccc;
+      margin-bottom: 10px;
     }
     .mini-chat button {
-      margin-top: 10px;
+      margin-top: 5px;
       width: 100%;
       padding: 10px;
       background: #3b3b98;
@@ -254,41 +296,45 @@
       transition: background 0.3s ease;
     }
     .mini-chat button:hover { background: #2c2c6c; }
+    .mini-chat p {
+      font-size: 11px;
+      text-align: center;
+      color: #555;
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
 
     /* Bottone Back To Top in basso a sinistra */
     #backToTop {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      width: 40px;
-      height: 40px;
+      width: 50px; /* Coerente con chat toggle */
+      height: 50px;
       background: #3b3b98;
       color: #fff;
       border-radius: 50%;
-      display: none;
+      display: none; /* Parte nascosto */
       align-items: center;
       justify-content: center;
       cursor: pointer;
       font-size: 24px;
       z-index: 1000;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.3s ease;
+       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
-    #backToTop:hover { background: #2c2c6c; }
+    #backToTop:hover {
+        background: #2c2c6c;
+        transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
-  <!-- Controllo di protezione: se non esiste il login, reindirizza a login.html -->
-  <script>
-    // Controlla se l'utente è loggato; se non lo è, reindirizza al login.
-    const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
-    if (!loggedUser) {
-      window.location.href = "https://server21.github.io/PCGames/Best/login.html";
-    }
-  </script>
+  <!-- Header (dal primo file) -->
   <header>
     <img src="https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/Best/banner.png" alt="Banner">
     <div class="status-bar" id="userStatus">
-      Ciao, <span id="usernameDisplay"></span> – Scadenza account: <span id="accountExpiry"></span>
+      Ciao, <span id="usernameDisplay">Utente</span> – Scadenza account: <span id="accountExpiry">N/D</span>
     </div>
     <div class="online-bar" id="onlineStatus">
       Utenti Online: <span id="onlineCount">1</span>
@@ -300,244 +346,451 @@
     <!-- Player container posizionato in basso a destra -->
     <div class="player-container">
       <audio id="audioPlayer" src="https://files.catbox.moe/vmwngs.mp3" autoplay loop muted playsinline></audio>
-      <input type="checkbox" id="muteCheckbox">
+      <input type="checkbox" id="muteCheckbox" checked> <!-- Parte mutato di default -->
       <label for="muteCheckbox">Mute Audio</label>
     </div>
   </header>
-  
-  <!-- Barra di ricerca sticky -->
+
+  <!-- Barra di ricerca sticky (dal primo file) -->
   <div class="search-container">
     <button id="filterToggle">Filtri</button>
-    <input type="text" id="searchBar" placeholder="Cerca giochi...">
+    <input type="text" id="searchBar" placeholder="Cerca giochi per nome o descrizione...">
   </div>
-  
+
+  <!-- Contenitore principale -->
   <div class="container">
-    <div id="filters"></div>
-    <div id="gamesContainer"></div>
+    <!-- Messaggio di benvenuto (dal secondo file, integrato qui) -->
+    <div class="welcome-message">
+        <h1>Benvenuto su Bonazza!</h1>
+        <p>Esplora la nostra collezione di giochi disponibili per il download.</p>
+    </div>
+
+    <!-- Pannello filtri (nascosto di default, controllato da JS) -->
+    <div id="filters">
+        <!-- Contenuto generato da JS -->
+        Filtra per Tag:
+    </div>
+
+    <!-- Contenitore per le schede dei giochi -->
+    <div id="gamesContainer">
+      <!-- Le schede dei giochi verranno caricate qui da JavaScript -->
+      <p>Caricamento giochi...</p> <!-- Messaggio temporaneo -->
+    </div>
   </div>
-  
-  <!-- Toggle per la mini chat -->
-  <div id="chatToggle">&#8592;</div>
+
+  <!-- Toggle per la mini chat (dal primo file) -->
+  <div id="chatToggle">&#9993;</div> <!-- Cambiata icona -->
   <div class="mini-chat" id="miniChat">
     <h4>Feedback Admin</h4>
-    <textarea id="feedbackMessage" placeholder="Scrivi il tuo messaggio..."></textarea>
-    <button id="sendFeedback">Invia</button>
-    <p style="font-size:12px; margin-top: 5px;">Max 2 messaggi al giorno</p>
+    <textarea id="feedbackMessage" placeholder="Scrivi qui il tuo messaggio o suggerimento..."></textarea>
+    <button id="sendFeedback">Invia Feedback</button>
+    <p>Max 2 messaggi al giorno per utente.</p>
   </div>
-  
-  <!-- Bottone Back To Top -->
+
+  <!-- Bottone Back To Top (dal primo file) -->
   <div id="backToTop">&#8679;</div>
-  
+
+  <!-- JavaScript (dal primo file, con piccole correzioni/miglioramenti) -->
   <script>
-    // Imposta il nome utente nella barra di stato
-    const loggedUserDisplay = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
-    if (loggedUserDisplay) {
-      document.getElementById("usernameDisplay").textContent = loggedUserDisplay;
-    }
+    document.addEventListener('DOMContentLoaded', () => { // Esegui JS dopo il caricamento del DOM
 
-    // Gestione della scadenza account (utilizza lo stesso metodo originale)
-    const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
-    if (storageExpires) {
-      const expiryDate = new Date(storageExpires);
-      const today = new Date();
-      const diffTime = expiryDate - today;
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays > 0) {
-        document.getElementById("accountExpiry").textContent = diffDays + " giorni";
-      } else {
-        document.getElementById("accountExpiry").textContent = "Scaduto";
-      }
-    } else {
-      document.getElementById("accountExpiry").textContent = "Non scade mai";
-    }
+        // --- Elementi DOM ---
+        const audioPlayer = document.getElementById("audioPlayer");
+        const muteCheckbox = document.getElementById("muteCheckbox");
+        const usernameDisplay = document.getElementById("usernameDisplay");
+        const accountExpiryDisplay = document.getElementById("accountExpiry");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const gamesContainer = document.getElementById("gamesContainer");
+        const filtersDiv = document.getElementById("filters");
+        const searchBar = document.getElementById("searchBar");
+        const filterToggleBtn = document.getElementById("filterToggle");
+        const chatToggle = document.getElementById("chatToggle");
+        const miniChat = document.getElementById("miniChat");
+        const feedbackMessageInput = document.getElementById("feedbackMessage");
+        const sendFeedbackBtn = document.getElementById("sendFeedback");
+        const backToTopBtn = document.getElementById("backToTop");
+        const onlineCountSpan = document.getElementById("onlineCount");
 
-    // Logout: rimuove i dati e reindirizza a login.html
-    document.getElementById("logoutBtn").addEventListener("click", () => {
-      localStorage.removeItem("loggedInUser");
-      localStorage.removeItem("expires");
-      localStorage.removeItem("feedbackCount");
-      localStorage.removeItem("feedbackDate");
-      sessionStorage.removeItem("loggedInUser");
-      sessionStorage.removeItem("expires");
-      window.location.href = "https://server21.github.io/PCGames/Best/login.html";
-    });
-    
-    // Caricamento dei giochi dal JSON remoto (come nel tuo codice originale)
-    const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
-    let gamesData = [];
-    fetch(gamesUrl)
-      .then(response => response.json())
-      .then(data => {
-        gamesData = data;
-        renderGames(gamesData);
-        renderFilters(gamesData);
-      })
-      .catch(err => console.error("Errore nel caricamento dei giochi:", err));
-    
-    function renderGames(games) {
-      const container = document.getElementById("gamesContainer");
-      if (games.length <= 2) {
-        container.style.display = "flex";
-        container.style.justifyContent = "center";
-        container.style.flexWrap = "wrap";
-        container.style.gap = "20px";
-      } else {
-        container.style.display = "grid";
-        container.style.gridTemplateColumns = "repeat(auto-fit, minmax(320px, 1fr))";
-        container.style.gap = "20px";
-      }
-      container.innerHTML = "";
-      games.forEach(game => {
-        const card = document.createElement("div");
-        card.className = "game-card";
-        if (games.length === 1) {
-          card.style.maxWidth = "600px";
-        } else if (games.length === 2) {
-          card.style.maxWidth = "500px";
+        let gamesData = []; // Array per contenere i dati dei giochi
+        const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
+        // --- URLs e Configurazioni ---
+        const telegramBotToken = "7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM"; // Considera di non esporre il token direttamente nel codice client
+        const telegramChatId = "1832064994";
+        const feedbackLimit = 2; // Messaggi max al giorno
+
+        // --- Funzioni ---
+
+        // Gestione Autenticazione e Sessione
+        function checkLogin() {
+            const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
+            if (!loggedUser) {
+                // Reindirizza alla pagina di login specifica
+                window.location.href = "https://server21.github.io/PCGames/Best/login.html";
+                return null; // Interrompe l'esecuzione se non loggato
+            }
+            usernameDisplay.textContent = loggedUser;
+            updateAccountExpiry();
+            return loggedUser;
         }
-        const img = document.createElement("img");
-        img.src = game.image_url;
-        img.alt = game.name;
-        const infoDiv = document.createElement("div");
-        infoDiv.className = "game-info";
-        const title = document.createElement("h3");
-        title.textContent = game.name;
-        const desc = document.createElement("p");
-        desc.textContent = game.description;
-        const tags = document.createElement("p");
-        tags.textContent = "Tag: " + (game.category ? game.category.join(", ") : "");
-        const langs = document.createElement("p");
-        langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "");
-        const downloadBtn = document.createElement("button");
-        downloadBtn.textContent = "Download";
-        downloadBtn.className = "download-btn";
-        downloadBtn.addEventListener("click", () => {
-          window.location.href = game.download_link;
-        });
-        infoDiv.appendChild(title);
-        infoDiv.appendChild(desc);
-        infoDiv.appendChild(tags);
-        infoDiv.appendChild(langs);
-        infoDiv.appendChild(downloadBtn);
-        card.appendChild(img);
-        card.appendChild(infoDiv);
-        container.appendChild(card);
-      });
-    }
 
-    function renderFilters(games) {
-      const filtersDiv = document.getElementById("filters");
-      filtersDiv.innerHTML = "Filtra per Tag: ";
-      let tagsSet = new Set();
-      games.forEach(game => {
-        if (game.category) {
-          game.category.forEach(tag => tagsSet.add(tag));
+        function updateAccountExpiry() {
+            const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
+            if (storageExpires) {
+                try {
+                    const expiryDate = new Date(storageExpires);
+                    const today = new Date();
+                    // Reset ore/minuti/secondi per confronto solo sulla data
+                    expiryDate.setHours(0, 0, 0, 0);
+                    today.setHours(0, 0, 0, 0);
+
+                    if (isNaN(expiryDate.getTime())) {
+                        accountExpiryDisplay.textContent = "Data non valida";
+                        return;
+                    }
+
+                    const diffTime = expiryDate - today;
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                    if (diffDays > 0) {
+                        accountExpiryDisplay.textContent = `${diffDays} giorn${diffDays === 1 ? 'o' : 'i'} rimanenti`;
+                    } else if (diffDays === 0) {
+                        accountExpiryDisplay.textContent = "Scade oggi";
+                    } else {
+                        accountExpiryDisplay.textContent = "Scaduto";
+                        // Potresti aggiungere logica qui, tipo mostrare un avviso o bloccare funzionalità
+                    }
+                } catch (e) {
+                    console.error("Errore nel parsing della data di scadenza:", e);
+                    accountExpiryDisplay.textContent = "Errore data";
+                }
+            } else {
+                accountExpiryDisplay.textContent = "Nessuna scadenza";
+            }
         }
-      });
-      tagsSet.forEach(tag => {
-        const btn = document.createElement("button");
-        btn.textContent = tag;
-        btn.addEventListener("click", () => {
-          const filtered = gamesData.filter(game => game.category && game.category.includes(tag));
-          renderGames(filtered);
-          filtersDiv.style.display = "none";
-        });
-        filtersDiv.appendChild(btn);
-      });
-      const resetBtn = document.createElement("button");
-      resetBtn.textContent = "Reset";
-      resetBtn.className = "reset";
-      resetBtn.addEventListener("click", () => {
-        renderGames(gamesData);
-        filtersDiv.style.display = "none";
-      });
-      filtersDiv.appendChild(resetBtn);
-    }
 
-    document.getElementById("searchBar").addEventListener("input", function() {
-      const query = this.value.toLowerCase();
-      const filtered = gamesData.filter(game =>
-        game.name.toLowerCase().includes(query) ||
-        game.description.toLowerCase().includes(query)
-      );
-      renderGames(filtered);
-    });
-
-    document.getElementById("filterToggle").addEventListener("click", () => {
-      const filtersDiv = document.getElementById("filters");
-      if (filtersDiv.style.display === "none" || filtersDiv.style.display === "") {
-        filtersDiv.style.display = "block";
-      } else {
-        filtersDiv.style.display = "none";
-      }
-    });
-
-    const chatToggle = document.getElementById("chatToggle");
-    const miniChat = document.getElementById("miniChat");
-    chatToggle.addEventListener("click", () => {
-      if (miniChat.style.display === "none" || miniChat.style.display === "") {
-        miniChat.style.display = "block";
-        chatToggle.innerHTML = "→";
-      } else {
-        miniChat.style.display = "none";
-        chatToggle.innerHTML = "←";
-      }
-    });
-
-    document.getElementById("sendFeedback").addEventListener("click", () => {
-      const message = document.getElementById("feedbackMessage").value.trim();
-      if (message === "") {
-        alert("Inserisci un messaggio.");
-        return;
-      }
-      let feedbackCount = parseInt(localStorage.getItem("feedbackCount") || "0");
-      const lastFeedbackDate = localStorage.getItem("feedbackDate");
-      const todayStr = new Date().toISOString().slice(0, 10);
-      if (lastFeedbackDate !== todayStr) { feedbackCount = 0; }
-      if (feedbackCount >= 2) {
-        alert("Hai già inviato il massimo di messaggi per oggi.");
-        return;
-      }
-      fetch("https://api.telegram.org/bot7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM/sendMessage", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: "1832064994", text: message })
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.ok) {
-          alert("Feedback inviato!");
-          feedbackCount++;
-          localStorage.setItem("feedbackCount", feedbackCount);
-          localStorage.setItem("feedbackDate", todayStr);
-          document.getElementById("feedbackMessage").value = "";
-        } else {
-          alert("Errore nell'invio del feedback!");
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            localStorage.removeItem("expires");
+            localStorage.removeItem("feedbackCount");
+            localStorage.removeItem("feedbackDate");
+            sessionStorage.removeItem("loggedInUser");
+            sessionStorage.removeItem("expires");
+             // Reindirizza alla pagina di login specifica
+            window.location.href = "https://server21.github.io/PCGames/Best/login.html";
         }
-      })
-      .catch(err => {
-        console.error("Errore nell'invio del feedback:", err);
-        alert("Errore nell'invio del feedback.");
-      });
-    });
 
-    document.getElementById("onlineCount").textContent = "1";
+        // Gestione Player Audio
+        function setupAudioPlayer() {
+            // L'audio parte mutato di default (attributo 'muted' nell'HTML)
+            // La checkbox riflette lo stato iniziale
+            muteCheckbox.checked = audioPlayer.muted;
 
-    const backToTopBtn = document.getElementById("backToTop");
-    window.addEventListener("scroll", function() {
-      if (window.pageYOffset > 300) {
-        backToTopBtn.style.display = "flex";
-      } else {
-        backToTopBtn.style.display = "none";
-      }
-    });
-    backToTopBtn.addEventListener("click", function() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+            // Rimuovi il 'muted' al primo click sulla pagina se la checkbox non è spuntata
+            const removeMuteOnClick = () => {
+                if (audioPlayer.muted && !muteCheckbox.checked) {
+                    audioPlayer.muted = false;
+                    audioPlayer.play().catch(error => console.error("Errore nella riproduzione automatica:", error));
+                }
+                document.removeEventListener('click', removeMuteOnClick); // Rimuovi l'handler dopo il primo click
+            };
+            document.addEventListener('click', removeMuteOnClick, { once: true });
 
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
+            // Sincronizza la checkbox con lo stato mute dell'audio player
+            muteCheckbox.addEventListener("change", function() {
+                audioPlayer.muted = this.checked;
+                // Se l'utente smuta e l'audio non stava suonando, prova a farlo partire
+                if (!this.checked && audioPlayer.paused) {
+                     audioPlayer.play().catch(error => console.error("Errore nella riproduzione manuale:", error));
+                }
+            });
+        }
+
+        // Caricamento e Rendering Giochi
+        async function loadGames() {
+            try {
+                const response = await fetch(gamesUrl);
+                if (!response.ok) {
+                    throw new Error(`Errore HTTP: ${response.status}`);
+                }
+                gamesData = await response.json();
+                renderGames(gamesData); // Mostra tutti i giochi inizialmente
+                renderFilters(gamesData); // Genera i bottoni filtro
+            } catch (err) {
+                console.error("Errore nel caricamento dei giochi:", err);
+                gamesContainer.innerHTML = `<p style="color: red; text-align: center;">Errore nel caricamento dei giochi. Riprova più tardi.</p>`;
+            }
+        }
+
+        function renderGames(gamesToRender) {
+            // Imposta lo stile del container in base al numero di giochi
+            if (gamesToRender.length === 0) {
+                 gamesContainer.style.display = "block"; // Usa block per mostrare un messaggio
+                 gamesContainer.innerHTML = `<p style="text-align: center;">Nessun gioco trovato.</p>`;
+                 return;
+            } else if (gamesToRender.length <= 2) {
+                gamesContainer.style.display = "flex";
+                gamesContainer.style.justifyContent = "center";
+                gamesContainer.style.flexWrap = "wrap";
+                gamesContainer.style.gap = "20px";
+            } else {
+                gamesContainer.style.display = "grid";
+                gamesContainer.style.gridTemplateColumns = "repeat(auto-fit, minmax(300px, 1fr))"; // Dimensione minima leggermente ridotta
+                gamesContainer.style.gap = "20px";
+            }
+
+            gamesContainer.innerHTML = ""; // Pulisci il contenitore
+
+            gamesToRender.forEach(game => {
+                const card = document.createElement("div");
+                card.className = "game-card";
+                 // Applica max-width solo se sono 1 o 2 giochi
+                if (gamesToRender.length === 1) {
+                    card.style.maxWidth = "600px";
+                } else if (gamesToRender.length === 2) {
+                    card.style.maxWidth = "450px";
+                } else {
+                    card.style.maxWidth = ""; // Rimuovi max-width per layout grid
+                }
+
+                const img = document.createElement("img");
+                // Gestisci immagini mancanti o errate
+                img.src = game.image_url || 'placeholder.png'; // Usa un placeholder se l'URL manca
+                img.alt = game.name || 'Immagine gioco';
+                img.onerror = () => { img.src = 'placeholder.png'; }; // Fallback se l'immagine non carica
+
+                const infoDiv = document.createElement("div");
+                infoDiv.className = "game-info";
+
+                const title = document.createElement("h3");
+                title.textContent = game.name || "Nome non disponibile";
+
+                const desc = document.createElement("p");
+                desc.textContent = game.description || "Nessuna descrizione.";
+
+                // Mostra tag solo se presenti
+                let tagsText = "N/D";
+                if (game.category && Array.isArray(game.category) && game.category.length > 0) {
+                    tagsText = game.category.join(", ");
+                }
+                const tags = document.createElement("p");
+                tags.innerHTML = `<strong>Tag:</strong> ${tagsText}`; // Usa innerHTML per il bold
+
+                 // Mostra lingue solo se presenti
+                let langsText = "N/D";
+                 if (game.languages && Array.isArray(game.languages) && game.languages.length > 0) {
+                    langsText = game.languages.join(", ");
+                }
+                const langs = document.createElement("p");
+                langs.innerHTML = `<strong>Lingue:</strong> ${langsText}`;
+
+                const downloadBtn = document.createElement("button");
+                downloadBtn.textContent = "Download";
+                downloadBtn.className = "download-btn";
+                if (game.download_link) {
+                    downloadBtn.addEventListener("click", () => {
+                        // Considera l'apertura in una nuova scheda o altre azioni
+                         window.location.href = game.download_link;
+                        // window.open(game.download_link, '_blank'); // Apre in nuova scheda
+                    });
+                } else {
+                    downloadBtn.disabled = true;
+                    downloadBtn.textContent = "Non disponibile";
+                    downloadBtn.style.cursor = "not-allowed";
+                    downloadBtn.style.backgroundColor = "#aaa";
+                }
+
+                infoDiv.appendChild(title);
+                infoDiv.appendChild(desc);
+                infoDiv.appendChild(tags);
+                infoDiv.appendChild(langs);
+                // Download button va per ultimo e si allinea in basso grazie a margin-top: auto;
+                infoDiv.appendChild(downloadBtn);
+
+                card.appendChild(img);
+                card.appendChild(infoDiv);
+                gamesContainer.appendChild(card);
+            });
+        }
+
+        // Filtri e Ricerca
+        function renderFilters(games) {
+            // Pulisci filtri esistenti tranne il testo iniziale
+            filtersDiv.innerHTML = "<strong>Filtra per Tag:</strong> ";
+
+            const tagsSet = new Set();
+            games.forEach(game => {
+                if (game.category && Array.isArray(game.category)) {
+                    game.category.forEach(tag => tagsSet.add(tag.trim())); // Aggiunge tag unici e puliti
+                }
+            });
+
+            // Ordina i tag alfabeticamente per una migliore usabilità
+            const sortedTags = Array.from(tagsSet).sort();
+
+            sortedTags.forEach(tag => {
+                const btn = document.createElement("button");
+                btn.textContent = tag;
+                btn.addEventListener("click", () => {
+                    const filtered = gamesData.filter(game => game.category && game.category.includes(tag));
+                    renderGames(filtered);
+                    filtersDiv.style.display = "none"; // Chiudi i filtri dopo la selezione
+                    searchBar.value = ""; // Resetta la barra di ricerca quando si usa un filtro tag
+                });
+                filtersDiv.appendChild(btn);
+            });
+
+            // Bottone Reset
+            const resetBtn = document.createElement("button");
+            resetBtn.textContent = "Mostra Tutti";
+            resetBtn.className = "reset";
+            resetBtn.addEventListener("click", () => {
+                renderGames(gamesData);
+                filtersDiv.style.display = "none"; // Chiudi i filtri
+                searchBar.value = ""; // Resetta la barra di ricerca
+            });
+            filtersDiv.appendChild(resetBtn);
+        }
+
+        function handleSearch() {
+            const query = searchBar.value.toLowerCase().trim();
+            // Filtra se la query non è vuota, altrimenti mostra tutti i giochi
+            if (query) {
+                 const filtered = gamesData.filter(game =>
+                    (game.name && game.name.toLowerCase().includes(query)) ||
+                    (game.description && game.description.toLowerCase().includes(query))
+                    // Potresti aggiungere la ricerca nei tag o lingue:
+                    // || (game.category && game.category.some(tag => tag.toLowerCase().includes(query)))
+                );
+                renderGames(filtered);
+            } else {
+                 renderGames(gamesData); // Mostra tutti se la ricerca è vuota
+            }
+        }
+
+        // Gestione UI (Toggle Filtri, Chat, BackToTop)
+        function setupUIToggles() {
+            // Toggle Filtri
+            filterToggleBtn.addEventListener("click", () => {
+                const isHidden = filtersDiv.style.display === "none" || filtersDiv.style.display === "";
+                filtersDiv.style.display = isHidden ? "block" : "none";
+            });
+
+            // Toggle Mini Chat
+            chatToggle.addEventListener("click", () => {
+                const isHidden = miniChat.style.display === "none" || miniChat.style.display === "";
+                 miniChat.style.display = isHidden ? "flex" : "none"; // Usa flex per layout interno
+                chatToggle.innerHTML = isHidden ? "&times;" : "&#9993;"; // Cambia icona (croce/busta)
+            });
+
+            // Bottone Back to Top
+            window.addEventListener("scroll", () => {
+                backToTopBtn.style.display = (window.pageYOffset > 300) ? "flex" : "none";
+            });
+            backToTopBtn.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+
+        // Gestione Feedback
+        function setupFeedback() {
+            sendFeedbackBtn.addEventListener("click", () => {
+                const message = feedbackMessageInput.value.trim();
+                if (!message) {
+                    alert("Per favore, inserisci un messaggio prima di inviare.");
+                    return;
+                }
+
+                // Controllo Rate Limiting
+                let feedbackCount = parseInt(localStorage.getItem("feedbackCount") || "0");
+                const lastFeedbackDate = localStorage.getItem("feedbackDate");
+                const todayStr = new Date().toISOString().slice(0, 10); // Formato YYYY-MM-DD
+
+                // Resetta il contatore se è un nuovo giorno
+                if (lastFeedbackDate !== todayStr) {
+                    feedbackCount = 0;
+                    localStorage.setItem("feedbackCount", "0"); // Aggiorna subito il contatore
+                    localStorage.setItem("feedbackDate", todayStr);
+                }
+
+                if (feedbackCount >= feedbackLimit) {
+                    alert(`Hai raggiunto il limite di ${feedbackLimit} messaggi di feedback per oggi.`);
+                    return;
+                }
+
+                // Prepara il messaggio da inviare (includendo l'utente loggato)
+                const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser") || "Utente Sconosciuto";
+                const fullMessage = `Feedback da ${loggedUser}:\n\n${message}`;
+
+                // Disabilita il bottone durante l'invio
+                sendFeedbackBtn.disabled = true;
+                sendFeedbackBtn.textContent = "Invio...";
+
+                // Invio via Telegram API
+                fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ chat_id: telegramChatId, text: fullMessage })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert("Feedback inviato con successo!");
+                        feedbackCount++;
+                        localStorage.setItem("feedbackCount", feedbackCount.toString());
+                        // Non è necessario salvare di nuovo la data, è già aggiornata
+                        feedbackMessageInput.value = ""; // Pulisci il campo
+                        miniChat.style.display = "none"; // Chiudi la chat dopo l'invio
+                        chatToggle.innerHTML = "&#9993;"; // Reimposta icona toggle
+                    } else {
+                        console.error("Errore API Telegram:", data);
+                        alert(`Errore nell'invio del feedback: ${data.description || 'Errore sconosciuto'}`);
+                    }
+                })
+                .catch(err => {
+                    console.error("Errore fetch invio feedback:", err);
+                    alert("Errore di rete durante l'invio del feedback. Riprova.");
+                })
+                .finally(() => {
+                    // Riabilita il bottone in ogni caso
+                    sendFeedbackBtn.disabled = false;
+                    sendFeedbackBtn.textContent = "Invia Feedback";
+                });
+            });
+        }
+
+        // Altre Funzionalità
+        function blockContextMenu() {
+            document.addEventListener('contextmenu', e => e.preventDefault());
+        }
+
+        function setOnlineCountPlaceholder() {
+             // In una vera applicazione, questo valore verrebbe da un server (es. WebSocket)
+            onlineCountSpan.textContent = "1"; // Placeholder
+        }
+
+
+        // --- Inizializzazione ---
+        const currentUser = checkLogin(); // Controlla se l'utente è loggato
+        if (currentUser) { // Procedi solo se l'utente è loggato
+            setupAudioPlayer();
+            loadGames(); // Carica i giochi
+            setupUIToggles();
+            setupFeedback();
+            blockContextMenu();
+            setOnlineCountPlaceholder();
+
+            // Aggiungi listener per la barra di ricerca (con debounce per efficienza)
+            let searchTimeout;
+            searchBar.addEventListener("input", () => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(handleSearch, 300); // Attendi 300ms dopo l'ultimo input
+            });
+
+            // Aggiungi listener per il bottone di logout
+            logoutBtn.addEventListener("click", logout);
+        }
+
+    }); // Fine DOMContentLoaded
   </script>
 </body>
 </html>
