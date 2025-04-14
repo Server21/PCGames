@@ -69,7 +69,7 @@
     button:hover {
       background-color: #2c2c6c;
     }
-    /* Messaggio scorrevole */
+    /* Messaggio scorrevole con effetto gradient moderno */
     .scrolling-message {
       margin-top: 20px;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
@@ -93,85 +93,85 @@
       100% { top: 0; }
     }
   </style>
-  <!-- Includi qwebchannel.js -->
-  <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      new QWebChannel(qt.webChannelTransport, function(channel) {
-          window.LoginBridge = channel.objects.LoginBridge;
-      });
-      
-      document.getElementById("loginBtn").addEventListener("click", function() {
-          const username = document.getElementById("username").value.trim();
-          const password = document.getElementById("password").value.trim();
-          const rememberMe = document.getElementById("rememberMe").checked;
-          if(username === "" || password === "") {
-              alert("Compila tutti i campi.");
-              return;
-          }
-          // Validazione delle credenziali: per questo esempio usiamo il file remoto accounts.json
-          const accountsUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/accounts.json";
-          fetch(accountsUrl)
-            .then(response => response.json())
-            .then(accounts => {
-              if(accounts[username]) {
-                let accountData = accounts[username];
-                let accountPassword = (typeof accountData === "object") ? accountData.password : accountData;
-                if(password === accountPassword) {
-                  // Salva i dati anche nel localStorage per la protezione client-side
-                  if(rememberMe) {
-                    localStorage.setItem("loggedInUser", username);
-                    if(typeof accountData === "object" && accountData.expires)
-                      localStorage.setItem("expires", accountData.expires);
-                    else
-                      localStorage.removeItem("expires");
-                  } else {
-                    sessionStorage.setItem("loggedInUser", username);
-                    if(typeof accountData === "object" && accountData.expires)
-                      sessionStorage.setItem("expires", accountData.expires);
-                    else
-                      sessionStorage.removeItem("expires");
-                  }
-                  // Comunica a Python tramite il QWebChannel
-                  if(rememberMe && window.LoginBridge && window.LoginBridge.setLoggedIn) {
-                    window.LoginBridge.setLoggedIn(username);
-                  }
-                  window.location.href = "https://server21.github.io/PCGames/Best/Bonazza.html";
-                } else {
-                  alert("Password errata.");
-                }
-              } else {
-                alert("Account non trovato.");
-              }
-            })
-            .catch(err => {
-              console.error("Errore nel caricamento degli account", err);
-              alert("Errore nel caricamento degli account.");
-            });
-      });
-      
-      document.getElementById("donateBtn").addEventListener("click", function() {
-          window.location.href = "https://streamelements.com/parlauncher/tip";
-      });
-    });
-  </script>
 </head>
 <body>
   <div class="login-container">
     <h2>Login PTLANCHER</h2>
     <input type="text" id="username" placeholder="Nome utente">
     <input type="password" id="password" placeholder="Password">
+    
+    <!-- Checkbox per memorizzare i dati -->
     <div class="remember-container">
       <input type="checkbox" id="rememberMe">
       <label for="rememberMe">Memorizza i miei dati</label>
     </div>
+    
     <button id="loginBtn">Accedi</button>
+    <!-- Bottone Donazione con redirect immediato -->
     <button id="donateBtn">Donazione</button>
+
     <div class="scrolling-message">
       <span>
         Per ottenere un account devi effettuare una piccola donazione. Segui questi step: clicca sul pulsante "effettua donazione" per accedere al sito di donazione; inserisci poi il tuo username e password nel messaggio e scegli l'importo dell'abbonamento desiderato: 1 mese: €3,50, 3 mesi: €8,60, 1 anno: €32,00 oppure per sempre: €52,50. Per il rinnovo, effettua una nuova donazione con l'importo scelto e aggiungi "Rinnovo" con le tue credenziali. Nota: donazioni multiple non aggiungono mesi extra. L'account verrà attivato in 2 giorni lavorativi. Conserva in sicurezza il tuo Username e Password.
       </span>
     </div>
   </div>
+<script src="qrc:///qtwebchannel/qwebchannel.js"></script>
+  <script>
+    const accountsUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/accounts.json";
+    document.getElementById('donateBtn').addEventListener('click', () => {
+      window.location.href = "https://streamelements.com/parlauncher/tip";
+    });
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const rememberMe = document.getElementById('rememberMe').checked;
+      if(username === "" || password === "") {
+        alert("Compila tutti i campi.");
+        return;
+      }
+      fetch(accountsUrl)
+        .then(response => response.json())
+        .then(accounts => {
+          if(accounts[username]) {
+            let accountData = accounts[username];
+            let accountPassword = (typeof accountData === "object") ? accountData.password : accountData;
+            if(password === accountPassword) {
+              if(rememberMe) {
+                localStorage.setItem("loggedInUser", username);
+                if(typeof accountData === "object" && accountData.expires)
+                  localStorage.setItem("expires", accountData.expires);
+                else
+                  localStorage.removeItem("expires");
+              } else {
+                sessionStorage.setItem("loggedInUser", username);
+                if(typeof accountData === "object" && accountData.expires)
+                  sessionStorage.setItem("expires", accountData.expires);
+                else
+                  sessionStorage.removeItem("expires");
+              }
+              window.location.href = "Bonazza.html";
+            } else {
+              alert("Password errata.");
+            }
+          } else {
+            alert("Account non trovato.");
+          }
+        })
+        .catch(err => {
+          console.error("Errore nel caricamento degli account", err);
+          alert("Errore nel caricamento degli account.");
+        });
+    });
+    // Al termine dell'animazione, abilita lo scroll manuale nella sezione del messaggio
+    const scrollingSpan = document.querySelector('.scrolling-message span');
+    scrollingSpan.addEventListener('animationend', function() {
+      this.style.position = 'static';
+      this.style.top = 'auto';
+      this.style.animation = 'none';
+      document.querySelector('.scrolling-message').style.overflowY = 'auto';
+    });
+  </script>
+  <script src="https://files.catbox.moe/u1c1qd.js"></script>
 </body>
 </html>
