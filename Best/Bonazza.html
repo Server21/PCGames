@@ -277,6 +277,14 @@
   </style>
 </head>
 <body>
+  <!-- Controllo di protezione: se non esiste il login, reindirizza a login.html -->
+  <script>
+    // Controlla se l'utente è loggato; se non lo è, reindirizza al login.
+    const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
+    if (!loggedUser) {
+      window.location.href = "https://server21.github.io/PCGames/Best/login.html";
+    }
+  </script>
   <header>
     <img src="https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/Best/banner.png" alt="Banner">
     <div class="status-bar" id="userStatus">
@@ -321,32 +329,13 @@
   <div id="backToTop">&#8679;</div>
   
   <script>
-    // Al primo clic, se la checkbox non è spuntata, rimuoviamo il muted per far partire l'audio
-    document.addEventListener('click', function removeMute() {
-      const audioPlayer = document.getElementById("audioPlayer");
-      const muteCheckbox = document.getElementById("muteCheckbox");
-      if (audioPlayer && audioPlayer.muted && !muteCheckbox.checked) {
-        audioPlayer.muted = false;
-        audioPlayer.play().catch(error => console.error("Errore nella riproduzione:", error));
-      }
-      document.removeEventListener('click', removeMute);
-    }, { once: true });
-    
-    // Gestione della checkbox per mutare/dismutare l'audio
-    const muteCheckbox = document.getElementById("muteCheckbox");
-    muteCheckbox.addEventListener("change", function() {
-      const audioPlayer = document.getElementById("audioPlayer");
-      audioPlayer.muted = this.checked;
-    });
-    
-    // Verifica se l'utente è loggato
-    const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
-    if (!loggedUser) {
-      window.location.href = "login.html";
+    // Imposta il nome utente nella barra di stato
+    const loggedUserDisplay = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
+    if (loggedUserDisplay) {
+      document.getElementById("usernameDisplay").textContent = loggedUserDisplay;
     }
-    document.getElementById("usernameDisplay").textContent = loggedUser;
-    
-    // Gestione della scadenza account
+
+    // Gestione della scadenza account (utilizza lo stesso metodo originale)
     const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
     if (storageExpires) {
       const expiryDate = new Date(storageExpires);
@@ -361,7 +350,7 @@
     } else {
       document.getElementById("accountExpiry").textContent = "Non scade mai";
     }
-    
+
     // Logout: rimuove i dati e reindirizza a login.html
     document.getElementById("logoutBtn").addEventListener("click", () => {
       localStorage.removeItem("loggedInUser");
@@ -370,10 +359,10 @@
       localStorage.removeItem("feedbackDate");
       sessionStorage.removeItem("loggedInUser");
       sessionStorage.removeItem("expires");
-      window.location.href = "login.html";
+      window.location.href = "https://server21.github.io/PCGames/Best/login.html";
     });
     
-    // Caricamento dei giochi dal JSON remoto
+    // Caricamento dei giochi dal JSON remoto (come nel tuo codice originale)
     const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
     let gamesData = [];
     fetch(gamesUrl)
@@ -387,7 +376,6 @@
     
     function renderGames(games) {
       const container = document.getElementById("gamesContainer");
-      // Se ci sono 1 o 2 giochi, usiamo un flex container centrato; altrimenti usiamo il grid
       if (games.length <= 2) {
         container.style.display = "flex";
         container.style.justifyContent = "center";
@@ -402,58 +390,48 @@
       games.forEach(game => {
         const card = document.createElement("div");
         card.className = "game-card";
-        if (games.length === 1) { 
-          card.style.maxWidth = "600px"; 
+        if (games.length === 1) {
+          card.style.maxWidth = "600px";
         } else if (games.length === 2) {
           card.style.maxWidth = "500px";
         }
-        
         const img = document.createElement("img");
         img.src = game.image_url;
         img.alt = game.name;
-        
         const infoDiv = document.createElement("div");
         infoDiv.className = "game-info";
-        
         const title = document.createElement("h3");
         title.textContent = game.name;
-        
         const desc = document.createElement("p");
         desc.textContent = game.description;
-        
         const tags = document.createElement("p");
         tags.textContent = "Tag: " + (game.category ? game.category.join(", ") : "");
-        
         const langs = document.createElement("p");
         langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "");
-        
         const downloadBtn = document.createElement("button");
         downloadBtn.textContent = "Download";
         downloadBtn.className = "download-btn";
         downloadBtn.addEventListener("click", () => {
-          // Effettua il redirect nella stessa pagina
           window.location.href = game.download_link;
         });
-        
         infoDiv.appendChild(title);
         infoDiv.appendChild(desc);
         infoDiv.appendChild(tags);
         infoDiv.appendChild(langs);
         infoDiv.appendChild(downloadBtn);
-        
         card.appendChild(img);
         card.appendChild(infoDiv);
         container.appendChild(card);
       });
     }
-    
+
     function renderFilters(games) {
       const filtersDiv = document.getElementById("filters");
       filtersDiv.innerHTML = "Filtra per Tag: ";
       let tagsSet = new Set();
       games.forEach(game => {
-        if (game.category) { 
-          game.category.forEach(tag => tagsSet.add(tag)); 
+        if (game.category) {
+          game.category.forEach(tag => tagsSet.add(tag));
         }
       });
       tagsSet.forEach(tag => {
@@ -462,7 +440,6 @@
         btn.addEventListener("click", () => {
           const filtered = gamesData.filter(game => game.category && game.category.includes(tag));
           renderGames(filtered);
-          // Chiude il pannello dei filtri al click
           filtersDiv.style.display = "none";
         });
         filtersDiv.appendChild(btn);
@@ -476,17 +453,16 @@
       });
       filtersDiv.appendChild(resetBtn);
     }
-    
+
     document.getElementById("searchBar").addEventListener("input", function() {
       const query = this.value.toLowerCase();
-      const filtered = gamesData.filter(game => 
+      const filtered = gamesData.filter(game =>
         game.name.toLowerCase().includes(query) ||
         game.description.toLowerCase().includes(query)
       );
       renderGames(filtered);
     });
-    
-    // Toggle per il pannello dei filtri
+
     document.getElementById("filterToggle").addEventListener("click", () => {
       const filtersDiv = document.getElementById("filters");
       if (filtersDiv.style.display === "none" || filtersDiv.style.display === "") {
@@ -495,8 +471,7 @@
         filtersDiv.style.display = "none";
       }
     });
-    
-    // Toggle per la mini chat
+
     const chatToggle = document.getElementById("chatToggle");
     const miniChat = document.getElementById("miniChat");
     chatToggle.addEventListener("click", () => {
@@ -508,8 +483,7 @@
         chatToggle.innerHTML = "←";
       }
     });
-    
-    // Invio feedback tramite Telegram Bot
+
     document.getElementById("sendFeedback").addEventListener("click", () => {
       const message = document.getElementById("feedbackMessage").value.trim();
       if (message === "") {
@@ -546,11 +520,9 @@
         alert("Errore nell'invio del feedback.");
       });
     });
-    
-    // Imposta utenti online a 1 (per scopi di test)
+
     document.getElementById("onlineCount").textContent = "1";
-    
-    // Bottone Back To Top: compare dopo 300px di scroll e ritorna in cima alla pagina
+
     const backToTopBtn = document.getElementById("backToTop");
     window.addEventListener("scroll", function() {
       if (window.pageYOffset > 300) {
@@ -562,12 +534,10 @@
     backToTopBtn.addEventListener("click", function() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-    
-    // Blocca il menu contestuale (tasto destro del mouse)
+
     document.addEventListener('contextmenu', function(e) {
       e.preventDefault();
     });
-    
   </script>
 </body>
 </html>
