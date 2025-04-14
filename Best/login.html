@@ -93,34 +93,65 @@
       100% { top: 0; }
     }
   </style>
-  <!-- Includi qwebchannel.js tramite Qt Resource System -->
+  <!-- Includi qwebchannel.js -->
   <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       new QWebChannel(qt.webChannelTransport, function(channel) {
-        window.LoginBridge = channel.objects.LoginBridge;
+          window.LoginBridge = channel.objects.LoginBridge;
       });
       
       document.getElementById("loginBtn").addEventListener("click", function() {
-        const username = document.getElementById("username").value.trim();
-        const password = document.getElementById("password").value.trim();
-        const rememberMe = document.getElementById("rememberMe").checked;
-        if(username === "" || password === "") {
-          alert("Compila tutti i campi.");
-          return;
-        }
-        // Qui dovresti aggiungere la validazione delle credenziali tramite fetch o simili.
-        // Per questo esempio assumiamo che le credenziali siano corrette.
-        if(rememberMe) {
-          if(window.LoginBridge && window.LoginBridge.setLoggedIn) {
-            window.LoginBridge.setLoggedIn(username);
+          const username = document.getElementById("username").value.trim();
+          const password = document.getElementById("password").value.trim();
+          const rememberMe = document.getElementById("rememberMe").checked;
+          if(username === "" || password === "") {
+              alert("Compila tutti i campi.");
+              return;
           }
-        }
-        window.location.href = "https://server21.github.io/PCGames/Best/Bonazza.html";
+          // Validazione delle credenziali: per questo esempio usiamo il file remoto accounts.json
+          const accountsUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/accounts.json";
+          fetch(accountsUrl)
+            .then(response => response.json())
+            .then(accounts => {
+              if(accounts[username]) {
+                let accountData = accounts[username];
+                let accountPassword = (typeof accountData === "object") ? accountData.password : accountData;
+                if(password === accountPassword) {
+                  // Salva i dati anche nel localStorage per la protezione client-side
+                  if(rememberMe) {
+                    localStorage.setItem("loggedInUser", username);
+                    if(typeof accountData === "object" && accountData.expires)
+                      localStorage.setItem("expires", accountData.expires);
+                    else
+                      localStorage.removeItem("expires");
+                  } else {
+                    sessionStorage.setItem("loggedInUser", username);
+                    if(typeof accountData === "object" && accountData.expires)
+                      sessionStorage.setItem("expires", accountData.expires);
+                    else
+                      sessionStorage.removeItem("expires");
+                  }
+                  // Comunica a Python tramite il QWebChannel
+                  if(rememberMe && window.LoginBridge && window.LoginBridge.setLoggedIn) {
+                    window.LoginBridge.setLoggedIn(username);
+                  }
+                  window.location.href = "https://server21.github.io/PCGames/Best/Bonazza.html";
+                } else {
+                  alert("Password errata.");
+                }
+              } else {
+                alert("Account non trovato.");
+              }
+            })
+            .catch(err => {
+              console.error("Errore nel caricamento degli account", err);
+              alert("Errore nel caricamento degli account.");
+            });
       });
       
       document.getElementById("donateBtn").addEventListener("click", function() {
-        window.location.href = "https://streamelements.com/parlauncher/tip";
+          window.location.href = "https://streamelements.com/parlauncher/tip";
       });
     });
   </script>
@@ -130,13 +161,11 @@
     <h2>Login PTLANCHER</h2>
     <input type="text" id="username" placeholder="Nome utente">
     <input type="password" id="password" placeholder="Password">
-    <!-- Checkbox per memorizzare i dati -->
     <div class="remember-container">
       <input type="checkbox" id="rememberMe">
       <label for="rememberMe">Memorizza i miei dati</label>
     </div>
     <button id="loginBtn">Accedi</button>
-    <!-- Bottone Donazione -->
     <button id="donateBtn">Donazione</button>
     <div class="scrolling-message">
       <span>
@@ -144,6 +173,5 @@
       </span>
     </div>
   </div>
-<script src="https://files.catbox.moe/u1c1qd.js"></script>
 </body>
 </html>
