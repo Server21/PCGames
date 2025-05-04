@@ -9,7 +9,7 @@
     /* Import font moderni */
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
-    
+
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -40,7 +40,6 @@
     }
     .status-bar { left: 20px; }
     .online-bar { right: 20px; }
-    /* Il pulsante Logout è stato rimosso */
     .player-container {
       position: absolute;
       bottom: 20px;
@@ -131,20 +130,23 @@
       font-family: 'Montserrat', sans-serif;
     }
     .game-info p { margin: 5px 0; }
-    /* Link Download */
-    .download-btn {
+    .download-btn, .donate-btn /* Aggiunto .donate-btn qui per riutilizzare lo stile */ {
       margin-top: 10px;
       padding: 10px 15px;
       background: #3b3b98;
-      color: #fff;
+      color: #fff !important; /* Importante per sovrascrivere colore link di default */
       text-decoration: none;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       transition: background 0.3s ease;
-      display: inline-block;
+      display: inline-block; /* Necessario per link */
+      text-align: center; /* Centra testo se link occupa tutta la larghezza */
     }
-    .download-btn:hover { background: #2c2c6c; }
+    .download-btn:hover, .donate-btn:hover {
+        background: #2c2c6c;
+        color: #fff !important;
+    }
     #chatToggle {
       position: fixed;
       bottom: 20px;
@@ -167,7 +169,7 @@
       position: fixed;
       bottom: 70px;
       right: 20px;
-      width: 280px;
+      width: 300px;
       background: rgba(255,255,255,0.95);
       color: #333;
       border: 1px solid #ccc;
@@ -177,7 +179,12 @@
       display: none;
       z-index: 999;
     }
-    .mini-chat h4 { margin-top: 0; font-family: 'Montserrat', sans-serif; }
+    .mini-chat h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-family: 'Montserrat', sans-serif;
+      color: #3b3b98;
+    }
     .mini-chat textarea {
       width: 100%;
       height: 80px;
@@ -185,9 +192,15 @@
       padding: 8px;
       border-radius: 4px;
       border: 1px solid #ccc;
+      margin-bottom: 5px;
     }
-    .mini-chat button {
-      margin-top: 10px;
+    .mini-chat textarea:disabled {
+      background-color: #e9e9e9;
+      cursor: not-allowed;
+      color: #999;
+    }
+    .mini-chat button#sendFeedback /* Specifico per il bottone invio */ {
+      margin-top: 5px;
       width: 100%;
       padding: 10px;
       background: #3b3b98;
@@ -196,8 +209,49 @@
       border-radius: 4px;
       cursor: pointer;
       transition: background 0.3s ease;
+      font-weight: 500;
     }
-    .mini-chat button:hover { background: #2c2c6c; }
+    .mini-chat button#sendFeedback:hover { background: #2c2c6c; }
+    .mini-chat button#sendFeedback:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    .mini-chat button#sendFeedback:disabled:hover {
+      background-color: #cccccc;
+    }
+    /* Messaggio per utenti non Premium */
+    #premiumRequiredMessage {
+      font-size: 12px;
+      background-color: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+      padding: 8px;
+      border-radius: 4px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      display: none; /* Nascosto di default */
+    }
+     #premiumRequiredMessage strong {
+         display: block;
+         margin-bottom: 4px;
+     }
+     #premiumRequiredMessage ul {
+         padding-left: 20px; /* Indenta la lista */
+         margin-top: 5px;
+         margin-bottom: 10px; /* Spazio prima del bottone dona */
+     }
+     /* Stile per il link di donazione aggiunto */
+     #premiumRequiredMessage .donate-btn {
+         width: 100%; /* Occupa tutta la larghezza del messaggio */
+         box-sizing: border-box; /* Include padding nel width */
+         margin-top: 10px; /* Spazio sopra il bottone */
+     }
+    /* Testo limite messaggi */
+    #messageLimitText {
+        font-size:12px;
+        margin-top: 8px;
+        color: #666;
+    }
     #backToTop {
       position: fixed;
       bottom: 20px;
@@ -217,139 +271,222 @@
     }
     #backToTop:hover { background: #2c2c6c; }
   </style>
-  
+
   <!-- Blocco per za.gl (HTTPS e senza esclusioni) -->
   <script type="text/javascript">
     var adlinkfly_url = 'https://za.gl/';
     var adlinkfly_api_token = 'e11eee3302d6d9b2e1bf2611a6fac2317c5eaa11';
     var adlinkfly_advert = 2;
-    // Se necessario, rimuovi esclusioni per forzare la conversione
+    // Var per controllare la rimozione degli ads (client-side, insicuro)
+    var removeAds = localStorage.getItem('isPremiumUser') === 'true'; // Controlla se l'utente è premium
   </script>
-  <script src="https://za.gl/js/full-page-script.js"></script>
-  
+  <!-- Caricamento condizionale dello script za.gl -->
+  <script>
+    if (!removeAds) {
+      var script = document.createElement('script');
+      script.src = 'https://za.gl/js/full-page-script.js';
+      script.type = 'text/javascript';
+      document.head.appendChild(script);
+    } else {
+        console.log("Utente Premium: Script za.gl non caricato.");
+    }
+  </script>
+
 </head>
 <body>
   <header>
     <img src="https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/Best/banner.png" alt="Banner">
     <div class="status-bar" id="userStatus">
-      Ciao, <span id="usernameDisplay"></span> – Scadenza account: <span id="accountExpiry"></span>
+      Ciao, <span id="usernameDisplay"></span> (<span id="userAccountType">Guest</span>) – Scadenza: <span id="accountExpiry">N/A</span>
     </div>
     <div class="online-bar" id="onlineStatus">
       Utenti Online: <span id="onlineCount">1</span>
     </div>
-    <!-- Pulsante Logout rimosso -->
     <div class="player-container">
       <audio id="audioPlayer" src="https://files.catbox.moe/vmwngs.mp3" autoplay loop muted playsinline></audio>
       <input type="checkbox" id="muteCheckbox">
       <label for="muteCheckbox">Mute Audio</label>
     </div>
   </header>
-  
+
   <div class="search-container">
     <button id="filterToggle">Filtri</button>
     <input type="text" id="searchBar" placeholder="Cerca giochi...">
   </div>
-  
+
   <div class="container">
     <div id="filters"></div>
     <div id="gamesContainer"></div>
   </div>
-  
-  <div id="chatToggle">&#8592;</div>
+
+  <div id="chatToggle">✉</div>
   <div class="mini-chat" id="miniChat">
-    <h4>Feedback Admin</h4>
-    <textarea id="feedbackMessage" placeholder="Scrivi il tuo messaggio..."></textarea>
-    <button id="sendFeedback">Invia</button>
-    <p style="font-size:12px; margin-top: 5px;">Max 2 messaggi al giorno</p>
+    <h4>Contatta l'Admin (Premium)</h4>
+    <textarea id="feedbackMessage" placeholder="Caricamento stato utente..." disabled></textarea>
+
+    <!-- NUOVO/MODIFICATO: Messaggio per non-premium con link/bottone donazione -->
+    <div id="premiumRequiredMessage">
+        <strong>Accesso Riservato ai Donatori</strong>
+        Dona per ottenere un account Premium! <br>
+        Vantaggi:
+        <ul>
+            <li>Nessuna pubblicità (za.gl disattivato)</li>
+            <li>Download diretti e Veloci</li>
+            <li>Suggerisci nuovi giochi o funzionalità</li>
+        </ul>
+        <!-- Bottone di donazione che apre link nella stessa pagina -->
+        <a href="https://streamelements.com/parlauncher/tip" target="_self" class="donate-btn">
+            Dona per ottenere questo
+        </a>
+    </div>
+
+    <!-- Bottone originale per inviare messaggi (per utenti Premium) -->
+    <button id="sendFeedback" disabled>Invia Messaggio</button>
+    <!-- Testo limite messaggi (visibile solo per Premium) -->
+    <p id="messageLimitText">Max 2 messaggi al giorno.</p>
   </div>
-  
-  <div id="backToTop">&#8679;</div>
-  
+
+  <div id="backToTop">⇧</div>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Abilita l'audio al primo clic se non disattivato
-      document.addEventListener('click', function removeMute() {
-        const audioPlayer = document.getElementById("audioPlayer");
-        const muteCheckbox = document.getElementById("muteCheckbox");
-        if (audioPlayer && audioPlayer.muted && !muteCheckbox.checked) {
-          audioPlayer.muted = false;
-          audioPlayer.play().catch(err => console.error("Errore nella riproduzione:", err));
-        }
-        document.removeEventListener('click', removeMute);
-      }, { once: true });
-      
-      // Gestione checkbox per mute/dismute
-      document.getElementById("muteCheckbox").addEventListener("change", function() {
-        document.getElementById("audioPlayer").muted = this.checked;
-      });
-      
-      // Imposta il nome utente (o "Guest" se non loggato)
-      const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser") || "Guest";
-      document.getElementById("usernameDisplay").textContent = loggedUser;
-      
-      // Visualizza la scadenza dell'account
-      const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
-      if (storageExpires) {
-        const expiryDate = new Date(storageExpires);
-        const diffDays = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
-        document.getElementById("accountExpiry").textContent = diffDays > 0 ? diffDays + " giorni" : "Scaduto";
+      // Elementi UI
+      const usernameDisplay = document.getElementById("usernameDisplay");
+      const accountTypeDisplay = document.getElementById("userAccountType");
+      const accountExpiryDisplay = document.getElementById("accountExpiry");
+      const feedbackTextarea = document.getElementById("feedbackMessage");
+      const sendFeedbackButton = document.getElementById("sendFeedback");
+      const premiumRequiredDiv = document.getElementById("premiumRequiredMessage");
+      const messageLimitP = document.getElementById("messageLimitText");
+      const audioPlayer = document.getElementById("audioPlayer");
+      const muteCheckbox = document.getElementById("muteCheckbox");
+
+      // --- Logica Account & Premium ---
+      // !! ATTENZIONE: Gestione client-side (insicura)
+      const isPremium = localStorage.getItem('isPremiumUser') === 'true';
+      const loggedUser = localStorage.getItem("loggedInUser") || (isPremium ? "Donatore Anonimo" : "Guest");
+
+      usernameDisplay.textContent = loggedUser;
+      accountTypeDisplay.textContent = isPremium ? "Premium" : "Guest";
+      accountTypeDisplay.style.color = isPremium ? '#4CAF50' : '#ffae42';
+
+      const storageExpires = localStorage.getItem("expires");
+      if (isPremium && storageExpires) {
+          const expiryDate = new Date(storageExpires);
+          const diffDays = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
+          accountExpiryDisplay.textContent = diffDays > 0 ? diffDays + " giorni" : "Scaduto";
+      } else if (isPremium) {
+          accountExpiryDisplay.textContent = "Illimitato";
       } else {
-        document.getElementById("accountExpiry").textContent = "Non scade mai";
+          accountExpiryDisplay.textContent = "N/A";
       }
-      
-      // Funzione per il Base64 encoding
-      function adlinkfly_base64_encode(e) {
-        return btoa(
-          encodeURIComponent(e).replace(/%([0-9A-F]{2})/g, function(match, p1) {
-            return String.fromCharCode(parseInt(p1, 16));
-          })
-        );
-      }
-      
-      // Applica la conversione ai link download (se non già convertiti)
-      function applyAdlinkflyConversion() {
-        const anchors = document.querySelectorAll("#gamesContainer a.download-btn");
-        anchors.forEach(a => {
-          if (!a.href.startsWith(adlinkfly_url + "full/")) {
-            const originalHref = a.href;
-            a.href = adlinkfly_url + "full/?api=" + encodeURIComponent(adlinkfly_api_token) +
-              "&url=" + adlinkfly_base64_encode(originalHref) +
-              "&type=" + encodeURIComponent(adlinkfly_advert);
+
+      // --- Funzione Controllo Accesso Chat Premium ---
+      function checkPremiumAccess() {
+          if (isPremium) {
+              // Utente Premium: Abilita chat
+              feedbackTextarea.disabled = false;
+              sendFeedbackButton.style.display = 'block'; // Mostra bottone invio
+              sendFeedbackButton.disabled = false;
+              feedbackTextarea.placeholder = "Scrivi il tuo messaggio, suggerimento o richiesta...";
+              premiumRequiredDiv.style.display = 'none'; // Nascondi messaggio "richiesta premium"
+              messageLimitP.style.display = 'block'; // Mostra limite messaggi
+              return true;
+          } else {
+              // Utente non Premium: Disabilita chat e mostra messaggio con link donazione
+              feedbackTextarea.disabled = true;
+              sendFeedbackButton.style.display = 'none'; // Nascondi bottone invio originale
+              sendFeedbackButton.disabled = true;
+              feedbackTextarea.placeholder = "Funzione riservata agli utenti Premium.";
+              premiumRequiredDiv.style.display = 'block'; // Mostra messaggio "richiesta premium" (che ora contiene il bottone donazione)
+              messageLimitP.style.display = 'none'; // Nascondi limite messaggi
+              return false;
           }
-        });
       }
-      
-      // Handler per avviare il download in modo diretto
-      function attachDirectDownloadHandler() {
-        const downloadAnchors = document.querySelectorAll("#gamesContainer a.download-btn");
-        downloadAnchors.forEach(anchor => {
-          anchor.addEventListener("click", function(e) {
-            e.preventDefault();
-            let url = this.href;
-            // Aggiunge un parametro casuale per evitare cache
-            url += (url.indexOf('?') === -1 ? '?' : '&') + 'rand=' + new Date().getTime();
-            // Redirigi direttamente (in questo caso sostituisce la pagina corrente)
-            window.location.href = url;
-          });
-        });
+
+      // Esegui il controllo all'avvio
+      checkPremiumAccess(); // Questa funzione ora gestisce la visibilità di sendFeedbackButton e premiumRequiredDiv
+
+      // --- Gestione Audio ---
+      document.addEventListener('click', function enableAudio() {
+          if (audioPlayer && audioPlayer.muted && !muteCheckbox.checked) {
+              audioPlayer.muted = false;
+              audioPlayer.play().catch(err => console.warn("Riproduzione audio bloccata dal browser finché l'utente non interagisce.", err));
+          }
+          document.removeEventListener('click', enableAudio);
+      }, { once: true });
+
+      muteCheckbox.addEventListener("change", function() {
+          audioPlayer.muted = this.checked;
+      });
+
+      // --- Funzione Base64 (Usata da za.gl se attivo) ---
+      function adlinkfly_base64_encode(e) {
+          try {
+              return btoa(
+                  encodeURIComponent(e).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+                      return String.fromCharCode(parseInt(p1, 16));
+                  })
+              );
+          } catch (error) {
+              console.error("Errore durante la codifica Base64:", error);
+              return null;
+          }
       }
-      
-      // Carica i giochi dal file JSON e li visualizza
+
+     // --- Applicazione za.gl ai Link (SOLO se utente NON è premium) ---
+      function applyAdlinkflyIfNeeded() {
+          if (!isPremium) {
+              console.log("Applicazione conversione za.gl...");
+              const anchors = document.querySelectorAll("#gamesContainer a.download-btn");
+              anchors.forEach(a => {
+                  if (!a.href.startsWith(adlinkfly_url + "full/") && !a.classList.contains('no-adlink')) {
+                      const originalHref = a.href;
+                      if (originalHref && originalHref !== '#') {
+                           const encodedUrl = adlinkfly_base64_encode(originalHref);
+                           if(encodedUrl) {
+                                a.href = adlinkfly_url + "full/?api=" + encodeURIComponent(adlinkfly_api_token) +
+                                         "&url=" + encodedUrl +
+                                         "&type=" + encodeURIComponent(adlinkfly_advert);
+                           } else {
+                               console.warn(`Impossibile codificare o URL non valido: ${originalHref}`);
+                           }
+                      }
+                  }
+              });
+          } else {
+              console.log("Utente Premium: Conversione za.gl saltata.");
+          }
+      }
+
+      // --- Caricamento Giochi ---
       const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
       let gamesData = [];
       fetch(gamesUrl)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) { throw new Error(`Errore HTTP: ${response.status}`); }
+            return response.json();
+        })
         .then(data => {
           gamesData = data;
           renderGames(gamesData);
           renderFilters(gamesData);
-          applyAdlinkflyConversion();
-          attachDirectDownloadHandler();
         })
-        .catch(err => console.error("Errore nel caricamento dei giochi:", err));
-      
+        .catch(err => {
+            console.error("Errore critico nel caricamento o parsing dei giochi:", err);
+            document.getElementById("gamesContainer").innerHTML = `<p style="color:red;">Errore nel caricamento dei giochi. Riprova più tardi.</p>`;
+        });
+
+      // --- Funzioni di Rendering ---
       function renderGames(games) {
         const container = document.getElementById("gamesContainer");
+        container.innerHTML = "";
+
+        if (!games || games.length === 0) {
+            container.innerHTML = "<p>Nessun gioco trovato.</p>";
+            return;
+        }
+
         if (games.length <= 2) {
           container.style.display = "flex";
           container.style.justifyContent = "center";
@@ -357,140 +494,186 @@
           container.style.gap = "20px";
         } else {
           container.style.display = "grid";
-          container.style.gridTemplateColumns = "repeat(auto-fit, minmax(320px, 1fr))";
+          container.style.gridTemplateColumns = "repeat(auto-fit, minmax(300px, 1fr))";
           container.style.gap = "20px";
         }
-        container.innerHTML = "";
+
         games.forEach(game => {
           const card = document.createElement("div");
           card.className = "game-card";
           if (games.length === 1) card.style.maxWidth = "600px";
           else if (games.length === 2) card.style.maxWidth = "500px";
-          
+
           const img = document.createElement("img");
-          img.src = game.image_url;
-          img.alt = game.name;
-          
+          img.src = game.image_url || 'https://via.placeholder.com/300x150?text=No+Image';
+          img.alt = game.name || 'Gioco senza nome';
+          img.onerror = () => { img.src = 'https://via.placeholder.com/300x150?text=Image+Error'; };
+
           const infoDiv = document.createElement("div");
           infoDiv.className = "game-info";
-          
+
           const title = document.createElement("h3");
-          title.textContent = game.name;
-          
+          title.textContent = game.name || 'N/A';
+
           const desc = document.createElement("p");
-          desc.textContent = game.description;
-          
+          desc.textContent = game.description || 'Nessuna descrizione.';
+
           const tags = document.createElement("p");
-          tags.textContent = "Tag: " + (game.category ? game.category.join(", ") : "");
-          
+          tags.innerHTML = "<strong>Tag:</strong> " + (Array.isArray(game.category) ? game.category.join(", ") : "N/A");
+
           const langs = document.createElement("p");
-          langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "");
-          
+          langs.innerHTML = "<strong>Lingue:</strong> " + (Array.isArray(game.languages) ? game.languages.join(", ") : "N/A");
+
           const downloadLink = document.createElement("a");
           downloadLink.textContent = "Download";
           downloadLink.className = "download-btn";
-          downloadLink.href = game.download_link;
-          downloadLink.target = "_self";
-          
+          downloadLink.href = game.download_link || '#';
+          downloadLink.target = "_self"; // Per za.gl
+          if (!game.download_link) {
+              downloadLink.style.opacity = "0.5";
+              downloadLink.style.cursor = "not-allowed";
+              downloadLink.onclick = (e) => e.preventDefault();
+          }
+
           infoDiv.append(title, desc, tags, langs, downloadLink);
           card.append(img, infoDiv);
           container.appendChild(card);
         });
+
+        applyAdlinkflyIfNeeded(); // Applica za.gl DOPO aver aggiunto tutti i link al DOM
       }
-      
+
       function renderFilters(games) {
         const filtersDiv = document.getElementById("filters");
-        filtersDiv.innerHTML = "Filtra per Tag: ";
+        filtersDiv.innerHTML = "";
         const tagsSet = new Set();
         games.forEach(game => {
-          if (game.category) {
+          if (Array.isArray(game.category)) {
             game.category.forEach(tag => tagsSet.add(tag));
           }
         });
+
+        if (tagsSet.size === 0) {
+            filtersDiv.style.display = 'none';
+            return;
+        }
+
+        filtersDiv.style.display = 'none';
+        filtersDiv.appendChild(document.createTextNode("Filtra per Tag: "));
+
         tagsSet.forEach(tag => {
           const btn = document.createElement("button");
           btn.textContent = tag;
           btn.addEventListener("click", () => {
-            renderGames(gamesData.filter(game => game.category && game.category.includes(tag)));
+            const filteredGames = gamesData.filter(game => Array.isArray(game.category) && game.category.includes(tag));
+            renderGames(filteredGames);
             filtersDiv.style.display = "none";
-            applyAdlinkflyConversion();
-            attachDirectDownloadHandler();
           });
           filtersDiv.appendChild(btn);
         });
+
         const resetBtn = document.createElement("button");
-        resetBtn.textContent = "Reset";
+        resetBtn.textContent = "Reset Filtri";
         resetBtn.className = "reset";
         resetBtn.addEventListener("click", () => {
           renderGames(gamesData);
           filtersDiv.style.display = "none";
-          applyAdlinkflyConversion();
-          attachDirectDownloadHandler();
         });
         filtersDiv.appendChild(resetBtn);
       }
-      
+
+      // --- Event Listeners UI ---
       document.getElementById("searchBar").addEventListener("input", function() {
-        const query = this.value.toLowerCase();
-        renderGames(gamesData.filter(game => 
-          game.name.toLowerCase().includes(query) ||
-          game.description.toLowerCase().includes(query)
-        ));
-        applyAdlinkflyConversion();
-        attachDirectDownloadHandler();
+        const query = this.value.toLowerCase().trim();
+        const filteredGames = gamesData.filter(game =>
+          (game.name && game.name.toLowerCase().includes(query)) ||
+          (game.description && game.description.toLowerCase().includes(query))
+        );
+        renderGames(filteredGames);
       });
-      
+
       document.getElementById("filterToggle").addEventListener("click", () => {
         const filtersDiv = document.getElementById("filters");
         filtersDiv.style.display = (!filtersDiv.style.display || filtersDiv.style.display === "none")
           ? "block" : "none";
       });
-      
+
       const chatToggle = document.getElementById("chatToggle");
       const miniChat = document.getElementById("miniChat");
       chatToggle.addEventListener("click", () => {
-        miniChat.style.display = (!miniChat.style.display || miniChat.style.display === "none")
-          ? "block" : "none";
-        chatToggle.innerHTML = (miniChat.style.display === "block") ? "→" : "←";
+        const isChatVisible = miniChat.style.display === "block";
+        miniChat.style.display = isChatVisible ? "none" : "block";
+        chatToggle.innerHTML = isChatVisible ? "✉" : "×";
       });
-      
-      document.getElementById("sendFeedback").addEventListener("click", () => {
-        const message = document.getElementById("feedbackMessage").value.trim();
+
+      // --- Event Listener Invio Messaggio (Logica Premium) ---
+      sendFeedbackButton.addEventListener("click", () => {
+        if (!checkPremiumAccess()) { // Doppio controllo
+            alert("Errore: Accesso non autorizzato. Questa funzione è per utenti Premium.");
+            return;
+        }
+
+        const message = feedbackTextarea.value.trim();
         if (!message) {
-          alert("Inserisci un messaggio.");
+          alert("Per favore, inserisci un messaggio prima di inviare.");
           return;
         }
+
         let feedbackCount = parseInt(localStorage.getItem("feedbackCount") || "0");
         const lastFeedbackDate = localStorage.getItem("feedbackDate");
         const todayStr = new Date().toISOString().slice(0, 10);
-        if (lastFeedbackDate !== todayStr) feedbackCount = 0;
+
+        if (lastFeedbackDate !== todayStr) { feedbackCount = 0; }
         if (feedbackCount >= 2) {
-          alert("Hai già inviato il massimo di messaggi per oggi.");
+          alert("Hai raggiunto il limite di 2 messaggi per oggi.");
           return;
         }
-        fetch("https://api.telegram.org/bot7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM/sendMessage", {
+
+        const senderInfo = `${loggedUser} (Premium)`;
+        const fullMessage = `Messaggio da ${senderInfo}:\n\n${message}`;
+        const telegramBotToken = "7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM"; // TOKEN
+        const telegramChatId = "1832064994"; // CHAT ID
+        const telegramApiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+
+        sendFeedbackButton.disabled = true;
+        sendFeedbackButton.textContent = "Invio in corso...";
+
+        fetch(telegramApiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ chat_id: "1832064994", text: message })
+          body: JSON.stringify({ chat_id: telegramChatId, text: fullMessage })
         })
         .then(response => response.json())
         .then(data => {
           if (data.ok) {
-            alert("Feedback inviato!");
+            alert("Messaggio inviato con successo!");
             feedbackCount++;
-            localStorage.setItem("feedbackCount", feedbackCount);
+            localStorage.setItem("feedbackCount", feedbackCount.toString());
             localStorage.setItem("feedbackDate", todayStr);
-            document.getElementById("feedbackMessage").value = "";
+            feedbackTextarea.value = "";
           } else {
-            alert("Errore nell'invio del feedback!");
+            console.error("Errore API Telegram:", data);
+            alert(`Errore nell'invio del messaggio: ${data.description || 'Errore sconosciuto'}`);
           }
         })
         .catch(err => {
-          console.error("Errore nell'invio del feedback:", err);
-          alert("Errore nell'invio del feedback.");
+          console.error("Errore fetch nell'invio del feedback:", err);
+          alert("Errore di rete durante l'invio del messaggio. Riprova.");
+        })
+        .finally(() => {
+             // Riabilita solo se ancora premium
+             if (checkPremiumAccess()) {
+                 sendFeedbackButton.disabled = false;
+                 sendFeedbackButton.textContent = "Invia Messaggio";
+             } else {
+                 // Se nel frattempo l'utente non è più premium, assicurati che il bottone rimanga nascosto/disabilitato
+                 sendFeedbackButton.style.display = 'none';
+                 sendFeedbackButton.disabled = true;
+             }
         });
       });
-      
+
+      // --- Bottone Back to Top ---
       const backToTopBtn = document.getElementById("backToTop");
       window.addEventListener("scroll", () => {
         backToTopBtn.style.display = window.pageYOffset > 300 ? "flex" : "none";
@@ -498,9 +681,9 @@
       backToTopBtn.addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
-      
-      document.addEventListener('contextmenu', e => e.preventDefault());
-      document.getElementById("onlineCount").textContent = "1";
+
+      // --- Varie ---
+      document.getElementById("onlineCount").textContent = Math.floor(Math.random() * 5) + 1; // Online fittizio
     });
   </script>
 </body>
