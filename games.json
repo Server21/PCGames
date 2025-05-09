@@ -970,5 +970,14 @@
     "description": "In un mondo iperconnesso come il nostro, la città di Chicago è controllata dal ctOS, la rete informatica più avanzata d'America.",
     "category": ["Mondo aperto", "Giocatore singolo", "Azione", "Hacker"],
     "languages": ["Italiano", "Inglese"]
+  },
+            {
+    "name": "Refind Self",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2514960/header_italian.jpg",
+    "download_link": "https://files.catbox.moe/dbrnib.zip",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "I videogiochi possono rivelare la personalità di chi li gioca, non trovi? Potrai giocare a una semplice avventura basata sull'esplorazione, e il gioco valuterà la tua personalità in base alle scelte fatte.",
+    "category": ["Storie interattive", "Protagonista femminile", "Avventura"],
+    "languages": ["Italiano", "Inglese"]
   }
 ]
