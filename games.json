@@ -979,5 +979,14 @@
     "description": "I videogiochi possono rivelare la personalità di chi li gioca, non trovi? Potrai giocare a una semplice avventura basata sull'esplorazione, e il gioco valuterà la tua personalità in base alle scelte fatte.",
     "category": ["Storie interattive", "Protagonista femminile", "Avventura"],
     "languages": ["Italiano", "Inglese"]
+  },
+            {
+    "name": "The Precinct",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/490110/header.jpg",
+    "download_link": "https://pd.cybar.xyz/HPtfaMRo",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Averno City, 1983. Le gang dominano le strade e tuo padre giace nella sua tomba, senza poter riposare. Ripulisci la città, scopri la verità e affronta inseguimenti elettrizzanti in ambienti distruttibili in questo gioco di polizia sandbox dai toni noir e al neon.",
+    "category": ["Sparatutto dall'alto", "Detective", "Crimine"],
+    "languages": ["Italiano", "Inglese"]
   }
 ]
