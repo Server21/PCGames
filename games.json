@@ -969,7 +969,7 @@
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "In un mondo iperconnesso come il nostro, la città di Chicago è controllata dal ctOS, la rete informatica più avanzata d'America.",
     "category": ["Mondo aperto", "Giocatore singolo", "Azione", "Hacker"],
-    "languages": ["Italiano", "Inglese"]
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
             {
     "name": "Refind Self",
@@ -987,6 +987,6 @@
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "Averno City, 1983. Le gang dominano le strade e tuo padre giace nella sua tomba, senza poter riposare. Ripulisci la città, scopri la verità e affronta inseguimenti elettrizzanti in ambienti distruttibili in questo gioco di polizia sandbox dai toni noir e al neon.",
     "category": ["Sparatutto dall'alto", "Detective", "Crimine"],
-    "languages": ["Italiano", "Inglese"]
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
