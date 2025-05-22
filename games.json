@@ -988,5 +988,14 @@
     "description": "Averno City, 1983. Le gang dominano le strade e tuo padre giace nella sua tomba, senza poter riposare. Ripulisci la città, scopri la verità e affronta inseguimenti elettrizzanti in ambienti distruttibili in questo gioco di polizia sandbox dai toni noir e al neon.",
     "category": ["Sparatutto dall'alto", "Detective", "Crimine"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+            {
+    "name": "The Last Remnant™",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/23310/header.jpg",
+    "download_link": "https://pd.cybar.xyz/WoPXd4KS",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Mihra, Yama, Qsiti, Sovani... Queste quattro razze convivono in un unico mondo. Un mondo costellato di Remnant, misteriosi artefatti di un tempo lontano. Chi ha creato i Remnant? Quando? E, soprattutto, per quale motivo? Con tutte queste domande irrisolte, i Remnant vennero sfruttati a beneficio della civiltà.",
+    "category": ["GDR", "Giocatore singolo", "A turni"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   }
 ]
