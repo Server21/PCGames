@@ -998,16 +998,17 @@
     "category": ["GDR", "Giocatore singolo", "A turni"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
-{
-  "name": "PES 21 TO 25",
-  "image_url": "https://lh3.googleusercontent.com/blogger_img_proxy/AEn0k_tCgUGhHK3htRWJIcgR-m1msq6TS2KhoUWj355XRqDuHXGAdUXU9RDnMK1wSDjhQZa0hQez71lJ-2jxzAM_-iIMr4GCNSqp_r86MTeRDDn5Hic6=w400-h225-n-k-no-nu",
-  "download_links": [
-    { "part": "Parte 1", "url": "https://…/file1.zip" },
-    { "part": "Parte 2", "url": "https://…/file2.zip" },
-    { "part": "Parte 3", "url": "https://…/file3.zip" }
-  "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
-  "description": "Questa mod porta il pes 21 a 25 con tutto aggiornato gioco già preinstallato: scarica le varie parti per effettuare l'estrazione",
-  "category": ["Sport", "Calcio", "SportRealistici"],
-  "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
-}
+  {
+    "name": "PES 21 TO 25 ™",
+    "image_url": "https://lh3.googleusercontent.com/…",
+    "download_links": [
+      { "part": "Parte 1", "url": "https://…/file1.zip" },
+      { "part": "Parte 2", "url": "https://…/file2.zip" },
+      { "part": "Parte 3", "url": "https://…/file3.zip" }
+    ],
+    "video_url": "https://video.cloudflare.steamstatic.com/…webm",
+    "description": "Questa mod porta il pes 21 a 25 con tutto aggiornato gioco già preinstallato: scarica le varie parti per effettuare l'estrazione",
+    "category": ["Sport", "Calcio", "SportRealistici"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  }             
 ]
