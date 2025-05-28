@@ -43,7 +43,6 @@
     .status-bar { left: 20px; }
     .online-bar { right: 20px; }
 
-    /* Logout container posizionato in basso a sinistra nell'header */
     .logout-container {
       position: absolute;
       left: 20px;
@@ -66,7 +65,6 @@
       background: #ff3333; 
     }
 
-    /* Player container posizionato in basso a destra nell'header */
     .player-container {
       position: absolute;
       bottom: 20px;
@@ -75,11 +73,9 @@
       align-items: center;
       gap: 5px;
     }
-    /* L'elemento audio parte in autoplay, loop, playsinline ed è inizialmente muted (per rispettare le policy) */
     #audioPlayer {
       display: none;
     }
-    /* Checkbox per controllare il mute */
     #muteCheckbox {
       cursor: pointer;
       width: 16px;
@@ -90,7 +86,6 @@
       cursor: pointer;
     }
 
-    /* Barra di ricerca sticky */
     .search-container {
       position: sticky;
       top: 0;
@@ -142,17 +137,12 @@
     }
     #filters button.reset:hover { background: #ff3333; }
 
-    /* Container che occupa tutta la larghezza della pagina */
     .container {
       width: 100%;
       padding: 20px;
       margin: 0 auto;
     }
 
-    /* Layout per i giochi:
-       Se ci sono 1 o 2 giochi, il container usa flex per centrare le schede con una max-width maggiore;
-       altrimenti, utilizza il grid.
-    */
     #gamesContainer {
       gap: 20px;
     }
@@ -183,8 +173,9 @@
     .game-info p {
       margin: 5px 0;
     }
+
+    /* Stile base per i pulsanti di download */
     .download-btn {
-      margin-top: 10px;
       padding: 10px 15px;
       background: #3b3b98;
       color: #fff;
@@ -192,12 +183,29 @@
       border-radius: 4px;
       cursor: pointer;
       transition: background 0.3s ease;
+      width: auto; 
+      align-self: flex-start; 
+      margin-top: 10px; /* Margine superiore per il pulsante singolo o per il contenitore dei pulsanti multipli */
     }
     .download-btn:hover { 
       background: #2c2c6c; 
     }
 
-    /* Toggle per la mini chat */
+    /* NUOVO: Contenitore per i pulsanti di download delle parti */
+    .download-parts-container {
+      display: flex;
+      flex-wrap: wrap; /* Permette ai pulsanti di andare a capo */
+      gap: 8px;        /* Spazio uniforme tra i pulsanti (orizzontale e verticale) */
+      margin-top: 10px;/* Spazio sopra l'intero gruppo di pulsanti, rimpiazza il margin-top del primo .download-btn */
+    }
+
+    /* NUOVO: Rimuove il margin-top individuale per i pulsanti dentro il parts-container,
+       poiché la spaziatura è gestita dal 'gap' del container e dal margin-top del container stesso. */
+    .download-parts-container .download-btn {
+      margin-top: 0; 
+    }
+
+
     #chatToggle {
       position: fixed;
       bottom: 20px;
@@ -255,7 +263,6 @@
     }
     .mini-chat button:hover { background: #2c2c6c; }
 
-    /* Bottone Back To Top in basso a sinistra */
     #backToTop {
       position: fixed;
       bottom: 20px;
@@ -285,11 +292,9 @@
     <div class="online-bar" id="onlineStatus">
       Utenti Online: <span id="onlineCount">1</span>
     </div>
-    <!-- Logout posizionato in basso a sinistra -->
     <div class="logout-container">
       <button id="logoutBtn">Logout</button>
     </div>
-    <!-- Player container posizionato in basso a destra -->
     <div class="player-container">
       <audio id="audioPlayer" src="https://files.catbox.moe/vmwngs.mp3" autoplay loop muted playsinline></audio>
       <input type="checkbox" id="muteCheckbox">
@@ -297,7 +302,6 @@
     </div>
   </header>
   
-  <!-- Barra di ricerca sticky -->
   <div class="search-container">
     <button id="filterToggle">Filtri</button>
     <input type="text" id="searchBar" placeholder="Cerca giochi...">
@@ -308,8 +312,7 @@
     <div id="gamesContainer"></div>
   </div>
   
-  <!-- Toggle per la mini chat -->
-  <div id="chatToggle">&#8592;</div>
+  <div id="chatToggle">←</div>
   <div class="mini-chat" id="miniChat">
     <h4>Feedback Admin</h4>
     <textarea id="feedbackMessage" placeholder="Scrivi il tuo messaggio..."></textarea>
@@ -317,11 +320,9 @@
     <p style="font-size:12px; margin-top: 5px;">Max 2 messaggi al giorno</p>
   </div>
   
-  <!-- Bottone Back To Top -->
-  <div id="backToTop">&#8679;</div>
+  <div id="backToTop">⇧</div>
   
   <script>
-    // Al primo clic, se la checkbox non è spuntata, rimuoviamo il muted per far partire l'audio
     document.addEventListener('click', function removeMute() {
       const audioPlayer = document.getElementById("audioPlayer");
       const muteCheckbox = document.getElementById("muteCheckbox");
@@ -332,48 +333,35 @@
       document.removeEventListener('click', removeMute);
     }, { once: true });
     
-    // Gestione della checkbox per mutare/dismutare l'audio
     const muteCheckbox = document.getElementById("muteCheckbox");
     muteCheckbox.addEventListener("change", function() {
       const audioPlayer = document.getElementById("audioPlayer");
       audioPlayer.muted = this.checked;
     });
     
-    // Verifica se l'utente è loggato
     const loggedUser = localStorage.getItem("loggedInUser") || sessionStorage.getItem("loggedInUser");
     if (!loggedUser) {
       window.location.href = "login.html";
     }
     document.getElementById("usernameDisplay").textContent = loggedUser;
     
-    // Gestione della scadenza account
     const storageExpires = localStorage.getItem("expires") || sessionStorage.getItem("expires");
     if (storageExpires) {
       const expiryDate = new Date(storageExpires);
       const today = new Date();
       const diffTime = expiryDate - today;
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays > 0) {
-        document.getElementById("accountExpiry").textContent = diffDays + " giorni";
-      } else {
-        document.getElementById("accountExpiry").textContent = "Scaduto";
-      }
+      document.getElementById("accountExpiry").textContent = diffDays > 0 ? diffDays + " giorni" : "Scaduto";
     } else {
       document.getElementById("accountExpiry").textContent = "Non scade mai";
     }
     
-    // Logout: rimuove i dati e reindirizza a login.html
     document.getElementById("logoutBtn").addEventListener("click", () => {
-      localStorage.removeItem("loggedInUser");
-      localStorage.removeItem("expires");
-      localStorage.removeItem("feedbackCount");
-      localStorage.removeItem("feedbackDate");
-      sessionStorage.removeItem("loggedInUser");
-      sessionStorage.removeItem("expires");
+      localStorage.clear(); // Più semplice per pulire tutto
+      sessionStorage.clear();
       window.location.href = "login.html";
     });
     
-    // Caricamento dei giochi dal JSON remoto
     const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
     let gamesData = [];
     fetch(gamesUrl)
@@ -387,26 +375,21 @@
     
     function renderGames(games) {
       const container = document.getElementById("gamesContainer");
-      // Se ci sono 1 o 2 giochi, usiamo un flex container centrato; altrimenti usiamo il grid
       if (games.length <= 2) {
         container.style.display = "flex";
         container.style.justifyContent = "center";
         container.style.flexWrap = "wrap";
-        container.style.gap = "20px";
       } else {
         container.style.display = "grid";
         container.style.gridTemplateColumns = "repeat(auto-fit, minmax(320px, 1fr))";
-        container.style.gap = "20px";
       }
-      container.innerHTML = "";
+      container.innerHTML = ""; 
+
       games.forEach(game => {
         const card = document.createElement("div");
         card.className = "game-card";
-        if (games.length === 1) { 
-          card.style.maxWidth = "600px"; 
-        } else if (games.length === 2) {
-          card.style.maxWidth = "500px";
-        }
+        if (games.length === 1) card.style.maxWidth = "600px"; 
+        else if (games.length === 2) card.style.maxWidth = "500px";
         
         const img = document.createElement("img");
         img.src = game.image_url;
@@ -422,24 +405,49 @@
         desc.textContent = game.description;
         
         const tags = document.createElement("p");
-        tags.textContent = "Tag: " + (game.category ? game.category.join(", ") : "");
+        tags.textContent = "Tag: " + (game.category ? game.category.join(", ") : "N/A");
         
         const langs = document.createElement("p");
-        langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "");
-        
-        const downloadBtn = document.createElement("button");
-        downloadBtn.textContent = "Download";
-        downloadBtn.className = "download-btn";
-        downloadBtn.addEventListener("click", () => {
-          // Effettua il redirect nella stessa pagina
-          window.location.href = game.download_link;
-        });
+        langs.textContent = "Lingue: " + (game.languages ? game.languages.join(", ") : "N/A");
         
         infoDiv.appendChild(title);
         infoDiv.appendChild(desc);
         infoDiv.appendChild(tags);
         infoDiv.appendChild(langs);
-        infoDiv.appendChild(downloadBtn);
+        
+        // --- MODIFIED SECTION FOR DOWNLOAD BUTTONS ---
+        if (game.download_link) {
+            const downloadBtn = document.createElement("button");
+            downloadBtn.textContent = "Download";
+            downloadBtn.className = "download-btn";
+            downloadBtn.addEventListener("click", () => {
+                window.location.href = game.download_link;
+            });
+            infoDiv.appendChild(downloadBtn);
+        } else if (game.download_links && Array.isArray(game.download_links) && game.download_links.length > 0) {
+            // Creare un contenitore per i pulsanti di download delle parti
+            const downloadPartsContainer = document.createElement('div');
+            downloadPartsContainer.className = 'download-parts-container'; // Applica la classe CSS per il flex wrapping
+
+            game.download_links.forEach(linkObj => {
+                const partDownloadBtn = document.createElement("button");
+                partDownloadBtn.textContent = linkObj.part; 
+                partDownloadBtn.className = "download-btn"; // I pulsanti usano la classe .download-btn
+                                                            // Il CSS gestirà il margin-top specifico per .download-parts-container .download-btn
+                partDownloadBtn.addEventListener("click", () => {
+                    window.location.href = linkObj.url;
+                });
+                downloadPartsContainer.appendChild(partDownloadBtn);
+            });
+            infoDiv.appendChild(downloadPartsContainer); // Aggiungi il container dei pulsanti a infoDiv
+        } else {
+            const noDownloadLinkMsg = document.createElement("p");
+            noDownloadLinkMsg.textContent = "Link di download non disponibile.";
+            noDownloadLinkMsg.style.marginTop = "10px";
+            noDownloadLinkMsg.style.fontStyle = "italic";
+            infoDiv.appendChild(noDownloadLinkMsg);
+        }
+        // --- END OF MODIFIED SECTION ---
         
         card.appendChild(img);
         card.appendChild(infoDiv);
@@ -450,23 +458,19 @@
     function renderFilters(games) {
       const filtersDiv = document.getElementById("filters");
       filtersDiv.innerHTML = "Filtra per Tag: ";
-      let tagsSet = new Set();
-      games.forEach(game => {
-        if (game.category) { 
-          game.category.forEach(tag => tagsSet.add(tag)); 
-        }
-      });
+      const tagsSet = new Set(games.flatMap(game => game.category || []));
+      
       tagsSet.forEach(tag => {
         const btn = document.createElement("button");
         btn.textContent = tag;
         btn.addEventListener("click", () => {
           const filtered = gamesData.filter(game => game.category && game.category.includes(tag));
           renderGames(filtered);
-          // Chiude il pannello dei filtri al click
           filtersDiv.style.display = "none";
         });
         filtersDiv.appendChild(btn);
       });
+
       const resetBtn = document.createElement("button");
       resetBtn.textContent = "Reset";
       resetBtn.className = "reset";
@@ -481,60 +485,50 @@
       const query = this.value.toLowerCase();
       const filtered = gamesData.filter(game => 
         game.name.toLowerCase().includes(query) ||
-        game.description.toLowerCase().includes(query)
+        (game.description && game.description.toLowerCase().includes(query))
       );
       renderGames(filtered);
     });
     
-    // Toggle per il pannello dei filtri
     document.getElementById("filterToggle").addEventListener("click", () => {
       const filtersDiv = document.getElementById("filters");
-      if (filtersDiv.style.display === "none" || filtersDiv.style.display === "") {
-        filtersDiv.style.display = "block";
-      } else {
-        filtersDiv.style.display = "none";
-      }
+      filtersDiv.style.display = (filtersDiv.style.display === "none" || filtersDiv.style.display === "") ? "block" : "none";
     });
     
-    // Toggle per la mini chat
     const chatToggle = document.getElementById("chatToggle");
     const miniChat = document.getElementById("miniChat");
     chatToggle.addEventListener("click", () => {
-      if (miniChat.style.display === "none" || miniChat.style.display === "") {
-        miniChat.style.display = "block";
-        chatToggle.innerHTML = "→";
-      } else {
-        miniChat.style.display = "none";
-        chatToggle.innerHTML = "←";
-      }
+      const isHidden = miniChat.style.display === "none" || miniChat.style.display === "";
+      miniChat.style.display = isHidden ? "block" : "none";
+      chatToggle.innerHTML = isHidden ? "→" : "←";
     });
     
-    // Invio feedback tramite Telegram Bot
     document.getElementById("sendFeedback").addEventListener("click", () => {
       const message = document.getElementById("feedbackMessage").value.trim();
-      if (message === "") {
+      if (!message) {
         alert("Inserisci un messaggio.");
         return;
       }
       let feedbackCount = parseInt(localStorage.getItem("feedbackCount") || "0");
       const lastFeedbackDate = localStorage.getItem("feedbackDate");
       const todayStr = new Date().toISOString().slice(0, 10);
-      if (lastFeedbackDate !== todayStr) { feedbackCount = 0; }
-      if (feedbackCount >= 2) {
+
+      if (lastFeedbackDate === todayStr && feedbackCount >= 2) {
         alert("Hai già inviato il massimo di messaggi per oggi.");
         return;
       }
+      if (lastFeedbackDate !== todayStr) feedbackCount = 0; // Reset count for a new day
+
       fetch("https://api.telegram.org/bot7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM/sendMessage", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: "1832064994", text: message })
+        body: JSON.stringify({ chat_id: "1832064994", text: `Feedback da ${loggedUser || 'Utente Sconosciuto'}: ${message}` })
       })
       .then(response => response.json())
       .then(data => {
         if (data.ok) {
           alert("Feedback inviato!");
-          feedbackCount++;
-          localStorage.setItem("feedbackCount", feedbackCount);
+          localStorage.setItem("feedbackCount", ++feedbackCount);
           localStorage.setItem("feedbackDate", todayStr);
           document.getElementById("feedbackMessage").value = "";
         } else {
@@ -547,27 +541,17 @@
       });
     });
     
-    // Imposta utenti online a 1 (per scopi di test)
-    document.getElementById("onlineCount").textContent = "1";
+    document.getElementById("onlineCount").textContent = "1"; 
     
-    // Bottone Back To Top: compare dopo 300px di scroll e ritorna in cima alla pagina
     const backToTopBtn = document.getElementById("backToTop");
-    window.addEventListener("scroll", function() {
-      if (window.pageYOffset > 300) {
-        backToTopBtn.style.display = "flex";
-      } else {
-        backToTopBtn.style.display = "none";
-      }
+    window.addEventListener("scroll", () => {
+      backToTopBtn.style.display = (window.pageYOffset > 300) ? "flex" : "none";
     });
-    backToTopBtn.addEventListener("click", function() {
+    backToTopBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
     
-    // Blocca il menu contestuale (tasto destro del mouse)
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
-    
+    document.addEventListener('contextmenu', e => e.preventDefault());
   </script>
 </body>
 </html>
