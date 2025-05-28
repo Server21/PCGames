@@ -37,9 +37,23 @@
       border-radius: 8px;
       font-weight: 500;
       background: rgba(0,0,0,0.6);
+      font-size: 0.9em; 
     }
-    .status-bar { left: 20px; }
+    .status-bar { 
+      left: 20px; 
+      max-width: calc(100% - 200px); 
+    }
     .online-bar { right: 20px; }
+    
+    .status-bar a {
+        color: yellow;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+    .status-bar a:hover {
+        color: #ffff99; 
+    }
+
     .player-container {
       position: absolute;
       bottom: 20px;
@@ -116,7 +130,7 @@
     }
     .game-card img {
       width: 100%;
-      object-fit: cover;
+      object-fit: cover; 
     }
     .game-info {
       padding: 15px;
@@ -130,23 +144,52 @@
       font-family: 'Montserrat', sans-serif;
     }
     .game-info p { margin: 5px 0; }
-    .download-btn, .donate-btn /* Aggiunto .donate-btn qui per riutilizzare lo stile */ {
-      margin-top: 10px;
+    
+    /* Stile per pulsanti di download e donazione */
+    .download-btn, .donate-btn-style { /* .donate-btn ora è un <a>, quindi creo una classe per i bottoni di donazione se servono come <button> */
+      margin-top: 10px; 
       padding: 10px 15px;
       background: #3b3b98;
-      color: #fff !important; /* Importante per sovrascrivere colore link di default */
-      text-decoration: none;
-      border: none;
+      color: #fff !important; /* Mantenuto per coerenza se applicato ad <a> */
+      text-decoration: none; /* Per <a> */
+      border: none; /* Per <button> */
+      font-family: 'Roboto', sans-serif; /* Per <button> per coerenza */
+      font-size: inherit; /* Per <button> per coerenza */
       border-radius: 4px;
       cursor: pointer;
       transition: background 0.3s ease;
-      display: inline-block; /* Necessario per link */
-      text-align: center; /* Centra testo se link occupa tutta la larghezza */
+      display: inline-block; /* Per <a>, i button sono inline-block di default o block */
+      text-align: center; 
+      user-select: none; /* Impedisce la selezione del testo del pulsante */
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+ */
     }
-    .download-btn:hover, .donate-btn:hover {
+    .download-btn:hover, .donate-btn-style:hover {
         background: #2c2c6c;
         color: #fff !important;
     }
+    /* Se .donate-btn è un <a> e vuoi applicare gli stessi stili del bottone: */
+    a.donate-btn {
+        /* Molti stili sono già in .download-btn, .donate-btn-style. Questo è per specificità se necessario. */
+        margin-top: 10px; padding: 10px 15px; background: #3b3b98; color: #fff !important; text-decoration: none;
+        border-radius: 4px; cursor: pointer; transition: background 0.3s ease; display: inline-block; text-align: center;
+    }
+    a.donate-btn:hover { background: #2c2c6c; color: #fff !important; }
+
+
+    .download-parts-container {
+      display: flex;
+      flex-wrap: wrap; 
+      gap: 8px;        
+      margin-top: 10px;
+      width: 100%;     
+    }
+
+    .download-parts-container .download-btn { /* Si applica ai <button> dentro il container */
+      margin-top: 0; 
+    }
+
     #chatToggle {
       position: fixed;
       bottom: 20px;
@@ -199,7 +242,7 @@
       cursor: not-allowed;
       color: #999;
     }
-    .mini-chat button#sendFeedback /* Specifico per il bottone invio */ {
+    .mini-chat button#sendFeedback {
       margin-top: 5px;
       width: 100%;
       padding: 10px;
@@ -219,7 +262,6 @@
     .mini-chat button#sendFeedback:disabled:hover {
       background-color: #cccccc;
     }
-    /* Messaggio per utenti non Premium */
     #premiumRequiredMessage {
       font-size: 12px;
       background-color: #fff3cd;
@@ -229,24 +271,22 @@
       border-radius: 4px;
       margin-top: 8px;
       margin-bottom: 8px;
-      display: none; /* Nascosto di default */
+      display: none; 
     }
      #premiumRequiredMessage strong {
          display: block;
          margin-bottom: 4px;
      }
      #premiumRequiredMessage ul {
-         padding-left: 20px; /* Indenta la lista */
+         padding-left: 20px; 
          margin-top: 5px;
-         margin-bottom: 10px; /* Spazio prima del bottone dona */
+         margin-bottom: 10px; 
      }
-     /* Stile per il link di donazione aggiunto */
-     #premiumRequiredMessage .donate-btn {
-         width: 100%; /* Occupa tutta la larghezza del messaggio */
-         box-sizing: border-box; /* Include padding nel width */
-         margin-top: 10px; /* Spazio sopra il bottone */
+     #premiumRequiredMessage a.donate-btn { /* Assicura che lo stile del bottone sia applicato al link */
+         width: 100%; 
+         box-sizing: border-box; 
+         margin-top: 10px; 
      }
-    /* Testo limite messaggi */
     #messageLimitText {
         font-size:12px;
         margin-top: 8px;
@@ -272,23 +312,27 @@
     #backToTop:hover { background: #2c2c6c; }
   </style>
 
-  <!-- Blocco per za.gl (HTTPS e senza esclusioni) -->
   <script type="text/javascript">
     var adlinkfly_url = 'https://za.gl/';
     var adlinkfly_api_token = 'e11eee3302d6d9b2e1bf2611a6fac2317c5eaa11';
     var adlinkfly_advert = 2;
-    // Var per controllare la rimozione degli ads (client-side, insicuro)
-    var removeAds = localStorage.getItem('isPremiumUser') === 'true'; // Controlla se l'utente è premium
+    var removeAds = localStorage.getItem('isPremiumUser') === 'true'; 
   </script>
-  <!-- Caricamento condizionale dello script za.gl -->
   <script>
-    if (!removeAds) {
-      var script = document.createElement('script');
-      script.src = 'https://za.gl/js/full-page-script.js';
-      script.type = 'text/javascript';
-      document.head.appendChild(script);
+    // Lo script za.gl originale è pensato per manipolare gli <a>.
+    // Se lo si vuole usare con i <button>, la logica di applicazione deve essere gestita custom.
+    // Per ora, lo script za.gl full-page-script.js potrebbe non funzionare come atteso sui <button>
+    // a meno che non si reimplementi la sua logica di ricerca link.
+    // La funzione applyAdlinkflyIfNeeded() più sotto gestirà la modifica dei data-url.
+    if (!removeAds && typeof adlinkfly_url !== 'undefined' && adlinkfly_url) { // Solo se non premium E za.gl è configurato
+        // Potremmo non caricare 'full-page-script.js' se gestiamo tutto manualmente
+        // var script = document.createElement('script');
+        // script.src = 'https://za.gl/js/full-page-script.js';
+        // script.type = 'text/javascript';
+        // document.head.appendChild(script);
+        console.log("za.gl sarà applicato manualmente ai data-url dei pulsanti se necessario.");
     } else {
-        console.log("Utente Premium: Script za.gl non caricato.");
+        console.log("Utente Premium o za.gl non configurato: Script za.gl non caricato/applicato.");
     }
   </script>
 
@@ -297,10 +341,10 @@
   <header>
     <img src="https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/Best/banner.png" alt="Banner">
     <div class="status-bar" id="userStatus">
-      Ciao, <span id="usernameDisplay"></span> (<span id="userAccountType">Guest</span>) – Scadenza: <span id="accountExpiry">N/A</span>
+      Ciao Amico! Se vuoi supportare il progetto fai una donazione e sblocca la <a href="https://streamelements.com/parlauncher/tip" target="_self">funzione premium</a>.
     </div>
     <div class="online-bar" id="onlineStatus">
-      Utenti Online: <span id="onlineCount">1</span>
+      Utenti Online: <span id="onlineCount">1</span> 
     </div>
     <div class="player-container">
       <audio id="audioPlayer" src="https://files.catbox.moe/vmwngs.mp3" autoplay loop muted playsinline></audio>
@@ -323,8 +367,6 @@
   <div class="mini-chat" id="miniChat">
     <h4>Contatta l'Admin (Premium)</h4>
     <textarea id="feedbackMessage" placeholder="Caricamento stato utente..." disabled></textarea>
-
-    <!-- NUOVO/MODIFICATO: Messaggio per non-premium con link/bottone donazione -->
     <div id="premiumRequiredMessage">
         <strong>Accesso Riservato ai Donatori</strong>
         Dona per ottenere un account Premium! <br>
@@ -334,15 +376,11 @@
             <li>Download diretti e Veloci</li>
             <li>Suggerisci nuovi giochi o funzionalità</li>
         </ul>
-        <!-- Bottone di donazione che apre link nella stessa pagina -->
         <a href="https://streamelements.com/parlauncher/tip" target="_self" class="donate-btn">
             Dona per ottenere questo
         </a>
     </div>
-
-    <!-- Bottone originale per inviare messaggi (per utenti Premium) -->
     <button id="sendFeedback" disabled>Invia Messaggio</button>
-    <!-- Testo limite messaggi (visibile solo per Premium) -->
     <p id="messageLimitText">Max 2 messaggi al giorno.</p>
   </div>
 
@@ -350,10 +388,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Elementi UI
-      const usernameDisplay = document.getElementById("usernameDisplay");
-      const accountTypeDisplay = document.getElementById("userAccountType");
-      const accountExpiryDisplay = document.getElementById("accountExpiry");
       const feedbackTextarea = document.getElementById("feedbackMessage");
       const sendFeedbackButton = document.getElementById("sendFeedback");
       const premiumRequiredDiv = document.getElementById("premiumRequiredMessage");
@@ -361,57 +395,34 @@
       const audioPlayer = document.getElementById("audioPlayer");
       const muteCheckbox = document.getElementById("muteCheckbox");
 
-      // --- Logica Account & Premium ---
-      // !! ATTENZIONE: Gestione client-side (insicura)
       const isPremium = localStorage.getItem('isPremiumUser') === 'true';
-      const loggedUser = localStorage.getItem("loggedInUser") || (isPremium ? "Donatore Anonimo" : "Guest");
+      const loggedUser = localStorage.getItem("loggedInUser") || (isPremium ? "Donatore Premium" : "Amico"); 
 
-      usernameDisplay.textContent = loggedUser;
-      accountTypeDisplay.textContent = isPremium ? "Premium" : "Guest";
-      accountTypeDisplay.style.color = isPremium ? '#4CAF50' : '#ffae42';
-
-      const storageExpires = localStorage.getItem("expires");
-      if (isPremium && storageExpires) {
-          const expiryDate = new Date(storageExpires);
-          const diffDays = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
-          accountExpiryDisplay.textContent = diffDays > 0 ? diffDays + " giorni" : "Scaduto";
-      } else if (isPremium) {
-          accountExpiryDisplay.textContent = "Illimitato";
-      } else {
-          accountExpiryDisplay.textContent = "N/A";
-      }
-
-      // --- Funzione Controllo Accesso Chat Premium ---
       function checkPremiumAccess() {
           if (isPremium) {
-              // Utente Premium: Abilita chat
               feedbackTextarea.disabled = false;
-              sendFeedbackButton.style.display = 'block'; // Mostra bottone invio
+              sendFeedbackButton.style.display = 'block'; 
               sendFeedbackButton.disabled = false;
               feedbackTextarea.placeholder = "Scrivi il tuo messaggio, suggerimento o richiesta...";
-              premiumRequiredDiv.style.display = 'none'; // Nascondi messaggio "richiesta premium"
-              messageLimitP.style.display = 'block'; // Mostra limite messaggi
+              premiumRequiredDiv.style.display = 'none'; 
+              messageLimitP.style.display = 'block'; 
               return true;
           } else {
-              // Utente non Premium: Disabilita chat e mostra messaggio con link donazione
               feedbackTextarea.disabled = true;
-              sendFeedbackButton.style.display = 'none'; // Nascondi bottone invio originale
+              sendFeedbackButton.style.display = 'none'; 
               sendFeedbackButton.disabled = true;
               feedbackTextarea.placeholder = "Funzione riservata agli utenti Premium.";
-              premiumRequiredDiv.style.display = 'block'; // Mostra messaggio "richiesta premium" (che ora contiene il bottone donazione)
-              messageLimitP.style.display = 'none'; // Nascondi limite messaggi
+              premiumRequiredDiv.style.display = 'block'; 
+              messageLimitP.style.display = 'none'; 
               return false;
           }
       }
+      checkPremiumAccess(); 
 
-      // Esegui il controllo all'avvio
-      checkPremiumAccess(); // Questa funzione ora gestisce la visibilità di sendFeedbackButton e premiumRequiredDiv
-
-      // --- Gestione Audio ---
       document.addEventListener('click', function enableAudio() {
           if (audioPlayer && audioPlayer.muted && !muteCheckbox.checked) {
               audioPlayer.muted = false;
-              audioPlayer.play().catch(err => console.warn("Riproduzione audio bloccata dal browser finché l'utente non interagisce.", err));
+              audioPlayer.play().catch(err => console.warn("Riproduzione audio bloccata.", err));
           }
           document.removeEventListener('click', enableAudio);
       }, { once: true });
@@ -420,7 +431,6 @@
           audioPlayer.muted = this.checked;
       });
 
-      // --- Funzione Base64 (Usata da za.gl se attivo) ---
       function adlinkfly_base64_encode(e) {
           try {
               return btoa(
@@ -429,37 +439,36 @@
                   })
               );
           } catch (error) {
-              console.error("Errore durante la codifica Base64:", error);
+              console.error("Errore Base64:", error);
               return null;
           }
       }
 
-     // --- Applicazione za.gl ai Link (SOLO se utente NON è premium) ---
+      // MODIFIED: applyAdlinkflyIfNeeded to work with buttons and data-url
       function applyAdlinkflyIfNeeded() {
-          if (!isPremium) {
-              console.log("Applicazione conversione za.gl...");
-              const anchors = document.querySelectorAll("#gamesContainer a.download-btn");
-              anchors.forEach(a => {
-                  if (!a.href.startsWith(adlinkfly_url + "full/") && !a.classList.contains('no-adlink')) {
-                      const originalHref = a.href;
-                      if (originalHref && originalHref !== '#') {
-                           const encodedUrl = adlinkfly_base64_encode(originalHref);
-                           if(encodedUrl) {
-                                a.href = adlinkfly_url + "full/?api=" + encodeURIComponent(adlinkfly_api_token) +
-                                         "&url=" + encodedUrl +
-                                         "&type=" + encodeURIComponent(adlinkfly_advert);
-                           } else {
-                               console.warn(`Impossibile codificare o URL non valido: ${originalHref}`);
-                           }
-                      }
+          if (!isPremium && typeof adlinkfly_url !== 'undefined' && adlinkfly_url && typeof adlinkfly_api_token !== 'undefined' && typeof adlinkfly_advert !== 'undefined') {
+              console.log("Applicazione conversione za.gl ai data-url dei pulsanti...");
+              const buttons = document.querySelectorAll("#gamesContainer button.download-btn"); // Seleziona i <button>
+              buttons.forEach(button => {
+                  const originalUrl = button.dataset.url;
+                  if (originalUrl && originalUrl !== '#' && !originalUrl.startsWith('javascript:')) {
+                       const encodedUrl = adlinkfly_base64_encode(originalUrl);
+                       if(encodedUrl) {
+                            const adlinkflyProcessedUrl = adlinkfly_url + "full/?api=" + encodeURIComponent(adlinkfly_api_token) +
+                                     "&url=" + encodedUrl +
+                                     "&type=" + encodeURIComponent(adlinkfly_advert);
+                            button.dataset.url = adlinkflyProcessedUrl; // Aggiorna il data-url con il link di za.gl
+                            // console.log(`Pulsante ${button.textContent} aggiornato a ${adlinkflyProcessedUrl}`);
+                       } else {
+                           console.warn(`Impossibile codificare URL per za.gl: ${originalUrl}`);
+                       }
                   }
               });
           } else {
-              console.log("Utente Premium: Conversione za.gl saltata.");
+              console.log("Utente Premium o za.gl non configurato: Conversione URL saltata.");
           }
       }
 
-      // --- Caricamento Giochi ---
       const gamesUrl = "https://raw.githubusercontent.com/Server21/PCGames/refs/heads/main/games.json";
       let gamesData = [];
       fetch(gamesUrl)
@@ -473,11 +482,10 @@
           renderFilters(gamesData);
         })
         .catch(err => {
-            console.error("Errore critico nel caricamento o parsing dei giochi:", err);
-            document.getElementById("gamesContainer").innerHTML = `<p style="color:red;">Errore nel caricamento dei giochi. Riprova più tardi.</p>`;
+            console.error("Errore caricamento giochi:", err);
+            document.getElementById("gamesContainer").innerHTML = `<p style="color:red;">Errore caricamento giochi.</p>`;
         });
 
-      // --- Funzioni di Rendering ---
       function renderGames(games) {
         const container = document.getElementById("gamesContainer");
         container.innerHTML = "";
@@ -506,7 +514,7 @@
 
           const img = document.createElement("img");
           img.src = game.image_url || 'https://via.placeholder.com/300x150?text=No+Image';
-          img.alt = game.name || 'Gioco senza nome';
+          img.alt = game.name || 'Gioco';
           img.onerror = () => { img.src = 'https://via.placeholder.com/300x150?text=Image+Error'; };
 
           const infoDiv = document.createElement("div");
@@ -524,28 +532,62 @@
           const langs = document.createElement("p");
           langs.innerHTML = "<strong>Lingue:</strong> " + (Array.isArray(game.languages) ? game.languages.join(", ") : "N/A");
 
-          const downloadLink = document.createElement("a");
-          downloadLink.textContent = "Download";
-          downloadLink.className = "download-btn";
-          downloadLink.href = game.download_link || '#';
-          downloadLink.target = "_self"; // Per za.gl
-          if (!game.download_link) {
-              downloadLink.style.opacity = "0.5";
-              downloadLink.style.cursor = "not-allowed";
-              downloadLink.onclick = (e) => e.preventDefault();
-          }
+          infoDiv.append(title, desc, tags, langs);
 
-          infoDiv.append(title, desc, tags, langs, downloadLink);
+          // --- DOWNLOAD BUTTONS (ora <button>) ---
+          if (game.download_link) {
+              const downloadButton = document.createElement("button");
+              downloadButton.textContent = "Download";
+              downloadButton.className = "download-btn";
+              downloadButton.dataset.url = game.download_link; // Memorizza URL nel data attribute
+              downloadButton.addEventListener('click', function() {
+                  if (this.dataset.url && this.dataset.url !== '#') {
+                      window.location.href = this.dataset.url;
+                  }
+              });
+              infoDiv.appendChild(downloadButton);
+          } else if (game.download_links && Array.isArray(game.download_links) && game.download_links.length > 0) {
+              const downloadPartsContainer = document.createElement('div');
+              downloadPartsContainer.className = 'download-parts-container'; 
+
+              game.download_links.forEach(linkObj => {
+                  const partDownloadButton = document.createElement("button");
+                  partDownloadButton.textContent = linkObj.part || 'Parte'; 
+                  partDownloadButton.className = "download-btn"; 
+                  partDownloadButton.dataset.url = linkObj.url || '#'; // Memorizza URL nel data attribute
+                  
+                  if (!linkObj.url || linkObj.url === '#') { 
+                    partDownloadButton.disabled = true;
+                    partDownloadButton.style.opacity = "0.5";
+                    partDownloadButton.style.cursor = "not-allowed";
+                  } else {
+                    partDownloadButton.addEventListener('click', function() {
+                        if (this.dataset.url && this.dataset.url !== '#') {
+                            window.location.href = this.dataset.url;
+                        }
+                    });
+                  }
+                  downloadPartsContainer.appendChild(partDownloadButton);
+              });
+              infoDiv.appendChild(downloadPartsContainer); 
+          } else {
+              const noDownloadMsg = document.createElement("p");
+              noDownloadMsg.textContent = "Link di download non disponibile.";
+              noDownloadMsg.style.marginTop = "10px";
+              noDownloadMsg.style.fontStyle = "italic";
+              infoDiv.appendChild(noDownloadMsg);
+          }
+          
           card.append(img, infoDiv);
           container.appendChild(card);
         });
 
-        applyAdlinkflyIfNeeded(); // Applica za.gl DOPO aver aggiunto tutti i link al DOM
+        applyAdlinkflyIfNeeded(); // Applica za.gl ai data-url DOPO aver aggiunto tutti i pulsanti al DOM
       }
 
       function renderFilters(games) {
         const filtersDiv = document.getElementById("filters");
-        filtersDiv.innerHTML = "";
+        filtersDiv.innerHTML = ""; 
         const tagsSet = new Set();
         games.forEach(game => {
           if (Array.isArray(game.category)) {
@@ -554,11 +596,12 @@
         });
 
         if (tagsSet.size === 0) {
+            document.getElementById("filterToggle").style.display = 'none'; 
             filtersDiv.style.display = 'none';
             return;
         }
-
-        filtersDiv.style.display = 'none';
+        document.getElementById("filterToggle").style.display = 'inline-block'; 
+        filtersDiv.style.display = 'none'; 
         filtersDiv.appendChild(document.createTextNode("Filtra per Tag: "));
 
         tagsSet.forEach(tag => {
@@ -582,7 +625,6 @@
         filtersDiv.appendChild(resetBtn);
       }
 
-      // --- Event Listeners UI ---
       document.getElementById("searchBar").addEventListener("input", function() {
         const query = this.value.toLowerCase().trim();
         const filteredGames = gamesData.filter(game =>
@@ -603,41 +645,36 @@
       chatToggle.addEventListener("click", () => {
         const isChatVisible = miniChat.style.display === "block";
         miniChat.style.display = isChatVisible ? "none" : "block";
-        chatToggle.innerHTML = isChatVisible ? "✉" : "×";
+        chatToggle.innerHTML = isChatVisible ? "✉" : "×"; 
       });
 
-      // --- Event Listener Invio Messaggio (Logica Premium) ---
       sendFeedbackButton.addEventListener("click", () => {
-        if (!checkPremiumAccess()) { // Doppio controllo
-            alert("Errore: Accesso non autorizzato. Questa funzione è per utenti Premium.");
+        if (!checkPremiumAccess()) { 
+            alert("Errore: Accesso non autorizzato.");
             return;
         }
-
         const message = feedbackTextarea.value.trim();
         if (!message) {
-          alert("Per favore, inserisci un messaggio prima di inviare.");
+          alert("Inserisci un messaggio.");
           return;
         }
-
         let feedbackCount = parseInt(localStorage.getItem("feedbackCount") || "0");
         const lastFeedbackDate = localStorage.getItem("feedbackDate");
         const todayStr = new Date().toISOString().slice(0, 10);
 
         if (lastFeedbackDate !== todayStr) { feedbackCount = 0; }
         if (feedbackCount >= 2) {
-          alert("Hai raggiunto il limite di 2 messaggi per oggi.");
+          alert("Limite di 2 messaggi per oggi raggiunto.");
           return;
         }
-
-        const senderInfo = `${loggedUser} (Premium)`;
+        const senderInfo = `${loggedUser}${isPremium ? ' (Premium)' : ''}`; 
         const fullMessage = `Messaggio da ${senderInfo}:\n\n${message}`;
-        const telegramBotToken = "7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM"; // TOKEN
-        const telegramChatId = "1832064994"; // CHAT ID
+        const telegramBotToken = "7370826671:AAE8mLjIygj2DmvduIFobmRVKVgqvjugkdM";
+        const telegramChatId = "1832064994";
         const telegramApiUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
 
         sendFeedbackButton.disabled = true;
-        sendFeedbackButton.textContent = "Invio in corso...";
-
+        sendFeedbackButton.textContent = "Invio...";
         fetch(telegramApiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -646,34 +683,31 @@
         .then(response => response.json())
         .then(data => {
           if (data.ok) {
-            alert("Messaggio inviato con successo!");
+            alert("Messaggio inviato!");
             feedbackCount++;
             localStorage.setItem("feedbackCount", feedbackCount.toString());
             localStorage.setItem("feedbackDate", todayStr);
             feedbackTextarea.value = "";
           } else {
             console.error("Errore API Telegram:", data);
-            alert(`Errore nell'invio del messaggio: ${data.description || 'Errore sconosciuto'}`);
+            alert(`Errore invio: ${data.description || 'Sconosciuto'}`);
           }
         })
         .catch(err => {
-          console.error("Errore fetch nell'invio del feedback:", err);
-          alert("Errore di rete durante l'invio del messaggio. Riprova.");
+          console.error("Errore fetch invio feedback:", err);
+          alert("Errore di rete. Riprova.");
         })
         .finally(() => {
-             // Riabilita solo se ancora premium
              if (checkPremiumAccess()) {
                  sendFeedbackButton.disabled = false;
                  sendFeedbackButton.textContent = "Invia Messaggio";
              } else {
-                 // Se nel frattempo l'utente non è più premium, assicurati che il bottone rimanga nascosto/disabilitato
                  sendFeedbackButton.style.display = 'none';
                  sendFeedbackButton.disabled = true;
              }
         });
       });
 
-      // --- Bottone Back to Top ---
       const backToTopBtn = document.getElementById("backToTop");
       window.addEventListener("scroll", () => {
         backToTopBtn.style.display = window.pageYOffset > 300 ? "flex" : "none";
@@ -682,8 +716,10 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
 
-      // --- Varie ---
-      document.getElementById("onlineCount").textContent = Math.floor(Math.random() * 5) + 1; // Online fittizio
+      document.getElementById("onlineCount").textContent = Math.floor(Math.random() * 10) + 1; 
+      
+      // Impedisce il menu contestuale su tutta la pagina
+      document.addEventListener('contextmenu', e => e.preventDefault());
     });
   </script>
 </body>
