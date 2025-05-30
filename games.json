@@ -1002,13 +1002,15 @@
     "name": "PES 2025",
     "image_url": "https://i.ytimg.com/vi/DOcHNGFtypM/hq720.jpg",
     "download_links": [
-      { "part": "Parte 1", "url": "https://pd.cybar.xyz/NJDq6MHm" },
-      { "part": "Parte 2", "url": "https://pd.cybar.xyz/5qHzVkb6" },
-      { "part": "Parte 3", "url": "https://…/file3.zip" }
+      { "part": "Parte 1", "url": "https://pd.cybar.xyz/zxseVLVk" },
+      { "part": "Parte 2", "url": "https://pd.cybar.xyz/5YKx1uT9" },
+      { "part": "Parte 3", "url": "https://pd.cybar.xyz/xj9SzVSX" },
+      { "part": "Parte 4", "url": "https://pd.cybar.xyz/8JA46xRn" },
+      { "part": "Parte 5", "url": "https://pd.cybar.xyz/VjHJ5Wo9" }
     ],
     "video_url": "https://video.cloudflare.steamstatic.com/…webm",
-    "description": "Questa mod porta il pes 21 a 25 con tutto aggiornato gioco già preinstallato: scarica le varie parti per effettuare l'estrazione",
-    "category": ["Sport", "Calcio", "SportRealistici"],
-    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+    "description": "Questa mod porta il pes 21 a 25 con tutto aggiornato gioco già preinstallato: scarica le varie parti uno alla volta per effettuare l'estrazione",
+    "category": ["Sport", "Calcio"],
+    "languages": ["Italiano", "Inglese"]
   }             
 ]
