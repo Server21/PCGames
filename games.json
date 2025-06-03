@@ -269,12 +269,31 @@
     "category": ["Horror", "Zombi", "Parkour"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
+
+   {
+    "name": "Assassin's Creed 2",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/33230/header.jpg",
+    "download_link": "https://pd.cybar.xyz/FZJxNRFc",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Una storia epica di famiglia, vendetta e cospirazione ambientata nello sfondo incontaminato, ma brutale, di un'Italia rinascimentale.",
+    "category": ["Azione", "Mondo aperto", "Parkour", "Avventura"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
     {
     "name": "Assassin's Creed: Brotherhood",
     "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/48190/header.jpg",
     "download_link": "https://pd.cybar.xyz/VrgsBcjW",
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "Vivi e respira come Ezio, un leggendario Maestro Assassino, nella sua duratura lotta contro il potente Ordine Templare. Deve recarsi nella più grande città italiana, Roma, centro del potere, avidità e corruzione per colpire il cuore del nemico.",
+    "category": ["Azione", "Mondo aperto", "Parkour", "Avventura"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+     {
+    "name": "Assassin's Creed: Revelations",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/201870/header.jpg",
+    "download_link": "https://pd.cybar.xyz/KtC1cw78",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Ezio Auditore segue le orme del leggendario mentore Altair, in un pericoloso viaggio di scoperta e rivelazione.",
     "category": ["Azione", "Mondo aperto", "Parkour", "Avventura"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
