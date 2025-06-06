@@ -269,7 +269,6 @@
     "category": ["Horror", "Zombi", "Parkour"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
-
    {
     "name": "Assassin's Creed 2",
     "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/33230/header.jpg",
@@ -297,8 +296,26 @@
     "category": ["Azione", "Mondo aperto", "Parkour", "Avventura"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
+       {
+    "name": "Assassin's Creed: III Remastered",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/911400/header.jpg",
+    "download_link": "https://pd.cybar.xyz/yU2N9mXB",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Rivivi la Rivoluzione Americana o scoprila per la prima volta in Assassin's Creed® III Remastered, con grafica migliorata e meccaniche di gioco migliorate. In più, saranno inclusi anche la remastered di Assassin's Creed Liberation e tutti i DLC.",
+    "category": ["Azione", "Mondo aperto", "Parkour", "Avventura"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+         {
+    "name": "Assassin's Creed: IV Black Flag",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/242050/header.jpg",
+    "download_link": "https://pd.cybar.xyz/yt84p8HS",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Corre l’anno 1715. I Caraibi sono sotto il controllo dei Pirati che hanno fondato una vera e propria repubblica, priva però di qualsiasi legge, perciò corruzione, avidità e crudeltà sono all’ordine del giorno.Tra questi fuorilegge vive un giovane ed esuberante capitano di nome Edward Kenway.",
+    "category": ["Azione", "Mondo aperto", "Parkour", "Avventura"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
   {
-    "name": "Assassin's Creed: Rogue",
+    "name": "Assassin's Creed: V Rogue",
     "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/311560/header.jpg",
     "download_link": "https://pd.cybar.xyz/EFENqw4X",
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
@@ -306,6 +323,18 @@
     "category": ["Azione", "Mondo aperto", "Parkour", "Avventura"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
+    {
+    "name": "Assassin's Creed Syndicate",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/368500/header.jpg",
+    "download_links": [
+      { "part": "Parte 1", "url": "https://pd.cybar.xyz/wqRW5bQo" },
+      { "part": "Parte 2", "url": "https://pd.cybar.xyz/BPDCzz8X" }
+    ],
+    "video_url": "https://video.cloudflare.steamstatic.com/…webm",
+    "description": "Londra, 1868. Guida la tua organizzazione segreta durante la rivoluzione industriale e accresci il tuo potere per combattere chi sfrutta i poveri nel nome del progresso.",
+    "category": ["Azione", "Mondo aperto", "Parkour", "Avventura"],
+    "languages": ["Italiano", "Inglese"]
+  },   
    {
     "name": "Splinter Cell Blacklist",
     "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/235600/header.jpg",
