@@ -8,6 +8,15 @@
     "description": "DEEP ROCK GALACTIC: SURVIVOR è uno sparatutto automatico di sopravvivenza per giocatore singolo. Affronta orde di alieni letali, estrai ricchezze e sblocca potenti potenziamenti per sopravvivere, mentre brandisci l'intero arsenale di Deep Rock Galactic. Un nano contro tutto il pianeta Hoxxes!",
     "languages": ["Inglese", "Francese", "Italiano"]
   },
+    {
+    "name": "Foundation",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/690830/header.jpg",
+    "download_link": "https://pd.cybar.xyz/jFkR6ebq",
+    "video_url": "https://video.fastly.steamstatic.com/store_trailers/256997966/movie480_vp9.webm",
+    "category": ["Simulazione", "Medievali", "Indie", "Costruzione di città"],
+    "description": "Foundation è un rilassante gioco city-builder medievale senza griglia che si concentra sullo sviluppo organico, sulla costruzione di monumenti e sulla gestione delle risorse.",
+    "languages": ["Italiano", "Inglese", "Francese"]
+  },
    {
     "name": "Undertale",
     "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/391540/header.jpg",
