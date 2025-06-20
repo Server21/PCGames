@@ -1,5 +1,5 @@
 [
-    {
+     {
     "name": "Terror At Oakheart",
     "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2530430/header.jpg",
     "download_link": "https://pd.cybar.xyz/Br1ngGSA",
@@ -7,6 +7,15 @@
     "category": ["2D", "Horror", "A scorrimento"],
     "description": "I rinomati film horror slasher degli anni '80 e '90 servono come fonte di ispirazione per Terror at Oakheart. La comunità di Oakheart è stata terrorizzata da Teddy, un serial killer mascherato.",
     "languages": ["Italiano"]
+  },
+    {
+    "name": "Anonymous Hacker Simulator",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2487060/header.jpg",
+    "download_link": "https://pd.cybar.xyz/w73MV5FY",
+    "video_url": "https://video.fastly.steamstatic.com/store_trailers/256997966/movie480_vp9.webm",
+    "category": ["3D", "Simulazione", "Hacker"],
+    "description": "Indossa i panni di un abile hacker Anonymous e intraprendi una missione per svelare la verità nascosta dietro i loschi piani di un'organizzazione per monitorare i dati dei civili e imporre una sorveglianza di massa.",
+    "languages": ["Italiano", "Inglese", "Francese"]
   },
   {
     "name": "Deep Rock Galactic: Survivor",
