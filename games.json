@@ -731,6 +731,15 @@
     "category": ["Mondo aperto", "Azione", "Sparatutto"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
+        {
+    "name": "Far Cry® 4",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/298110/header.jpg",
+    "download_link": "https://pd.cybar.xyz/xFceMH5U",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "Nascosta tra le maestose vette dell’Himalaya si trova la regione del Kyrat, un paese ricco di tradizioni ma anche di violenza. Nei panni di Ajay Ghale hai raggiunto il Kyrat per esaudire l’ultimo desiderio di tua madre",
+    "category": ["Mondo aperto", "Azione", "Sparatutto"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
   {
     "name": "Drug Dealer Simulator",
     "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/682990/header.jpg",
