@@ -1028,6 +1028,31 @@
     "category": ["Mondo aperto", "Azione", "Distruzione"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
+  {
+    "name": "METAL GEAR SOLID - Master Collection",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/subs/886315/header_586x192.jpg",
+    "download_links": [
+      { "part": "METAL GEAR 1", "url": "https://pd.cybar.xyz/WzdRVLwT" },
+      { "part": "METAL GEAR 2", "url": "https://pd.cybar.xyz/GBccHCA3" },
+      { "part": "METAL GEAR 3", "url": "https://pd.cybar.xyz/8qLByC64" }
+    ],
+    "video_url": "https://video.cloudflare.steamstatic.com/…webm",
+    "description": "Ritorna alle origini del genere stealth action. METAL GEAR SOLID: MASTER COLLECTION Vol. 1 riunisce gli inizi della serie di METAL GEAR in un unico pacchetto. Infiltrati nelle basi nemiche di tutto il mondo, completa le missioni in maniera furtiva e vivi l'avvincente storia cinematografica della serie di METAL GEAR.",
+    "category": ["Azione", "Stealth", "Avventura"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+       {
+    "name": "Five Hearts Under One Roof",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3021100/header.jpg",
+    "download_links": [
+      { "part": "Parte 1", "url": "https://pd.cybar.xyz/sTcsY2CP" },
+      { "part": "Parte 2", "url": "https://pd.cybar.xyz/q1jqf6nH" }
+    ],
+    "video_url": "https://video.cloudflare.steamstatic.com/…webm",
+    "description": "Quella di Yuman, il giocatore, un tempo casa solitaria e routine ora sono invase da cinque bellissime donne! Ognuna ha il suo fascino unico – il 'amico d'infanzia di 20 anni', il 'primo amore ed ex idolo', il 'boss esigente', la 'audace ragazza più giovane', e il 'timido recluso' Chi sceglierai?",
+    "category": ["FMV", "Simulatori di appuntamenti"],
+    "languages": ["Italiano", "Inglese"]
+  },
        {
     "name": "Just Cause™ 4",
     "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/517630/header.jpg",
