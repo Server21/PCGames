@@ -965,6 +965,15 @@
     "category": ["Corse", "Sport", "Arcade", "3D"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
+           {
+    "name": "The King is Watching",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2753900/a6757865adf488b7a98e11d1197e0165cd412302/header_alt_assets_0.jpg",
+    "download_link": "https://pd.cybar.xyz/fWMNjQak",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "The King is Watching è un gioco roguelite per la costruzione di regni. Governa con il potere del tuo sguardo regale! Decidi se produrre risorse, addestrare eserciti o bilanciare entrambi, adattandoti agli eventi unici di ogni partita.",
+    "category": ["Fantasy dark", "Strategia", "Stile Rogue"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
       {
     "name": "Train Valley World",
     "image_url": "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/2244470/header.jpg",
@@ -1086,6 +1095,15 @@
     "download_link": "https://pd.cybar.xyz/VL59eLso",
     "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
     "description": "Vincitore di oltre 200 premi Gioco dell’Anno, The Elder Scrolls V: Skyrim Special Edition porta sui vostri schermi il fantasy epico con dettagli mozzafiato. La Special Edition include l’acclamato gioco e gli add-on con nuove funzioni.",
+    "category": ["Mondo aperto", "Giocatore singolo", "Avventura", "GDR"],
+    "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
+  },
+                {
+    "name": "Enderal: Forgotten Stories",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/976620/header.jpg",
+    "download_link": "https://pd.cybar.xyz/nBYGw6y6",
+    "video_url": "https://video.cloudflare.steamstatic.com/store_trailers/256807400/movie480_vp9.webm",
+    "description": "E una mod di conversione totale per Skyrim SE. Offre un mondo aperto e immersivo, nuovi sistemi di abilità e un gameplay con una trama oscura e psicologica e personaggi credibili. SE presenta un nuovo motore di rendering, illuminazione migliorata, prestazioni e stabilità.",
     "category": ["Mondo aperto", "Giocatore singolo", "Avventura", "GDR"],
     "languages": ["Italiano", "Inglese", "Francese", "Spagnolo", "Tedesco"]
   },
