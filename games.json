@@ -1,4 +1,22 @@
 [
+ {
+    "name": "A Hat in Time",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/253230/header.jpg",
+    "download_link": "https://pd.cybar.xyz/MyAhnb3n",
+    "video_url": "https://video.fastly.steamstatic.com/store_trailers/256997966/movie480_vp9.webm",
+    "category": ["3D", "Indie", "Avventura"],
+    "description": "A Hat in Time è un platform 3D carino come il collo con una bambina che cuce cappelli per poteri malvagi! Esplora liberamente mondi giganti e recupera Time Pieces per viaggiare verso nuove vette!",
+    "languages": ["Italiano", "Inglese", "Francese"]
+  },
+       {
+    "name": "Celeste",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/504230/header.jpg",
+    "download_link": "https://pd.cybar.xyz/Z9EiiPES",
+    "video_url": "https://video.fastly.steamstatic.com/store_trailers/256997966/movie480_vp9.webm",
+    "category": ["2D", "Indie", "Difficili"],
+    "description": "Aiuta Madeline ad affrontare i suoi demoni in un viaggio verso la cima del Monte Celeste in un avvincente platformer dai creatori del classico multigiocatore TowerFall. Fronteggia centinaia di sfide disegnate a mano, scopri impalpabili segreti e ricostruisci il mistero della montagna.",
+    "languages": ["Italiano", "Inglese", "Francese"]
+  },
      {
     "name": "Terror At Oakheart",
     "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2530430/header.jpg",
