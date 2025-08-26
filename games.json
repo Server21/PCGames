@@ -26,6 +26,15 @@
     "description": "I rinomati film horror slasher degli anni '80 e '90 servono come fonte di ispirazione per Terror at Oakheart. La comunità di Oakheart è stata terrorizzata da Teddy, un serial killer mascherato.",
     "languages": ["Italiano"]
   },
+     {
+    "name": "Turmoil",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/361280/header.jpg",
+    "download_link": "https://files.catbox.moe/qgaeyh.7z",
+    "video_url": "https://video.fastly.steamstatic.com/store_trailers/256997966/movie480_vp9.webm",
+    "category": ["2D", "Simulazione", "A scorrimento"],
+    "description": "Trivella in cerca di petrolio come se fosse il 1899! Turmoil è un gioco di simulazione dalla grafica accattivante e presenta una rivisitazione in chiave ironica della corsa al petrolio dell'America del Nord dell'Ottocento.",
+    "languages": ["Italiano", "Inglese", "Francese"]
+  },
     {
     "name": "Anonymous Hacker Simulator",
     "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2487060/header.jpg",
