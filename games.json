@@ -8,6 +8,15 @@
     "description": "A Hat in Time è un platform 3D carino come il collo con una bambina che cuce cappelli per poteri malvagi! Esplora liberamente mondi giganti e recupera Time Pieces per viaggiare verso nuove vette!",
     "languages": ["Italiano", "Inglese", "Francese"]
   },
+  {
+    "name": "Cuphead",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/268910/header.jpg",
+    "download_link": "https://download2297.mediafire.com/49357anz5h0gysJboxzfucOeoLsq1CDDHG9TsfVSl02Uy4Qjc7WGzlEoXTkOM3Syc61FWe6WvCTisrNnUW53Cwn_bbj9zuNHZ7FN1cVHGgZKSf16OjCKTwSCUon6j1fl3yLsFd1-D8rL9D49xBK0SzqJNsDV_RyoGyCSATFdp3vGjRQE/8tkramtjqqqyqg7/Cuphead.v9318602.7z",
+    "video_url": "https://video.fastly.steamstatic.com/store_trailers/256997966/movie480_vp9.webm",
+    "category": ["Difficili", "Cartoni animati", "Co-op"],
+    "description": "Cuphead è un classico action fortemente incentrato sulle battaglie contro i boss. Ispirato ai cartoni animati degli anni '30, può vantare grafiche ed effetti audio accuratamente ricreati con le tecniche di quell'epoca (animazione tradizionale a mano, sfondi ad acquerello e registrazion...",
+    "languages": ["Italiano", "Inglese", "Francese"]
+  },
        {
     "name": "Celeste",
     "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/504230/header.jpg",
