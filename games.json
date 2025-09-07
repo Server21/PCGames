@@ -62,6 +62,15 @@
     "description": "DEEP ROCK GALACTIC: SURVIVOR è uno sparatutto automatico di sopravvivenza per giocatore singolo. Affronta orde di alieni letali, estrai ricchezze e sblocca potenti potenziamenti per sopravvivere, mentre brandisci l'intero arsenale di Deep Rock Galactic. Un nano contro tutto il pianeta Hoxxes!",
     "languages": ["Inglese", "Francese", "Italiano"]
   },
+   {
+    "name": "Mad Max",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/234140/header.jpg",
+    "download_link": "https://pd.cybar.xyz/ze2whQYS",
+    "video_url": "https://video.fastly.steamstatic.com/store_trailers/256997966/movie480_vp9.webm",
+    "category": ["Mondo aperto", "Azione", "Avventura"],
+    "description": "Sei Mad Max un sopravvissuto, eroe suo malgrado. Max non desidera altro che lasciarsi la follia alle spalle e trovare conforto per la sua anima tormentata.",
+    "languages": ["Italiano", "Inglese", "Francese"]
+  },
     {
     "name": "Foundation",
     "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/690830/header.jpg",
