@@ -53,6 +53,15 @@
     "description": "Trivella in cerca di petrolio come se fosse il 1899! Turmoil è un gioco di simulazione dalla grafica accattivante e presenta una rivisitazione in chiave ironica della corsa al petrolio dell'America del Nord dell'Ottocento.",
     "languages": ["Italiano", "Inglese", "Francese"]
   },
+   {
+    "name": "TEKKEN 7",
+    "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/389730/header.jpg",
+    "download_link": "https://pd.cybar.xyz/LootyT7F",
+    "video_url": "https://video.fastly.steamstatic.com/store_trailers/256997966/movie480_vp9.webm",
+    "category": ["Lotta", "Azione", "Multigiocatore"],
+    "description": "Scopri l'epica conclusione della lunga faida della famiglia Mishima. Sfruttando l'Unreal Engine 4, il leggendario gioco di combattimenti torna con stupefacenti battaglie cinematiche narrative e intensi duelli da vivere con amici e rivali.",
+    "languages": ["Italiano", "Inglese", "Francese"]
+  },
     {
     "name": "Anonymous Hacker Simulator",
     "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2487060/header.jpg",
